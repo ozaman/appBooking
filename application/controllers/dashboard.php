@@ -579,7 +579,7 @@ public function historylist(){
 	
 }
 public function voucher(){
-	
+		// $type = $this->input->post('type');
   		$id = $this->input->get('order_id');
   		$lng = $this->input->get('lng');
   		/*$cookie = array(

@@ -514,7 +514,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 
 </style>
     <!-- -->
-<div class="dialog"> <div id="show_order"></div></div>
+<div class="dialog" id="dialog"> <div id="show_order"></div></div>
   	
 <!-- Modal fullscreen -->
 <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -612,7 +612,7 @@ function search() {
 
 		});
 		// $('#sectionsNav').hide();
-		$('.dialog').show();
+		$('#dialog').show();
 		$('body').css('overflow','hidden');
 //	$('#open_modal').click();
 	}	
