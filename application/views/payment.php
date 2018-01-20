@@ -459,7 +459,7 @@
 <!-- <form class="paypal" action="./payments" method="post" id="paypal_form" target="_blank"> -->
         <table class="table " width="100%">
             <tr>
-                <td colspan="2" align="center"><div class="status-pay" style="position: absolute;
+                <td colspan="2" align="center"><div class="status-pay" style="
                 font-weight: 400;
                 font-size: 16px;
                 top: 51px;

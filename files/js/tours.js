@@ -733,6 +733,7 @@ function bookingtours(id) {
                     dataType: 'json',
                     success: function(res) {
                         console.log(res)
+                        console.log('Gallery')
                         if (res.status != '402') {
                         $.each(res, function(i, val) {
                             console.log(res[i])
@@ -909,6 +910,7 @@ function getdetailtour(id) {
                     //contentType: "application/json",
                     dataType: 'json',
                     success: function(res) {
+                        console.log('Gallery')
                         console.log(res)
                         console.log(res.status)
                         if (res.status != '402') {
