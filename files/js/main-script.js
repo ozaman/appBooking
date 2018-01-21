@@ -159,6 +159,10 @@ $(document).ready(function() {
     $('.lng_canceled').click( function() {
          $('#police_pop').hide();
     });
+    $('#service_type').click( function() {
+         $('#foget-password').show();
+         $(this).hide();
+    });
     $('.box-list').click( function() {
          $('html').removeClass('nav-open');
          setTimeout(function() {
@@ -399,6 +403,7 @@ $(document).ready(function() {
         checkshow = true;
         booking = 'Reservation'
         $('#box-pax-rel').hide(500);
+        $('#service_type').hide();
         $('#show-hide-pro').hide(500);        
         $('#get_html_book').hide(500);        
         $('#clear-all').click();
@@ -489,6 +494,7 @@ $(document).ready(function() {
         placeRecord();
         $('#box-pax-rel').hide(500);
         $('#get_html_book').hide(500);
+        $('#service_type').hide();
         $('#show-hide-pro').hide(500)
         $('#loading').css('display', 'block');
         if(checkreal_or_res == 'Res' || checkreal_or_res == ''){
@@ -908,6 +914,7 @@ function sendproto(x,proto){
     $('#selectproto').html($('#proTo' + x).attr('proto'))
     
     $('#box-provinceto').hide();
+    // $('#service_type').show();
     var lng;
     
     if ($.cookie("lng") == undefined) {
@@ -1355,8 +1362,11 @@ function sendpaxuse(x) {
 }
 
 function sendpax(x) {
+
     console.log(x)
     $('#foget-password').hide();
+    $('#service_type').show();
+
    $('#loading').css('display', 'block');
    $('.a-link-item').remove();
    $('#product_service').animate({ scrollTop: 0 }, '500');

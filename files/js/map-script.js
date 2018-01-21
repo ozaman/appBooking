@@ -1085,7 +1085,7 @@ function sendpaxrel(x) {
             if (dataRel.data1[i].pax_id == x) {
                 comparedata.push(dataRel.data1[i])
             } else if (ctype == 0) {
-                 comparedata.push(dataRel[0].data1[i])
+                 comparedata.push(dataRel.data1[i])
             }
         } else if ($.cookie("lng") == 'th') {
             if (dataRel.data1[i].pax_id == ctype) {

@@ -5,13 +5,13 @@
 	<script src="<?php echo base_url(); ?>files/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>files/js/material.min.js"></script>
     <script src="<?php echo base_url(); ?>files/js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
+    <script src="<?php echo base_url(); ?>files/js/jquery.touchSwipe.min.js"></script> 
     <script src="<?php echo base_url(); ?>files/js/hammer.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>files/js/hammer.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>files/js/hammer-time.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>files/js/moment.min.js"></script>
     <script src="<?php echo base_url(); ?>files/js/iscroll.js"></script>
-	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.12.0.js"></script>
+	<!-- <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.12.0.js"></script> -->
 	<!--    Plugin for Date Time Picker and Full Calendar Plugin   -->
 	<!-- <script src="<?php echo base_url(); ?>files/js/moment.min.js"></script> -->
 	<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/   -->
@@ -40,7 +40,7 @@
 	<script src="<?php echo base_url(); ?>files/js/material-kit.min.js?v=<?=time();?>" type="text/javascript"></script>
 
 	<!-- Demo Purpose, JS For Demo Purpose, Don't Include it in your project -->
-	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<script async defer src="<?php echo base_url(); ?>files/js/buttons.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>files/js/jquery.sharrre.js"></script>
 	
 	<?php if(!$_COOKIE['lng']){

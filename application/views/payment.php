@@ -1,10 +1,376 @@
 <script src="https://cdn.omise.co/omise.js"></script>
 		<script>
-
 		  Omise.setPublicKey("pkey_test_59iaxcc7zsr77n4nbkb");
-
 		</script>
-        <style>
+        
+  </style>
+ <div id="loading" style="z-index: 9999;  position: fixed;  width: 100vw;   height: 100vh;   left: 0;    top: 0;   background: rgba(0, 0, 0, 0.59);    display: nones;">
+        <div style="height: 115px;  border-radius: 4px;  background: #fff;  min-width: 15rem;   /* height: auto; */    left: 50vw;   top: 50vh;   transform: translate(-50%,-50%);   position: fixed;    z-index: 10000;">
+            <div>
+                <div style="font-weight: 500;  color: #000; padding: 35px; text-align: center;">
+                    <div style="font-size: 15px" >Loading</div>
+                    <i class="fa fa-circle-o-notch fa-spin fa-fw" style=" margin-top: 10px; color: #5c5151; font-size: 35px"></i>
+                </div>            
+            </div>
+        </div>
+    </div>
+<section style="height: 100vh;background: #fff;     margin-bottom: 35px;">
+    <div class="container">
+        <div style="margin-top: 52px">
+            <div class="col-md-12">
+                <div class="col-md-12" style="text-align: center;  padding-bottom: 12px; font-size: 18px;  font-weight: 400;    margin-bottom: 5px;border-bottom: dashed 3px #3b5998;" >
+                    <span class="lng-payment"></span>
+                </div>
+            </div>
+
+
+    
+
+        <div id="foget-password">
+            <div class="box-in-foget" >
+                <i class="material-icons " id="close" style="position: absolute;  right: 15px;top: 15px;color:#fff">close</i>
+                <div style="text-align: center; padding: 20px 10px; font-size: 18px; background: #3b5998; color: #fff;" class="lng-omise-gateway">   
+                    <span style="text-align: center;vertical-align: super;font-size: 18px; font-weight: 400;" class="lng-omise-gateway">Payment Channel</span>
+                </div>
+                <div style="padding: 12px;padding-top:8px;padding-bottom: 0;">
+                   <div class="col-md-12" id="forget">
+                        <ul class="channel" style="list-style: none; padding-left: 6px;">
+                            <li class="credit-card">
+                                <i class="fa fa-credit-card pad" aria-hidden="true"  style="color:#1a53f0;font-size: 25px;  width: 40px;"></i>
+                                <span style="color:#333;" class="lng_credit_card">Credit Card</span>
+                            </li>
+                            <li>
+                                <form class="paypal" action="./payments" method="post" id="paypal_form" target="_blank">
+                                    <input type="hidden" name="cmd" value="_xclick" />
+                                    <input type="hidden" name="no_note" value="1" />
+                                    <input type="hidden" name="lc" value="UK" />
+                                    <input type="hidden" name="currency_code" value="THB" />
+                                    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+                                    
+                                    <input type="hidden" name="first_name" value="Customer's First Name"  />
+                                    <input type="hidden" name="last_name" value="Customer's Last Name"  />
+                                    <input type="hidden" name="payer_email" value="ozaclever-busines-2@gmail.com"  />
+                                    <input type="hidden" name="item_name" value="Customer's First Name"  id="item_name">
+                                    <input type="hidden" name="item_number" value="988" id="item_number">
+                                    <input type="hidden" type="number" name="txt_amount" class="textInput"  id="amount" />
+                                    <input type="hidden" name="txn_ids" value="Reference" id="reference" / >
+                                    <i class="fa fa-paypal pad" aria-hidden="true" style="color:#253b80;font-size: 30px; width: 40px;"></i>
+                                    <span>
+                                      <input style="background: #ffffff;  border: 0; color:#333; " type="submit" name="submit" value="Paypal" id="paypal"  />
+                                    </span>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="padding: 15px; overflow-y: scroll; height: 60vh; -webkit-overflow-scrolling: touch;">
+                    <div>
+                        <span class="lng_can_see" style="font-size: 16px;  font-weight: 400;"></span>
+                    </div>
+                    <div style="margin-top: 20px; padding: 0 15px;"> <span>1. </span> 
+                        <span class="lng_credit_card" style="font-size: 15px;  font-weight: 400;"></span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="<?php echo base_url(); ?>files/images/omise.svg" alt="" style="width: 185px; height: 75px;">
+                    </div>
+                    <div style="padding: 15px 40px; font-size: 15px;">
+                        <div><span class="lng_fee2"></span><span>: 3.65%</span></div>
+                        <div><span class="lng_vat"></span><span>: 7%</span></div>
+                    </div>
+                    <div style="margin-top: 20px; padding: 0 15px;"> <span>2. </span> 
+                        <span class="lng-paypal" style="font-size: 15px;  font-weight: 400;"></span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="<?php echo base_url(); ?>files/images/paypal.png" alt="" style="height: 140px;">
+                    </div>
+                    <div style="padding: 15px 40px; font-size: 15px;">
+                        <div><span class="lng_fee"></span></div>
+                        <div><span class="lng_do_not_need"></span></div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div id="foget-password2">
+            <div class="box-in-foget2" >
+            <div style="border-bottom: 1px solid #ddd; text-align: center; padding: 20px 10px; font-size: 16px; color: #fff; background: #3b5998;" class="lng-omise-gateway">
+            </div>  
+            <div style="text-align: center; padding: 15px;">
+                <img src="https://assets.omise.co/assets/omise-logo-a86debcb438f41aa395a868ff43fe67090e277d44dea080cd2d51baec405ea71.svg" alt="" width="100">
+            </div>
+            <i class="material-icons" id="close-credit-card" style="position: absolute;top: 15px; right: 15px;color: #fff;">close</i>
+            <div style="padding: 20px;padding-top:0">
+                <form id="checkout" >
+          				  <input type="hidden" name="omise_token">
+          				  <input type="hidden" class="form-control" id="datain" name="data" >
+                  <!-- <input type="hidden" class="form-control" id="amount" name="amount"> -->
+                  <!-- <input type="hidden" name="item_namec" value="Customer's First Name"  id="item_namec"> -->
+      		          <div class="control-group">
+      		            	<div class="control-label label_name">Cardholder Name</div>		            
+      		              <input type="text" data-omise="holder_name" class="iname" id="creditname" name="creditname"  placeholder="Ex. John Smith"pattern="\w+ \w+.*" title="Fill your first and last name" required>		            
+      		          </div>
+				            <div class="control-group" >	
+		                    <div class="control-label label_cardnumber">Card Number</div>		            	
+		                            
+  		                  <input type="text" data-omise="number1" class="cardnumber" id="cardnumber"  autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="" required>		                
+  		                  <input type="text" data-omise="number2" class="cardnumber" id="cardnumber2" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>		                
+  		                  <input type="text" data-omise="number3" class="cardnumber" id="cardnumber3" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>		                
+  		                  <input type="text" data-omise="number4" class="cardnumber" id="cardnumber4" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>	                        
+		                </div>
+				            <div class="control-group">
+		                    <div class="control-label label_date">Expiration Date</div>	
+		            	      <input type="text" data-omise="expiration_month" class="numdate" id="numdate" autocomplete="off" maxlength="2" placeholder="mm"pattern="\d{2}" title="4 Digit" required>
+		            	      <div class="control-label label_slad">/</div>		                
+		                    <input type="text" data-omise="expiration_year" class="numyear" id="numyear" autocomplete="off" maxlength="4" placeholder="yyyy"pattern="\d{4}" title="4 Digit" required>
+		                
+		                </div>
+    				        <div class="control-group">
+    		                <div class="control-label label_cardcvv">CVV</div>              
+    		                <input type="password" data-omise="security_code" class="ccv" id="cvv"autocomplete="off" maxlength="3" placeholder="***"pattern="\d{3}" title="Three digits at back of your card" required>
+    		                <img src="<? echo base_url(); ?>/files/images/cvv2.png" style="width: 68px; margin-left: 200px;  margin-top: -42px; position: absolute; " />	
+    		                <p class="maxtext">Must be 4 digits!</p>
+    		                <p class="maxtext2">Must be 2 digits!</p>
+    		                <p class="maxtext3">Must be 3 digits!</p>
+    		                <p class="maxtext4">Must be 4 digits!</p>                
+    		            </div>
+                    <div id="token_errors"></div>
+		                <input type="submit" id="create_token" class="btn-submit"  value="Submit" >
+				        </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- internet banking -->
+
+    <div id="foget-password3">
+        <div class="box-in-foget3" >
+            <div style="text-align: center; padding: 30px 10px; font-size: 16px;font-weight: 400;" class="lng-omise-gateway"> 
+                <span style="text-align: center;color: #333;vertical-align: super;" class="lng-omise-gateway" >Internet Banking</span>
+                <i class="fa fa-times pull-right" style="font-size: 22px; position: fixed; right: 15px;  top: 15px;" id="close-internet-banking" aria-hidden="true"></i>
+            </div> 
+            <div style="padding: 12px;padding-top:0">
+                <div class="col-md-12" id="forget">
+                    <form> 
+                        <ul class="channel" style="list-style: none; padding-left: 6px;">
+                            <li >                       
+                                <div class="radio">
+                                    <label style="padding-left:0;width:100%">                        
+                                        <div class="omise-logo-wrapper scb">
+                                            <img src="<?php echo base_url(); ?>files/img/omise-offsite-scb.svg" class="scb" />
+                                        </div>
+                                        <div class="omise-banking-text-wrapper">
+                                            <span class="">Siam Commercial Bank</span>                                    
+                                        </div>
+                                        <input type="radio" data-omise="offsite_provider" id="omise_offsite_scb" name="offsite_provider" value="internet_banking_scb" style="position: absolute;  right: 0;  top: 12px;"/>                       
+                                    </label>
+                                </div> 
+                            </li>
+                          
+                            <li >
+                                <div class="radio">
+                                    <label style="padding-left:0;width:100%">
+                                        <input type="radio" data-omise="offsite_provider" id="omise_offsite_ktb" name="offsite_provider" value="internet_banking_ktb" />
+                                        <div class="omise-logo-wrapper ktb">
+                                            <img src="<?php echo base_url(); ?>files/img/omise-offsite-ktb.svg" class="ktb" />
+                                        </div>
+                                        <div class="omise-banking-text-wrapper">
+                                            <span class="">Krungthai Bank</span>
+                                            
+                                        </div>
+                                    </label>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="radio">
+                                    <label style="padding-left:0;width:100%">
+                                        <input type="radio" data-omise="offsite_provider" id="omise_offsite_bay" name="offsite_provider" value="internet_banking_bay" />
+                                        <div class="omise-logo-wrapper bay">
+                                            <img src="<?php echo base_url(); ?>files/img/omise-offsite-bay.svg" class="bay" />
+                                        </div>
+                                        <div class="omise-banking-text-wrapper">
+                                            <span class="">Krungsri Bank</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="radio">
+                                    <label style="padding-left:0;width:100%">
+                                        <input type="radio" data-omise="offsite_provider" id="omise_offsite_bbl" name="offsite_provider" value="internet_banking_bbl" />
+                                        <div class="omise-logo-wrapper bbl">
+                                            <img src="<?php echo base_url(); ?>files/img/omise-offsite-bbl.svg" class="bbl" />
+                                        </div>
+                                        <div class="omise-banking-text-wrapper">
+                                            <span class="">Bangkok Bank</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </li>                       
+                        </ul>
+                            <div class="buttons">  
+                                <input type="submit" class=" btn-checkout" style="100%"  value="Submit" />        
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <table class="table " width="100%">
+            <tr>
+                <td colspan="2" align="center">
+                    <div class="status-pay" style="font-weight: 400; font-size: 16px; top: 51px; color: rgb(255, 0, 0);         right: 73px;">                    
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <span class="lng-product"></span>
+                </td>
+                <td>
+                <span id="pdname"></span>
+                </td>
+            </tr>
+            <tr class="show_transfer">
+          			<td>
+          			<span class="lng-car_type"></span>
+          			</td>
+          			<td>
+          			<span id="car_type"></span>
+          			</td>
+      		  </tr>
+            <tr>
+                <td>
+                    <span class="voucher-lang lng-voucher-no"></span>
+                </td>
+                <td>
+                    <span id="voucher"></span>
+                </td>
+            </tr>
+            <tr id="amout_num">
+                <td>
+                    <span class="amount-lang lng-amount"></span>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <span class="adult-lang lng-adult"></span> :	<span id="adult"></span>
+                            </td>
+                            <td width="10"></td>
+                            <td>
+                                <span class="child-lang lng-child"></span> :	<span id="child"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="price-lang lng-price"></span>
+                </td>
+                <td>
+                    <span id="price"></span> <span class="currency"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="book_by-lang lng-book-by"></span>
+                </td>
+                <td>
+                    <span id="book_by"></span>
+                </td>
+            </tr>
+            <tr class="box-pay">
+                <td>
+                    <span class="lng-amount"></span> (THB.)
+                </td>
+                <td>
+                    <span id="total_amount"></span>
+                    <span class="currency"></span> 
+                </td>
+            </tr>
+            <tr  class="box-pay">                        
+                <td align="center" colspan="2" style="" id="btn-pay"> 
+                </td>
+            </tr>
+            <tr class="box-pay">                
+                <td colspan="2">
+                    <div class="pay-omise">
+                      <span class="lng-paynow"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>       
+                <td align="center" colspan="2" style="" id="btn-pay"> <br> <br>                  
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</section>
+    
+<style>
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+               border-top: none;
+               font-size: 16px;
+           }
+           boby{
+            background-color: #fff !important;
+           }
+.pay-omise{
+    color: #3b5998; */ 
+    font-weight: 700;
+    display: block;
+    /* line-height: 36px; */ 
+    padding: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    min-width: 120px;
+    border-radius: 25px; 
+    text-align: center;
+    color: #ffffff;
+    /* border: 1px solid #3b5998; */
+    background-color: #3b5998;
+    }
+.omise-logo-wrapper         { display: inline-block; padding: 5px; margin-right:10px; border-radius: 2px; vertical-align: top; }
+.omise-logo-wrapper img     { width: 25px; height:25px; }
+.omise-banking-text-wrapper { display: inline-block;
+   
+    color: #333; }
+.secondary-text             { color: #aaa; font-size: 80%; }
+.scb { background: #4e2e7f; }
+.ktb { background: #1ba5e1; }
+.bay { background: #fec43b; }
+.bbl { background: #1e4598; }
+.circle{
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+.check{
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+</style>
+    <style>
+.channel li{
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+.pad{
+    padding-right: 10px;
+    font-size: 20px;
+}
+.channel li span{
+   font-size:15px;
+   line-height: 2.5;
+   vertical-align: super;
+   
+}
+</style>
+    <style>
   /* .checkout-form {
     max-width: 300px;
     margin-top: 40px;
@@ -37,588 +403,6 @@
     background: rgba(0, 0, 0, 0.59);
     display: nones;
 }
-  </style>
- <div id="loading" style="z-index: 9999;  position: fixed;  width: 100vw;   height: 100vh;   left: 0;    top: 0;   background: rgba(0, 0, 0, 0.59);    display: nones;">
-        <div style="height: 115px;  border-radius: 4px;  background: #fff;  min-width: 15rem;   /* height: auto; */    left: 50vw;   top: 50vh;   transform: translate(-50%,-50%);   position: fixed;    z-index: 10000;">
-            <div>
-                <div style="font-weight: 500;  color: #000; padding: 35px; text-align: center;">
-                    <div style="font-size: 15px" >Loading</div>
-                    <i class="fa fa-circle-o-notch fa-spin fa-fw" style=" margin-top: 10px; color: #5c5151; font-size: 35px"></i>
-                </div>            
-            </div>
-        </div>
-    </div>
-<section style="height: 100vh;background: #fff;     margin-bottom: 35px;">
-    <div class="container" style="    ">
-        <div style="
-    margin-top: 52px">
-    <div class="col-md-12">
-        <div class="col-md-12" style="text-align: center;
-    padding-bottom: 12px;
-    font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 5px;
-    border-bottom: dashed 3px #3b5998;" >
-            <span class="lng-payment"></span>
-        </div>
-</div>
-<!-- <a title="Omise Gateway" href="https://www.omise.co/"><img alt="Omise Payment" src="../assets/img/logo.png"></a> -->
-<!-- <form id="checkout-form" class="checkout-form" action="/checkout.php" method="POST">
-      <div class="form-group">
-        <label>Card Number</label>
-        <input type="text" data-name="cardNumber" class="form-control" placeholder="••••••••••••••••" />
-      </div>
-
-      <div class="form-group">
-        <label>Name on card</label>
-        <input type="text" data-name="nameOnCard" class="form-control" placeholder="Full Name" />
-      </div>
-
-      <div class="form-group">
-        <label>Expiry date</label>
-        <div class="row">
-          <div class="col-xs-6">
-            <select class="form-control" data-name="expiryMonth">
-              <option value="">MM</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-          </div>
-          <div class="col-xs-6">
-            <select class="form-control" data-name="expiryYear">
-              <option value="">YYYY</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Security code</label>
-        <input type="text" data-name="securityCode" class="form-control" placeholder="123" />
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn-primary" >Checkout</button>
-      </div>
-
-      <input type="hidden" name="omiseToken" />
-    </form> -->
-<!-- <div class="col-md-6"> -->
-<style>
-.channel li{
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
-}
-.pad{
-    padding-right: 10px;
-    font-size: 20px;
-}
-.channel li span{
-   font-size:15px;
-   line-height: 2.5;
-   vertical-align: super;
-   
-}
-</style>
-    
-
-<div id="foget-password">
-            <div class="box-in-foget" >
-            <i class="material-icons " id="close" style="position: absolute;  right: 15px;top: 15px;color:#fff">close</i>
-            <div style="    text-align: center;
-            padding: 20px 10px;
-            font-size: 16px;
-            background: #3b5998;
-            color: #fff;" class="lng-omise-gateway">   
-     <!-- <i class="fa fa-money pad" style="font-size: 35px; color: #4caf50;" aria-hidden="true"></i> -->
-     <span style="    text-align: center;vertical-align: super;font-size: 18px;
-    font-weight: 400;" class="lng-omise-gateway">Payment Channel</span>
-     
-        <!-- <i class="fa fa-times pull-right" style="font-size: 22px; position: fixed;right: 15px; top: 15px;" id="close" aria-hidden="true"></i> -->
-     </div>
-    
-    <!-- <div align="center" style="margin-top:30px;">
- 
-    </div> -->
-                <div style="padding: 12px;padding-top:8px;padding-bottom: 0;">
-                   <div class="col-md-12" id="forget">
-                   <!-- <i class="fa fa-chevron-left" aria-hidden="true"></i><span>Back</span> -->
-                      
-                        <!-- <div style="margin-top: 50px; font-size: 15px; color: #333333;margin-bottom: 10px;">
-                            <span class="lng-please-input-email">Please input your email </span>
-                        </div> -->
-                        <ul class="channel" style="list-style: none; padding-left: 6px;">
-                            <li class="credit-card">
-                            <i class="fa fa-credit-card pad" aria-hidden="true"  style="color:#1a53f0;font-size: 25px;  width: 40px;"></i>
-                                <!-- <img src="<?php echo base_url(); ?>files/img/omi.png" width="42" alt="" style="    margin-left: -5px;"> -->
-                                <span style="color:#333;   " class="lng_credit_card">Credit Card</span></li>
-                        <li>
-                        <form class="paypal" action="./payments" method="post" id="paypal_form" target="_blank">
-                         
-                <input type="hidden" name="cmd" value="_xclick" />
-                <input type="hidden" name="no_note" value="1" />
-                <input type="hidden" name="lc" value="UK" />
-                <input type="hidden" name="currency_code" value="THB" />
-                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
-                
-                <input type="hidden" name="first_name" value="Customer's First Name"  />
-                <input type="hidden" name="last_name" value="Customer's Last Name"  />
-                <input type="hidden" name="payer_email" value="ozaclever-busines-2@gmail.com"  />
-                <input type="hidden" name="item_name" value="Customer's First Name"  id="item_name">
-                <input type="hidden" name="item_number" value="988" id="item_number">
-                <input type="hidden" type="number" name="txt_amount" class="textInput"  id="amount" />
-               <!-- <input type="hidden" name="return" value="https://dotdotdottrip.com/dashboard/payments/?payment=success" />
-                <input type="hidden" name="cancel_return" value="https://dotdotdottrip.com/dashboard/payments/?payment=cancelled" /> -->
-                <input type="hidden" name="txn_ids" value="Reference" id="reference" / >
-                        <i class="fa fa-paypal pad" aria-hidden="true" style="color:#253b80;    font-size: 30px;
-    width: 40px;"></i><span><input style="background: #ffffff;  border: 0; color:#333; " type="submit" name="submit" value="Paypal" id="paypal"  /></span>
-                        </form></li>
-                        <!-- <li class="internet-banking">
-                            <i class="fa fa-university pad" aria-hidden="true" style="color:#e91e63;font-size: 30px;"></i>
-                        <span style="color:#333">Internet Banking</span></li> -->
-                        <!-- <li><i class="fa fa-credit-card" aria-hidden="true"></i><span>Credit Card</span></li> -->
-                        </ul>
-                    </div>
-                   
-                    
-                </div>
-                 <div style="padding: 15px; overflow-y: scroll; height: 60vh; -webkit-overflow-scrolling: touch;">
-                    <div >
-                        <span class="lng_can_see" style="font-size: 16px;  font-weight: 400;"></span>
-                      
-                    </div>
-                    <div style="margin-top: 20px; padding: 0 15px;"> <span>1. </span> 
-                    <span class="lng_credit_card" style="font-size: 15px;  font-weight: 400;"></span>
-                    </div>
-                    <div style="text-align: center;">
-                        <img src="<?php echo base_url(); ?>files/images/omise.svg" alt="" style="width: 185px;
-    height: 75px;">
-                    </div>
-                    <div style="padding: 15px 40px; font-size: 15px;">
-                        <div><span class="lng_fee2"></span><span>: 3.65%</span></div>
-                        <div><span class="lng_vat"></span><span>: 7%</span></div>
-                    </div>
-                    <div style="margin-top: 20px; padding: 0 15px;"> <span>2. </span> 
-                    <span class="lng-paypal" style="font-size: 15px;  font-weight: 400;"></span>
-                    </div>
-                    <div style="text-align: center;">
-                        <img src="<?php echo base_url(); ?>files/images/paypal.png" alt="" style="height: 140px;">
-                    </div>
-                    <div style="padding: 15px 40px; font-size: 15px;">
-                        <div><span class="lng_fee"></span></div>
-                        <div><span class="lng_do_not_need"></span></div>
-                    </div>
-                    
-                </div>
-                <!-- <div style="position: fixed; padding: 0 12px; width: 100%;bottom: 12px;">  -->
-                <!-- <div  class="btn-close lng-close" ></div> -->
-                   
-                <!-- </div> -->
-            </div>
-        </div>
-        <div id="foget-password2">
-            <div class="box-in-foget2" >
-            <div style="border-bottom: 1px solid #ddd;
-    text-align: center;
-    padding: 20px 10px;
-    font-size: 16px;
-    color: #fff;
-    background: #3b5998;" class="lng-omise-gateway">
-            </div>  
-            <div style="text-align: center; padding: 15px;"><img src="https://assets.omise.co/assets/omise-logo-a86debcb438f41aa395a868ff43fe67090e277d44dea080cd2d51baec405ea71.svg" alt="" width="100">    </div>
-            <i class="material-icons" id="close-credit-card" style="position: absolute;top: 15px; right: 15px;color: #fff;">close</i>
-            <!-- <i class="fa fa-times pull-right" style="    font-size: 22px;" id="close-credit-card" aria-hidden="true"></i> -->
-
-    
-    <!-- <div align="center" style="margin-top: 40px; margin-bottom: 20px;"> -->
-    <!-- <i class="fa fa-credit-card " aria-hidden="true" style="    font-size: 27px;
-    color: #aaa;"></i> -->
-   
-    <!-- <i class="fa fa-money "  aria-hidden="true"></i> -->
-    <!-- </div> -->
-                <div style="padding: 20px;padding-top:0">
-                   <!-- <div class="col-md-12" id="forget"> -->
-                   <!-- <i class="fa fa-chevron-left" aria-hidden="true"></i><span>Back</span> -->
-                       <!-- <h5 style="    text-align: center;" class="lng-omise-gateway">Credit Card</h5> -->
-                     
-                        
-                    <!-- </div> -->
-                    <form id="checkout" >
-				 
-
-				  <input type="hidden" name="omise_token">
-				  <input type="hidden" class="form-control" id="datain" name="data" >
-                  <!-- <input type="hidden" class="form-control" id="amount" name="amount"> -->
-                  <!-- <input type="hidden" name="item_namec" value="Customer's First Name"  id="item_namec"> -->
-				  
-                  
-
-				     
-		          <div class="control-group">
-		          		
-		          	
-		            	<div class="control-label label_name">Cardholder Name</div>		            
-		              	<input type="text" data-omise="holder_name" class="iname" id="creditname" name="creditname"  placeholder="Ex. John Smith"pattern="\w+ \w+.*" title="Fill your first and last name" required>		            
-		          </div>
-				  <div class="control-group" >	
-		            <div class="control-label label_cardnumber">Card Number</div>		            	
-		                            
-		                  <input type="text" data-omise="number1" class="cardnumber" id="cardnumber"  autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="" required>		                
-		                  <input type="text" data-omise="number2" class="cardnumber" id="cardnumber2" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>		                
-		                  <input type="text" data-omise="number3" class="cardnumber" id="cardnumber3" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>		                
-		                  <input type="text" data-omise="number4" class="cardnumber" id="cardnumber4" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>	                        
-		          </div>
-				  <div class="control-group">
-		            <div class="control-label label_date">Expiration Date</div>	
-		            	<input type="text" data-omise="expiration_month" class="numdate" id="numdate" autocomplete="off" maxlength="2" placeholder="mm"pattern="\d{2}" title="4 Digit" required>
-		            	<div class="control-label label_slad">/</div>		                
-		                <input type="text" data-omise="expiration_year" class="numyear" id="numyear" autocomplete="off" maxlength="4" placeholder="yyyy"pattern="\d{4}" title="4 Digit" required>
-		                
-		          </div>
-				  <div class="control-group">
-		            <div class="control-label label_cardcvv">CVV</div>              
-		                  <input type="password" data-omise="security_code" class="ccv" id="cvv"autocomplete="off" maxlength="3" placeholder="***"pattern="\d{3}" title="Three digits at back of your card" required>
-		                  <img src="<? echo base_url(); ?>/files/images/cvv2.png" style="width: 68px;
-    margin-left: 200px;
-    margin-top: -42px;
-    position: absolute; " />	
-		                  <p class="maxtext">Must be 4 digits!</p>
-		                  <p class="maxtext2">Must be 2 digits!</p>
-		                  <p class="maxtext3">Must be 3 digits!</p>
-		                  <p class="maxtext4">Must be 4 digits!</p>                
-		          </div>
-                  <div id="token_errors"></div>
-		          <input type="submit" id="create_token" class="btn-submit"  value="Submit" >
-		          
-		         
-
-				</form>
-                
-                   
-                    
-                </div>
-               
-            </div>
-        </div>
-
-        <!-- internet banking -->
-
-        <div id="foget-password3">
-            <div class="box-in-foget3" >
-            <div style="text-align: center; padding: 30px 10px; font-size: 16px;font-weight: 400;" class="lng-omise-gateway"> 
-       
-                 <!-- <i class="fa fa-linkedin-square pad"  style="    font-size: 35px; color: #e91e63;"></i> -->
-                 <span style="text-align: center;color: #333;vertical-align: super;" class="lng-omise-gateway" >Internet Banking</span>
-                <!-- <td> </td> -->
-            
-        <!-- </table> -->
-            
-       
-        <i class="fa fa-times pull-right" style="font-size: 22px; position: fixed; right: 15px;  top: 15px;" id="close-internet-banking" aria-hidden="true"></i>
-        </div>
-    
-   
-   
-   
-    <style>
-.omise-logo-wrapper         { display: inline-block; padding: 5px; margin-right:10px; border-radius: 2px; vertical-align: top; }
-.omise-logo-wrapper img     { width: 25px; height:25px; }
-.omise-banking-text-wrapper { display: inline-block;
-   
-    color: #333; }
-.secondary-text             { color: #aaa; font-size: 80%; }
-.scb { background: #4e2e7f; }
-.ktb { background: #1ba5e1; }
-.bay { background: #fec43b; }
-.bbl { background: #1e4598; }
-.circle{
-    position: absolute;
-    right: 0;
-    top: 12px;
-}
-.check{
-    position: absolute;
-    right: 0;
-    top: 12px;
-}
-</style>
-    
-                <div style="padding: 12px;padding-top:0">
-                   <div class="col-md-12" id="forget">
-                   <!-- <i class="fa fa-chevron-left" aria-hidden="true"></i><span>Back</span> -->
-                      
-                        <!-- <div style="margin-top: 50px; font-size: 15px; color: #333333;margin-bottom: 10px;">
-                            <span class="lng-please-input-email">Please input your email </span>
-                        </div> -->
-                        <form>
-                            
-                        <ul class="channel" style="list-style: none; padding-left: 6px;">
-                        <li >                       
-                            <div class="radio">
-                                <label style="padding-left:0;width:100%">                        
-                                    <div class="omise-logo-wrapper scb">
-                                        <img src="<?php echo base_url(); ?>files/img/omise-offsite-scb.svg" class="scb" />
-                                    </div>
-                                    <div class="omise-banking-text-wrapper">
-                                        <span class="">Siam Commercial Bank</span>
-                                        <!-- <span class="rate secondary-text">Fee: 15 THB (same zone), 30 THB (out zone)</span> -->
-                                    
-                                    </div>
-                                    <input type="radio" data-omise="offsite_provider" id="omise_offsite_scb" name="offsite_provider" value="internet_banking_scb" style="position: absolute;  right: 0;  top: 12px;"/>                       
-                                </label>
-                            </div>            
-                            <!-- <img class="img-bank" src="<?php//echo base_url(); ?>files/img/scb.svg" alt=""><span>Siam Commercial Bank</span> -->
-                        </li>
-                        
-                        <li >
-                        <div class="radio">
-                            <label style="padding-left:0;width:100%">
-                                <input type="radio" data-omise="offsite_provider" id="omise_offsite_ktb" name="offsite_provider" value="internet_banking_ktb" />
-                                <div class="omise-logo-wrapper ktb">
-                                    <img src="<?php echo base_url(); ?>files/img/omise-offsite-ktb.svg" class="ktb" />
-                                </div>
-                                <div class="omise-banking-text-wrapper">
-                                    <span class="">Krungthai Bank</span>
-                                    
-                                </div>
-                            </label>
-                        </div>
-                            <!-- <img class="img-bank" src="<?php echo base_url(); ?>files/img/ktb.svg" alt=""><span>Krungthai Bank</span> -->
-                        </li>
-                        <li >
-                        <div class="radio">
-                            <label style="padding-left:0;width:100%">
-                                <input type="radio" data-omise="offsite_provider" id="omise_offsite_bay" name="offsite_provider" value="internet_banking_bay" />
-                                <div class="omise-logo-wrapper bay">
-                                    <img src="<?php echo base_url(); ?>files/img/omise-offsite-bay.svg" class="bay" />
-                                </div>
-                                <div class="omise-banking-text-wrapper">
-                                    <span class="">Krungsri Bank</span>
-                                    <!-- <span class="rate secondary-text">Fee: 15 THB (same zone), 15 THB (out zone)</span> -->
-                                </div>
-                            </label>
-                        </div>
-                            <!-- <img class="img-bank" src="<?php echo base_url(); ?>files/img/bbl.svg" alt=""><span>Krungsri Bank</span> -->
-                        </li>
-                        <li >
-                        <div class="radio">
-                            <label style="padding-left:0;width:100%">
-                                <input type="radio" data-omise="offsite_provider" id="omise_offsite_bbl" name="offsite_provider" value="internet_banking_bbl" />
-                                <div class="omise-logo-wrapper bbl">
-                                    <img src="<?php echo base_url(); ?>files/img/omise-offsite-bbl.svg" class="bbl" />
-                                </div>
-                                <div class="omise-banking-text-wrapper">
-                                    <span class="">Bangkok Bank</span>
-                                    <!-- <span class="rate secondary-text">Fee: 15 THB (same zone), 20 THB (out zone)</span> -->
-                                </div>
-                            </label>
-                        </div>
-                            <!-- <img class="img-bank" src="<?php echo base_url(); ?>files/img/bay.svg" alt=""><span>Bankok Bank</span> -->
-                        </li>
-                       
-                        </ul>
-                            <div class="buttons">        
-                                <!-- <i class="omise-submitting fa fa-spinner fa-spin"></i> -->
-            
-                                <input type="submit" class=" btn-checkout" style="100%"  value="Submit" />
-        
-                            </div>
-                    </form>
-                </div>
-                   
-                    
-                </div>
-               
-                 <!-- Button -->
-    
-                <!-- <div style="position: fixed; padding: 0 12px; width: 100%;bottom: 12px;">  -->
-                <!-- <div  class="btn-close lng-close" ></div> -->
-                   
-                <!-- </div> -->
-            </div>
-        </div>
-<!-- <form class="paypal" action="./payments" method="post" id="paypal_form" target="_blank"> -->
-        <table class="table " width="100%">
-            <tr>
-                <td colspan="2" align="center"><div class="status-pay" style="
-                font-weight: 400;
-                font-size: 16px;
-                top: 51px;
-                color: rgb(255, 0, 0);
-                right: 73px;"></div></td>
-            </tr>
-            <tr>
-                <td>
-                <span class="lng-product"></span>
-                </td>
-                <td>
-                <span id="pdname"></span>
-                </td>
-            </tr>
-            <tr class="show_transfer">
-  			<td>
-  			<span class="lng-car_type"></span>
-  			</td>
-  			<td>
-  			<span id="car_type"></span>
-  			</td>
-  		</tr>
-            <tr>
-                <td>
-                <span class="voucher-lang lng-voucher-no"></span>
-                </td>
-                <td>
-                <span id="voucher"></span>
-                </td>
-            </tr>
-            <tr id="amout_num">
-                <td>
-                <span class="amount-lang lng-amount"></span>
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
-                                <span class="adult-lang lng-adult"></span> :	<span id="adult"></span>
-                            </td>
-                            <td width="10"></td>
-                            <td>
-                                <span class="child-lang lng-child"></span> :	<span id="child"></span>
-                            </td>
-                    </tr></table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="price-lang lng-price"></span>
-                </td>
-                <td>
-                    <span id="price"></span> <span class="currency"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <span class="book_by-lang lng-book-by"></span>
-                </td>
-                <td>
-                <span id="book_by"></span>
-                </td>
-            </tr>
-            <tr class="box-pay">
-                <td>
-                <span class="lng-amount"></span> (THB.)
-                </td>
-                <td>
-                <span id="total_amount"></span>
-                <span class="currency"></span> 
-                <!-- <input type="number" name="txt_amount" class="textInput" holder="" id="amount" /> -->
-                <!-- disabled -->
-                </td>
-            </tr>
-            <tr  class="box-pay">                        
-                <td align="center" colspan="2" style="" id="btn-pay"> 
-                                         
-                    <!-- <input style="background: #ffffff;  border: 0; width:99% " type="image" name="submit" value="Submit Payment" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png"  />                                            -->
-                </td>
-            </tr>
-                   
-            <!-- <tr class="box-pay">
-                
-                <td colspan="2">
-                    <div class="pay-driver" style="color: #3b5998; */
-    font-weight: 700;
-    display: block;
-    /* line-height: 36px; */
-    padding: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    min-width: 120px;
-    /* border-radius: 4px; */
-    text-align: center;
-    color: #ffffff;
-    /* border: 1px solid #3b5998; */
-    background-color: #3b5998;">Pay Driver</div>
-                </td>
-            </tr> -->
-             <tr class="box-pay">
-                
-                <td colspan="2">
-                    <div class="pay-omise" style="color: #3b5998; */
-    font-weight: 700;
-    display: block;
-    /* line-height: 36px; */
-    padding: 12px;
-    text-decoration: none;
-    cursor: pointer;
-    min-width: 120px;
-    border-radius: 25px; 
-    text-align: center;
-    color: #ffffff;
-    /* border: 1px solid #3b5998; */
-    background-color: #3b5998;"><span class="lng-paynow"></span></div>
-                </td>
-            </tr>
-            <tr>
-                        
-                        <td align="center" colspan="2" style="" id="btn-pay">                           
-                        </br>                  
-                        </br>                  
-                        </td>
-                    </tr>
-        </table>
-        
-       <style>
-           .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-               border-top: none;
-           }
-           boby{
-            background-color: #fff !important;
-           }
-       </style>       
-
-            
-              
-               
-                <!-- <table width="100%" style="   " >
-                    <tr>
-                        <td style="padding:0 5px 5px 0;">
-                        </td>
-                        <td style="padding:0 5px 5px 0;">
-                        <input type="number" name="txt_amount" class="textInput" holder="" id="amount"/>
-                        </td>
-                        
-                    </tr>                   
-                    <tr>
-                        
-                        <td align="center" colspan="2" style="" id="btn-pay">                           
-                            <input style="background: #ffffff;  border: 0; margin-top: 15px;  " type="image" name="submit" value="Submit Payment" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png"  />                                           
-                        </td>
-                    </tr>
-                </table> -->
-        <!-- </div> -->
-            <!-- </form> -->
-        </div>
-        </div>
-    </section>
 <style>
     .btn-checkout{
         margin-top: 40px;
@@ -1522,8 +1306,10 @@ function getParameterByName(name, url) {
                 var res = data[0].booking_date.replace(" ", "/"); 
                 $('#transfer_date').text(res);
                 $('#book_by').text(data[0].guest_english);
-                $('#price').text(data[0].total_price);
-                $('#total_amount').text(data[0].total_price);
+                $('#price').text(data[0].total_price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                $('#total_amount').text(data[0].total_price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                console.log('===================')
+                console.log(data[0].total_price)
                 console.log(data[0].total_price*4.4)
                 var charg = (parseInt(data[0].total_price)*4.4)/100;
                 var sumcost = parseInt(data[0].total_price)+charg;
