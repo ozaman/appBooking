@@ -973,13 +973,7 @@ function bookingtours(id) {
                 $('#email').attr('placeholder','电子邮件');
                 $('#flight').attr('placeholder','航班');
                 $('#other').attr('placeholder','其他');
-                $('.lng-have').html('有');                
-                $('.lng-none-have').html('沒有');
-                $('.lng-demestic').html('國內');                       
-                $('.lng-international').html('國際'); 
                 
-                
-               
                 $('#price_tour').html(dataitemdetail[0].cost_a_agent_all.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' ' + 'Bath')
                 $('#product').html(dataitemdetail[0].topic_cn)
                 // $('#name_product').html(dataitemdetail[0].topic_car)
@@ -994,10 +988,6 @@ function bookingtours(id) {
                 $('#email').attr('placeholder','Email');
                 $('#flight').attr('placeholder','Flight');
                 $('#other').attr('placeholder','Other');
-                // $('.lng-have').html('Have');                
-                // $('.lng-none-have').html('None');
-                // $('.lng-demestic').html('Domestic');                       
-                // $('.lng-international').html('International');                
                 
                 $('#price_tour').html(dataitemdetail[0].cost_a_agent_all.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' ' + 'Bath')
                 $('#product').html(dataitemdetail[0].topic_en)
@@ -1013,11 +1003,7 @@ function bookingtours(id) {
                 $('#email').attr('placeholder','อีเมล์');
                 $('#flight').attr('placeholder','เที่ยวบิน');
                 $('#other').attr('placeholder','อื่น ๆ');               
-                // $('.lng-have').html('มี');                       
-                // $('.lng-none-have').html('ไม่มี');
-                // $('.lng-demestic').html('ในประเทศ');                       
-                // $('.lng-international').html('ระหว่างประเทศ');  
-                // $('#cars_persion').html(dataitemdetail[0].car_topic_th + dataitemdetail[0].pax_th)
+                
                 $('#price_tour').html(dataitemdetail[0].cost_a_agent_all.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' ' +  'Bath')
                 $('#product').html(dataitemdetail[0].topic_th)
                 // $('#name_product').html(dataitemdetail[0].topic_car)
@@ -1033,10 +1019,6 @@ function bookingtours(id) {
             }
         })
      console.log(dataitemdetail)
-     // $('#codecountry').show(500);
-     
-
-        //$('#select-name').html('')
         $.ajax({
             type: 'POST',
             url: url + 'getcountry_control/process',
@@ -1072,11 +1054,6 @@ function bookingtours(id) {
     $('#codecountry').css({ 'z-index': '301', 'height': '100vh' });
 
      $('.box_in_country').css({ 'z-index': '301', 'height': '100vh' });
-     
-     // $('#product').html(dataitemdetail[0].topic)
-     // $('#price').html(dataitemdetail[0].cost_a_agent_all)
-
-     
 }
 function getdetailtour(id) {
     console.log(id)
