@@ -534,7 +534,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
   </div>
 </div>
   	
-<!--End Modal ---------------------------------------------------------------------------------------------------------------------------------->
+<!--End Modal -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-fullscreen" id="open_modal" style="display: none;" >Open Modal</button>           
 
 <script>

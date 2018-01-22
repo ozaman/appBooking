@@ -7,11 +7,14 @@ var dataitemdetail;
 var getpricetour,time_around,headertour,bath;
 var slideIndex = 1;
 var optiondate;
+var dateon = [];
+var date_on = [];
 var product_item,getlng,product_id;
-var c_transfer,paramtour,id_placeto,id_place,name_placeto,name_place,start_time,ontime = '00:00',passnotransfer = 0;
+var c_transfer,paramtour,id_placeto,id_place,name_placeto,name_place,start_time,date,ontime = '00:00',passnotransfer = 0;
 //var myVar = setInterval(plusDivs(1),5000);
 console.log(optiondate)
 console.log(optiondate)
+
 $(document).ready(function() {
     if($.cookie("lng") == undefined){
     getlng = 'en'
@@ -87,17 +90,71 @@ $('#on_date2').each(function() {
         var val = $(this).val();
         date = moment(val).toDate();
     });
+// if (dateon[0] == 1) {//
+//       x0 = 0;
+//     }
+//     else{
+//       x0 = null;
+//     }
+//     if (dateon[1] ==1) {
+//       x1 = 1;
+//     }
+//     else{
+//       x1 = null;
+//     }
+//     if (dateon[2] == 1) {
+//       x2 = 2;
+//     }
+//     else{
+//       x2 = null;
+//     }
+//     if (dateon[3] == 1) {
+//       x3 = 3;
+//     }
+//     else{
+//       x3 = null;
+//     }
+//     if (dateon[4] == 1) {
+//       x4 = 4;
+//     }
+//     else{
+//       x4 = null;
+//     }
+//     if (dateon[5] == 1) {
+//       x5 = 5;
+//     }
+//     else{
+//       x5 = null;
+//     }
+//     if (dateon[6] == 1) {
+//       x6 = 6;
+//     }
+//     else{
+//       x6 = null;
+//     }
     $('#on_date2').pickadate({
+         //disable: date_on,
         format: 'yyyy-mm-dd',
         formatSubmit: 'yyyy-mm-dd',
         closeOnSelect: true,
         closeOnClear: false,
         selectMonths: true,
         selectYears: true,
+        min:true,
         "showButtonPanel": false,
         onStart: function() {
             this.set('select', date); // Set to current date on load
         }
+    //     beforeShowDay: function(date){
+    //   var day = date.getDay();
+    //  return [ day == x0 ||
+    //           day == x1 ||
+    //           day == x2 ||
+    //           day == x3 ||
+    //           day == x4 ||
+    //           day == x5 ||
+    //           day == x6,'']; 
+    // }
     });
 
     $('#search-place').keyup(function() {
@@ -183,7 +240,94 @@ $('#on_date2').each(function() {
 
        // $('#ontime_samary').html(ontime)
     })
+// var datecheck = new Date();
+//   var text1 = datecheck.getFullYear()+'-'+[parseInt(datecheck.getMonth())+1]+'-'+datecheck.getDate()+" 00:00:00";
+//   var text2 = datecheck.getFullYear()+'-'+[parseInt(datecheck.getMonth())+1]+'-'+datecheck.getDate()+" 18:00:00";
+//   var text3 = datecheck.getFullYear()+'-'+[parseInt(datecheck.getMonth())+1]+'-'+datecheck.getDate()+" 18:00:00";
+//   var text4 = datecheck.getFullYear()+'-'+[parseInt(datecheck.getMonth())+1]+'-'+datecheck.getDate()+" 23:59:59";
+//   //------test time ----------
+//   //var text5 = "2016-3-30 20:30:01";
+//   //--------------------------
+//   var datenow = new Date(); 
+//   var x = $.cookie('dateon');
+//   console.log(x);
+//   var dateon = x.split(','); 
+//   console.log(dateon)
+//     if (dateon[0] == 1) {//
+//       x0 = 0;
+//     }
+//     else{
+//       x0 = null;
+//     }
+//     if (dateon[1] ==1) {
+//       x1 = 1;
+//     }
+//     else{
+//       x1 = null;
+//     }
+//     if (dateon[2] == 1) {
+//       x2 = 2;
+//     }
+//     else{
+//       x2 = null;
+//     }
+//     if (dateon[3] == 1) {
+//       x3 = 3;
+//     }
+//     else{
+//       x3 = null;
+//     }
+//     if (dateon[4] == 1) {
+//       x4 = 4;
+//     }
+//     else{
+//       x4 = null;
+//     }
+//     if (dateon[5] == 1) {
+//       x5 = 5;
+//     }
+//     else{
+//       x5 = null;
+//     }
+//     if (dateon[6] == 1) {
+//       x6 = 6;
+//     }
+//     else{
+//       x6 = null;
+//     }
+  
+    
+//   if(datenow >= new Date(text1) && datenow <= new Date(text2))
+//   {
+//     var to = new Date();
+//     to.setDate(to.getDate());
+//   }
+//   else if(datenow > new Date(text3) && datenow <= new Date(text4))
+//   {
+//     var to = new Date();
+//     to.setDate(to.getDate()+1);
+//      console.log(to)
+//   }
+ 
+//   var from = new Date();
+//   console.log(from)
+//   $.datepicker.setDefaults($.datepicker.regional['idround']);
+//   $('.booking-input').datepicker({    
+//     minDate : to,
+//     beforeShowDay: function(date){
+//       var day = date.getDay();
+//      return [ day == x0 ||
+//               day == x1 ||
+//               day == x2 ||
+//               day == x3 ||
+//               day == x4 ||
+//               day == x5 ||
+//               day == x6,'']; 
+//     }
+    
+   
 
+//   });
 });//END READY 
 
 function getProvince(){
@@ -766,6 +910,42 @@ function bookingtours(id) {
                         console.log(res)
                     }
                 });
+                 /******* CUSTOM DATEPICKER ********/
+                date_on = []
+                if (data.data[0].open_Sun == 0) {
+                    date_on.push(1)
+                }
+                else if (data.data[0].open_Mon == 0) {
+                    date_on.push(2)
+                }
+                else if (data.data[0].open_Tue == 0) {
+                    date_on.push(3)
+                }
+                else if (data.data[0].open_Wed == 0) {
+                    date_on.push(4)
+                }
+                else if (data.data[0].open_Thu == 0) {
+                    date_on.push(5)
+                }
+                else if (data.data[0].open_Fri == 0) {
+                    date_on.push(6)
+                }
+                else if (data.data[0].open_Sat == 0) {
+                    date_on.push(7)
+                }
+               
+                var $input = $('#on_date2').pickadate();
+                var picker = $input.pickadate('picker');
+                if (date_on.length != 0) {
+                 picker.set('disable', date_on);
+
+                }
+                else{
+                 picker.set('disable',false );
+
+                }
+                /************* END ***************/
+                console.log(date_on)
                 console.log(data)
                 c_transfer = data.data[0].in_transfer
                 cost_a_nett = data.data[0].cost_a_agent_all
@@ -937,8 +1117,10 @@ function getdetailtour(id) {
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
+               // var x1 = 1,x2 = 2,x3 = 3,x4 = 4,x5 = 5,x6 = 6, x7 = 7;
                // $.each(data, function(i, val) {
                 console.log(data)
+                
               optiondate  = [ {name_en:'Sunday', name_cn:'星期日',name_th:'อาทิตย์', status: data.data[0].open_Sun}
                             ,{name_en:'Monday', name_cn:'星期一',name_th:'จันทร์', status: data.data[0].open_Mon}
                             ,{name_en:'Tuesday', name_cn:'星期二',name_th:'อังคาร', status: data.data[0].open_Tue}
