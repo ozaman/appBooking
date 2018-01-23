@@ -741,7 +741,7 @@ function getItemtour(type,head) {
 var urlicon = base_url + 'files/images/carmodelicon/';
      $.each(dataitem, function(i, val) {
          if (type == dataitem[i].type) {
-            console.log(dataitem[i])
+            //console.log(dataitem[i])
          itemTourforpro.push(dataitem[i])
      }
        

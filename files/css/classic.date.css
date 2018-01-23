@@ -65,10 +65,12 @@
 
 .picker__select--month {
     width: 35%;
+    border-radius: 15px;
 }
 
 .picker__select--year {
     width: 22.5%;
+    border-radius: 15px;
 }
 
 .picker__select--month:focus,

@@ -1215,25 +1215,31 @@
                                             i: 1,
                                             node: 'td',
                                             item: function(targetDate) {
-
+                                                // console.log(targetDate)
                                                 // Convert the time date from a relative date to a target date.
                                                 targetDate = calendar.create([viewsetObject.year, viewsetObject.month, targetDate + (settings.firstDay ? 1 : 0)])
-                                                    //console.log(targetDate)
+                                                // console.log(targetDate)
                                                 var isSelected = selectedObject && selectedObject.pick == targetDate.pick,
                                                     isHighlighted = highlightedObject && highlightedObject.pick == targetDate.pick,
                                                     isDisabled = disabledCollection && calendar.disabled(targetDate) || targetDate.pick < minLimitObject.pick || targetDate.pick > maxLimitObject.pick,
                                                     formattedDate = _.trigger(calendar.formats.toString, calendar, [settings.format, targetDate])
-                                                    //console.log(formattedDate)
-                                                    //console.log(targetDate.date)
-                                                    //console.log(formattedDate)
+                                                    // console.log(formattedDate)
+                                                    // console.log(targetDate.date)
+                                                    // console.log(formattedDate)
 
 
 
                                                 return [
                                                         _.node(
+                                                            
                                                             'div',
                                                             targetDate.date,
                                                             (function(klasses) {
+                                                                console.log('********************************')
+                                                                console.log(klasses)
+                                                                console.log(targetDate.date)
+                                                                console.log('********************************')
+
 
                                                                 // Add the `infocus` or `outfocus` classes based on month in view.
                                                                 klasses.push(viewsetObject.month == targetDate.month ? settings.klass.infocus : settings.klass.outfocus)
@@ -1250,7 +1256,11 @@
 
                                                                 // Add the `highlighted` class if something's highlighted and the time matches.
                                                                 if (isHighlighted) {
+                                                                    // console.log(settings)
+                                                                    // console.log(settings.klass)
+                                                                    // console.log(settings.klass.highlighted)
                                                                     klasses.push(settings.klass.highlighted)
+
                                                                 }
 
                                                                 // Add the `disabled` class if something's disabled and the object matches.
@@ -1260,6 +1270,10 @@
 
                                                                 return klasses.join(' ')
                                                             })([settings.klass.day]),
+
+                                                            console.log(formattedDate +'-------------------'),
+                                                            console.log(targetDate.pick + '**************'),
+                                                            console.log(settings.klass.day),
                                                             'data-pick=' + targetDate.pick + ' ' + _.ariaAttr({
                                                                 role: 'gridcell',
                                                                 label: formattedDate,
@@ -1270,8 +1284,9 @@
                                                             })
 
                                                         ),
-                                                        '',
+                                                        '' ,
                                                         _.ariaAttr({ role: 'presentation' })
+
                                                     ] //endreturn
                                             }
                                         })
