@@ -36,11 +36,25 @@
                    <div class="col-md-12" id="forget">
                         <ul class="channel" style="list-style: none; padding-left: 6px;">
                             <li class="credit-card">
-                                <i class="fa fa-credit-card pad" aria-hidden="true"  style="color:#1a53f0;font-size: 25px;  width: 40px;"></i>
-                                <span style="color:#333;" class="lng_credit_card">Credit Card</span>
+                                <div style="color: #e91e63;
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    background: #ffffff;
+    border: 1px solid #e91e63;">
+                                    <!-- <i class="fa fa-credit-card pad" aria-hidden="true"  style="font-size: 25px;  width: 40px;"></i> -->
+                                <span style="" class="lng_credit_card">Credit Card</span>
+                                </div>
+                                
                             </li>
                             <li>
-                                <form class="paypal" action="./payments" method="post" id="paypal_form" target="_blank">
+                                <div style="color: #3b9ad2;
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    background: #ffffff;
+    border: 1px solid #3b9ad2;">
+                                    <form class="paypal" action="./payments" method="post" id="paypal_form" target="_blank">
                                     <input type="hidden" name="cmd" value="_xclick" />
                                     <input type="hidden" name="no_note" value="1" />
                                     <input type="hidden" name="lc" value="UK" />
@@ -54,11 +68,13 @@
                                     <input type="hidden" name="item_number" value="988" id="item_number">
                                     <input type="hidden" type="number" name="txt_amount" class="textInput"  id="amount" />
                                     <input type="hidden" name="txn_ids" value="Reference" id="reference" / >
-                                    <i class="fa fa-paypal pad" aria-hidden="true" style="color:#253b80;font-size: 30px; width: 40px;"></i>
+                                    <!-- <i class="fa fa-paypal pad" aria-hidden="true" style="color:#253b80;font-size: 30px; width: 40px;"></i> -->
                                     <span>
-                                      <input style="background: #ffffff;  border: 0; color:#333; " type="submit" name="submit" value="Paypal" id="paypal"  />
+                                      <input style="background: #ffffff;  border: 0; " type="submit" name="submit" value="Paypal" id="paypal"  />
                                     </span>
                                 </form>
+                                </div>
+                                
                             </li>
                         </ul>
                     </div>
@@ -357,7 +373,7 @@
     <style>
 .channel li{
     padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
 }
 .pad{
     padding-right: 10px;
@@ -443,7 +459,7 @@
 .box-in-foget{
     height: 100vh;
         /* border-radius: 4px; */
-        background: #fff;
+        background: #e6eaed ;
         min-width: 100%;
         /* height: auto; */
         left: 50vw;

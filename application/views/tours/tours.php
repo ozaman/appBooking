@@ -511,7 +511,7 @@
     height: 100vh;
     left: 0;
     top: 0;
-    background: #fff;
+    background: #e6eaed;
     overflow: hidden;
     z-index: 100;
 }
