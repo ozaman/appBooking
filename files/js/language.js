@@ -197,7 +197,15 @@ $(document).ready(function() {
         $('.lng_gallery').html("畫廊") 
         $('.lng_product_details').html("產品詳情") 
         $('.lng_product_category').html("產品類型")  
-        $('.lng_select_type').html("請選擇一個產品類型。")       
+        $('.lng_select_type').html("請選擇一個產品類型。") 
+        $('.lng_region').html("请选择一个地区。")  
+        $('.lng_country').html("请选择国家")          
+        $('.ing_thai').html('泰国')  
+        $('.lng_home').html('主页')  
+             
+
+
+
 
 
 
@@ -400,7 +408,15 @@ $(document).ready(function() {
         $('.lng_gallery').html("Gallery")
         $('.lng_product_details').html("Product Details")
         $('.lng_product_category').html("Product Category") 
-        $('.lng_select_type').html("Please select a product type.")       
+        $('.lng_select_type').html("Please select a product type.")   
+        $('.lng_region').html("Please select a region.")  
+        $('.lng_country').html("Please select country")
+        $('.ing_thai').html('Thailand') 
+        $('.lng_home').html('Home')  
+
+
+
+
 
 
 
@@ -604,7 +620,14 @@ $(document).ready(function() {
         $('.lng_gallery').html("รูปภาพ")       
         $('.lng_product_details').html("รายละเอียด โปรดักส์") 
         $('.lng_product_category').html("ประเภท โปรดักส์")  
-        $('.lng_select_type').html("โปรดเลือกประเภทโปรดักส์")       
+        $('.lng_select_type').html("โปรดเลือกประเภทโปรดักส์")
+        $('.lng_region').html("กรุณาเลือกภาค")  
+        $('.lng_country').html("โปรดเลือกประเทศ")  
+        $('.ing_thai').html('ประเทศไทย')
+        $('.lng_home').html('หน้าหลัก')  
+
+
+
              
               
 

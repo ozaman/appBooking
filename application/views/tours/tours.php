@@ -23,16 +23,201 @@
     border-bottom: 1px solid #ddd;
 }
 </style>
-<div style=" height: 100%;">
-	<div class="container" style="background: #f9f9fb;">
+<div class="box-menu-select">
+    <table width="100%">
+        <tbody><tr>
+            <td width="20%" style="">
+                <a href="https://www.welovetaxi.com/app/booking2/tours">
+                    <div class="btn-realtime">
+                    <table width="100%">
+                        <tbody><tr>
+                            <td align="center">
+                                <i class="material-icons" style="font-size: 30px;"">home</i>
+                                <!-- <i class="material-icons" style="font-size: 30px;">room</i> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <span class="lng_home" style="font-size: 13px;">Book Now</span>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                   
+                </div>
+                </a>
+                
+            </td>
+            <td width="20%" style="">
+                <a href="https://www.welovetaxi.com/app/booking2">
+                    <div class="btn-reservation">
+                <table width="100%">
+                        <tbody><tr>
+                            <td align="center">
+                                 <i class="material-icons" id="car-service" style="font-size: 30px;">directions_car</i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <span class="lng-transports" style="font-size: 13px;">Adv Booking</span>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                   
+                   
+                </div>
+                </a>
+                
+            </td>
+             <td width="20%">
+                <a href="https://www.welovetaxi.com/app/booking2/dashboard/account_settings">
+                <div class="btn-management">
+                    <table width="100%">
+                        <tbody><tr>
+                            <td align="center">
+                            <!-- <i class="material-icons" style="font-size: 30px;">settings</i> -->
+                                <i class="material-icons" style="font-size: 30px;"">settings</i>
+                                <!-- <i class="material-icons" style="font-size: 30px;">dvr</i> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <span class="lng-sa_d" style="font-size: 13px;">My Booking</span>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div> 
+                </a>
+            </td>
+            <td width="20%">
+                <div class="btn-management">
+                    <table width="100%">
+                        <tbody><tr>
+                            <td align="center">
+                            <!-- <i class="material-icons" style="font-size: 30px;">settings</i> -->
+                                
+                                <i class="material-icons" style="font-size: 30px;">dvr</i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <span class="lng-management" style="font-size: 13px;">My Booking</span>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div> 
+            </td>
+
+        </tr>
+    </tbody></table>
+<style>
+    .box_option{
+        color: red;
+        background-color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        box-shadow: rgba(241, 13, 13, 0.3) 0px 1px 4px;
+        cursor: pointer;
+        position: absolute;
+        top: 140px;
+        /* padding: 8px; */
+        right: 17px;
+        z-index: 19;
+        text-align: center;
+        font-size: 26px;
+        line-height: 1.3;
+        display: none;
+    }
+</style>
+ </div>
+<div id="box_pro_forregion">
+           <div style="text-align:center;   padding: 5px;  color: #333;  font-weight: 600;  text-align: center;">
+            <!-- background: #3b5998; -->
+            <div class="btn_back_tour" onclick="closepopup('popprovince')">
+    <i class="material-icons" style="">reply_all</i>
+    <!-- <i class="fa fa-angle-double-left" style=""></i> -->
+        <!-- <i class="material-icons" style="color: rgb(22, 179, 177); font-size: 35px;">keyboard_arrow_down</i> -->
+    </div>
+                <!-- <i class="material-icons" onclick="closepopup('popprovince')" style="position: absolute; right: 15px;top: 15px">close</i> -->
+               <h4 class="lng_select_province" style="    text-align: center;
+    font-size: 20px;"></h4>            
+           </div>
+          
+            <div style="height: 90vh;overflow-y: scroll; -webkit-overflow-scrolling: touch;">
+                <div class="col-md-12 col-sx-12">  
+                    <div style="    border-radius: 15px;
+    background: #fff;">
+                       <ul id="first_pro_tour">
+                                    
+            </ul>
+                                
+                    </div>
+                </div>
+            </div>
+</div>
+<!-- <div id="box_pro_forregion" style=" height: 100%;display: none;">
+    
+	<div class="container" style="background: #f9f9fb;height: 100vh">
         <div style="padding-top: 35px;">
-            <h4 class="lng_select_province" style="    text-align: center;
-    font-size: 20px;"></h4> 
+            
             <ul id="first_pro_tour">
                                     
             </ul>
         </div>
 	</div>
+</div> -->
+<div id="secttion_box_country" style=" height: 100%;">
+    <div class="container" style="">
+        <div style="padding-top: 35px;">
+            <h4 class="lng_country" style="    text-align: center;
+    font-size: 20px;">Please select country</h4> 
+            <ul id="" style="    padding-left: 0;margin-top: 25px;">
+                   <li onclick="selectpark()" style="    border: 1px solid #3b5998;
+    list-style: none;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 16px;
+    text-align: center;
+    color: #3b5998;
+    background: #fff;"><span class="ing_thai"></span></li>                 
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- <div id="secttion_box_park" style=" height: 100%;display: none;">
+    <div class="container" style="background: #f9f9fb;">
+        <div style="padding-top: 35px;">
+            <h4 class="" style="    text-align: center;
+    font-size: 20px;">Please select a region.</h4> 
+            <ul id="park">
+                                   
+            </ul>
+        </div>
+    </div>
+</div> -->
+<div id="box_popup_region">
+           <div style="text-align:center;   padding: 5px; font-weight: 600;  text-align: center;">
+            <div class="btn_back_tour" onclick="closepopup('poptourregion')">
+    <i class="material-icons" style="">reply_all</i>
+    <!-- <i class="fa fa-angle-double-left" style=""></i> -->
+        <!-- <i class="material-icons" style="color: rgb(22, 179, 177); font-size: 35px;">keyboard_arrow_down</i> -->
+    </div>
+                <!-- <i class="material-icons " onclick="closepopup('poptouritem')" style="position: absolute; right: 15px;top: 15px">close</i> -->
+               <h4 class="headertour lng_region">Please select a region.</h4>               
+           </div>
+          
+            <div style="height: 90vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;">
+               
+                    
+                        <div id="box_region">
+                                    
+                        </div>
+                                
+                   
+                
+            </div>
 </div>
 
 
@@ -379,6 +564,15 @@
         </div>
 
 <style>
+/*@media (max-width: 768px)
+{
+    .navbar-collapse {
+    
+    height: 100vh !important;
+    
+}
+}*/
+
 #acceptance_pin_pop{
                 z-index: 301;
                 position: fixed;
@@ -479,6 +673,28 @@
     left: 0;
     top: 0;
     background: #fff;
+    overflow: hidden;
+    z-index: 101;
+}
+#box_popup_region{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #e5e5e5;
+    overflow: hidden;
+    z-index: 101;
+}
+#box_pro_forregion{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #e5e5e5;
     overflow: hidden;
     z-index: 101;
 }

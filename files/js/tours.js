@@ -12,6 +12,7 @@ var date_on = [];
 var product_item,getlng,product_id;
 var c_transfer,paramtour,id_placeto,id_place,name_placeto,name_place,start_time,date,ontime = '00:00',passnotransfer = 0;
 //var myVar = setInterval(plusDivs(1),5000);
+var region = '';
 console.log(optiondate)
 console.log(optiondate)
 
@@ -21,6 +22,10 @@ $(document).ready(function() {
 }
 else{
     getlng = $.cookie("lng")
+}
+if($.cookie("type") == 'Tour'){
+    $('.box-list').hide(500);
+    $('.box-history').hide(500);
 }
 getProvince();
 
@@ -331,41 +336,13 @@ $('#on_date2').each(function() {
 });//END READY 
 
 function getProvince(){
-    $('#protour2').remove()
-     $.ajax({
-            type: 'POST',
-            url: base_url+'service/getProvincetour.php',
-            data: { 'lng': getlng },
-            //contentType: "application/json",
-            dataType: 'json',
-            success: function(res) {
-                console.log(res)
-                var datapro2 = res[0].data1;
-                $.each(datapro2, function(i, val) {
-                    var index2 = parseInt(i) + 1;
-                   
-                if ($.cookie("lng") == 'cn') {
-                        $('#first_pro_tour').append('<li class="protour2" id="typeserviceaa'+datapro2[i].province+'"  onclick="gettypetour(\'' + datapro2[i].province + '\') "><span>'+datapro2[i].name_cn+'</span></li>');
-                       
-
-                } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-                        $('#first_pro_tour').append('<li class="protour2" id="typeserviceaa'+datapro2[i].province+'"  onclick="gettypetour(\'' + datapro2[i].province + '\') "><span>'+datapro2[i].name+'</span></li>');
-                   
-
-                   
-                } else if ($.cookie("lng") == 'th') {
-                        $('#first_pro_tour').append('<li class="protour2" id="typeserviceaa'+datapro2[i].province+'"  onclick="gettypetour(\'' + datapro2[i].province + '\') "><span>'+datapro2[i].name_th+'</span></li>');
-                   
-                    
-                }
-            
-        });
-            }
-        });
+    
     
 } 
 
 function gettypetour(pro) {
+    $('#box_pro_forregion').hide()
+
     $('#box_popup_typetour').show(500)
     $('.asdd').remove()
 
@@ -1161,7 +1138,8 @@ function showDivs(n) {
 function closepopup(section) {
     console.log(section)
     if (section == 'popprovince') {
-        $('#box_popup_tour').hide(500)
+        $('#box_pro_forregion').hide()
+        $('#box_popup_region').show(500)
     }
     else if (section == 'poptouritem') {
         $('#box_popup_touritem').hide(500)
@@ -1176,10 +1154,100 @@ function closepopup(section) {
 
     }
     else if (section == 'poptypetour') {
-        $('#box_popup_typetour').hide(500)
+        $('#box_popup_typetour').hide()
+        $('#box_pro_forregion').show(500)
+
+
+    }
+    else if (section == 'poptourregion') {
+        $('#box_popup_region').hide()
+        $('#secttion_box_country').show(500)
+
+    }
+    else if (section == 'poptourprovince') {
+        $('#box_popup_region').show(500)
+        $('#box_pro_forregion').hide()
 
     }
 
+}
+function selectpark(){
+     $('#box_region').html('')
+     region = '';
+    // $('#box_pro_forregion').show(500)
+     $.ajax({
+            type: 'POST',
+            url: base_url+'service/getPark.php',
+            //data: { 'product': id },
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                $.each(data, function(i, val) {
+                $('#secttion_box_country').hide(500)
+                $('#box_popup_region').show(500)
+
+                if ($.cookie("lng") == 'cn') {
+                    region_name = data[i].topic_cn;
+                    
+                } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                    region_name = data[i].topic_en;
+                   
+
+                } else if ($.cookie("lng") == 'th') {
+                    region_name = data[i].topic_th;
+                    
+
+                } 
+                  region += '<div class="col-md-4 col-sm-6 col-xs-6">'+
+                        '<div class="box_menu_tour" onclick="getProvinceforregion('+data[i].id+')" style="margin-top: 20px;">'+
+                            '<div style="height: 125px;padding: 30px 15px;font-size: 16px; background: #f7f5f5;border: 1px solid #3b5998;    border-radius: 15px;">'+
+                                    // '<i class="demo-icon icon-new-uniF12C-10" style="font-size: 45px;color: #e91e63"></i>'+
+                                '<div><span class="lng_package" style="font-size: 15px;color: #3b5998">'+region_name+'</span></div>'+
+                                '</div>'+
+                            '</div>'+
+                    '</div>'
+                });
+     $('#box_region').html(region)
+
+            }
+        });
+}
+function getProvinceforregion(x){
+    $('#box_pro_forregion').show(500)
+                $('#box_popup_region').hide()
+
+    $('.protour2').remove()
+     $.ajax({
+            type: 'POST',
+            url: base_url+'service/getProvincetour.php',
+            data: { 'lng': getlng,'id':x },
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(res) {
+                console.log(res)
+                var datapro2 = res[0].data1;
+                $.each(datapro2, function(i, val) {
+                    var index2 = parseInt(i) + 1;
+                   
+                if ($.cookie("lng") == 'cn') {
+                        $('#first_pro_tour').append('<li class="protour2" id="typeserviceaa'+datapro2[i].province+'"  onclick="gettypetour(\'' + datapro2[i].province + '\') "><span>'+datapro2[i].name_cn+'</span></li>');
+                       
+
+                } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                        $('#first_pro_tour').append('<li class="protour2" id="typeserviceaa'+datapro2[i].province+'"  onclick="gettypetour(\'' + datapro2[i].province + '\') "><span>'+datapro2[i].name+'</span></li>');
+                   
+
+                   
+                } else if ($.cookie("lng") == 'th') {
+                        $('#first_pro_tour').append('<li class="protour2" id="typeserviceaa'+datapro2[i].province+'"  onclick="gettypetour(\'' + datapro2[i].province + '\') "><span>'+datapro2[i].name_th+'</span></li>');
+                   
+                    
+                }
+            
+        });
+            }
+        });
 }
 function selecetBooktours(){
     ondate = $('#on_date2').val()

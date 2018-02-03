@@ -1,30 +1,30 @@
 <?php 
-header('Content-type: text/html; charset=utf-8;application/xml');
-// header('Content-type: application/xml');
+header('Content-type: text/html; charset=utf-8');
 //  $curl_post_data = '{
 //     "request" : "'.$_POST[province].'",
 //      "field":{"0":"id","1":"topic","2":"stay"}
    
 // }';
-//$request = stripslashes( $_POST[request]);
+//$request = stripslashes( $_POST[car_model]);
 //$field = stripslashes( $_POST[field]);
-$curl_post_data = '{"lng":"'.$_POST[lng].'","area":"'.$_POST[id].'"}';
-					
-					
+$curl_post_data = '{
+						"from": "web_area_utfnew",
+						"field" :"*"       			
+        			}';
 $curl_response = '';
 //$data = json_decode(file_get_contents('php://input'), true);
 //print_r($data);
 //$curl_post_data = json_decode(file_get_contents('php://input'), true);
 
 
+// //echo $curl_post_data;
 $headers = array();
-//$headers[] = 'Content-Type: application/json';
-//$headers[] = 'API-KEY: ea1b6d331a20b66041369a63251410d4ec748f27';
-$url = "http://services.t-booking.com/Tour/product_province_from";
+$headers[] = 'Content-Type: application/json';
+$headers[] = 'API-KEY: ea1b6d331a20b66041369a63251410d4ec748f27';
+$url = "http://www.services.t-booking.com/service";
 //echo $url;
-                                
 $curl = curl_init();
-//curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
 curl_setopt($curl, CURLOPT_HTTPHEADER , array(
      'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
