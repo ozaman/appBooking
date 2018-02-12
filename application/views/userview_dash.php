@@ -8,7 +8,7 @@
     <?
     $json = json_encode($results);
      ?>
-     
+      
 <style>
  .confirm{
                 text-align: center;
