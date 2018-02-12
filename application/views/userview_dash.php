@@ -581,6 +581,7 @@ var date=$('#date2').val();
         },
 		  onSet: function(context) {
 		 		findRowDate();
+		 		
 		  }
         });
 </script>
@@ -661,7 +662,7 @@ $(".modal-fullscreen").on('hidden.bs.modal', function () {
 <script>
 	$( document ).ready(function() {
     	console.log(<?=$json;?>);
-    	findRowDate();
+     	findRowDate();
       
     	
 	
@@ -675,6 +676,7 @@ $(".modal-fullscreen").on('hidden.bs.modal', function () {
 	
 	function findRowDate(){
 //		alert(555);
+		console.log('findRowDate');
 		$('tr[class="tr-hover"]').css('display','');
 
 
