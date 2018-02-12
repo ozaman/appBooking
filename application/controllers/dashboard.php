@@ -349,7 +349,7 @@ public function paycredit(){
 	define('OMISE_PUBLIC_KEY', 'pkey_test_59iaxcc7zsr77n4nbkb');
 	define('OMISE_SECRET_KEY', 'skey_test_59iaxcc8idh2bqub4ia');
 	$xx= $_POST[amount];
-	$c = ($xx*3.65)/100;
+	$c = ($xx*3.95)/100;
 	$vat = ($xx*7.0)/100;
 	
 	// //print_r($c);
