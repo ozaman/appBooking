@@ -1201,7 +1201,7 @@ function selectpark(){
                 } 
                   region += '<div class="col-md-4 col-sm-6 col-xs-6">'+
                         '<div class="box_menu_tour" onclick="getProvinceforregion('+data[i].id+')" style="margin-top: 20px;">'+
-                            '<div style="height: 125px;padding: 30px 15px;font-size: 16px; background: #f7f5f5;border: 1px solid #3b5998;    border-radius: 15px;">'+
+                            '<div style="border-top: 3px solid #3b5998;    height: 100px; box-shadow: 0 2px 15px rgba(0,0,0,0.1);padding: 30px 15px;font-size: 16px;background: #ffffff;border-radius: 15px;">'+
                                     // '<i class="demo-icon icon-new-uniF12C-10" style="font-size: 45px;color: #e91e63"></i>'+
                                 '<div><span class="lng_package" style="font-size: 15px;color: #3b5998">'+region_name+'</span></div>'+
                                 '</div>'+
@@ -1324,7 +1324,7 @@ function selecetBooktours(){
             $('#phone').css('border','1px solid #dfdfdf')
         }
         if((ckgetuser == false && $('#email').val() == '') && ($('#phone').val() != '' && $('#name_lastname').val() != '') ){
-            console.log('in if')            
+            console.log('in if')       
             $('#email').focus()
             $('#email').css('border','1px solid #f44336')
         }

@@ -357,13 +357,14 @@ public function paycredit(){
 	$totalvat = $vat*100;
 	$x = $_POST[amount]*100;
 	$totalamount = $x+$charge+$vat;
+	$cost = (int) preg_replace('/\D/', '', $totalamount);
 	// $int = intval($totalamount);
 	//print_r($totalamount);
 	//print_r($totalamount);
 	//echo $totalamount.'=='.$_POST["omise_token"].$_POST["data"];
 	//echo $_POST[amount] .'==='.$x;
 	$charge = OmiseCharge::create(array(
-	  'amount' => $totalamount,
+	  'amount' => $cost,
 	  'currency' => 'THB',
 	  'card' => $_POST["omise_token"]
 	));

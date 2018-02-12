@@ -201,18 +201,9 @@ $(document).ready(function() {
         $('.lng_region').html("请选择一个地区。")  
         $('.lng_country').html("请选择国家")          
         $('.ing_thai').html('泰国')  
-        $('.lng_home').html('主页')  
-             
-
-
-
-
-
-
-
-
-
-
+        $('.lng_home').html('主页')
+        $('.lng_pay_driver').html('与司机支付')  
+        
 
 
 
@@ -412,18 +403,9 @@ $(document).ready(function() {
         $('.lng_region').html("Please select a region.")  
         $('.lng_country').html("Please select country")
         $('.ing_thai').html('Thailand') 
-        $('.lng_home').html('Home')  
+        $('.lng_home').html('Home')
+        $('.lng_pay_driver').html('Pay with driver')  
 
-
-
-
-
-
-
-
-
-
-        
         
 
 
@@ -625,6 +607,8 @@ $(document).ready(function() {
         $('.lng_country').html("โปรดเลือกประเทศ")  
         $('.ing_thai').html('ประเทศไทย')
         $('.lng_home').html('หน้าหลัก')  
+        $('.lng_pay_driver').html('จ่ายกับคนขับ')  
+
 
 
 

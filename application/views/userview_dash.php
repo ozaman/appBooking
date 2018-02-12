@@ -10,6 +10,19 @@
      ?>
      
 <style>
+ .confirm{
+                text-align: center;
+                background-color: rgb(35, 53, 91) !important;
+                width: 100px !important;
+                border-radius: 25px !important;
+            }
+            .cancel{
+                padding: 10px 0 !important;
+                text-align: center;
+                background-color: #C1C1C1 !important;
+                width: 100px !important;
+                border-radius: 25px !important;
+            }
 .btn-close {
     /* width: 200px; */
 /*    background: #4BB1C1;*/
@@ -649,6 +662,7 @@ $(".modal-fullscreen").on('hidden.bs.modal', function () {
 	$( document ).ready(function() {
     	console.log(<?=$json;?>);
     	findRowDate();
+      
     	
 	
 	});

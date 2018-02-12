@@ -76,10 +76,28 @@
                                 </div>
                                 
                             </li>
+                            <!-- <li>
+                                <div  style="color: #e91e63;
+    text-align: center;
+   
+    border-radius: 25px;
+    background: #ffffff;
+    border: 1px solid #3b5998;">
+                    
+                    <div class="pay-driver" style="color: #3b5998;
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    background: #ffffff;
+   "><span class="lng_pay_driver"></span></div>
+          
+                </div>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
-                <div style="padding: 15px; overflow-y: scroll; height: 60vh; -webkit-overflow-scrolling: touch;">
+                 
+                <div style="padding: 15px; overflow-y: scroll; height: 52vh; -webkit-overflow-scrolling: touch;">
                     <div>
                         <span class="lng_can_see" style="font-size: 16px;  font-weight: 400;"></span>
                     </div>
@@ -104,6 +122,7 @@
                         <div><span class="lng_do_not_need"></span></div>
                     </div>                    
                 </div>
+               
             </div>
         </div>
         <div id="foget-password2">
@@ -122,26 +141,26 @@
                   <!-- <input type="hidden" name="item_namec" value="Customer's First Name"  id="item_namec"> -->
       		          <div class="control-group">
       		            	<div class="control-label label_name">Cardholder Name</div>		            
-      		              <input type="text" data-omise="holder_name" class="iname" id="creditname" name="creditname"  placeholder="Ex. John Smith"pattern="\w+ \w+.*" title="Fill your first and last name" required>		            
+      		              <input type="text" data-omise="holder_name" class="iname" id="creditname" name="creditname"  placeholder="Ex. John Smith" pattern="\w+ \w+.*" title="Fill your first and last name" required>		            
       		          </div>
 				            <div class="control-group" >	
 		                    <div class="control-label label_cardnumber">Card Number</div>		            	
 		                            
-  		                  <input type="text" data-omise="number1" class="cardnumber" id="cardnumber"  autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="" required>		                
-  		                  <input type="text" data-omise="number2" class="cardnumber" id="cardnumber2" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>		                
-  		                  <input type="text" data-omise="number3" class="cardnumber" id="cardnumber3" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>		                
-  		                  <input type="text" data-omise="number4" class="cardnumber" id="cardnumber4" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx"title="4 Digit" style="margin-left: 1%;" required>	                        
+  		                  <input type="text" data-omise="number1" class="cardnumber" id="cardnumber"  autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="" required>		                
+  		                  <input type="text" data-omise="number2" class="cardnumber" id="cardnumber2" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>		                
+  		                  <input type="text" data-omise="number3" class="cardnumber" id="cardnumber3" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>		                
+  		                  <input type="text" data-omise="number4" class="cardnumber" id="cardnumber4" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>	                        
 		                </div>
 				            <div class="control-group">
 		                    <div class="control-label label_date">Expiration Date</div>	
-		            	      <input type="text" data-omise="expiration_month" class="numdate" id="numdate" autocomplete="off" maxlength="2" placeholder="mm"pattern="\d{2}" title="4 Digit" required>
+		            	      <input type="text" data-omise="expiration_month" class="numdate" id="numdate" autocomplete="off" maxlength="2" placeholder="mm" pattern="\d{2}" title="4 Digit" required>
 		            	      <div class="control-label label_slad">/</div>		                
-		                    <input type="text" data-omise="expiration_year" class="numyear" id="numyear" autocomplete="off" maxlength="4" placeholder="yyyy"pattern="\d{4}" title="4 Digit" required>
+		                    <input type="text" data-omise="expiration_year" class="numyear" id="numyear" autocomplete="off" maxlength="4" placeholder="yyyy" pattern="\d{4}" title="4 Digit" required>
 		                
 		                </div>
     				        <div class="control-group">
     		                <div class="control-label label_cardcvv">CVV</div>              
-    		                <input type="password" data-omise="security_code" class="ccv" id="cvv"autocomplete="off" maxlength="3" placeholder="***"pattern="\d{3}" title="Three digits at back of your card" required>
+    		                <input type="password" data-omise="security_code" class="ccv" id="cvv"autocomplete="off" maxlength="3" placeholder="***" pattern="\d{3}" title="Three digits at back of your card" required>
     		                <img src="<? echo base_url(); ?>/files/images/cvv2.png" style="width: 68px; margin-left: 200px;  margin-top: -42px; position: absolute; " />	
     		                <p class="maxtext">Must be 4 digits!</p>
     		                <p class="maxtext2">Must be 2 digits!</p>

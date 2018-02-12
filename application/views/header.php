@@ -45,9 +45,12 @@
     	    <div class="container" style="margin-bottom: 0 ">        
                 <div class="navbar-header">
                     <div style="padding: 9px 10px; margin-top: 8px; margin-left: 15px; margin-bottom: 8px; font-size: 25px; display: inline-block;">
-                        <div class="box-login-non">                  
-                            <i class="material-icons btn-login" style="    position: absolute;">account_circle  </i>
-                            <span style="margin-left: 30px; font-size: 15px; pointer-events: auto;" class="lng-login"></span>
+                        <div class="box-login-non" style="    border: 1px solid #3b5998;
+    padding: 1px 5px;
+    text-align: center;
+    border-radius: 15px;">                  
+                            <!-- <i class="material-icons btn-login" style="    position: absolute;">account_circle  </i> -->
+                            <span style="font-size: 15px; pointer-events: auto;" class="lng-login"></span>
                         </div>                 
                         <!-- <div class="box-login" style="pointer-events: auto;width: 35px;  height: 35px; border-radius: 50px;  margin-top: -4px;">
                          

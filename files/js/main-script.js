@@ -132,6 +132,7 @@ $(document).ready(function() {
                 $('#usernamess').html(data[0].s_username);
                 $('#getname').html(data[0].s_name);
                 $('#btnlogin').css('display', 'none')
+                $('#btnlogin2').css('display', 'none')
                 $('#btnuser').css('display', 'block')
                 $('.caret').css('display', 'inline-block')
             }
@@ -144,6 +145,7 @@ $(document).ready(function() {
         $('.box-login-non').show();
         $('.placeeditften').remove()
         $('#btnlogin').css('display', 'block')
+        $('#btnlogin2').css('display', 'block')
         $('#btnuser').css('display', 'none')
         $('.caret').css('display', 'none')
     }    
@@ -1868,6 +1870,14 @@ function getimage(i) {
 
     jssor_1_slider_init();
 
+}
+function regis(){
+    console.log('inregis')
+     $('#loading').css('display', 'block');
+        setTimeout(function() {
+
+            window.location.href = base_url + "register";
+        }, 500);
 }
 
 function jssor_1_slider_init() {
