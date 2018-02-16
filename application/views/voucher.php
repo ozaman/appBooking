@@ -452,6 +452,10 @@ $( document ).ready(function() {
       $('#place').text(data.address_en_from);
       $('#to_place').text(data.address_en_to);
     	$('#from').text(data.address_en_from);
+      if (data.address_en_from == '0' || data.address_en_to == '0') {
+        $('#from').hide()
+        $('#to').hide()
+      }
     	$('#to').text(data.address_en_to);
     	$('#arrival_flight').text(data.arrival_flight);
     	var book_date_f = data.booking_date;

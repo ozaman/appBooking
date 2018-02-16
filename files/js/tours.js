@@ -13,6 +13,7 @@ var product_item,getlng,product_id;
 var c_transfer,paramtour,id_placeto,id_place,name_placeto,name_place,start_time,date,ontime = '00:00',passnotransfer = 0;
 //var myVar = setInterval(plusDivs(1),5000);
 var region = '';
+var total_price = 0;
 console.log(optiondate)
 console.log(optiondate)
 
@@ -932,7 +933,7 @@ function bookingtours(id) {
                 else{                    
                      $('.showtransfer').show()
                 }
-
+                total_price =  data.data[0].cost_a_agent_all;
                 getpricetour = data.data[0].cost_a_agent_all;
                 $('#numsumprice_tour').html(getpricetour.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' ' + 'Bath')
                 // var datapro = data.province;

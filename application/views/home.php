@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title></title>
+	<link href="https://www.welovetaxi.com/app/booking2/files/css/bootstrap3.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<title>we love taxi</title>
@@ -57,5 +58,10 @@
 </table>
 </div>
 </div>
+<style >
+	a{
+		    text-decoration: none;
+	}
+</style>
 </body>
 </html>

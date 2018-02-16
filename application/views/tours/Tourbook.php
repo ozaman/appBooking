@@ -463,7 +463,7 @@
                             <div style="padding: 10px 4px; font-weight: 600; font-size: 16px;">
                             <span class="lng-terms-of-use" style="    margin-top: 15px;"></span>
                             </div>
-                            <div class="card"  style="border-radius: 15px;">
+                            <div class="card"  style="border-radius: 15px;margin-bottom: 75px;">
                                 
                                 <div class="col-md-12">
                                 <div class="terms-of-use" style="    margin-top: 15px;"></div>
