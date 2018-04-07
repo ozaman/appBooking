@@ -204,6 +204,8 @@ $(document).ready(function() {
                 getphone = datauser[0].s_phone;
                 $('#s_username').val(datauser[0].s_email);
                 $('#email').val(datauser[0].s_username);
+                $('.phonecode').val('+' + datauser[0].s_phone_code );
+
                 $('#phone').val(' ' + datauser[0].s_phone);
                 $('#name_lastname').val(datauser[0].s_first_name + ' ' + datauser[0].s_last_name);
                 $('.label-floating').addClass('is-focused');
@@ -681,9 +683,9 @@ function addbooking(){
             'onndate': ondate,
             'ontime': ontime,
             'name': name,
-            'phone': phone,
+            'phone': $('#phone').val(),
             'phonecode': $.cookie("phonecode"),
-            'email': email,
+            'email': $('#email').val(),
             'cost': total_price,
             'other': other,
             'guest_other': namecountry,
@@ -1024,7 +1026,10 @@ function sendCountry(x) {
 }
 function bookingdetailservice(transfer_id,from,to,topic_from,topic_to,lat_f,lng_f,lat_t,lng_t,book){
     $('#get_html_book').show(500)
-    getDetailbookservice(from,to,his_lat_f,his_lng_f,his_lat_t,his_lng_t,book,transfer_id,topic_from,topic_to)
+    console.log('======================')
+    console.log(lat_f)
+    console.log(lng_f)
+    getDetailbookservice(from,to,lat_f,lng_f,his_lat_t,his_lng_t,book,transfer_id,topic_from,topic_to)
 
 }
 function bookingdetail(transfer_id,from,to,lat_f,lng_f,lat_t,lng_t,book){
