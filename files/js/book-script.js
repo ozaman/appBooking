@@ -182,7 +182,9 @@ $(document).ready(function() {
                     dataType: 'json',
                     success: function(data) {
                         console.log(data)
-                        $('.phonecode').html('+'+data[0].phonecode)
+                        $('#phonecode').append('<span id="codetext">' + '+' + data[0].phonecode + '</span>');
+                        // $('#phonecode').html('+'+data[0].phonecode)
+                        $('#inputphonecode').val(data[0].phonecode)
                         if ($.cookie("lng") == 'cn') {
                         $('.select-country').html(data[0].name_cn)
                         
@@ -217,7 +219,7 @@ $(document).ready(function() {
                 $('#email').val('');
                 $('#s_username').val('');
                 $('#phone').val('');
-                $('.phonecode').html('').ass;
+                $('#codetext').remove();
                 $('.guestcountry').val('');
                 $('#name_lastname').val('');
                 $('.label-floating').removeClass('is-focused');
@@ -465,7 +467,7 @@ $(document).ready(function() {
         })
     $('#phone').on('change', function() {
         phone = this.value;
-        phonecode = $.cookie("phonecode");
+        phonecode = $('#inputphonecode').val();
         console.log(phonecode)
         $('#summaryphone').html('+' + phonecode + phone);
 
@@ -585,7 +587,7 @@ function selecetBook(){
             console.log(time_m)
             console.log(name)
             console.log(phone)
-            console.log($.cookie("phonecode"))
+           
             console.log(other)
             console.log(email)
             console.log(place)
@@ -598,7 +600,7 @@ function selecetBook(){
             var url2 = 'https://welovetaxi.com/app/booking/';    
             console.log(flight)
             console.log(area)
-            console.log($.cookie("phonecode"))
+            console.log(phonecode)
             console.log(flight)
             var o = ondate.split('-');
             var m,d ;
@@ -684,7 +686,7 @@ function addbooking(){
             'ontime': ontime,
             'name': name,
             'phone': $('#phone').val(),
-            'phonecode': $.cookie("phonecode"),
+            'phonecode': phonecode,
             'email': $('#email').val(),
             'cost': total_price,
             'other': other,
@@ -717,7 +719,7 @@ function addbooking(){
                         "agent_ref": data,
                         "guest_english": name,
                         "guest_other": namecountry,
-                        "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                        "phone": '+' + phonecode + $('#phone').val(),
                         "email": email,
                         "social_wechat": "",
                         "social_qq": "",
@@ -751,7 +753,7 @@ function addbooking(){
                         "agent_ref": data,
                         "guest_english": name,
                         "guest_other": namecountry,
-                        "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                        "phone": '+' + phonecode + $('#phone').val(),
                         "email": email,
                         "social_wechat": "",
                         "social_qq": "",
@@ -786,7 +788,7 @@ function addbooking(){
                         "agent_ref": data,
                         "guest_english": name,
                         "guest_other": namecountry,
-                        "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                        "phone": '+' + phonecode + $('#phone').val(),
                         "email": email,
                         "social_wechat": "",
                         "social_qq": "",
@@ -821,7 +823,7 @@ function addbooking(){
                         "agent_ref": data,
                         "guest_english": name,
                         "guest_other": namecountry,
-                        "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                        "phone": '+' + phonecode + $('#phone').val(),
                         "email": email,
                         "social_wechat": "",
                         "social_qq": "",
@@ -856,7 +858,7 @@ function addbooking(){
                     "agent_ref": data,
                     "guest_english": name,
                     "guest_other": namecountry,
-                    "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                    "phone": '+' + phonecode + $('#phone').val(),
                     "email": email,
                     "social_wechat": "",
                     "social_qq": "",
@@ -886,7 +888,7 @@ function addbooking(){
                     "agent_ref": data,
                     "guest_english": name,
                     "guest_other": namecountry,
-                    "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                    "phone": '+' + phonecode + $('#phone').val(),
                     "email": email,
                     "social_wechat": "",
                     "social_qq": "",
@@ -919,7 +921,7 @@ function addbooking(){
                     "agent_ref": data,
                     "guest_english": name,
                     "guest_other": namecountry,
-                    "phone": '+' + $.cookie("phonecode") + $('#phone').val(),
+                    "phone": '+' +  phonecode + $('#phone').val(),
                     "email": email,
                     "product": code,
                     "service_date": ondate,
@@ -999,6 +1001,8 @@ function phonecodesend(x) {
 
 
 function sendCountry(x) {
+     $('#codetext').remove();
+    $('#inputphonecode').val(x)
     // alert(x)
     var url = 'https://welovetaxi.com/app/booking/';
     console.log(x)
@@ -1008,7 +1012,7 @@ function sendCountry(x) {
     } else {
         $.cookie("phonecode", x);
     }
-
+    phonecode = $('#inputphonecode').val(x);
     $('#codecountry').hide();
     var name = $('#ct' + x).attr('dataname');
     var img = $('#ct' + x).attr('img');
@@ -1021,7 +1025,7 @@ function sendCountry(x) {
     $('#select').remove();
     $('#codetext').remove();
     $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + url + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
-    $('.phonecode').append('<span id="codetext">' + '+' + x + '</span>');
+    $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
     //$('#numbercountry').val('(+'+x+')'+' '+name);
 }
 function bookingdetailservice(transfer_id,from,to,topic_from,topic_to,lat_f,lng_f,lat_t,lng_t,book){

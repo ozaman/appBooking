@@ -565,6 +565,7 @@ function btn_yes_position(){
     console.log(lat_t)
     console.log(lng_t)
     getProduct(lat_f, lng_f, dist, lat_t, lng_t);
+    console.log(lat_f+"===="+lng_f+"===="+dist+"===="+lat_t+"===="+lng_t)
 }
 function geocoderRun(latlng) {
     geocoder.geocode({ 'location': latlng }, function(results, status) {
