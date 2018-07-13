@@ -764,6 +764,7 @@ window.fbAsyncInit = function() {
             dataType: 'json',
             success: function(data) {
                 console.log(data)
+                datauser = data;
                 $.ajax({
                     type: 'POST',
                     url: base_url + 'dashboard/historylist',

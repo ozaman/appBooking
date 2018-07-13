@@ -998,7 +998,7 @@ div.banner{
 }
 .views-item {
    
-    padding: 5px 30px;
+    padding: 10px 30px;
     
    
 }

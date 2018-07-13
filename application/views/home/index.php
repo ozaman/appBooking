@@ -2767,7 +2767,7 @@ textarea:-ms-input-placeholder {
                /* height: 220px; */
                 /* border-radius: 4px; */
                 background: #fff;
-                min-width: 80vw;
+                min-width: 92vw;
                 /* height: auto; */
                 left: 50vw;
                 bottom: 1vh;
