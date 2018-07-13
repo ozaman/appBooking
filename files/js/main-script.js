@@ -12,7 +12,192 @@ var base_url = 'https://www.welovetaxi.com/app/booking2/';
 var  reltimeclick;
 var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
+      var username, password , username_signup ,password_signup,text_check,forget = '';
+
 $(document).ready(function() {
+    // var base_url = "https://www.welovetaxi.com/app/booking2/";
+   
+$.ajax({
+        type: 'POST',
+        url: base_url+'getuserlog_control/process',
+       // data: {'from': getParameterByName('from'),'to': getParameterByName('to')},
+        //contentType: "application/json",
+        dataType: 'json',
+        success: function(data) { 
+        //   console.log(data)
+        }
+    });
+    $('#username').on('change', function() {
+        username = this.value ;
+        console.log(username)
+    })
+    $('#password').on('change', function() {
+        password = this.value ;
+        console.log(password)
+    })
+    $('.btn-foget-pass').on('click', function() {
+        $('#foget-password').fadeIn(500)
+    });
+    $('.btn-close').on('click', function() {
+        $('#foget-password').fadeOut(500)
+    });
+    
+    $('.btn-send').on('click', function() {
+       forget = $('#email-forget').val();
+        console.log(forget)
+        
+        if(forget != ''){
+            $.ajax({
+            type: 'POST',
+            url: base_url+'fogetpassword.php',
+            data: { 'mail': forget },
+            //contentType: "application/json",
+            //dataType: 'json',
+            success: function(data) {
+            console.log(data);
+            //console.log(s_email);
+            $('#forget').hide();
+            $('.btn-close').hide();
+            $('.btn-login-forget').show();
+            $('#check-email').show();
+            }
+        });
+        }
+    });
+    $('.btn-login-forget').on('click', function() {
+       // $('#foget-password').fadeOut(500)
+        window.location.reload();
+    });     
+    $('#login').on('click', function() {
+        var type_login = $('#by').val();
+        var param_data = $('#data').val();
+        var param_from = $('#from').val();
+        var param_to = $('#to').val();
+        var lat_f = $('#lat_f').val();
+        var lng_f = $('#lng_f').val();
+        var lat_t = $('#lat_t').val();
+        var lng_t = $('#lng_t').val();
+        var book = $('#book').val();
+//      alert(type_login);
+       console.log(password+username);
+//    alert('<?php echo base_url(); ?>login_control/process');
+        $.ajax({
+        type: 'POST',
+        url: base_url+'login_control/process',
+        data: {'username': username,'password':password},
+        //contentType: "application/json",
+        dataType: 'json',
+        success: function(res) { 
+          console.log(res)
+          if(res.status == 0)
+              {
+                 console.log('login status 0');
+                 $.cookie("login",res.username);
+                 loginsucess()
+                 //console.log('<?php echo base_url(); ?>');
+//                  if(type_login=='dasboard'){
+//                     window.location.href = base_url+"dashboard/view_user";
+//                  }else if(type_login=='book'){
+// //                     
+//                     window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to+"&lat_f="+lat_f+"&lng_f="+lng_f+"&lat_t="+lat_t+"&lng_t="+lng_t+"&book="+book;
+                    
+//                  }else{
+//                     window.location.href = "<?php echo base_url(); ?>";
+//                  }
+              }
+              else if(res.status==1)
+              {
+                console.log('status==1')
+               $('#message').html('Username is Invalid').css('color', 'red');
+              }
+              else if(res.status==2)
+              {
+                  console.log('status==2')
+                $('#message').html('Password is Invalid').css('color', 'red');
+              }
+        }
+    });
+       $('#sign-up').click(function() {
+       $('.box-signup').css('display','block');
+       $('.box-regispro').css('display','block');
+
+       $('.box-signin').css('display','none');
+       $('.loginReg__or').css('display','none');
+
+    })
+    $('#sign-in').click(function() {
+       $('.box-signup').css('display','none');
+       $('.box-regispro').css('display','none');
+       $('.loginReg__or').css('display','block');
+
+       $('.box-signin').css('display','block');
+    })
+    //alert( this.value );
+    })
+    $('.close_login').click(function() {
+        $('#popup-login').hide();
+    });
+   
+    $('#username-signup').on('change', function() {
+        username_signup = this.value ;
+        console.log(username_signup) 
+    })
+    $('#password-signup').on('change', function() {
+        password_signup = this.value ;
+        console.log(password_signup)
+    })
+    $('#checkmail').on('click', function() {
+        console.log('in case')
+        $.ajax({
+        type: 'POST',
+        url: base_url+'login_control/checkmail',
+        data: {'username': username_signup,'password':password_signup},
+        //contentType: "application/json",
+        dataType: 'json',
+        success: function(res) { 
+          console.log(res)
+          if(res.status == 0)
+              { //have mail
+                text_check = 0; 
+               $('#messagecheck').html('Have this mail in system').css('color', 'red');
+              }
+              else if(res.status==1)
+              {
+                text_check = 1; 
+                $('#messagecheck').html('This mail is available.').css('color', '#2c9930');
+                console.log('status==1')
+              }
+        }
+        });
+    
+    });
+    
+     $('#registered').on('click', function() {
+        console.log('in case signup')
+        console.log(text_check)
+        //if (text_check == 1) {
+            $.ajax({
+            type: 'POST',
+            url: base_url+'login_control/signup',
+            data: {'username': username_signup,'password':password_signup},
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(res) { 
+                console.log(res)
+                if(res.status == 0){
+                    $.cookie("login",res.username);
+                    $('.lng_email_available').show()
+                    $('.lng_email_have').hide()
+                    window.location.href = base_url+"home";
+                }
+                else{
+                    $('.lng_email_available').hide()                    
+                    $('.lng_email_have').show()
+                }                
+            }
+        });
+    
+    });
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");
@@ -99,7 +284,10 @@ $(document).ready(function() {
         }
     }
     var getdatahis;
+
     if ($.cookie("login")) {
+        $('#btn_ck_login').hide();
+        $('#acceptancecheck').show();
         $.ajax({
             type: 'POST',
             url: base_url + 'getuser_control/mainpage',
@@ -139,6 +327,8 @@ $(document).ready(function() {
         });
 
     } else {
+        $('#acceptancecheck').hide();
+        $('#btn_ck_login').show();
         $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
         $('.box-login').hide();
         $('.box-desboard').hide();
@@ -519,8 +709,10 @@ $(document).ready(function() {
                 $('#loading').css('display', 'none');
                 $('#search-show').css('display', 'none')
                 $('#pac-input').css('display', '');
-                $('#current').focus();
-                $('#current').addClass('search_focus');
+                $('#current').val(addr)
+                 $('#pac-input').focus();
+                    $('#pac-input').addClass('search_focus'); 
+
             }, 500);
             checkshowhome = true;
             checkreal_or_res = 'Real'
@@ -546,8 +738,8 @@ $(document).ready(function() {
                     $('#loading').css('display', 'none');
                     $('#search-show').css('display', 'none')
                     $('#pac-input').css('display', '');
-                    $('#current').focus();
-                    $('#current').addClass('search_focus'); 
+                    $('#pac-input').focus();
+                    $('#pac-input').addClass('search_focus'); 
                 }, 500);
                 checkshowhome = true;
             }
@@ -756,7 +948,7 @@ $(document).ready(function() {
                 console.log('logout');
                 $.removeCookie("login");
 
-                window.location.href = base_url + "register";
+                window.location.reload();
 
             });
     })
@@ -787,11 +979,16 @@ $(document).ready(function() {
     });
     $('.box-login-non').click(function() {
         $('#loading').css('display', 'block');
-        setTimeout(function() {
+        // setTimeout(function() {
 
-            window.location.href = base_url + "register";
+        //     window.location.href = base_url + "register";
+        // }, 500);
+        
+        $('#popup-login').show(500);
+setTimeout(function() {
+
+            $('#loading').hide();
         }, 500);
-
     });
    
 

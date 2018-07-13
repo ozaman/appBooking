@@ -42,6 +42,7 @@
 	<!-- Demo Purpose, JS For Demo Purpose, Don't Include it in your project -->
 	<script async defer src="<?php echo base_url(); ?>files/js/buttons.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>files/js/jquery.sharrre.js"></script>
+
 	
 	<?php if(!$_COOKIE['lng']){
         $lng_map = 'en'; 
@@ -58,6 +59,7 @@
     
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?=$lng_map;?>" async defer> </script>
     <!-- <script src="https://cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker.js?v=<?=time();?>"></script> -->
+    <script src="https://apis.google.com/js/api:client.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.js?v=<?=time()?>"></script> 
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.date.js?v=<?=time()?>"></script> 
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/main-script.js?v=<?=time();?>"></script> 	

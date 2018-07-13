@@ -53,7 +53,7 @@ var getnewphonenull = '';
 var typeFrom = '';
 var typeTo = '';
 var lng_price;
-
+var addr;
 if ($.cookie("lng") == 'cn') {
     please_login_txt = "请登录";
     click_save_place_txt = "没有记录 (按保存)";
@@ -346,6 +346,8 @@ function a(map) {
             /*  markerTest.setPosition(curPosition);*/
             map.setCenter(pos);
             $('#marker').show();
+            $('.btn-realtime').click();
+
             geocoder = new google.maps.Geocoder;
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
@@ -564,8 +566,9 @@ function btn_yes_position(){
     console.log(dist)
     console.log(lat_t)
     console.log(lng_t)
-    getProduct(lat_f, lng_f, dist, lat_t, lng_t);
+   
     console.log(lat_f+"===="+lng_f+"===="+dist+"===="+lat_t+"===="+lng_t)
+     getProduct(lat_f, lng_f, dist, lat_t, lng_t);
 }
 function geocoderRun(latlng) {
     geocoder.geocode({ 'location': latlng }, function(results, status) {
@@ -574,6 +577,8 @@ function geocoderRun(latlng) {
                 placeStart = results;
                 console.log(placeStart)
                 addr = placeStart[1].formatted_address;
+                $('#current').val(addr)
+            // alert(addr)
             }
         } else {
             if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
@@ -710,6 +715,8 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                 $('#loading').css('display', 'block');
                 setTimeout(function() {
                     $('#loading').css('display', 'none');
+
+                    
                     $("#pro-search").slideDown('4000');
                     $('#box-pax-rel').show(500)
                     $('#firstrel').hide()                      
@@ -725,7 +732,9 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                 $('#container-product').css('display', 'block');
                 $('#loading').css('display', 'block');
                 setTimeout(function() {
+
                     $('#loading').css('display', 'none');
+                    
                     $("#pro-search").slideDown('4000');
                     $("#pro-search").animate({ 'margin-top': '0vh' });
                 }, 2000);
@@ -2190,6 +2199,7 @@ function setPinLocation() {
         $.post(url, function(data) {
             console.log(data);
             var addr = data.results[0].formatted_address;
+
             infowindow.setContent('<div class="box_pin_search"><div >' + addr + '</div><div class="btn btn-sm pull-right btn-part" style="background-color: #3b5998" onclick="selectMyPlace(5,\'' + addr + '\',' + Newlat + ',' + Newlng + ');">' + choose + '</div></div>');
             infowindow.open(map, markerPlaceOfften);
         });

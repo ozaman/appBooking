@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-<section style="height: 100vh;background: #fff;     margin-bottom: 35px;">
+<section style="height: 93vh;background: #fff;-webkit-overflow-scrolling: touch;  margin-bottom: 35px;overflow-y: scroll ">
     <div class="container">
         <div style="margin-top: 52px">
             <div class="col-md-12">
@@ -30,7 +30,7 @@
             <div class="box-in-foget" >
                 <i class="material-icons " id="close" style="position: absolute;  right: 15px;top: 15px;color:#fff">close</i>
                 <div style="text-align: center; padding: 20px 10px; font-size: 18px; background: #3b5998; color: #fff;" class="lng-omise-gateway">   
-                    <span style="text-align: center;vertical-align: super;font-size: 18px; font-weight: 400;" class="lng-omise-gateway">Payment Channel</span>
+                    <span style="text-align: center;vertical-align: super;font-size: 18px; font-weight: 500;" class="lng-omise-gateway">Payment Channel</span>
                 </div>
                 <div style="padding: 12px;padding-top:8px;padding-bottom: 0;">
                    <div class="col-md-12" id="forget">
@@ -70,7 +70,7 @@
                                     <input type="hidden" name="txn_ids" value="Reference" id="reference" / >
                                     <!-- <i class="fa fa-paypal pad" aria-hidden="true" style="color:#253b80;font-size: 30px; width: 40px;"></i> -->
                                     <span>
-                                      <input style="background: #ffffff;  border: 0; " type="submit" name="submit" value="Paypal" id="paypal"  />
+                                      <input style="background: #ffffff;  border: 0; font-size: 18px;" type="submit" name="submit" value="Paypal" id="paypal"  />
                                     </span>
                                 </form>
                                 </div>
@@ -97,7 +97,11 @@
                     </div>
                 </div>
                  
-                <div style="padding: 15px; overflow-y: scroll; height: 52vh; -webkit-overflow-scrolling: touch;">
+                <div style="padding: 15px;
+    padding-bottom: 0;
+    overflow-y: scroll;
+    height: 71vh;
+    -webkit-overflow-scrolling: touch;">
                     <div>
                         <span class="lng_can_see" style="font-size: 16px;  font-weight: 400;"></span>
                     </div>
@@ -127,7 +131,7 @@
         </div>
         <div id="foget-password2">
             <div class="box-in-foget2" >
-            <div style="border-bottom: 1px solid #ddd; text-align: center; padding: 20px 10px; font-size: 16px; color: #fff; background: #3b5998;" class="lng-omise-gateway">
+            <div style="border-bottom: 1px solid #ddd; text-align: center; padding: 20px 10px; font-size: 18px; color: #fff; background: #3b5998;font-weight: 500" class="lng-omise-gateway">
             </div>  
             <div style="text-align: center; padding: 15px;">
                 <img src="https://assets.omise.co/assets/omise-logo-a86debcb438f41aa395a868ff43fe67090e277d44dea080cd2d51baec405ea71.svg" alt="" width="100">
@@ -399,7 +403,7 @@
     font-size: 20px;
 }
 .channel li span{
-   font-size:15px;
+   font-size:18px;
    line-height: 2.5;
    vertical-align: super;
    

@@ -1,3 +1,333 @@
+<div id="popup-login" style="display: none;">
+            <div class="box-popup-login" >
+                <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">
+                             
+                            <span class="lng-login">  เข้าสู่ระบบ</span>
+                        
+                        <i class="material-icons close_login ">close</i>
+                            
+                        </div>
+            <!-- <div style="border-bottom: 1px solid #ddd; text-align: center; padding: 20px 10px; font-size: 18px; color: #fff; background: #3b5998;font-weight: 500" class="lng-omise-gateway">
+            </div> -->  
+            
+            
+            <div style="padding: 20px;padding-top:0">
+                <input type="hidden" id="by" value="<?=$by;?>"/>
+<input type="hidden" id="data" value="<?=$data;?>"/>
+<input type="hidden" id="from" value="<?=$from;?>"/>
+<input type="hidden" id="to" value="<?=$to;?>"/>
+<input type="hidden" id="lat_f" value="<?=$lat_f;?>"/>
+<input type="hidden" id="lng_f" value="<?=$lng_f;?>"/>
+<input type="hidden" id="lat_t" value="<?=$lat_t;?>"/>
+<input type="hidden" id="lng_t" value="<?=$lng_t;?>"/>
+<input type="hidden" id="book" value="<?=$book;?>"/>
+
+    
+ <section style="position: relative; min-height: 100vh;">    
+    <!-- <div class="header " data-parallax="true" >
+        <nav class="navbar  navbar-color-on-scroll" id="sectionsNav">
+            <div class="container" >
+                <div class="navbar-header">
+
+                   
+                </div>            
+            </div>
+        </nav>
+        
+    </div> -->
+   
+    <!-- <div class="container"> -->
+        <div class="col-md-6" id="box-left" >
+            <div class="box-signup" style="display: none;">
+                <div id="section_title" class="section_title">
+                    <h3 id="title-regis" class="lng-sign-create"></h3>                
+                    <h4 style="font-size: 14px;" class="lng-what-is-your-email"></h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 " style="padding:0;    margin-top: 20px;">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">face</i>
+                                </span>
+                                <!-- <button class="btn btn-warning btn-sm" id="checkmail" style="position: absolute; right: 0; z-index: 100;  margin-top: 2px; padding: 5px 10px;border-radius: 15px;">
+                                    <span class="lng-check"></span>
+                                </button> -->
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"> 
+                                        <span class="lng-email"></span> 
+                               
+                                    </label>
+                                    <input name="firstname" required="True" type="email" class="form-control" id="username-signup">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" style="padding-top: 0">
+                                    <i class="material-icons">lock_outline</i>
+                                </span>
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"><span class="lng-password"></span>
+                                        <!-- <small>(required)</small> -->
+                                    </label>
+                                    <input name="lastname" type="password" class="form-control" id="password-signup">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="lng_email_have" style="text-align: center;color:red;display: none;"></div>
+                            <div class="lng_email_available"  style="text-align: center;color:#2c9930;display: none;"></div>
+                            
+
+
+                            </div>
+                           
+                            <div class="col-md-12">
+                                <div class="btn-signup" style="" id="registered" ><span class="lng-sign-in"></span></div>
+                            </div>
+                            <div class="col2">
+                                <div class="col-sign">
+                                    <div class="text-sign" >
+                                        <span class="lng-have-member"></span>
+                                        <a class="mtm sign-up" id="sign-in" style="cursor: pointer;">
+                                            <span class="lng-registered-customers"></span>
+                                        </a>
+                                    </div>
+                                    <div id="status"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-signin">
+                    <div class="card-header text-center" data-background-color="green">
+                        <h4 class="card-title" style="margin-bottom: 20px;" >
+                            <span class="lng-login"></span>
+                        </h4>                                       
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-8 " style="padding: 0" >
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label"><span class="lng-email"> </span>
+                                                
+                                            </label>
+                                            <input  required="True" type="email"  class="form-control" id="username" size="80">
+                                        </div>
+                                    </div>                                       
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label"><span class="lng-password"></span></label>
+                                            <input type="password" class="form-control" id="password" >
+                                        </div>
+                                    </div>
+                                    <div id="message" style="text-align: center;"></div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div  type="submit" class=" btn-login " id="login" style="">
+                                        <span class="lng-login"> </span>
+                                    </div>
+                                </div>
+                                        
+                                <div class="col2">
+                                    <div class="text-sign" >
+                                        <span class="lng-not-member"></span>
+                                        <a class="sign-up" id="sign-up" style="cursor: pointer;" >
+                                            <span class="lng-sign-up-now"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="margin-bottom: 62px;">
+                <div class="box-regispro" style="display: none;">
+                    <h3 id="title-info" class="lng-why-become"></h3>
+                    <div class="special">
+                        <div class="box-icon">
+                            <i class="fa fa-tags" style="font-size: 30px;"></i>
+                        </div>
+                        <h4 class="lng-special-product"></h4>
+                        <p class="lng_get_lower_price">You'll get lower price for every Product booking, as a member.</p>
+                    </div>
+                    <div class="exclusive">
+                        <div class="box-icon">
+                            <i class="fa fa-user-md" aria-hidden="true" style="font-size: 30px;"></i>
+                        </div>               
+                        <h4 class="lng-exclusive-discount"></h4>
+                        <p class="lng_get_latest_promo">You'll get the latest promo info and special member discount.</p>
+                    </div>
+                    <div class="fast">
+                        <div class="box-icon">
+                            <i class="fa fa-gavel" aria-hidden="true" id="special" style="font-size: 30px;"></i>
+                        </div>              
+                        <h4 class="lng-fast-booking"></h4>
+                        <p class="lng_member_using">As a member using Go HolidayQuick, your booking is our priority.</p>
+                    </div>
+                </div>
+                
+                <div class="log-social box-signin">
+                    <div class="unit social-column">
+                        <div class="social-inner">
+                            <div class="fb-wrapper">
+                                <a id="facebook-login-button"  class="fb-auth inner facebook-login-auth" scope="public_profile,email" onclick="login();" return false>
+                                    <!-- <i class=" fa fa-facebook-official " style="font-size: 36px; position: absolute; left: 16px;"></i> -->
+                                    <div class=" pull-left" style=" position: absolute; left: 20px; width: 35px; height: 35px; color: #fff; border-radius: 50%; background: #3b5998;">
+                                                <i class="fa fa-facebook"> </i>
+                                    </div>
+                                    <span>Facebook</span>
+                                </a>
+                            </div>
+                           
+                            <div class="google-wrapper">
+                                  <div id="gSignInWrapper">
+                                    <!--<span class="label">Sign in with:</span>-->
+                                    <div id="customBtn" class="google-auth inner google-login-auth">
+                                    <div class="" style="position: absolute; left: 20px; width: 35px; height: 35px; color: #fff; border-radius: 50%; background: #dd4b39;">
+                                                <i class="fa fa-google"> </i>
+                                    </div>
+                                      <!-- <i class="fa fa-google-plus-square" style="font-size: 36px; position: absolute; left: 16px;"></i> -->
+                                      <span >Google</span>
+                                    </div>
+                                  </div>
+                               <!-- <div>
+                                    <a id="google-login-button"  class="google-auth inner google-login-auth" >
+                                        <i class="fa fa-google-plus-square" style="font-size: 36px; position: absolute; left: 16px;"></i>
+                                        <span>Google</span>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <div style="margin-top: 30px;">
+                                <div class=" btn-foget-pass " id="foget-pass" style="">
+                                    <span class="lng-foget-pass">  ลืมรหัสผ่าน</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+
+    
+</section>
+       
+    
+            </div>
+        </div>
+    </div>
+    <style>
+        #popup-login{
+    z-index: 301; 
+    position: fixed; 
+    /* width: 100vw; 
+    height: 100vh;  */
+    left: 0px; top: 0px; 
+    /* background: rgba(0, 0, 0, 0.59); */
+    display:none;
+        -webkit-overflow-scrolling: touch;
+}
+.box-popup-login{
+    height: 100vh;
+        /* border-radius: 4px; */
+        background: #fff;
+        min-width: 100%;
+        /* height: auto; */
+        left: 50vw;
+        top: 50vh;
+        
+        transform: translate(-50%,-50%);
+        position: fixed;
+        z-index: 301;
+}
+    </style>
+    <div id="foget-password">
+            <div class="box-in-foget" >
+            <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px;   margin-bottom: 10px;">
+               
+                    <span style="text-align: center;" class="lng-foget-pass">ลืมรหัสผ่าน </span>
+                    <i class="material-icons btn-close">close</i>
+               
+                            
+            </div>
+                <div style="padding: 12px;">
+                   <div class="col-md-12" id="forget"> 
+                       
+                        <div style="margin-top: 50px; font-size: 15px; color: #333333;margin-bottom: 10px;">
+                            <span class="lng-please-input-email">Please input your email </span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">face</i>
+                            </span>   
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label"><span class="lng-email"></span></label>
+                                <input type="email" class="form-control" id="email-forget" size="80">
+                                <span class="material-input"></span>
+                                
+                                
+                            </div>  
+                            <div  class="btn-send lng-send" style="padding: 12px 20px;" ></div>   
+                        </div>
+                    </div>
+                    <div id="check-email" style="text-align:center;display:none;margin-top: 50px; font-size: 15px; color: #333333;  margin-bottom: 10px;">
+                        <span>Please check your email </span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    <div class="modal fade" id="capacityss" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!-- <h4 class="modal-title">Gallery</h4> -->
+                            </div>
+                            
+                            <div class="modal-body">                                    
+                                <div id="getcapa"></div>
+                                <div id="getcapa2"></div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal" onclick="reset()">Close</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="modal fade" id="codecountry" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content" style=" max-height: 700px;   overflow: hidden; overflow-y: scroll;">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!-- <h4 class="modal-title">Gallery</h4> -->
+                            </div>
+                            
+                            <div class="modal-body" style="padding: 0">                                    
+                                <div class="box-country">
+                                    <ul id="select-name">                                                                     
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal" onclick="reset()">Close</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
 <div id="get_html_book" style="display: none;">
     <div class="get_html_pop_in">               
         <div class="get_html_pop_ln">
@@ -2310,9 +2640,9 @@ textarea:-ms-input-placeholder {
                         <div class="row">
                             <div class="">
                                 <form >
-                                    <div class="card-header text-center" data-background-color="green">
+                                    <!-- <div class="card-header text-center" data-background-color="green">
                                             <h4 class="card-title">Login</h4>
-                                    </div>
+                                    </div> -->
                                     <div align="text-center">
                                         <p id="message" style="text-align: center;"></p>
                                     </div>
@@ -2657,4 +2987,10 @@ textarea:-ms-input-placeholder {
             .police_pop_ln{
                 padding: 15px;
             }
+            .close_login{
+                position: absolute;
+    right: 15px;
+}
             </style>
+           
+

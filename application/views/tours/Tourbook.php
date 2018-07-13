@@ -400,6 +400,7 @@
                             <div style="padding: 10px 4px; font-weight: 600; font-size: 16px;">
                                 <span class="lng-contact-infomation"></span>
                             </div>
+                            
                             <div class="card" style=" border-radius: 15px; ">
                                 <div class="col-md-12 ">
                                     <div class="row">
@@ -411,7 +412,8 @@
                                                 </label>
                                                 <div id="pleselogin" class="lng-plese-login" style="color: red; text-align: center; font-weight: 400; font-size: 16px; margin-top: 12px;display:none">Plese login</div>
                                             </div>
-                                        </div>    
+                                        </div> 
+
                                         <div class="col-md-6"> 
                                            
                                             <div class="contact_info">
@@ -443,7 +445,7 @@
                                         <div class="col-md-6">
                                             <div class="contact_info">
                                                
-                                                    <input type="email" class="textInput" placeholder="<? echo $lng_email?>" id="email" aria-required="true" aria-invalid="true" required>                                                    
+                                                    <input type="email" class="textInput" placeholder="<? echo $lng_email?>" id="email"  aria-invalid="true" >                                                    
                                                 
                                             </div>
                                            <!--  <div class="contact_info flight-box" >

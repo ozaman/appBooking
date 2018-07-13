@@ -79,49 +79,49 @@ $(document).ready(function() {
     newDate = getnewdate.getFullYear()+'-'+newmonth +'-'+getnewdate.getDate();
     console.log(newDate)
     $('#Rondatetext').html(newDate)
-    if ($.cookie("login")) {
-        console.log($.cookie("login"))
-        $.ajax({
-            type: 'POST',
-            url: base_url+'getuser_control/mainpage',
-            data: { 'id': $.cookie("login") },
-            //contentType: "application/json",
-            dataType: 'json',
-            success: function(data) {
-                console.log(data)
-                code_r = data[0].s_code;
-                code_ref = data[0].s_code_ref;
-                datauser = data;
-                s_email = data[0].s_email
-                console.log(data[0].s_image)
-                $('.box-login').show();
-                $('.box-login-non').hide();
-                $('.box-desboard').show();
-                if (data[0].s_image == '') {
-                    $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
-                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
-                } else {
-                    $('#photo_profile').html('<img   src="' + base_url + 'pic/' + data[0].s_image + '">');
-                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].s_image + '">');
-                }
-                $('#usernamess').html(data[0].s_username);
-                $('#getname').html(data[0].s_name);
-                $('#btnlogin').css('display', 'none')
-                $('#btnuser').css('display', 'block')
-                $('.caret').css('display', 'inline-block')
-            }
-        });
+    // if ($.cookie("login")) {
+    //     console.log($.cookie("login"))
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: base_url+'getuser_control/mainpage',
+    //         data: { 'id': $.cookie("login") },
+    //         //contentType: "application/json",
+    //         dataType: 'json',
+    //         success: function(data) {
+    //             console.log(data)
+    //             code_r = data[0].s_code;
+    //             code_ref = data[0].s_code_ref;
+    //             datauser = data;
+    //             s_email = data[0].s_email
+    //             console.log(data[0].s_image)
+    //             $('.box-login').show();
+    //             $('.box-login-non').hide();
+    //             $('.box-desboard').show();
+    //             if (data[0].s_image == '') {
+    //                 $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
+    //                 $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
+    //             } else {
+    //                 $('#photo_profile').html('<img   src="' + base_url + 'pic/' + data[0].s_image + '">');
+    //                 $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].s_image + '">');
+    //             }
+    //             $('#usernamess').html(data[0].s_username);
+    //             $('#getname').html(data[0].s_name);
+    //             $('#btnlogin').css('display', 'none')
+    //             $('#btnuser').css('display', 'block')
+    //             $('.caret').css('display', 'inline-block')
+    //         }
+    //     });
 
-    } else {        
-        $('#acceptancecheck').hide();        
-        $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
-        $('.box-login').hide();
-        $('.box-desboard').hide();
-        $('.box-login-non').show();
-        $('#btnlogin').css('display', 'block')
-        $('#btnuser').css('display', 'none')
-        $('.caret').css('display', 'none')
-    }
+    // } else {        
+               
+    //     $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
+    //     $('.box-login').hide();
+    //     $('.box-desboard').hide();
+    //     $('.box-login-non').show();
+    //     $('#btnlogin').css('display', 'block')
+    //     $('#btnuser').css('display', 'none')
+    //     $('.caret').css('display', 'none')
+    // }
 
     $('#previous').on('click', function() {
         $('#addbook').css('display', 'none');
@@ -497,7 +497,8 @@ $(document).ready(function() {
         $('#input_data_pop').hide(500) 
     })
 }) 
-function selecetBook(){    
+function selecetBook(){  
+console.log(b_fashion)  
         $('.loader-wrapper').css('display', 'block')
         var data;
         if (ckgetuser == true) {
@@ -516,6 +517,7 @@ function selecetBook(){
         }
         if(b_fashion == 'Realtime'){
             ondate = newDate;
+            name = $('#name_lastname').val();
             console.log(newDate)
             var newHours;
             var newMinutes;
@@ -541,38 +543,32 @@ function selecetBook(){
         if ((area == 'In' || area == 'Out') && flight == undefined ) {
             $('#flight').focus();
             $('#flight').css('border','1px solid #f44336')
+             return false;
         } else {
             $('#flight').css('border','1px solid #dfdfdf')
         }
 
         
-        if(name == undefined && $('#flight').val() != '' && ckgetuser == false){
+        if(name == undefined && ckgetuser == false){
             $('#name_lastname').focus()
             $('#name_lastname').css('border','1px solid #f44336')
+             return false;
         }
         else{
             $('#name_lastname').css('border','1px solid #dfdfdf')
         }
-        if(phone == undefined && name != undefined && $('#flight').val() != '' && ckgetuser == false){
+        if(phone == undefined ){
             $('#phone').focus()
             $('#phone').css('border','1px solid #f44336')
+             return false;
         }
         else{
             $('#phone').css('border','1px solid #dfdfdf')
         }
-        if(ckgetuser == false && ($('#email').val() == ''&& $('#flight').val() != '') && ($('#phone').val() != '' && $('#name_lastname').val() != '') ){
-            console.log('in if')            
-            $('#email').focus()
-            $('#email').css('border','1px solid #f44336')
-        }
-        else{
-            console.log('in else')
-            console.log( $('#phone').val())
-            console.log( $('#name_lastname').val())
-            $('#email').css('border','1px solid #dfdfdf')            
-        }
+        
         if(Checkacceptance == false){
-            $('#acceptance_pin_pop').show(500)            
+            $('#acceptance_pin_pop').show(500) 
+             return false;           
         }        
             console.log(ckgetuser+'*********************************')
             console.log(code)
@@ -604,10 +600,11 @@ function selecetBook(){
             console.log(flight)
             var o = ondate.split('-');
             var m,d ;
-            name = $('#name_lastname').val();
+            
             if($('#current').val() != '' && $('#pac-input').val() != ''){
                 place_from = $('#current').val();
                 place_to = $('#pac-input').val();
+
             }
            
             console.log(o[2].length)
@@ -630,7 +627,7 @@ function selecetBook(){
                 ondate = o[0]+'-'+m+'-'+d;
             }            
             console.log(ondate)               
-                if(($('#email').val() != '' && Checkacceptance != false) && ($('#phone').val() != '' && $('#name_lastname').val() != '') ){
+               
                     if((area == 'In' || area == 'Out') ) {
                         if(flight != undefined){
                             if(b_fashion == 'Reservation' || b_fashion == 'Service'){                                
@@ -668,10 +665,12 @@ function selecetBook(){
                             addbooking();
                         }
                     }
-                }
+                
 }
 function addbooking(){
-   
+   if ($('#email').val() == '') {
+      email = '';
+   }
     $.ajax({
         type: 'POST',
         url: base_url+'savebook_control/process',
@@ -687,7 +686,7 @@ function addbooking(){
             'name': name,
             'phone': $('#phone').val(),
             'phonecode': phonecode,
-            'email': $('#email').val(),
+            'email': email,
             'cost': total_price,
             'other': other,
             'guest_other': namecountry,

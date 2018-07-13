@@ -26,6 +26,7 @@
     <?php echo link_tag('files/css/swiper.min.css'); ?>	
     <?php echo link_tag('files/css/classic.css?v='.time()); ?>	
     <?php echo link_tag('files/css/classic.date.css?v='.time()); ?>
+    <?php echo link_tag('files/css/register.css'); ?>
 
 </head>
 <body class="presentation-page" style="overflow-x: hidden;" >

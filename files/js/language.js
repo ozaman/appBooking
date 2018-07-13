@@ -641,7 +641,7 @@ $(document).ready(function() {
         $('.lng-arrival-date').html('วันที่มาถึง');
         $('.lng-arrival-time').html('เวลาถึง');
         $('.lng-amount').html('จำนวน');
-        $('.lng-book-by').html('คนจอง');
+        $('.lng-book-by').html('ผู้จอง');
         $('.lng-date').html('วันที่');
         $('.lng-order').html('ใบสั่ง');
         $('.lng-last-name').html('นามสกุล');
@@ -665,3 +665,219 @@ function language(lng) {
     window.location.reload();
 
 }
+
+function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1865903040340223',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();   
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+    function login(){        
+   FB.login(function (response) { statusChangeCallback(response); }, { scope: 'email,public_profile', return_scopes: true });
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      checkLoginState();
+    } else {
+    }
+  }
+  function checkLoginState() {
+    var type_login = $('#by').val();
+        var param_data = $('#data').val();
+        var param_from = $('#from').val();
+        var param_to = $('#to').val();
+        var lat_f = $('#lat_f').val();
+        var lng_f = $('#lng_f').val();
+        var lat_t = $('#lat_t').val();
+        var lng_t = $('#lng_t').val();
+        var book = $('#book').val();
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me',{fields:'name,email,picture'}, function(response) {
+        console.log(response)
+        console.log(response.picture.data.url)
+        //console.log(response.getImageUrl())
+        // $.cookie("idface", response.id);
+        $.ajax({
+        type: 'POST',
+        url: base_url+'login_control/processsocial',
+        data: {'username': response.email,'name':response.name,'password':response.id,'type':'facebook','img':response.picture.data.url},
+        //contentType: "application/json; application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: 'json',
+        success: function(res) { 
+          console.log(res)
+          console.log(res.status)
+          if(res.status == 0)
+              {
+                 $.cookie("login",res.username);
+                   loginsucess()
+//                    if(type_login=='dasboard'){
+//                     window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
+//                  }else if(type_login=='book'){
+// //                     
+//                     window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
+                    
+//                  }else{
+//                     window.location.href = "<?php echo base_url(); ?>";
+//                  }   
+              }
+              else 
+              {
+              $('#acceptancecheck').hide();     
+               $('#message').html('Login not complete').css('color', 'red');
+              }
+        }
+    });
+    });
+  }
+    }
+    function loginsucess(){
+        // if ($.cookie("login")) {
+            $('#btn_ck_login').hide()
+            $('#acceptancecheck').show(); 
+            $('#popup-login').hide();
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'getuser_control/mainpage',
+            data: { 'id': $.cookie("login") },
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                $.ajax({
+                    type: 'POST',
+                    url: base_url + 'dashboard/historylist',
+                    data: { 's_code': data[0].s_code },
+                    //contentType: "application/json",
+                    dataType: 'json',
+                    success: function(datahis) {
+                        console.log(datahis)
+                        getdatahis = datahis;
+                    }
+                });
+                $('.box-login').show();
+                $('.box-login-non').hide();
+                $('.box-desboard').show();
+                if (data[0].s_image == '') {
+                    $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
+                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
+                } else {
+                    $('#photo_profile').html('<img   src="' + base_url + 'pic/' + data[0].s_image + '">');
+                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].s_image + '">');
+                }
+                $('#usernamess').html(data[0].s_username);
+                $('#getname').html(data[0].s_name);
+                $('#btnlogin').css('display', 'none')
+                $('#btnlogin2').css('display', 'none')
+                $('#btnuser').css('display', 'block')
+                $('.caret').css('display', 'inline-block')
+            }
+        });
+
+    // } else {
+    //     $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
+    //     $('.box-login').hide();
+    //     $('.box-desboard').hide();
+    //     $('.box-login-non').show();
+    //     $('.placeeditften').remove()
+    //     $('#btnlogin').css('display', 'block')
+    //     $('#btnlogin2').css('display', 'block')
+    //     $('#btnuser').css('display', 'none')
+    //     $('.caret').css('display', 'none')
+    // }
+    }
+  
+    
+
+/**
+* Login with Google Account *
+*/
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: '1057940740113-3suf1lugga5kceuqg3jed67edke0l1dg.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      attachSignin(document.getElementById('customBtn'));
+    });
+  };
+
+  function attachSignin(element) {
+    // console.log(element.id);
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+        /*  document.getElementById('name').innerText = "Signed in: " +
+              googleUser.getBasicProfile().getName();*/
+               var profile = googleUser.getBasicProfile();
+                 /* console.log('ID: ' + profile.getId());
+                  console.log('Name: ' + profile.getName());
+                  console.log('Image URL: ' + profile.getImageUrl());
+                  console.log('Email: ' + profile.getEmail()); */
+                  console.log(profile); 
+                  var url = base_url+'login_control/processsocial';
+//                alert(url);
+                  var type_login = $('#by').val();
+                var param_data = $('#data').val();
+                var param_from = $('#from').val();
+                var param_to = $('#to').val();
+                var lat_f = $('#lat_f').val();
+                var lng_f = $('#lng_f').val();
+                var lat_t = $('#lat_t').val();
+                var lng_t = $('#lng_t').val();
+                var book = $('#book').val();
+                  $.post( url, {'username': profile.getEmail(),'name':profile.getName(),'password':profile.getId(),'type':'google','img':profile.getImageUrl() } ,function( data ) {
+//                      console.log(data);
+                        var obj_c = JSON.parse(data);
+                        console.log(obj_c.status);
+                        console.log(obj_c);
+                         if(obj_c.status == 0)
+                              {
+                                 $.cookie("login",obj_c.username);
+//                               $.cookie("logby",'google');
+//                                 window.location.href = "<?php echo base_url(); ?>home";    
+if(type_login=='dasboard'){
+                    window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
+                 }else if(type_login=='book'){
+//                      alert(param_data+" "+param_from+" "+param_to);
+                    window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
+                    
+                 }else{
+                    window.location.href = base_url;
+                 }     
+                              }
+                              else 
+                              {    
+                               $('#message').html('Login not complete').css('color', 'red');
+                               
+                              }
+                    });      
+        }, function(error) {
+                   console.log(JSON.stringify(error, undefined, 2));
+        });
+  }
+ 
+startApp()

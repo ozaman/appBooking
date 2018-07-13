@@ -179,6 +179,7 @@ $( document ).ready(function() {
 </style>
 
 	<div class="" style="
+  position: fixed;
     background: #3b5998;
     padding: 15px;
     width: 100%;
@@ -219,18 +220,26 @@ $( document ).ready(function() {
     border-radius: 15px !important;
 }
   </style>
-   <div style="width: 100%">
-   <table width="100%"><tr><td>
-   <h4 style="margin: 8px;"><span class="lng-detail-order"></span></h4></td>     
+   <div style="    width: 100%;
+    position: fixed;
+    margin-top: 42px;
+    padding-top: 10px;
+    z-index: 1;">
+   <table width="100%">
+    <tr>
+      <!-- <td>
+      <h4 style="margin: 8px;">
+      <span class="lng-detail-order"></span></h4>
+    </td> -->     
    <td align="right" > 
-   <a class="btn btn-xs btn-custom-me"  href="" id="to_pay" >
+   <a class="btn btn-xs btn-custom-me"  href="" id="to_pay" style="    margin-right: 18px;">
    	<span style="font-size: medium;/*font-weight: 700;*/" class="lng-paynow">Pay Now</span>
    </a></td> 
    </tr>
    </table>
    </div> 
    <div class="card show_transfer" align="center" style="padding: 8px;
-    background-color: #fff;">
+    background-color: #fff;margin-top: 100px">
 				<table width="100%"><tbody><tr><td width="10"></td><td><table width="100%"><tbody><tr><td width="10"><div style="width: 10px;  height: 10px;  border-radius: 1px; background: #555;"></div></td><td align="left" style="padding-left: 15px;"><span id="from" style="text-align: center;"></span></td></tr><tr><td colspan="2"><br></td></tr><tr><td width="10"><div style="width: 10px;  height: 10px; border-radius: 1px; background: #3b5998;"></div></td><td align="left" style="padding-left: 15px;"><span id="to" style="text-align: center;"></span></td></tr></tbody></table></td></tr></tbody></table>
 				
 						<!-- <span class="textBox" style="font-size: 15px;"><b><span id="from"></span></b></span>

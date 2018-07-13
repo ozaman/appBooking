@@ -389,18 +389,38 @@
                             <div style="padding: 10px 4px; font-weight: 600; font-size: 16px;">
                                 <span class="lng-contact-infomation"></span>
                             </div>
+                           
                             <div class="card" style="    border-radius: 15px;">
                                 <div class="col-md-12 ">
                                     <div class="row">
+                                         <div style="    margin: auto;
+    border: 1px solid #3b5998;
+    padding: 8px 10px;
+    width: 90%;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 14px;
+    color: #ffffff;
+    background-color: #3b5998;" id="btn_ck_login">
+                        <div class="box-login-non" style="    ">                  
+                            <!-- <i class="material-icons btn-login" style="    position: absolute;">account_circle  </i> -->
+                            <span style="font-size: 15px; pointer-events: auto;" class="lng-login">  เข้าสู่ระบบ</span>
+                        </div>                 
+                        <!-- <div class="box-login" style="pointer-events: auto;width: 35px;  height: 35px; border-radius: 50px;  margin-top: -4px;">
+                         
+                        </div> -->
+                    </div>
                                         <div class="col-md-12" id="acceptancecheck">
                                             <div class="checkbox" style="margin-bottom: 30px;">
                                                 <label>
                                                     <input type="checkbox" name="optionsCheckboxes" id="acceptanceuser">
                                                     <span class="lng-get-detail"></span>
                                                 </label>
-                                                <div id="pleselogin" class="lng-plese-login" style="color: red; text-align: center; font-weight: 400; font-size: 16px; margin-top: 12px;display:none">Plese login</div>
+                                               
                                             </div>
-                                        </div>    
+
+                                        </div> 
+                                         <div id="pleselogin" class="lng-plese-login" style="color: red; text-align: center; font-weight: 400; font-size: 16px; margin-top: 12px;display:none">Plese login</div>   
                                         <div class="col-md-6"> 
                                            
                                             <div class="contact_info">
@@ -432,7 +452,7 @@
                                         <div class="col-md-6">
                                             <div class="contact_info">
                                                
-                                                    <input type="email" class="textInput" placeholder="<? echo $lng_email?>" id="email" aria-required="true" aria-invalid="true" required>                                                    
+                                                    <input type="email" class="textInput" placeholder="<? echo $lng_email?>" id="email"  aria-invalid="true" >                                                    
                                                 
                                             </div>
                                             <div class="contact_info flight-box" >
