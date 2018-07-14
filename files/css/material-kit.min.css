@@ -1,8 +1,5 @@
-!=========================================================* * Material Kit PRO - v1.1.1 * *=========================================================* * Product Page: https: //www.creative-tim.com/product/material-kit-pro
-* Available with purchase of license from https: //www.creative-tim.com/product/material-kit-pro
-* Copyright 2017 Creative Tim (https: //www.creative-tim.com)
-* License Creative Tim (https: //www.creative-tim.com/license)
-* *=========================================================*/.radio label, .togglebutton label {
+
+.radio label, .togglebutton label {
     cursor: pointer
 }
 
@@ -1602,16 +1599,22 @@ label.control-label {
 }
 
 .form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label {
-    top: -7px;
+        top: -7px;
     font-size: 14px;
-    line-height: 1.42857
+    line-height: 1.42857;
+    z-index: 500 !important;
+    padding-left: 8px;
+    color: #9E9E9E !important;
 }
 
 .form-group.label-floating.is-focused label.control-label, .form-group.label-floating:not(.is-empty) label.control-label, .form-group.label-static label.control-label {
-    top: -28px;
+    top: -33px;
     left: 0;
+
+    padding-left: 8px ;
     font-size: 11px;
-    line-height: 1.07143
+    line-height: 1.07143;
+    color:#292727 !important;
 }
 
 .form-group.label-floating input.form-control:-webkit-autofill~label.control-label label.control-label {
@@ -1619,6 +1622,7 @@ label.control-label {
     left: 0;
     font-size: 11px;
     line-height: 1.07143
+    color:#292727 !important;
 }
 
 .form-group.form-group-sm {

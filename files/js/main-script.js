@@ -36,17 +36,21 @@ $.ajax({
         console.log(password)
     })
     $('.btn-foget-pass').on('click', function() {
-        $('#foget-password').fadeIn(500)
+       
+        $('#foget-password').show(500)
+        $('#popup-login').hide(500)
     });
-    $('.btn-close').on('click', function() {
-        $('#foget-password').fadeOut(500)
-    });
+    // $('.btn-close').on('click', function() {
+    //     $('#popup-login').hide(500)
+    // });
     
     $('.btn-send').on('click', function() {
+        // alert('aaaaaa')
        forget = $('#email-forget').val();
         console.log(forget)
         
         if(forget != ''){
+            $('#loading').show();
             $.ajax({
             type: 'POST',
             url: base_url+'fogetpassword.php',
@@ -57,7 +61,7 @@ $.ajax({
             console.log(data);
             //console.log(s_email);
             $('#forget').hide();
-            $('.btn-close').hide();
+            $('#loading').hide();
             $('.btn-login-forget').show();
             $('#check-email').show();
             }
@@ -117,21 +121,7 @@ $.ajax({
               }
         }
     });
-       $('#sign-up').click(function() {
-       $('.box-signup').css('display','block');
-       $('.box-regispro').css('display','block');
 
-       $('.box-signin').css('display','none');
-       $('.loginReg__or').css('display','none');
-
-    })
-    $('#sign-in').click(function() {
-       $('.box-signup').css('display','none');
-       $('.box-regispro').css('display','none');
-       $('.loginReg__or').css('display','block');
-
-       $('.box-signin').css('display','block');
-    })
     //alert( this.value );
     })
     $('.close_login').click(function() {
@@ -188,7 +178,7 @@ $.ajax({
                     $.cookie("login",res.username);
                     $('.lng_email_available').show()
                     $('.lng_email_have').hide()
-                    window.location.href = base_url+"home";
+                    loginsucess()
                 }
                 else{
                     $('.lng_email_available').hide()                    
@@ -1940,90 +1930,87 @@ function updatelatlng(id) {
     });
 }
 
-function book(x) {
-    window.location.href = '/test';
-    alert(x);
-}
-window.fbAsyncInit = function() {
-    FB.init({
-        appId: '1865903040340223',
-        cookie: true,
-        xfbml: true,
-        version: 'v2.8'
-    });
-    FB.AppEvents.logPageView();
-};
+
+// window.fbAsyncInit = function() {
+//     FB.init({
+//         appId: '1865903040340223',
+//         cookie: true,
+//         xfbml: true,
+//         version: 'v2.8'
+//     });
+//     FB.AppEvents.logPageView();
+// };
 
 
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+// (function(d, s, id) {
+//     var js, fjs = d.getElementsByTagName(s)[0];
+//     if (d.getElementById(id)) { return; }
+//     js = d.createElement(s);
+//     js.id = id;
+//     js.src = "//connect.facebook.net/en_US/sdk.js";
+//     fjs.parentNode.insertBefore(js, fjs);
+// }(document, 'script', 'facebook-jssdk'));
 
-function login() {
+// function login() {
 
-    FB.login(function(response) { statusChangeCallback(response); }, { scope: 'email,public_profile', return_scopes: true });
-    // FB.getLoginStatus(function(response) 
-    //     {statusChangeCallback(response)},{ scope: 'email,user_likes' 
-    // });
-    // function checkLoginState() {
-    //   FB.getLoginStatus(function(response) {
-    //     statusChangeCallback(response);
-    //   });
-    // }
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            checkLoginState();
-        } else {
-            // The person is not logged into your app or we are unable to tell.
-            //   document.getElementById('status').innerHTML = 'Please log ' +
-            //     'into this app.';
-        }
-    }
+//     FB.login(function(response) { statusChangeCallback(response); }, { scope: 'email,public_profile', return_scopes: true });
+//     // FB.getLoginStatus(function(response) 
+//     //     {statusChangeCallback(response)},{ scope: 'email,user_likes' 
+//     // });
+//     // function checkLoginState() {
+//     //   FB.getLoginStatus(function(response) {
+//     //     statusChangeCallback(response);
+//     //   });
+//     // }
+//     // This is called with the results from from FB.getLoginStatus().
+//     function statusChangeCallback(response) {
+//         console.log('statusChangeCallback');
+//         console.log(response);
+//         // The response object is returned with a status field that lets the
+//         // app know the current login status of the person.
+//         // Full docs on the response object can be found in the documentation
+//         // for FB.getLoginStatus().
+//         if (response.status === 'connected') {
+//             // Logged into your app and Facebook.
+//             checkLoginState();
+//         } else {
+//             // The person is not logged into your app or we are unable to tell.
+//             //   document.getElementById('status').innerHTML = 'Please log ' +
+//             //     'into this app.';
+//         }
+//     }
 
-    function checkLoginState() {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me?fields=name,email', function(response) {
-            console.log(response)
-                // $.cookie("idface", response.id);
-            $.ajax({
-                type: 'POST',
-                url: '../login_control/processsocial',
-                data: { 'username': response.email, 'name': response.name, 'password': response.id },
-                //contentType: "application/json",
-                dataType: 'json',
-                success: function(res) {
-                    console.log(res)
-                    if (res.status == 0) {
-                        $.cookie("login", res.username);
-                        window.location.href = base_url;
+//     function checkLoginState() {
+//         console.log('Welcome!  Fetching your information.... ');
+//         FB.api('/me?fields=name,email', function(response) {
+//             console.log(response)
+//                 // $.cookie("idface", response.id);
+//             $.ajax({
+//                 type: 'POST',
+//                 url: '../login_control/processsocial',
+//                 data: { 'username': response.email, 'name': response.name, 'password': response.id },
+//                 //contentType: "application/json",
+//                 dataType: 'json',
+//                 success: function(res) {
+//                     console.log(res)
+//                     if (res.status == 0) {
+//                         $.cookie("login", res.username);
+//                         window.location.href = base_url;
 
 
-                    } else {
+//                     } else {
 
-                        $('#message').html('Login not complete').css('color', 'red');
-                    }
+//                         $('#message').html('Login not complete').css('color', 'red');
+//                     }
 
-                }
-            });
+//                 }
+//             });
 
-            //console.log('Successful login for: ' + response.name);
+//             //console.log('Successful login for: ' + response.name);
 
-        });
-    }
-}
+//         });
+//     }
+// }
 
 
 
@@ -2202,3 +2189,76 @@ function toggleFullScreen() {
         cancelFullScreen.call(doc);
     }
 }
+
+/**
+* Login with Google Account *
+*/
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: '1057940740113-3suf1lugga5kceuqg3jed67edke0l1dg.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      attachSignin(document.getElementById('customBtn'));
+    });
+  };
+
+  function attachSignin(element) {
+    // console.log(element.id);
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+        /*  document.getElementById('name').innerText = "Signed in: " +
+              googleUser.getBasicProfile().getName();*/
+               var profile = googleUser.getBasicProfile();
+                 /* console.log('ID: ' + profile.getId());
+                  console.log('Name: ' + profile.getName());
+                  console.log('Image URL: ' + profile.getImageUrl());
+                  console.log('Email: ' + profile.getEmail()); */
+                  console.log(profile); 
+                  var url = base_url+'login_control/processsocial';
+//                alert(url);
+                  var type_login = $('#by').val();
+                var param_data = $('#data').val();
+                var param_from = $('#from').val();
+                var param_to = $('#to').val();
+                var lat_f = $('#lat_f').val();
+                var lng_f = $('#lng_f').val();
+                var lat_t = $('#lat_t').val();
+                var lng_t = $('#lng_t').val();
+                var book = $('#book').val();
+                  $.post( url, {'username': profile.getEmail(),'name':profile.getName(),'password':profile.getId(),'type':'google','img':profile.getImageUrl() } ,function( data ) {
+//                      console.log(data);
+                        var obj_c = JSON.parse(data);
+                        console.log(obj_c.status);
+                        console.log(obj_c);
+                         if(obj_c.status == 0)
+                              {
+                                 $.cookie("login",obj_c.username);
+//                               $.cookie("logby",'google');
+//                                 window.location.href = "<?php echo base_url(); ?>home";    
+if(type_login=='dasboard'){
+                    window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
+                 }else if(type_login=='book'){
+//                      alert(param_data+" "+param_from+" "+param_to);
+                    window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
+                    
+                 }else{
+                    window.location.href = base_url;
+                 }     
+                              }
+                              else 
+                              {    
+                               $('#message').html('Login not complete').css('color', 'red');
+                               
+                              }
+                    });      
+        }, function(error) {
+                   // console.log(JSON.stringify(error, undefined, 2));
+        });
+  }
+ 
+startApp()

@@ -862,7 +862,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
                     <div class="card">  
                         <div class="picture-container">
                             <div class="picture">
-                                <img src="https://dotdotdottrip.com/pic/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
+                                <img src="https://www.welovetaxi.com/app/booking2/pic/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
                                 <input type="file" id="wizard-picture" name="avatar">
                                 <input type="hidden" id="txt_avatar" name="txt_avatar" value="">
                                                             

@@ -65,7 +65,7 @@ textarea:-ms-input-placeholder {
     position: absolute;
     text-align: center;
     right: 0px;
-    margin-top: 15px;
+    top: 65px;
     border-radius: 25px;   
 }
 .btn-login-forget{
@@ -336,7 +336,7 @@ textarea:-ms-input-placeholder {
 }
 #box-left{
     border-right: 1px solid #ccc;
-    margin-top:75px;
+    /*margin-top:75px;*/
 }
 .box-icon{
     width: 50px;

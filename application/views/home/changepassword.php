@@ -172,11 +172,11 @@
 }
 .btn-change {
     /*width: 200px; */
-    background: #16B3B1;
+    background: #3b5998;
     /* text-transform: uppercase; */
     text-align: center;
     color: #ffffff;
-    border: 1px solid #4BB1C1;
+    border: 1px solid #3b5998;
     /* position: absolute; */
     right: 15px;
     padding: 12px 20px;
@@ -330,6 +330,7 @@
 
     <!-- Demo Purpose, JS For Demo Purpose, Don't Include it in your project -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/jquery.sharrre.js"></script>
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>files/js/book-script.js"></script>  -->
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/language.js?v=<?=time()?>"></script> 
@@ -510,17 +511,9 @@
                     </style>
 <script>
 $(document).ready(function(){
-    var base_url = 'https://dotdotdottrip.com/';
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-    console.log(getParameterByName('user')+'aaaaaa')
+    var base_url = 'https://www.welovetaxi.com/app/booking2/';
+    
+    console.log(getParameterByName('user'))
     $('.btn-change').click(function() {
         var newpass = $('#new-password').val();
         var confirmpass = $('#confirm-password').val();
@@ -529,16 +522,18 @@ $(document).ready(function(){
         if((newpass == confirmpass) && (newpass != '' || confirmpass != '')){
             //alert("aaaaaa")
             $('.not-same').hide();
+            // $('#loading').show();
             $.ajax({
                 type: 'POST',
-                url: '../getuser_control/changepass',
+                url: base_url+'getuser_control/changepass',
                 data: { 'user': getParameterByName('user'),'pass':confirmpass },
                 //contentType: "application/json",
                 dataType: 'json',
                 success: function(data) {
                     console.log(data)
                     if(data == true){
-                        window.location.href = base_url + "register";
+                        
+                        window.location.href = base_url;
                     }
                    //
                 

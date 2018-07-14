@@ -810,75 +810,31 @@ window.fbAsyncInit = function() {
   
     
 
-/**
-* Login with Google Account *
-*/
-  var googleUser = {};
-  var startApp = function() {
-    gapi.load('auth2', function(){
-      // Retrieve the singleton for the GoogleAuth library and set up the client.
-      auth2 = gapi.auth2.init({
-        client_id: '1057940740113-3suf1lugga5kceuqg3jed67edke0l1dg.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
-      });
-      attachSignin(document.getElementById('customBtn'));
-    });
-  };
+function sign_up(){
+       
+       $('.box-signup').css('display','block');
+       $('.box-regispro').css('display','block');
 
-  function attachSignin(element) {
-    // console.log(element.id);
-    auth2.attachClickHandler(element, {},
-        function(googleUser) {
-        /*  document.getElementById('name').innerText = "Signed in: " +
-              googleUser.getBasicProfile().getName();*/
-               var profile = googleUser.getBasicProfile();
-                 /* console.log('ID: ' + profile.getId());
-                  console.log('Name: ' + profile.getName());
-                  console.log('Image URL: ' + profile.getImageUrl());
-                  console.log('Email: ' + profile.getEmail()); */
-                  console.log(profile); 
-                  var url = base_url+'login_control/processsocial';
-//                alert(url);
-                  var type_login = $('#by').val();
-                var param_data = $('#data').val();
-                var param_from = $('#from').val();
-                var param_to = $('#to').val();
-                var lat_f = $('#lat_f').val();
-                var lng_f = $('#lng_f').val();
-                var lat_t = $('#lat_t').val();
-                var lng_t = $('#lng_t').val();
-                var book = $('#book').val();
-                  $.post( url, {'username': profile.getEmail(),'name':profile.getName(),'password':profile.getId(),'type':'google','img':profile.getImageUrl() } ,function( data ) {
-//                      console.log(data);
-                        var obj_c = JSON.parse(data);
-                        console.log(obj_c.status);
-                        console.log(obj_c);
-                         if(obj_c.status == 0)
-                              {
-                                 $.cookie("login",obj_c.username);
-//                               $.cookie("logby",'google');
-//                                 window.location.href = "<?php echo base_url(); ?>home";    
-if(type_login=='dasboard'){
-                    window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
-                 }else if(type_login=='book'){
-//                      alert(param_data+" "+param_from+" "+param_to);
-                    window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
-                    
-                 }else{
-                    window.location.href = base_url;
-                 }     
-                              }
-                              else 
-                              {    
-                               $('#message').html('Login not complete').css('color', 'red');
-                               
-                              }
-                    });      
-        }, function(error) {
-                   console.log(JSON.stringify(error, undefined, 2));
-        });
-  }
- 
-startApp()
+       $('.box-signin').css('display','none');
+       $('.loginReg__or').css('display','none');
+}
+    
+    function sign_in(){
+       $('.box-signup').css('display','none');
+       $('.box-regispro').css('display','none');
+       $('.loginReg__or').css('display','block');
+
+       $('.box-signin').css('display','block');
+    }
+    function btn_close(cas){
+        console.log(cas)
+        if (cas == 'forgetpass') {
+            $('#forget').show(500)
+            $('#check-email').hide(500)
+
+             $('#foget-password').hide(500)
+        $('#popup-login').show(500)
+        $('#popup-login').show(500)
+        
+        }
+    }

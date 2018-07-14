@@ -1,17 +1,25 @@
 <div id="popup-login" style="display: none;">
-            <div class="box-popup-login" >
-                <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">
+    <div style="background: #3b5998;
+    color: #fff;
+    padding: 18px;
+    text-align: center;
+    font-size: 19px;
+    position: fixed;
+    width: 100%;
+    z-index: 302;">
                              
                             <span class="lng-login">  เข้าสู่ระบบ</span>
                         
                         <i class="material-icons close_login ">close</i>
                             
                         </div>
+            <div class="box-popup-login" >
+                
             <!-- <div style="border-bottom: 1px solid #ddd; text-align: center; padding: 20px 10px; font-size: 18px; color: #fff; background: #3b5998;font-weight: 500" class="lng-omise-gateway">
             </div> -->  
             
             
-            <div style="padding: 20px;padding-top:0">
+            <div style="padding: 20px;padding-top:100px">
                 <input type="hidden" id="by" value="<?=$by;?>"/>
 <input type="hidden" id="data" value="<?=$data;?>"/>
 <input type="hidden" id="from" value="<?=$from;?>"/>
@@ -23,7 +31,7 @@
 <input type="hidden" id="book" value="<?=$book;?>"/>
 
     
- <section style="position: relative; min-height: 100vh;">    
+ <section style="position: relative;">    
     <!-- <div class="header " data-parallax="true" >
         <nav class="navbar  navbar-color-on-scroll" id="sectionsNav">
             <div class="container" >
@@ -88,7 +96,7 @@
                                 <div class="col-sign">
                                     <div class="text-sign" >
                                         <span class="lng-have-member"></span>
-                                        <a class="mtm sign-up" id="sign-in" style="cursor: pointer;">
+                                        <a class="mtm sign-up" id="sign-in"  onclick="sign_in()" style="cursor: pointer;">
                                             <span class="lng-registered-customers"></span>
                                         </a>
                                     </div>
@@ -99,11 +107,11 @@
                     </div>
                 </div>
                 <div class="box-signin">
-                    <div class="card-header text-center" data-background-color="green">
+                    <!-- <div class="card-header text-center" data-background-color="green">
                         <h4 class="card-title" style="margin-bottom: 20px;" >
                             <span class="lng-login"></span>
                         </h4>                                       
-                    </div>
+                    </div> -->
                     <form>
                         <div class="row">
                             <div class="col-sm-8 " style="padding: 0" >
@@ -139,7 +147,7 @@
                                 <div class="col2">
                                     <div class="text-sign" >
                                         <span class="lng-not-member"></span>
-                                        <a class="sign-up" id="sign-up" style="cursor: pointer;" >
+                                        <a class="sign-up" id="sign-up" onclick="sign_up()" style="cursor: pointer;" >
                                             <span class="lng-sign-up-now"></span>
                                         </a>
                                     </div>
@@ -150,7 +158,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6" style="margin-bottom: 62px;">
+            <div class="col-md-6" ">
                 <div class="box-regispro" style="display: none;">
                     <h3 id="title-info" class="lng-why-become"></h3>
                     <div class="special">
@@ -237,17 +245,19 @@
         -webkit-overflow-scrolling: touch;
 }
 .box-popup-login{
-    height: 100vh;
-        /* border-radius: 4px; */
-        background: #fff;
-        min-width: 100%;
-        /* height: auto; */
-        left: 50vw;
-        top: 50vh;
-        
-        transform: translate(-50%,-50%);
-        position: fixed;
-        z-index: 301;
+    height: 92vh;
+    /* border-radius: 4px; */
+    background: #fff;
+    min-width: 100%;
+    /* height: auto; */
+    left: 50vw;
+    top: 45vh;
+    /* padding-top: 50px; */
+    transform: translate(-50%,-50%);
+    position: fixed;
+    z-index: 301;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
     </style>
     <div id="foget-password">
@@ -255,7 +265,7 @@
             <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px;   margin-bottom: 10px;">
                
                     <span style="text-align: center;" class="lng-foget-pass">ลืมรหัสผ่าน </span>
-                    <i class="material-icons btn-close">close</i>
+                    <i class="material-icons btn-close" onclick="btn_close('forgetpass')">close</i>
                
                             
             </div>

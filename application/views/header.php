@@ -64,7 +64,7 @@
                         <span class="icon-bar BT"  style="color:#000"></span>
                     </button>                   
                 </div>
-        	    <div class="navbar-collapse" style=" margin-top: 10px;pointer-events: auto;">            
+        	    <div class="navbar-collapse" style=" margin-top: 10px;pointer-events: auto;   ">            
         		    <ul class="nav navbar-nav navbar-right" style="  ">
                         <li class="dropdown" id="btnuser">
                             <div class="user">
