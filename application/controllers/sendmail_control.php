@@ -22,7 +22,7 @@
         $mail->Host = "smtp.gmail.com"; // SMTP server
         $mail->Port = 25; // พอร์ท
         $mail->Username = "semiclevers@gmail.com"; // account SMTP
-        $mail->Password = "natthaphat128"; // รหัสผ่าน SMTP
+        $mail->Password = "000000000000000"; // รหัสผ่าน SMTP
         
         $mail->SetFrom("ozaclever@gmail.com", "yourname");
         $mail->AddReplyTo("ozaclever@gmail.com", "yourname");

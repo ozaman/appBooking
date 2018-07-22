@@ -716,6 +716,7 @@ table{
                 height: 100vh;
     overflow: scroll;
     padding-bottom: 51px;
+    webkit-overflow-scrolling: touch;
             }
             .box-program{
     border-top: dashed 2px #3b5998;
@@ -2220,10 +2221,10 @@ textarea:-ms-input-placeholder {
 <div id="edit_pin_pop" style="display: none;">
             <div class="edit_pin_pop_in">               
                 <div class="edit_pin_pop_ln">
-                    <div class="lng_position" style="text-align: center; font-size: 16px;"></div>
+                    <div class="lng_position" style="text-align: center;font-size: 16px;"></div>
                     <!-- <input type="text" class="textInput" placeholder="<? echo $newname;?>" id="newname" name="newname" onchange="newname(newname)" > -->
                     
-                    <div style="text-align: center;
+                    <div style="
                     margin-top: 25px;">
                     <div class="lng_find_again btn-close" style="background-color: #f44336;
                     width: 120px;
@@ -2245,7 +2246,7 @@ textarea:-ms-input-placeholder {
                     border-radius: 25px;
                    
                     bottom: 14px;
-                    right: 125px;" onclick="btn_yes_position()"></div>
+                     margin-left:  15px;" onclick="btn_yes_position()"></div>
                     </div>
                     
                 </div>        

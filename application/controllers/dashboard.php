@@ -136,10 +136,10 @@ public function payments(){
 	
 	
 	////////////////////// Config
-	$webmail_host = "mail.welovetaxi.com";
-	$webmail_port = 465;
-	$webmail_username = "system@welovetaxi.com";
-	$webmail_password = "system2017";
+	$webmail_port        = 465;                    // 端口
+$webmail_host        = "smtp.zoho.com"; // SMTP server
+$webmail_username    = "systeminfo-transfer@t-booking.com";     // SMTP server username
+$webmail_password    = "khamenaja1";
 	
 	
 	$sendby = "Golden Beach Tour Co.,Ltd.";
@@ -262,8 +262,8 @@ public function payments(){
 
 
 
-					$mail->SetFrom("reservation@goldenbeachtour.com", ''.$sendby.'');
-					$mail->AddReplyTo("reservation@goldenbeachtour.com",''.$sendby.'');
+					 $mail->SetFrom("systeminfo-transfer@t-booking.com", ''.$sendby.'');
+  $mail->AddReplyTo("systeminfo-transfer@t-booking.com",''.$sendby.'');
 					$mail->Subject    = "TEST V4 !!!!!! ( Thailand ) You have new cash from Amount $debit  THB. Please Check Now.";
 					
 					$mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test

@@ -13,15 +13,15 @@ person = 0,
 sum_adult_child = num_adult + num_child,
 checksumperson = 0,
 place_name, toplace_name, adress, adress_to, terminal, car_model,
-service, code, visa = 0, guestcountry, datauser,
+service, code, visa = 0, guestcountry,
 code_r, code_ref, s_email,
 flight, cost_a_nett, lng_getcountry = '', adresss,newDate = '',getcosereltime = 0;
 var data, from, to;
 var Checkacceptance = false;
 var ckgetuser = false;
 var base_url = 'https://www.welovetaxi.com/app/booking2/';
- var url = 'https://www.welovetaxi.com/app/booking2/';
-  var urlimg = 'https://www.welovetaxi.com/app/booking2/';
+var url = 'https://www.welovetaxi.com/app/booking2/';
+var urlimg = 'https://www.welovetaxi.com/app/booking2/';
 var getemail,getphone ,b_from,b_to,b_lat_f,b_lng_f,b_lat_t,b_lng_t,b_fashion,b_data,costdotcars  ;
 var costproduct, costdotcars, type, costdotcars, pro_id, place, to_place,lang_to_map,getnewdate,place_from,place_to;
 var protype = $.cookie("type")
@@ -36,8 +36,8 @@ $(document).ready(function() {
     }, 3000);
     $('#on_date').each(function() {
         var $date = $(this),
-            date = $date.val().split('-'),
-            format = ['year', 'month', 'day'];
+        date = $date.val().split('-'),
+        format = ['year', 'month', 'day'];
         $.each(format, function(i, v) {
             $date.attr('data-' + v, +date[i]);
         });
@@ -113,7 +113,7 @@ $(document).ready(function() {
     //     });
 
     // } else {        
-               
+
     //     $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
     //     $('.box-login').hide();
     //     $('.box-desboard').hide();
@@ -161,7 +161,7 @@ $(document).ready(function() {
     });
     
     
-   
+
     var getemail, getphone;
     $('#acceptanceuser').change(function() {
         if ($.cookie("login") != undefined) {
@@ -170,7 +170,6 @@ $(document).ready(function() {
             $('#phone').css('border','1px solid #dfdfdf')
             $('#email').css('border','1px solid #dfdfdf')
             ckgetuser = true;
-           
             if (this.checked) {
                 console.log('in case user')
                 console.log(datauser)
@@ -182,82 +181,82 @@ $(document).ready(function() {
                     dataType: 'json',
                     success: function(data) {
                         console.log(data)
+                        $('#textcountry').remove();
                         $('#phonecode').append('<span id="codetext">' + '+' + data[0].phonecode + '</span>');
-                        // $('#phonecode').html('+'+data[0].phonecode)
                         $('#inputphonecode').val(data[0].phonecode)
-                        if ($.cookie("lng") == 'cn') {
-                        $('.select-country').html(data[0].name_cn)
-                        
-                           
-                        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-                        $('.select-country').html(data[0].name_en)
-                        
-                    
-                        } else if ($.cookie("lng") == 'th') {
-                        $('.select-country').html(data[0].name_th)
-                        
-                    
-                        } 
+                         if ($.cookie("lng") == 'cn') {
+                        $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
+
+                    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                        $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode+ ')' + ' ' + data[0].name_en + '</span></span>');
+
+                    } else if ($.cookie("lng") == 'th') {
+                        $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode + ')' + ' ' + data[0].name_th + '</span></span>');
+
                     }
-                });
+                }
+            });
+                phonecode = datauser[0].s_phone_code;
+                $('#codecountry').hide();
+                 // $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
                     // $('#numbercountry').append('<span id="select"><img id="imgcountry" src="' + urlimg + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
-                console.log($('#email').val(datauser[0].s_email))
-                getemail = datauser[0].s_email;
-                getphone = datauser[0].s_phone;
-                $('#s_username').val(datauser[0].s_email);
-                $('#email').val(datauser[0].s_username);
-                $('.phonecode').val('+' + datauser[0].s_phone_code );
+                    console.log($('#email').val(datauser[0].s_email))
+                    getemail = datauser[0].s_email;
+                    getphone = datauser[0].s_phone;
+                    $('#s_username').val(datauser[0].s_email);
+                    $('#email').val(datauser[0].s_username);
+                    $('.phonecode').val('+' + datauser[0].s_phone_code );
 
-                $('#phone').val(' ' + datauser[0].s_phone);
-                $('#name_lastname').val(datauser[0].s_first_name + ' ' + datauser[0].s_last_name);
-                $('.label-floating').addClass('is-focused');
-                $('#summaryphone').html('+' + datauser[0].s_phone_code + datauser[0].s_phone);
-                $('#summaryemail').html(datauser[0].s_email);
+                    $('#phone').val(' ' + datauser[0].s_phone);
+                    $('#name_lastname').val(datauser[0].s_first_name + ' ' + datauser[0].s_last_name);
+                    $('.label-floating').addClass('is-focused');
+                    $('#summaryphone').html('+' + datauser[0].s_phone_code + datauser[0].s_phone);
+                    $('#summaryemail').html(datauser[0].s_email);
 
-            } else {
-                ckgetuser = false;
-                $('#email').val('');
-                $('#s_username').val('');
-                $('#phone').val('');
-                $('#codetext').remove();
-                $('.guestcountry').val('');
-                $('#name_lastname').val('');
-                $('.label-floating').removeClass('is-focused');
-                $('.phonecode').html('')
-                if ($.cookie("lng") == 'cn') {
-                    $('.select-country').html('请选择国家')  
-                } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                } else {
+                    ckgetuser = false;
+                    $('#email').val('');
+                    $('#s_username').val('');
+                    $('#phone').val('');
+                    $('#codetext').remove();
+                    $('.guestcountry').val('');
+                    $('#name_lastname').val('');
+                    $('.label-floating').removeClass('is-focused');
+                    $('.phonecode').html('')
+                    if ($.cookie("lng") == 'cn') {
+                        $('.select-country').html('请选择国家')  
+                    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
                         $('.select-country').html('Please select country')
-                } else if ($.cookie("lng") == 'th') {
+                    } else if ($.cookie("lng") == 'th') {
                         $('.select-country').html('โปรดเลือกประเทศ');
-                } 
-            }
-        } else {
-            console.log(this.checked)
-            if (this.checked == false) {
-                $('#pleselogin').hide()
+                    } 
+                }
             } else {
-                $('#pleselogin').show()
+                console.log(this.checked)
+                if (this.checked == false) {
+                    $('#pleselogin').hide()
+                } else {
+                    $('#pleselogin').show()
+                }
             }
-        }
-    }) 
-    console.log("readysss!");
-    $('#selectcar').html('1')
+        }) 
+console.log("readysss!");
+$('#selectcar').html('1')
 
-    /***************************************/
-    /*************GET POST URL**************/
-    /***************************************/
-    
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-    /*******END*******/
+/***************************************/
+/*************GET POST URL**************/
+/***************************************/
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+/*******END*******/
 
     // $('.box-login-non').click(function() {
     //     console.log(data + " " + from + " " + to);
@@ -299,7 +298,7 @@ $(document).ready(function() {
     //$('#numbercountry').html('');
     //$('#code').html('code country')
     $('.select-country').click(function() {
-       
+
         $('#codecountry').show(500);
         $('.select-name').html('')
         $.ajax({
@@ -379,7 +378,7 @@ $(document).ready(function() {
         if ((parseInt(s) * parseInt(person)) == sum_adult_child) {
             selectcar = parseInt(s);
         }
-       
+
         console.log(selectcar)
         checksumperson = parseInt(person) * parseInt(selectcar)
         console.log('sumperson-' + checksumperson)
@@ -460,11 +459,11 @@ $(document).ready(function() {
         $('#ontime_samary').html(ontime)
     })
     $('#name_lastname').on('change', function() {
-            name = this.value;
-            console.log(name)
-            $('#summaryname').html(name)
+        name = this.value;
+        console.log(name)
+        $('#summaryname').html(name)
 
-        })
+    })
     $('#phone').on('change', function() {
         phone = this.value;
         phonecode = $('#inputphonecode').val();
@@ -484,10 +483,10 @@ $(document).ready(function() {
         $('#summaryother').html(other)
     })
     $('#flight').on('change', function() {
-            flight = this.value;
-            console.log(flight)
-            $('#textflight').html(flight)
-        })
+        flight = this.value;
+        console.log(flight)
+        $('#textflight').html(flight)
+    })
     $('.btn-close').on('click', function() {
         $('#waning-flight').hide(500);
     });
@@ -498,15 +497,161 @@ $(document).ready(function() {
     })
 }) 
 function selecetBook(){  
-console.log(b_fashion)  
-        phone = $('#phone').val();
-        $('.loader-wrapper').css('display', 'block')
-        var data;
-        if (ckgetuser == true) {
-            email = getemail;
-            phone = getphone;
-        }        
-        if(b_fashion == 'Reservation' || b_fashion == 'Service'){            
+    console.log(b_fashion)  
+    phone = $('#phone').val();
+    email = $('#email').val();
+    $('.loader-wrapper').css('display', 'block')
+    var data;
+    if (ckgetuser == true) {
+        //email = getemail;
+        // phone = getphone;
+    }        
+    if(b_fashion == 'Reservation' || b_fashion == 'Service'){            
+        console.log(ontime)
+        if(ontime == undefined){
+            ontime = '00:00';
+            $('#time_h option:selected').focus();
+        }
+        if(ondate == undefined){
+            ondate = $('#on_date').val();
+        }
+    }
+    if(b_fashion == 'Realtime'){
+        ondate = newDate;
+        name = $('#name_lastname').val();
+        console.log(newDate)
+        var newHours;
+        var newMinutes;
+        num_cars = 1;
+        console.log(getnewdate.getHours().length)
+        console.log(getnewdate.getMinutes().length)
+        if(getnewdate.getHours()<10){
+            newHours = '0'+getnewdate.getHours()
+        }
+        else{
+            newHours = getnewdate.getHours()
+        }
+        if(getnewdate.getMinutes() <10){
+            newMinutes = '0'+getnewdate.getMinutes()
+        }
+        else{
+            newMinutes = getnewdate.getMinutes()                
+        }               
+        ontime =newHours+':'+newMinutes;
+        console.log(ontime)
+        total_price = getcosereltime;
+    }
+    if ((area == 'In' || area == 'Out') && flight == undefined ) {
+        $('#flight').focus();
+        $('#flight').css('border','1px solid #f44336')
+        return false;
+    } else {
+        $('#flight').css('border','1px solid #dfdfdf')
+    }
+
+
+    if(name == undefined && ckgetuser == false){
+        $('#name_lastname').focus()
+        $('#name_lastname').css('border','1px solid #f44336')
+        return false;
+    }
+    else{
+        $('#name_lastname').css('border','1px solid #dfdfdf')
+    }
+    if($('#phone').val() == undefined ){
+        $('#phone').focus()
+        $('#phone').css('border','1px solid #f44336')
+        return false;
+    }
+    else{
+        $('#phone').css('border','1px solid #dfdfdf')
+    }
+
+    if(Checkacceptance == false){
+        $('#acceptance_pin_pop').show(500) 
+        return false;           
+    }        
+    console.log(ckgetuser+'*********************************')
+    console.log(code)
+    console.log(namecountry)
+    console.log(num_cars)
+    console.log(selectcar)
+    console.log(num_adult)
+    console.log(num_child)
+    console.log(ondate)
+    console.log(ontime)
+    console.log(time_h)
+    console.log(time_m)
+    console.log(name)
+    console.log(phone)
+
+    console.log(other)
+    console.log(email)
+    console.log(place)
+    console.log(to_place)
+    console.log(costdotcars)
+    console.log(code_r + 'code')
+    console.log(code_ref + 'code_ref');
+    console.log(area)
+    console.log(cost_a_nett)
+    var url2 = 'https://welovetaxi.com/app/booking/';    
+    console.log(flight)
+    console.log(area)
+    console.log(phonecode)
+    console.log(flight)
+    var o = ondate.split('-');
+    var m,d ;
+
+    if($('#current').val() != '' && $('#pac-input').val() != ''){
+        place_from = $('#current').val();
+        place_to = $('#pac-input').val();
+
+    }
+
+    console.log(o[2].length)
+    console.log(place_from)
+    console.log(place_to)
+    console.log(check_type_book)
+    if(o[2].length == 1  || o[1].length == 1){
+        if(o[1].length == 1){
+            m = '0'+o[1];
+        }
+        else{
+            m = o[1];
+        }
+        if(o[2].length == 1){
+            d = '0'+o[2];
+        }
+        else{
+            d = o[2];
+        }
+        ondate = o[0]+'-'+m+'-'+d;
+    }            
+    console.log(ondate)               
+
+    if((area == 'In' || area == 'Out') ) {
+        if(flight != undefined){
+            if(b_fashion == 'Reservation' || b_fashion == 'Service'){                                
+                console.log(ontime)
+                if(ontime == undefined){
+                    ontime = '00:00';
+                    $('#time_h option:selected').focus();
+                }
+                if(ondate == undefined){
+                    ondate = $('#on_date').val();
+                }
+                addbooking();
+            }
+            else{
+                addbooking();
+            }  
+        }
+        else{
+            $('#input_data_pop').hide()
+        }                        
+    }
+    else{
+        if(b_fashion == 'Reservation' || b_fashion == 'Service'){                            
             console.log(ontime)
             if(ontime == undefined){
                 ontime = '00:00';
@@ -515,204 +660,59 @@ console.log(b_fashion)
             if(ondate == undefined){
                 ondate = $('#on_date').val();
             }
-        }
-        if(b_fashion == 'Realtime'){
-            ondate = newDate;
-            name = $('#name_lastname').val();
-            console.log(newDate)
-            var newHours;
-            var newMinutes;
-            num_cars = 1;
-            console.log(getnewdate.getHours().length)
-            console.log(getnewdate.getMinutes().length)
-            if(getnewdate.getHours()<10){
-                newHours = '0'+getnewdate.getHours()
-            }
-            else{
-                newHours = getnewdate.getHours()
-            }
-            if(getnewdate.getMinutes() <10){
-                newMinutes = '0'+getnewdate.getMinutes()
-            }
-            else{
-                newMinutes = getnewdate.getMinutes()                
-            }               
-            ontime =newHours+':'+newMinutes;
-            console.log(ontime)
-            total_price = getcosereltime;
-        }
-        if ((area == 'In' || area == 'Out') && flight == undefined ) {
-            $('#flight').focus();
-            $('#flight').css('border','1px solid #f44336')
-             return false;
-        } else {
-            $('#flight').css('border','1px solid #dfdfdf')
-        }
-
-        
-        if(name == undefined && ckgetuser == false){
-            $('#name_lastname').focus()
-            $('#name_lastname').css('border','1px solid #f44336')
-             return false;
+            addbooking();
         }
         else{
-            $('#name_lastname').css('border','1px solid #dfdfdf')
+            addbooking();
         }
-        if(phone == undefined ){
-            $('#phone').focus()
-            $('#phone').css('border','1px solid #f44336')
-             return false;
-        }
-        else{
-            $('#phone').css('border','1px solid #dfdfdf')
-        }
-        
-        if(Checkacceptance == false){
-            $('#acceptance_pin_pop').show(500) 
-             return false;           
-        }        
-            console.log(ckgetuser+'*********************************')
-            console.log(code)
-            console.log(namecountry)
-            console.log(num_cars)
-            console.log(selectcar)
-            console.log(num_adult)
-            console.log(num_child)
-            console.log(ondate)
-            console.log(ontime)
-            console.log(time_h)
-            console.log(time_m)
-            console.log(name)
-            console.log(phone)
-           
-            console.log(other)
-            console.log(email)
-            console.log(place)
-            console.log(to_place)
-            console.log(costdotcars)
-            console.log(code_r + 'code')
-            console.log(code_ref + 'code_ref');
-            console.log(area)
-            console.log(cost_a_nett)
-            var url2 = 'https://welovetaxi.com/app/booking/';    
-            console.log(flight)
-            console.log(area)
-            console.log(phonecode)
-            console.log(flight)
-            var o = ondate.split('-');
-            var m,d ;
-            
-            if($('#current').val() != '' && $('#pac-input').val() != ''){
-                place_from = $('#current').val();
-                place_to = $('#pac-input').val();
+    }
 
-            }
-           
-            console.log(o[2].length)
-            console.log(place_from)
-            console.log(place_to)
-            console.log(check_type_book)
-            if(o[2].length == 1  || o[1].length == 1){
-                if(o[1].length == 1){
-                    m = '0'+o[1];
-                }
-                else{
-                    m = o[1];
-                }
-                if(o[2].length == 1){
-                    d = '0'+o[2];
-                }
-                else{
-                    d = o[2];
-                }
-                ondate = o[0]+'-'+m+'-'+d;
-            }            
-            console.log(ondate)               
-               
-                    if((area == 'In' || area == 'Out') ) {
-                        if(flight != undefined){
-                            if(b_fashion == 'Reservation' || b_fashion == 'Service'){                                
-                                console.log(ontime)
-                                if(ontime == undefined){
-                                    ontime = '00:00';
-                                    $('#time_h option:selected').focus();
-                                }
-                                if(ondate == undefined){
-                                    ondate = $('#on_date').val();
-                                }
-                                addbooking();
-                            }
-                            else{
-                                addbooking();
-                            }  
-                        }
-                        else{
-                            $('#input_data_pop').hide()
-                        }                        
-                    }
-                    else{
-                        if(b_fashion == 'Reservation' || b_fashion == 'Service'){                            
-                            console.log(ontime)
-                            if(ontime == undefined){
-                                ontime = '00:00';
-                                $('#time_h option:selected').focus();
-                            }
-                            if(ondate == undefined){
-                                ondate = $('#on_date').val();
-                            }
-                            addbooking();
-                        }
-                        else{
-                            addbooking();
-                        }
-                    }
-                
 }
 function addbooking(){
     var irealtime = 0;
-   if ($('#email').val() == '') {
+    if ($('#email').val() == '') {
       email = '';
-   }
-   if (b_fashion == 'Realtime') {
-        irealtime = 1;
-   }
+  }
+  if (b_fashion == 'Realtime') {
+    irealtime = 1;
+}
 
-    $.ajax({
-        type: 'POST',
-        url: base_url+'savebook_control/process',
-        data: {
-            'from': b_from,
-            'to': b_to,
-            'numcar': selectcar,
-            'program': b_data,
-            'adult': num_adult,
-            'child': num_child,
-            'onndate': ondate,
-            'ontime': ontime,
-            'name': name,
-            'phone': $('#phone').val(),
-            'phonecode': phonecode,
-            'email': email,
-            'cost': total_price,
-            'other': other,
-            'guest_other': namecountry,
-            'arrival_flight': flight,
-            'visa': visa,
-            'code': code_r,
-            'code_ref': code_ref,
-            'cost_a_nett': cost_a_nett,
-            'lat_f': b_lat_f,
-            'lng_f': b_lng_f,
-            'lat_t': b_lat_t,
-            'lng_t': b_lng_t,
-            'book': b_fashion,
-            'place_from': place_from,
-            'place_to': place_to,
-            'terminal': terminal,
-            'product_type': protype,
-            'i_realtime': irealtime
+$.ajax({
+    type: 'POST',
+    url: base_url+'savebook_control/process',
+    data: {
+        'from': b_from,
+        'to': b_to,
+        'numcar': selectcar,
+        'program': b_data,
+        'adult': num_adult,
+        'child': num_child,
+        'onndate': ondate,
+        'ontime': ontime,
+        'name': name,
+        'phone': $('#phone').val(),
+        'phonecode': phonecode,
+        'email': email,
+        'cost': total_price,
+        'other': other,
+        'guest_other': namecountry,
+        'arrival_flight': flight,
+        'visa': visa,
+        'code': code_r,
+        'code_ref': code_ref,
+        'cost_a_nett': cost_a_nett,
+        'lat_f': b_lat_f,
+        'lng_f': b_lng_f,
+        'lat_t': b_lat_t,
+        'lng_t': b_lng_t,
+        'book': b_fashion,
+        'place_from': place_from,
+        'place_to': place_to,
+        'terminal': terminal,
+        'product_type': protype,
+        'i_realtime': irealtime
 
-        },
+    },
         // contentType: "application/json",
         dataType: 'json',
         success: function(data) {
@@ -789,7 +789,7 @@ function addbooking(){
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
                         'i_realtime': irealtime,
-                         'ondate': ondate,
+                        'ondate': ondate,
                         'ontime': ontime
                     };
                 }
@@ -827,7 +827,7 @@ function addbooking(){
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
                         'i_realtime': irealtime,
-                         'ondate': ondate,
+                        'ondate': ondate,
                         'ontime': ontime
                     };
                 }
@@ -866,7 +866,7 @@ function addbooking(){
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
                         'i_realtime': irealtime,
-                         'ondate': ondate,
+                        'ondate': ondate,
                         'ontime': ontime
                     };
                 }
@@ -900,8 +900,8 @@ function addbooking(){
                     'cost_a_nett': cost_a_nett,
                     'product_type': protype,
                     'i_realtime': irealtime,
-                     'ondate': ondate,
-                        'ontime': ontime
+                    'ondate': ondate,
+                    'ontime': ontime
                 };
             }
             if (type == 'Private' && area == 'Service') {
@@ -936,8 +936,8 @@ function addbooking(){
                     'cost_a_nett': cost_a_nett,
                     'product_type': protype,
                     'i_realtime': irealtime,
-                     'ondate': ondate,
-                        'ontime': ontime
+                    'ondate': ondate,
+                    'ontime': ontime
                 };
             }
             if (type == 'Private' && area == 'Point') {
@@ -972,8 +972,8 @@ function addbooking(){
                     'cost_a_nett': cost_a_nett,
                     'product_type': protype,
                     'i_realtime': irealtime,
-                     'ondate': ondate,
-                        'ontime': ontime
+                    'ondate': ondate,
+                    'ontime': ontime
                 };
             }
             console.log(param)
@@ -982,34 +982,34 @@ function addbooking(){
                 url: base_url+'savebook_control/saveapi',
                 data: param,
                 //contentType: "application/json",
-               dataType: 'json',
+                dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    console.log(s_email);
-                    if (data.status == 202) {
+                    console.log(email);
+                    if (data.arr_order_api.status == 202) {
                         $.ajax({
                             type: 'POST',
                             url: base_url+'sendemail.php',
-                            data: { 'mail': s_email, 'voucher': data.invoice },
+                            data: { 'mail': email, 'voucher': data.arr_order.invoice },
                             //contentType: "application/json",
                            // dataType: 'json',
-                            success: function(data) {
-                                console.log(data);
+                           success: function(data) {
+                            console.log(data);
                                 //console.log(s_email);
 
                             }
                         });
                         //$('#loading').hide()
                         if($.cookie("login") != undefined){
-                        window.location.href = base_url+"dashboard/view_user";
-                        
+                            window.location.href = base_url+"dashboard/view_user";
+
                         }
                         else{
                             window.location.href = base_url+'dashboard/voucher?order_id='+data.invoice;
                         }
 
                     } else {
-                            $('#input_data_pop').show(500)
+                        $('#input_data_pop').show(500)
 
                     }
 
@@ -1022,16 +1022,16 @@ function addbooking(){
 }
 
 function phonecodesend(x) {
-        phonecode = x;
-        console.log(phonecode)
-    }
+    phonecode = x;
+    console.log(phonecode)
+}
 
 
 function sendCountry(x) {
-     $('#codetext').remove();
-    $('#inputphonecode').val(x)
+   $('#codetext').remove();
+   $('#inputphonecode').val(x)
     // alert(x)
-    var url = 'https://welovetaxi.com/app/booking/';
+    var url = 'https://welovetaxi.com/app/booking2/';
     console.log(x)
     if (x == undefined) {
         $.cookie("phonecode", '');
@@ -1100,24 +1100,24 @@ function getDetailbook(a,b,c,d,e,f,g,h){
     b_lng_t = f;
     b_fashion = g;
     b_data = h;
-    alert(b_fashion)
+    // alert(b_fashion)
     if ($.cookie("lng") == 'cn') {
         lang_to_map = 'zh-CN';
         // document.getElementById("current").value = "你的位置...";
     } else if ($.cookie("lng") == 'th') {
         lang_to_map = 'th';
     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-       
+
         lang_to_map = 'en';
-       
+
     }
     
     url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + b_lat_f + ',' + b_lng_f + '&sensor=true&language=' + lang_to_map;
     
-                $.post(url, function(data) {
-                    console.log(data);
-                    $('#placefrom').html(data.results[0].formatted_address)
-                    place_from = data.results[0].formatted_address;
+    $.post(url, function(data) {
+        console.log(data);
+        $('#placefrom').html(data.results[0].formatted_address)
+        place_from = data.results[0].formatted_address;
                     // infowindow.close();
                     // infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm ' + btn_color + ' pull-right btn-part" border-radius: 25px;style="display: inline-block;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
                     // infowindow.open(map, markerPlaceOfften);
@@ -1125,19 +1125,19 @@ function getDetailbook(a,b,c,d,e,f,g,h){
     //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
     url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + b_lat_t + ',' + b_lng_t + '&sensor=true&language=' + lang_to_map;
     
-                $.post(url2, function(data) {
-                    console.log(data);
-                    $('#placeto').html(data.results[0].formatted_address)
-                    place_to = data.results[0].formatted_address;
+    $.post(url2, function(data) {
+        console.log(data);
+        $('#placeto').html(data.results[0].formatted_address)
+        place_to = data.results[0].formatted_address;
                     // infowindow.close();
                     // infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm ' + btn_color + ' pull-right btn-part" border-radius: 25px;style="display: inline-block;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
                     // infowindow.open(map, markerPlaceOfften);
                     //$('#often-input2').show(500);
     //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
     
-                });
-                });
-               
+});
+});
+
     if(b_fashion == 'Realtime'){
         $('#car-show').hide();
         $('#select_date').hide();
@@ -1152,10 +1152,10 @@ function getDetailbook(a,b,c,d,e,f,g,h){
         $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });
         
         
-                    $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
         
         
         
@@ -1164,10 +1164,10 @@ function getDetailbook(a,b,c,d,e,f,g,h){
         $('.btn-reservation').css({ 'background': '#3b5998', 'color': '#ffffff' });
         
         
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
         $('#Rondate').hide()
         $('#Rondatetext ').hide()
         $('#select_date').show()
@@ -1470,12 +1470,12 @@ function getDetailbook(a,b,c,d,e,f,g,h){
             $('#checksum').html(checksumperson)
             console.log(data[0].transfer_icon)
             $('#images-icon').append('<img src="'+base_url+'files/images/carmodelicon/' + data[0].transfer_icon + '.jpg" id="box-image">');
-}
+        }
     });
-    $.ajax({
-        type: 'POST',
-        url: base_url+'service/getplace.php',
-        data: { 'from': b_from, 'to': b_to },
+$.ajax({
+    type: 'POST',
+    url: base_url+'service/getplace.php',
+    data: { 'from': b_from, 'to': b_to },
         //contentType: "application/json",
         dataType: 'json',
         success: function(data) {
@@ -1510,10 +1510,10 @@ function getDetailbookservice(a,b,c,d,e,f,g,h,x,y){
     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {       
         lang_to_map = 'en';       
     }
-        $('#placefrom').html(x)                   
-        $('#placeto').html(y)                  
-              
-        $('.btn-car-service').css({ 'background': '#3b5998', 'color': '#ffffff' });        
+    $('#placefrom').html(x)                   
+    $('#placeto').html(y)                  
+
+    $('.btn-car-service').css({ 'background': '#3b5998', 'color': '#ffffff' });        
         // $('.btn-car-service').css('color', '#16B3B1');        
         $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
         $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
@@ -1521,10 +1521,10 @@ function getDetailbookservice(a,b,c,d,e,f,g,h,x,y){
         $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
         $('#Rondate').hide()
         $('#Rondatetext ').hide() 
-    
-    $.ajax({
-        type: 'POST',
-        url: base_url+'getcountry_control/process',
+
+        $.ajax({
+            type: 'POST',
+            url: base_url+'getcountry_control/process',
         //data: {'province':province,'field' :field_nane,'request':request,'method_name':method_name,'from':table },
         //contentType: "application/json",
         dataType: 'json',
@@ -1532,12 +1532,12 @@ function getDetailbookservice(a,b,c,d,e,f,g,h,x,y){
             console.log(data)
             $.each(data, function(i, val) {
                 $('.guestcountry').append('<option value="' + data[i].name_en + '" label="' + data[i].name_en + '" none=""></option>');
-           });
+            });
 
         }
     });
-    $('.numbercountry').append('<span id="textcountry">' + lng_getcountry + '</span>');
-    $('#code').append('<span id="textcode">code country</span>');
+        $('.numbercountry').append('<span id="textcountry">' + lng_getcountry + '</span>');
+        $('#code').append('<span id="textcode">code country</span>');
 
     // GET DETAIL
     $.ajax({
