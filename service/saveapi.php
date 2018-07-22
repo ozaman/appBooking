@@ -233,7 +233,7 @@ $headers = array();
 // $headers[] = 'API-KEY: ea1b6d331a20b66041369a63251410d4ec748f27';
 $url = "http://www.t-booking.com/apiv2/book/create";
 //echo $url;
-$api_key = 'ea1b6d331a20b66041369a63251410d4ec748f27';
+$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_HTTPHEADER,
     array(

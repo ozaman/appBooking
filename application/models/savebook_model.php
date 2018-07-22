@@ -70,13 +70,36 @@ class Savebook_model extends CI_Model {
 
   }
    public function saveapi($x) { 
-        $x = json_decode($x);
+        $xde = json_decode($x);
+                $headers = array();
+
+$url = "http://www.welovetaxi.com:3000/bookrealtime";
+//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+    array(
+        'Content-Type: application/json'
+        // 'API-KEY: '.$api_key.''
+    )
+);
+curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_REFERER, $url);
+curl_setopt($curl, CURLOPT_URL, $url);  
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $x);
+$curl_response = curl_exec($curl);
+//echo $curl_response;
+curl_close($curl);
         // foreach ($x as $row ) {
-        $invoice = $x->invoice;
-        $link = $x->voucher_url;
-        $agent_ref = $x->agent_ref;
-        $email= $x->email;
-        $res_no = $x->code_ref;
+        $invoice = $xde->invoice;
+        $link = $xde->voucher_url;
+        $agent_ref = $xde->agent_ref;
+        $email= $xde->email;
+        $res_no = $xde->code_ref;
         // }
         //return  $invoice.'-'.$agent_ref;
         //return $x->invoice;

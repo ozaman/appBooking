@@ -499,6 +499,7 @@ $(document).ready(function() {
 }) 
 function selecetBook(){  
 console.log(b_fashion)  
+        phone = $('#phone').val();
         $('.loader-wrapper').css('display', 'block')
         var data;
         if (ckgetuser == true) {
@@ -668,9 +669,14 @@ console.log(b_fashion)
                 
 }
 function addbooking(){
+    var irealtime = 0;
    if ($('#email').val() == '') {
       email = '';
    }
+   if (b_fashion == 'Realtime') {
+        irealtime = 1;
+   }
+
     $.ajax({
         type: 'POST',
         url: base_url+'savebook_control/process',
@@ -703,7 +709,8 @@ function addbooking(){
             'place_from': place_from,
             'place_to': place_to,
             'terminal': terminal,
-            'product_type': protype
+            'product_type': protype,
+            'i_realtime': irealtime
 
         },
         // contentType: "application/json",
@@ -742,7 +749,10 @@ function addbooking(){
                         'code': code_r,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
-                        'product_type': protype
+                        'product_type': protype,
+                        'i_realtime': irealtime,
+                        'ondate': ondate,
+                        'ontime': ontime
                     };
                 }
             }
@@ -777,7 +787,10 @@ function addbooking(){
                         'code': code_r,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
-                        'product_type': protype
+                        'product_type': protype,
+                        'i_realtime': irealtime,
+                         'ondate': ondate,
+                        'ontime': ontime
                     };
                 }
             }
@@ -812,7 +825,10 @@ function addbooking(){
                         'code': code_r,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
-                        'product_type': protype
+                        'product_type': protype,
+                        'i_realtime': irealtime,
+                         'ondate': ondate,
+                        'ontime': ontime
                     };
                 }
             }
@@ -848,7 +864,10 @@ function addbooking(){
                         'code': code_r,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
-                        'product_type': protype
+                        'product_type': protype,
+                        'i_realtime': irealtime,
+                         'ondate': ondate,
+                        'ontime': ontime
                     };
                 }
             }
@@ -879,7 +898,10 @@ function addbooking(){
                     'code': code_r,
                     'code_ref': code_ref,
                     'cost_a_nett': cost_a_nett,
-                    'product_type': protype
+                    'product_type': protype,
+                    'i_realtime': irealtime,
+                     'ondate': ondate,
+                        'ontime': ontime
                 };
             }
             if (type == 'Private' && area == 'Service') {
@@ -912,7 +934,10 @@ function addbooking(){
                     'code': code_r,
                     'code_ref': code_ref,
                     'cost_a_nett': cost_a_nett,
-                    'product_type': protype
+                    'product_type': protype,
+                    'i_realtime': irealtime,
+                     'ondate': ondate,
+                        'ontime': ontime
                 };
             }
             if (type == 'Private' && area == 'Point') {
@@ -945,7 +970,10 @@ function addbooking(){
                     'code': code_r,
                     'code_ref': code_ref,
                     'cost_a_nett': cost_a_nett,
-                    'product_type': protype
+                    'product_type': protype,
+                    'i_realtime': irealtime,
+                     'ondate': ondate,
+                        'ontime': ontime
                 };
             }
             console.log(param)
@@ -964,7 +992,7 @@ function addbooking(){
                             url: base_url+'sendemail.php',
                             data: { 'mail': s_email, 'voucher': data.invoice },
                             //contentType: "application/json",
-                            dataType: 'json',
+                           // dataType: 'json',
                             success: function(data) {
                                 console.log(data);
                                 //console.log(s_email);
@@ -1046,7 +1074,7 @@ function bookingdetail(transfer_id,from,to,lat_f,lng_f,lat_t,lng_t,book){
     his_lat_t = lat_t;
     his_lng_t = lng_t
     his_fashion = book;
-    his_fashion
+    
     // $('#history_pop').show(500)
     // href="book?data=' + compae1private[i].transfer_id + '&from=' + dataPlacefrom + '&to=' + dataPlaceto + '&lat_f='+lat_f+'&lng_f='+lng_f+'&lat_t='+lat_t+'&lng_t='+lng_t+'&book='+booking+'" >
     if ($.cookie("login") && check_type_book != 'his') {
@@ -1072,7 +1100,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
     b_lng_t = f;
     b_fashion = g;
     b_data = h;
-    //alert(b_fashion)
+    alert(b_fashion)
     if ($.cookie("lng") == 'cn') {
         lang_to_map = 'zh-CN';
         // document.getElementById("current").value = "你的位置...";
@@ -1142,6 +1170,9 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
         $('#Rondate').hide()
         $('#Rondatetext ').hide()
+        $('#select_date').show()
+        $('#selece_time').show()
+        $('#select_adult_child').show()
         
     }
     else{
