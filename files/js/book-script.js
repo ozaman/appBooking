@@ -181,23 +181,24 @@ $(document).ready(function() {
                     dataType: 'json',
                     success: function(data) {
                         console.log(data)
-                        $('#textcountry').remove();
+                        $('#textcountry').test('');
                         $('#phonecode').append('<span id="codetext">' + '+' + data[0].phonecode + '</span>');
                         $('#inputphonecode').val(data[0].phonecode)
-                         if ($.cookie("lng") == 'cn') {
-                        $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
+                        if ($.cookie("lng") == 'cn') {
+                        $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
 
                     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-                        $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode+ ')' + ' ' + data[0].name_en + '</span></span>');
+                        $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode+ ')' + ' ' + data[0].name_en + '</span></span>');
 
                     } else if ($.cookie("lng") == 'th') {
-                        $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode + ')' + ' ' + data[0].name_th + '</span></span>');
+                        $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode + ')' + ' ' + data[0].name_th + '</span></span>');
 
                     }
                 }
             });
                 phonecode = datauser[0].s_phone_code;
                 $('#codecountry').hide();
+                 
                  // $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
                     // $('#numbercountry').append('<span id="select"><img id="imgcountry" src="' + urlimg + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
                     console.log($('#email').val(datauser[0].s_email))
@@ -224,11 +225,11 @@ $(document).ready(function() {
                     $('.label-floating').removeClass('is-focused');
                     $('.phonecode').html('')
                     if ($.cookie("lng") == 'cn') {
-                        $('.select-country').html('请选择国家')  
+                        $('#textcountry').html('请选择国家')  
                     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-                        $('.select-country').html('Please select country')
+                        $('#textcountry').html('Please select country')
                     } else if ($.cookie("lng") == 'th') {
-                        $('.select-country').html('โปรดเลือกประเทศ');
+                        $('#textcountry').html('โปรดเลือกประเทศ');
                     } 
                 }
             } else {
