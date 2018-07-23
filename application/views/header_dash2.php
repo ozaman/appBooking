@@ -50,7 +50,67 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>dasboard/sweetalert-master/dist/sweetalert.css">
 
 </head>
+ <style>
+.grad1 {
+	height: 200px;
+    background: red;
+    background: -webkit-linear-gradient(left top, red, yellow);
+    background: -o-linear-gradient(bottom right, red, yellow);
+    background: -moz-linear-gradient(bottom right, red, yellow);
+    background: linear-gradient(to bottom right, rgb(255, 255, 255), rgba(72, 240, 255, 0.68));
+}
+.box-menu-select {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 25;
+    background: #fff;
+    box-shadow: 0px 10px 5px #888, 0px 0px 5px rgba(136, 136, 136, 0.52);
 
+
+
+    /* height: 90px; */
+}
+	.loading-in{
+    height: 115px;
+    /* border-radius: 4px; */
+    background: #fff;
+    min-width: 15rem;
+    /* height: auto; */
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%,-50%);
+    position: fixed;
+    z-index: 10;
+    border-radius: 25px;
+}
+.loading-ld{
+    font-weight: 500;
+    color: #000;
+    padding: 35px;
+    text-align: center;
+    
+}
+#loading{
+    z-index: 9999;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.59);
+    display: nones;
+}
+</style>
+
+<div id="loading" style="display: nones;">
+            <div class="loading-in">               
+                <div class="loading-ld">
+                    <div style="font-size: 15px">Loading</div>
+                        <i class="fa fa-circle-o-notch fa-spin fa-fw" style=" margin-top: 10px; color: #5c5151; font-size: 35px"></i></div>
+                
+                    </div>        
+                </div>
 <body class="presentation-page" style="background-color: #fff; ">
 
     <style>

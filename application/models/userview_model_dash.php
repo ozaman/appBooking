@@ -58,13 +58,14 @@ class Userview_model_dash extends CI_Model {
   	$code = $user_level = $this->session->userdata('s_code');  
   	$code_ref = $user_level = $this->session->userdata('s_code_ref');  */
 	
-  	$this->db->select('*');
+  	/*$this->db->select('*');
 	$this->db->where('s_code',$code);
 	$this->db->where('s_code !=',"");
 	$this->db->or_where('s_code_ref',$code_ref);
-	$this->db->where('s_code_ref !=',"");
-
-	$query = $this->db->from('ap_order')->get();
+	$this->db->where('s_code_ref !=',"");*/
+	$query = $this->db->query("SELECT * FROM ap_order WHERE (s_code = '5540011055' and s_code !='') or (s_code_ref = '5540011055' and s_code_ref !='')");
+//	$query = $this->db->get('ap_order');
+//	$query = $this->db->from('ap_order')->get();
 	if($query->num_rows > 0) {
 		 foreach($query->result() as $key=>$row){
 		 	

@@ -44,7 +44,7 @@ public function view_user()
 				$data = $this->Userview_model_dash->customerRef_list_cus($level,$user_level[0]->i_id,$user_level[0]->s_code,$user_level[0]->s_code_ref);
 				
 			}
-//			echo json_encode($data);
+//			echo json_encode(count($data[results]));
     		$this->load->view('header_dash2');
 			$this->load->view('userview_dash',$data);
 			$this->load->view('footer_dash2');
