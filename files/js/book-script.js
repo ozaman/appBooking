@@ -181,7 +181,7 @@ $(document).ready(function() {
                     dataType: 'json',
                     success: function(data) {
                         console.log(data)
-                        $('#textcountry').test('');
+                        $('#textcountry').text('');
                         $('#phonecode').append('<span id="codetext">' + '+' + data[0].phonecode + '</span>');
                         $('#inputphonecode').val(data[0].phonecode)
                         if ($.cookie("lng") == 'cn') {
@@ -206,7 +206,7 @@ $(document).ready(function() {
                     getphone = datauser[0].s_phone;
                     $('#s_username').val(datauser[0].s_email);
                     $('#email').val(datauser[0].s_username);
-                    $('.phonecode').val('+' + datauser[0].s_phone_code );
+                    $('.phonecode').text('+' + datauser[0].s_phone_code );
 
                     $('#phone').val(' ' + datauser[0].s_phone);
                     $('#name_lastname').val(datauser[0].s_first_name + ' ' + datauser[0].s_last_name);

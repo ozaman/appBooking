@@ -4,7 +4,7 @@
     <?php echo link_tag('files/css/classic.date.css'); ?>
 	 <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.js?v=<?=time()?>"></script> 
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.date.js?v=<?=time()?>"></script> 
-    <script type="text/javascript" src="<?php echo base_url(); ?>files/js/legacy.js?v=<?=time()?>"></script> 
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>files/js/legacy.js?v=<?=time()?>"></script>  -->
     <?
     $json = json_encode($results);
      ?>
@@ -559,7 +559,8 @@ var date=$('#date1').val();
         closeOnClear: false,
         "showButtonPanel": false,
         onStart: function() {
-            this.set('select', date); // Set to current date on load
+            this.set('select', date); 
+            findRowDate();// Set to current date on load
         },
 		  onSet: function(context) {
 		 		findRowDate();
@@ -577,7 +578,8 @@ var date=$('#date2').val();
         closeOnClear: false,
         "showButtonPanel": false,
         onStart: function() {
-            this.set('select', date); // Set to current date on load
+            this.set('select', date); 
+            findRowDate();// Set to current date on load
         },
 		  onSet: function(context) {
 		 		findRowDate();
@@ -662,7 +664,7 @@ $(".modal-fullscreen").on('hidden.bs.modal', function () {
 <script>
 	$( document ).ready(function() {
     	console.log(<?=$json;?>);
-     	findRowDate();
+     	// findRowDate();
       
     	
 	
