@@ -12,7 +12,7 @@ var base_url = 'https://www.welovetaxi.com/app/booking2/';
 var  reltimeclick;
 var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
-      var username, password , username_signup ,password_signup,text_check,forget = '',datauser;
+      var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
 
 $(document).ready(function() {
     // var base_url = "https://www.welovetaxi.com/app/booking2/";
@@ -288,6 +288,9 @@ $.ajax({
             success: function(data) {
                 console.log(data)
                 datauser = data;
+                s_code =  data[0].s_code;
+                code_ref = data[0].s_code_ref;
+                console.log(s_code)
                 $.ajax({
                     type: 'POST',
                     url: base_url + 'dashboard/historylist',

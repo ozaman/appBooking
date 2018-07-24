@@ -19,6 +19,7 @@ class Savebook_model extends CI_Model {
       $data['arrival_time'] = $this->input->post('ontime');
       $data['adult'] = $this->input->post('adult');
       $data['child'] = $this->input->post('child');
+      $data['total_pax'] = $this->input->post('pax');
       $data['place'] = $this->input->post('from');
       $data['to_place'] = $this->input->post('to');
       $data['total_price'] = $this->input->post('cost');
@@ -95,24 +96,7 @@ $curl_response = curl_exec($curl);
 //echo $curl_response;
 curl_close($curl);
         // foreach ($x as $row ) {
-        $invoice = $xde->invoice;
-        $link = $xde->voucher_url;
-        $agent_ref = $xde->agent_ref;
-        $email= $xde->email;
-        $res_no = $xde->code_ref;
-        // }
-        //return  $invoice.'-'.$agent_ref;
-        //return $x->invoice;
-        $data2['invoice'] = $invoice;
-        $data2['voucher_url'] = $link;
-        $this->db->where('agent_ref', $agent_ref);      
-        $this->db->update('ap_order', $data2);
-        if ($this->db->affected_rows() > 0) {
-         
-        }
-        else{
-                            
-        }
+        
   }
   // tour
 
@@ -135,7 +119,7 @@ curl_close($curl);
       $data['post_date'] = time();
       $data['remark'] = $this->input->post('other');      
       $data['guest_other'] = $this->input->post('guest_other');
-      $data['s_code'] = $this->input->post('code');
+      $data['s_code'] = $this->input->post('s_code');
       $data['s_code_ref'] = $this->input->post('code_ref');
       $data['cost_a_nett'] = $this->input->post('cost_a_nett');     
       $data['address_en_from'] = $this->input->post('place_from');

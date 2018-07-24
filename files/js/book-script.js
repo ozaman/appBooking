@@ -14,7 +14,7 @@ sum_adult_child = num_adult + num_child,
 checksumperson = 0,
 place_name, toplace_name, adress, adress_to, terminal, car_model,
 service, code, visa = 0, guestcountry,
-code_r, code_ref, s_email,
+code_r, s_email,
 flight, cost_a_nett, lng_getcountry = '', adresss,newDate = '',getcosereltime = 0;
 var data, from, to;
 var Checkacceptance = false;
@@ -201,6 +201,8 @@ $(document).ready(function() {
                  
                  // $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
                     // $('#numbercountry').append('<span id="select"><img id="imgcountry" src="' + urlimg + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
+                    s_code =  datauser[0].s_code;
+                    code_ref = datauser[0].s_code_ref;
                     console.log($('#email').val(datauser[0].s_email))
                     getemail = datauser[0].s_email;
                     getphone = datauser[0].s_phone;
@@ -497,7 +499,8 @@ function getParameterByName(name, url) {
         $('#input_data_pop').hide(500) 
     })
 }) 
-function selecetBook(){  
+function selecetBook(){
+    $('#loading').show()
     console.log(b_fashion)  
     phone = $('#phone').val();
     email = $('#email').val();
@@ -648,6 +651,8 @@ function selecetBook(){
             }  
         }
         else{
+    $('#loading').hide()
+
             $('#input_data_pop').hide()
         }                        
     }
@@ -689,6 +694,7 @@ $.ajax({
         'adult': num_adult,
         'child': num_child,
         'onndate': ondate,
+        'pax': sum_adult_child,
         'ontime': ontime,
         'name': name,
         'phone': $('#phone').val(),
@@ -700,6 +706,7 @@ $.ajax({
         'arrival_flight': flight,
         'visa': visa,
         'code': code_r,
+        's_code': s_code,
         'code_ref': code_ref,
         'cost_a_nett': cost_a_nett,
         'lat_f': b_lat_f,
@@ -1010,6 +1017,8 @@ $.ajax({
                         }
 
                     } else {
+                        $('#loading').hide()
+
                         $('#input_data_pop').show(500)
 
                     }
