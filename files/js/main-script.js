@@ -199,7 +199,7 @@ $.ajax({
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
     console.log(getParameterByName('section'))
-    if(getParameterByName('section') == 'realtime'){
+   /* if(getParameterByName('section') == 'realtime'){
         booking = 'Realtime';
         setTimeout(function() {
             $('#boxRealtime').show(500);
@@ -273,7 +273,7 @@ $.ajax({
             $('#selectpro').html('From Province')
             $('#selectproto').html('To Province') 
         }
-    }
+    }*/
     var getdatahis;
 
     if ($.cookie("login")) {

@@ -1329,7 +1329,7 @@ $('#country_sekect').append('<option value="'+value.id+'" '+selected+' class="'+
 });  
 
    $('#change_password').click(function(){
-		$('#change-password').show(700);
+		$('#change-password').show(200);
    });
 	
 	$('#send_pass').click(function(){
@@ -1372,7 +1372,7 @@ swal("สำเร็จ!", "" , "success");
 }else if($.cookie("lng")==undefined){
 swal("Success!", "" , "success");	
 }	 	
-$('#change-password').hide(700);
+$('#change-password').hide(200);
 
 		 }
 		});
@@ -1381,7 +1381,7 @@ $('#change-password').hide(700);
   });
   
 	$('.closepop').click(function(){
-		$('#change-password').hide(700);
+		$('#change-password').hide(200);
 		
 	});
 	

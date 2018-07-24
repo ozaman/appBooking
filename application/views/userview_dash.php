@@ -6,6 +6,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.date.js?v=<?=time()?>"></script> 
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>files/js/legacy.js?v=<?=time()?>"></script>  -->
     <?
+//    echo json_encode(count($results));
     $json = json_encode($results);
      ?>
       
@@ -364,7 +365,7 @@ textarea:-ms-input-placeholder {
                                 	<th data-field="actions" class="td-actions text-center code" data-events="operateEvents" data-formatter="operateFormatter"><p class="lng-code_d">Code</p></th>
                                 	<th  data-sortable="true" class="text-center"><p class="lng-amount_d">Amount</p></th>
                                 </thead>
-                                <tbody>
+                                <tbody style="display: none;" class="data-row">
                                 <?php foreach($results as $show){ ?>
                                     <tr class="tr-hover" onclick="view_ref('<?=$show['i_id'];?>','<?=$show['s_code'];?>');">
                                         <!--<td style="display: none;"></td>-->
@@ -395,7 +396,7 @@ textarea:-ms-input-placeholder {
                                 	<!--<th data-sortable="true" class="text-center">Price</th>-->
                                 	
                                 </thead>
-                                <tbody>
+                                <tbody style="display: none;" class="data-row">
                                 <?php foreach($results as $show){ 
 									$mystring = $show['date_time'];
 									if($show['invoice']!=" " and $show['invoice']!=null and $show['invoice']!=""){
@@ -560,10 +561,12 @@ var date=$('#date1').val();
         "showButtonPanel": false,
         onStart: function() {
             this.set('select', date); 
-            findRowDate();// Set to current date on load
+//            findRowDate();// Set to current date on load
+            setTimeout(function(){  findRowDate(); }, 1000);
         },
 		  onSet: function(context) {
-		 		findRowDate();
+//		 		findRowDate();
+setTimeout(function(){  findRowDate(); }, 1000);
 		  }
         });
 
@@ -579,10 +582,12 @@ var date=$('#date2').val();
         "showButtonPanel": false,
         onStart: function() {
             this.set('select', date); 
-            findRowDate();// Set to current date on load
+//            findRowDate();// Set to current date on load
+setTimeout(function(){  findRowDate(); }, 1000);
         },
 		  onSet: function(context) {
-		 		findRowDate();
+//		 		findRowDate();
+setTimeout(function(){  findRowDate(); }, 1000);
 		 		
 		  }
         });
@@ -714,7 +719,7 @@ $(".modal-fullscreen").on('hidden.bs.modal', function () {
 		}else{
 			$('.no-record').css('display','none');
 		}
-	    
+	    $('.data-row').show();
 	}
 	
 	function checkBetween(dateFrom,dateTo,dateCheck){
