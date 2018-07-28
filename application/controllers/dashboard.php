@@ -148,8 +148,8 @@ $mail->CharSet = "utf-8";
 	  $mail->Password = $webmail_password ;            // SMTP server password 
 
 	  $paypal_email = $_POST[payer_email];
-	  $return_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=success';
-	  $cancel_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=cancelled';
+	  $return_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=success&type=Transfer';
+	  $cancel_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=cancelled&type=Transfer';
 	//$notify_url = 'https://dotdotdottrip.com/dashboard/payments';
 
 	  $item_name = $_POST[item_name];
@@ -275,7 +275,30 @@ $mail->CharSet = "utf-8";
 						if(!$mail->Send()) {
 							echo "Mailer Error: " . $mail->ErrorInfo;
 						} else {
-							echo "";
+							$curl_post_data = '{"id":"'.$_POST[item_number].'"}';
+							$headers = array();
+
+							$url = "http://www.welovetaxi.com:3000/updateStatuspay";
+							//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+							$curl = curl_init();
+							curl_setopt($curl, CURLOPT_HTTPHEADER,
+							    array(
+							        'Content-Type: application/json'
+							        // 'API-KEY: '.$api_key.''
+							    )
+							);
+							curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+							curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+							curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+							curl_setopt($curl, CURLOPT_REFERER, $url);
+							curl_setopt($curl, CURLOPT_URL, $url);
+
+							curl_setopt($curl, CURLOPT_POST, true);
+							curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+							$curl_response = curl_exec($curl);
+							//echo $curl_response;
+							curl_close($curl);
 						}
 					}
 				}

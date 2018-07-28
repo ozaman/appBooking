@@ -416,7 +416,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 										$status_pay = $paysuccess;
 									}
 									else if($show['status_pay']==2){
-										$status_pay = $owe;
+										$status_pay = $paysuccess;
 									}
                                 ?>
                               

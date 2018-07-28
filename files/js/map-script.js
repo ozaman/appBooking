@@ -1866,6 +1866,20 @@ function editMyPlace(x,text,lat,lng,phone){
 }
 function selectEditPlaceOfften(type_place) {
     chTypeplace = type_place;
+    if ($.cookie("login") == undefined) {
+        $('#loading').css('display', 'block');
+        // setTimeout(function() {
+
+        //     window.location.href = base_url + "register";
+        // }, 500);
+        
+        $('#popup-login').show(500);
+setTimeout(function() {
+
+            $('#loading').hide();
+        }, 500);
+    return false;
+}
     $('#edit_often').show(500)
     $('#otherBox').hide()
     $('#outedit_often').show(500)
