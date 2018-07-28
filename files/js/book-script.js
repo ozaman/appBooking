@@ -1009,11 +1009,11 @@ $.ajax({
                         });
                         //$('#loading').hide()
                         if($.cookie("login") != undefined){
-                            window.location.href = base_url+"dashboard/view_user";
+                            //window.location.href = base_url+"dashboard/view_user";
 
                         }
                         else{
-                            window.location.href = base_url+'dashboard/voucher?order_id='+data.invoice;
+                            //window.location.href = base_url+'dashboard/voucher?order_id='+data.invoice;
                         }
 
                     } else {

@@ -13,7 +13,13 @@ var  reltimeclick;
 var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
       var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
+var language = window.navigator.userLanguage || window.navigator.language;
+if ($.cookie("lng") ==undefined) {
+    //alert(language);
+ $.cookie("lng", language, { path: '/' });
+    // 
 
+}
 $(document).ready(function() {
     // var base_url = "https://www.welovetaxi.com/app/booking2/";
    

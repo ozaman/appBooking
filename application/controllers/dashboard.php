@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Dashboard extends CI_Controller {
-  public function __construct() {
-    parent::__construct();
+	public function __construct() {
+		parent::__construct();
     //$this->load->model('Test_model');
-   $this->load->model('Userview_model_dash');
-	$this->load->model('Getuser_model');
-	$this->load->model('Pay_model');
- 
-  }
+		$this->load->model('Userview_model_dash');
+		$this->load->model('Getuser_model');
+		$this->load->model('Pay_model');
+
+	}
 
 
-public function index()
+	public function index()
 	{
 		/*$this->load->view('header_dash');
 		$this->load->view('index_dash');
@@ -23,16 +23,16 @@ public function index()
 		$this->load->view('footer');*/
 	}
 	
-public function view_user()
+	public function view_user()
 	{	
 
-		 $num_record =  $this->input->get('num',TRUE);
-		 $start =  $this->input->get('start',TRUE);
+		$num_record =  $this->input->get('num',TRUE);
+		$start =  $this->input->get('start',TRUE);
 		/*if($num_record=="" and $start==""){
 			$num = 5;
 			header('Location: view_user?num='.$num.'&start=0&page=1');
 		}*/
-	
+
 		if($_COOKIE['login']) {
 			$id = $_COOKIE['login'];
 			$user_level = $this->Getuser_model->getuser_pass_id($id);
@@ -45,7 +45,7 @@ public function view_user()
 				
 			}
 //			echo json_encode(count($data[results]));
-    		$this->load->view('header_dash2');
+			$this->load->view('header_dash2');
 			$this->load->view('userview_dash',$data);
 			$this->load->view('footer_dash2');
 //						echo $num_record." ".$start;
@@ -61,43 +61,43 @@ public function view_user()
 
 	}
 
-public function get_user(){
-			$id = $_COOKIE['login'];
-			$user_level = $this->Getuser_model->getuser_pass_id($id);
-			echo json_encode($user_level);
-}
+	public function get_user(){
+		$id = $_COOKIE['login'];
+		$user_level = $this->Getuser_model->getuser_pass_id($id);
+		echo json_encode($user_level);
+	}
 
-public function update_profile(){
-	/* $this->input->post('code_phone');*/
+	public function update_profile(){
+		/* $this->input->post('code_phone');*/
 		$id = $_COOKIE['login'];
 		$data = $this->Getuser_model->getuser_pass_id($id);
 		
-	$target_dir = "pic/";
-	$target_file = $target_dir . basename($_FILES["file"]["name"]);
-	
+		$target_dir = "pic/";
+		$target_file = $target_dir . basename($_FILES["file"]["name"]);
 
-	    if (copy($_FILES["file"]["tmp_name"], $target_file)) {
-	    	$file_name = $_FILES["file"]["name"];
+
+		if (copy($_FILES["file"]["tmp_name"], $target_file)) {
+			$file_name = $_FILES["file"]["name"];
 //	        echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-	    } else {
+		} else {
 //	        echo "Sorry, there was an error uploading your file.";
 			$file_name = $this->input->post('txt_avatar');
-	    }	
-			$result = $this->Userview_model_dash->update_profile($data,$file_name);
-			echo $result;
+		}	
+		$result = $this->Userview_model_dash->update_profile($data,$file_name);
+		echo $result;
 		
-	
-}
+
+	}
 	/********** ************/
-public function update_password(){
-	$new_pass = $this->input->post('new_pass');
-	$old_pass = $this->input->post('old_pass');
-	
-	$id = $_COOKIE['login'];
-	$data = $this->Getuser_model->getuser_pass_id($id);
-	if($old_pass == $data[0]->s_password){
-		$result = $this->Userview_model_dash->update_pass($data,$new_pass);
-	}else{
+	public function update_password(){
+		$new_pass = $this->input->post('new_pass');
+		$old_pass = $this->input->post('old_pass');
+
+		$id = $_COOKIE['login'];
+		$data = $this->Getuser_model->getuser_pass_id($id);
+		if($old_pass == $data[0]->s_password){
+			$result = $this->Userview_model_dash->update_pass($data,$new_pass);
+		}else{
 		$result = 2; //old password invalid
 	}
 	
@@ -107,43 +107,38 @@ public function update_password(){
 //	echo $new_pass." : ".$data[0]->s_password;
 	
 }	
-	
+
 public function account_settings(){
-		
-		$this->load->view('header_dash2');
-		$this->load->view('setting_acc_dash');
-		$this->load->view('footer_dash2');
-		
+
+	$this->load->view('header_dash2');
+	$this->load->view('setting_acc_dash');
+	$this->load->view('footer_dash2');
+
 }
 
 public function payment(){
-		
-		$this->load->view('header_dash2');
-		$this->load->view('payment');
-		/*$this->load->view('setting_acc_dash');*/
+
+	$this->load->view('header_dash2');
+	$this->load->view('payment');
+	/*$this->load->view('setting_acc_dash');*/
 		// echo "<h2 style='    margin: 79px;'>Coming Soon</h2>";
-		$this->load->view('footer_dash2');
-		
+	$this->load->view('footer_dash2');
+
 }	
 
 public function payments(){
-	
 	$webmail_cc = "gbtour.op@gmail.com"; 
 	//$emailurl = "http://tour - thailand.tk / demo / ";
 	$emailurl = "http://t-booking.com";
 	require_once('phpmailer/class.phpmailer.php');
 	$mail = new PHPMailer();
-	
-	
 	////////////////////// Config
 	$webmail_port        = 465;                    // 端口
 $webmail_host        = "smtp.zoho.com"; // SMTP server
 $webmail_username    = "systeminfo-transfer@t-booking.com";     // SMTP server username
 $webmail_password    = "khamenaja1";
-	
-	
-	$sendby = "Golden Beach Tour Co.,Ltd.";
-	  $mail->CharSet = "utf-8";
+$sendby = "Golden Beach Tour Co.,Ltd.";
+$mail->CharSet = "utf-8";
 	  $mail->IsSMTP();                           // 启用SMTP
 	  $mail->SMTPAuth = true;                  // 启用SMTP认证
 	  $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
@@ -151,56 +146,44 @@ $webmail_password    = "khamenaja1";
 	  $mail->Port = $webmail_port;                 // set the SMTP port for the GMAIL server
 	  $mail->Username = $webmail_username;     // SMTP server username
 	  $mail->Password = $webmail_password ;            // SMTP server password 
-	 
-	//date_default_timezone_set("Asia/Bangkok");
-	$paypal_email = $_POST[payer_email];
-	$return_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=success';
-	$cancel_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=cancelled';
+
+	  $paypal_email = $_POST[payer_email];
+	  $return_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=success';
+	  $cancel_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST[item_number].'&payment=cancelled';
 	//$notify_url = 'https://dotdotdottrip.com/dashboard/payments';
 
-	$item_name = $_POST[item_name];
-	$item_amount = $_POST[txt_amount];
-	$paypal_url = "www.sandbox.paypal.com";
-	//echo $_POST["payer_email"].'</Br>'.$_POST["txt_amount"].'</Br>'.$_POST["txn_ids"].'</Br>'.$_POST["item_name"].'</Br>';
-	
+	  $item_name = $_POST[item_name];
+	  $item_amount = $_POST[txt_amount];
+	  $paypal_url = "www.sandbox.paypal.com";
 
 	// Include Functions
 	// Check if paypal request or response
-	if ($_POST["txn_ids"] != ''  ){
-		$querystring = '';
+	  if ($_POST["txn_ids"] != ''  ){
+	  	$querystring = '';
 		//echo 'in if';
 		// Firstly Append paypal account to querystring
-		$querystring .= "?business=".urlencode($paypal_email)."&";
-		
-		// Append amount& currency (£) to quersytring so it cannot be edited in html
-		
-		//The item name and amount can be brought in dynamically by querying the $_POST['item_number'] variable.
-		$querystring .= "item_name=".urlencode($item_name)."&";
-		$querystring .= "amount=".urlencode($item_amount)."&";
-		
+	  	$querystring .= "?business=".urlencode($paypal_email)."&";
+	  	$querystring .= "item_name=".urlencode($item_name)."&";
+	  	$querystring .= "amount=".urlencode($item_amount)."&";
 		//loop for posted values and append to querystring
-		foreach($_POST as $key => $value){
-			$value = urlencode(stripslashes($value));
-			$querystring .= "$key=$value&";
-		}
-		
+	  	foreach($_POST as $key => $value){
+	  		$value = urlencode(stripslashes($value));
+	  		$querystring .= "$key=$value&";
+	  	}
 		// Append paypal return addresses
-		$querystring .= "return=".urlencode(stripslashes($return_url))."&";
-		$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."&";
-		$querystring .= "notify_url=".urlencode($notify_url);
-		
-		
-		header('location:https://'.$paypal_url.'/cgi-bin/webscr'.$querystring);
-		exit();
-	} 
-	else {
-		
+	  	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
+	  	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."&";
+	  	$querystring .= "notify_url=".urlencode($notify_url);
+	  	header('location:https://'.$paypal_url.'/cgi-bin/webscr'.$querystring);
+	  	exit();
+	  }
+	  else {
 		// Response from Paypal
 
 		// read the post from PayPal system and add 'cmd'
-		$req = 'cmd=_notify-validate';
-		foreach ($_POST as $key => $value) {
-			$value = urlencode(stripslashes($value));
+	  	$req = 'cmd=_notify-validate';
+	  	foreach ($_POST as $key => $value) {
+	  		$value = urlencode(stripslashes($value));
 			$value = preg_replace('/(.*[^%^0^D])(%0A)(.*)/i','${1}%0D%0A${3}',$value);// IPN fix
 			$req .= "&$key=$value";
 		}
@@ -215,65 +198,38 @@ $webmail_password    = "khamenaja1";
 		$data['receiver_email'] 	= $_POST[receiver_email];
 		$data['payer_email'] 		= $_POST[payer_email];
 		$data['custom'] 			= $_POST[custom];
-		
 		//$result = $this->db->insert('ap_credit_paypal',$data );
-		
-		$this->db->select('invoice,total_price,email');      
+		$this->db->select('invoice,total_price,email');
 		//$this->db->limit(100);
 		$this->db->from('ap_order');
 		$this->db->where('invoice', $_POST[item_number]);
-		$query = $this->db->get();	
-	 
-			if ($query->num_rows() > 0 )
-			{			 
-			  	foreach($query->result() as $row)
-			  	{
-					$find_fee = ( $data[payment_amount] * 4.4 ) / 100  ;
-					$find_fee = $find_fee + $row->total_price ;
-					$balane = $data[payment_amount] - $find_fee;
-					
-					
-					$debit = $balane ;
-					
-					
-					$detail = "Total Topup ".$data[payment_amount]." THB <br /> Fee Rate 4.4%  ".$debit." <br /> Total Balance ".$balane." THB";
-				
-						
-					$body = "
-					
-					Date : ".date('Y-m-d')." <br/>
-					Amount : ".$debit." THB. <br/><br/>
-					
-					<p>Payment With PayPal</p> <br/>
-					
-					-----------------------------------------------------------------------------------<br />
-					".$detail."
-					
-					
-					";
-				
-					
-					
-				
-					 
+		$query = $this->db->get();
+		if ($query->num_rows() > 0 )
+		{
+			foreach($query->result() as $row)
+			{
+				$find_fee = ( $data[payment_amount] * 4.4 ) / 100  ;
+				$find_fee = $find_fee + $row->total_price ;
+				$balane = $data[payment_amount] - $find_fee;
+				$debit = $balane ;
+				$detail = "Total Topup ".$data[payment_amount]." THB <br /> Fee Rate 4.4%  ".$debit." <br /> Total Balance ".$balane." THB";
+				$body = "
+				Date : ".date('Y-m-d')." <br/>
+				Amount : ".$debit." THB. <br/><br/>
+				<p>Payment With PayPal</p> <br/>
+				-----------------------------------------------------------------------------------<br />
+				".$detail."
+				";
 					//$mail->MsgHTML(file_get_contents("".$emailurl."/send_from.php?name=admin/pay/agent/invoice/&file=transfer&invoice=".$member_in."&code=".$rand_se.""));
-					
-					
 
-
-
-					 $mail->SetFrom("systeminfo-transfer@t-booking.com", ''.$sendby.'');
-  $mail->AddReplyTo("systeminfo-transfer@t-booking.com",''.$sendby.'');
-					$mail->Subject    = "TEST V4 !!!!!! ( Thailand ) You have new cash from Amount $debit  THB. Please Check Now.";
-					
+				$mail->SetFrom("systeminfo-transfer@t-booking.com", ''.$sendby.'');
+				$mail->AddReplyTo("systeminfo-transfer@t-booking.com",''.$sendby.'');
+				$mail->Subject    = "TEST V4 !!!!!! ( Thailand ) You have new cash from Amount $debit  THB. Please Check Now.";
 					$mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 					$mail->MsgHTML($body);
 					$address = $row->total_price;
-					$address2 = "ozaclever@gmail.com"; 
-					
-					$mail->AddAddress($address2, "Golden Beach Tour"); 
-					 
-					
+					$address2 = "ozaclever@gmail.com";
+					$mail->AddAddress($address2, "Golden Beach Tour");
 					if ($_POST['mc_gross'] == $row->total_price) {
 						$data['status_pay'] = 1;
 						$data2['status_pay'] = 1;
@@ -281,16 +237,34 @@ $webmail_password    = "khamenaja1";
 						$this->db->where('invoice', $idupdate);
 						$this->db->update('ap_order', $data2);
 						if(!$mail->Send()) {
-							
-							  echo "Mailer Error: " . $mail->ErrorInfo;
-							
-							} else {
-							
-							echo "";
-							 
-							
-							}
-						 
+							echo "Mailer Error: " . $mail->ErrorInfo;
+						} else {
+							$curl_post_data = '{"id":"'.$_POST[item_number].'"}';
+							$headers = array();
+
+							$url = "http://www.welovetaxi.com:3000/updateStatuspay";
+							//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+							$curl = curl_init();
+							curl_setopt($curl, CURLOPT_HTTPHEADER,
+							    array(
+							        'Content-Type: application/json'
+							        // 'API-KEY: '.$api_key.''
+							    )
+							);
+							curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+							curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+							curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+							curl_setopt($curl, CURLOPT_REFERER, $url);
+							curl_setopt($curl, CURLOPT_URL, $url);
+
+							curl_setopt($curl, CURLOPT_POST, true);
+							curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+							$curl_response = curl_exec($curl);
+							//echo $curl_response;
+							curl_close($curl);
+						}
+
 					}
 					else{
 						$data['status_pay'] = 2;
@@ -299,190 +273,170 @@ $webmail_password    = "khamenaja1";
 						$this->db->where('invoice', $idupdate);
 						$this->db->update('ap_order', $data2);
 						if(!$mail->Send()) {
-							
-							  echo "Mailer Error: " . $mail->ErrorInfo;
-							
-							} else {
-							
+							echo "Mailer Error: " . $mail->ErrorInfo;
+						} else {
 							echo "";
-							 
-							
-							}
+						}
 					}
-			   }
+				}
 			}
-		
+
 		//$data = $this->Pay_model->updatepay($idupdate);
+		}
 	}
-}
-public function paycredit(){
-	
-	
-	require_once('omise-php/lib/Omise.php');
-	//require_once dirname(__FILE__).'./omise-php/lib/Omise.php';
-	$webmail_cc = "gbtour.op@gmail.com"; 
-	//$emailurl = "http://tour - thailand.tk / demo / ";
-	$emailurl = "http://t-booking.com";
-	require_once('phpmailer/class.phpmailer.php');
-	$mail = new PHPMailer();
-	
-	
-	////////////////////// Config
-	$webmail_host = "mail.welovetaxi.com";
-	$webmail_port = 465;
-	$webmail_username = "system@welovetaxi.com";
-	$webmail_password = "system2017";
-	
-	
-	$sendby = "Golden Beach Tour Co.,Ltd.";
-	  $mail->CharSet = "utf-8";
-	  $mail->IsSMTP();                           // 启用SMTP
-	  $mail->SMTPAuth = true;                  // 启用SMTP认证
-	  $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-	  $mail->Host = $webmail_host; // SMTP server
-	  $mail->Port = $webmail_port;                 // set the SMTP port for the GMAIL server
-	  $mail->Username = $webmail_username;     // SMTP server username
-	  $mail->Password = $webmail_password ; 
-	define('OMISE_API_VERSION', '2015-11-17');
-	// define('OMISE_PUBLIC_KEY', 'PUBLIC_KEY');
-	// define('OMISE_SECRET_KEY', 'SECRET_KEY');
-	define('OMISE_PUBLIC_KEY', 'pkey_test_59iaxcc7zsr77n4nbkb');
-	define('OMISE_SECRET_KEY', 'skey_test_59iaxcc8idh2bqub4ia');
-	$xx= $_POST[amount];
-	$c = ($xx*3.95)/100;
-	$vat = ($xx*7.0)/100;
-	
-	// //print_r($c);
-	$charge = $c*100;
-	$totalvat = $vat*100;
-	$x = $_POST[amount]*100;
-	$totalamount = $x+$charge+$vat;
-	$cost = (int) preg_replace('/\D/', '', $totalamount);
-	// $int = intval($totalamount);
-	//print_r($totalamount);
-	//print_r($totalamount);
-	//echo $totalamount.'=='.$_POST["omise_token"].$_POST["data"];
-	//echo $_POST[amount] .'==='.$x;
-	$charge = OmiseCharge::create(array(
-	  'amount' => $cost,
-	  'currency' => 'THB',
-	  'card' => $_POST["omise_token"]
-	));
-	
-	if ($charge['status'] == 'successful') {
-	  
-			$idupdate                 = $_POST[data];
-			$data['item_name']			  = $_POST[creditname];
-			$data['item_number'] 		  = $_POST[data];
-			$data['payment_status']   = 'Completed';
-			$data['payment_amount'] 	= $_POST[amount];
-			$data['payment_currency']	= 'THB';
-			$data['txn_id']				    = $charge['id'];
-			//$data['receiver_email'] = $_POST['receiver_email'];
-		  //$data['payer_email'] 		= $_POST['payer_email'];
-			// $data['custom'] 			    = $_POST[custom];
-			
-			
-		// 	//echo $data."===".$_POST[data];
-			$this->db->select('invoice,total_price,email');      
-			//$this->db->limit(100);
-			$this->db->from('ap_order');
-			$this->db->where('invoice', $_POST[data]);
-			$query = $this->db->get();
-				if ($query->num_rows() > 0 )
-				{			 
-				  	foreach($query->result() as $row)
-				  	{
-						$ddd = $row->email;
-		     			$data['receiver_email'] 	= $ddd;
-			  			$data['payer_email'] 		= $ddd;
-			//   echo  $row;
-						$find_fee = ( $_POST[amount] * 4 ) / 100  ;
-						$find_fee = $find_fee + $row->total_price ;
-						$balane = $_POST[amount] - $find_fee;
-						$debit = $balane ;
-						$detail = "Total Topup ".$_POST[amount]." THB <br /> Fee Rate 4%  ".$debit." <br /> Total Balance ".$balane." THB";
-					
-							
-						$body = "
-						
-						Date : ".date('Y-m-d')." <br/>
-						Amount : ".$debit." THB. <br/><br/>
-						
-						<p>Payment With PayPal</p> <br/>
-						
-						-----------------------------------------------------------------------------------<br />
-						".$detail."
-						";
-						$mail->SetFrom("reservation@goldenbeachtour.com", ''.$sendby.'');
-						$mail->AddReplyTo("reservation@goldenbeachtour.com",''.$sendby.'');
-						$mail->Subject    = "TEST V4 !!!!!! ( Thailand ) You have new cash from Amount $debit  THB. Please Check Now.";					
+	public function paycredit(){
+		require_once('omise-php/lib/Omise.php');
+		$webmail_cc = "gbtour.op@gmail.com";
+		$emailurl = "http://t-booking.com";
+		require_once('phpmailer/class.phpmailer.php');
+		$mail = new PHPMailer();
+		////////////////////// Config
+		$webmail_port        = 465;                    // 端口
+		$webmail_host        = "smtp.zoho.com"; // SMTP server
+		$webmail_username    = "systeminfo-transfer@t-booking.com";     // SMTP server username
+		$webmail_password    = "khamenaja1";
+
+
+		$sendby = "Golden Beach Tour Co.,Ltd.";
+		$mail->CharSet = "utf-8";
+	 	$mail->IsSMTP();                           // 启用SMTP
+	  	$mail->SMTPAuth = true;                  // 启用SMTP认证
+	  	$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+	  	$mail->Host = $webmail_host; // SMTP server
+	 	$mail->Port = $webmail_port;                 // set the SMTP port for the GMAIL server
+	  	$mail->Username = $webmail_username;     // SMTP server username
+	  	$mail->Password = $webmail_password ;
+	  	define('OMISE_API_VERSION', '2015-11-17');
+	  	define('OMISE_PUBLIC_KEY', 'pkey_test_59iaxcc7zsr77n4nbkb');
+	  	define('OMISE_SECRET_KEY', 'skey_test_59iaxcc8idh2bqub4ia');
+	  	$xx= $_POST[amount];
+	  	$c = ($xx*3.95)/100;
+	  	$vat = ($xx*7.0)/100;
+	  	$charge = $c*100;
+	  	$totalvat = $vat*100;
+	  	$x = $_POST[amount]*100;
+	  	$totalamount = $x+$charge+$vat;
+	  	$cost = (int) preg_replace('/\D/', '', $totalamount);
+	  	$charge = OmiseCharge::create(array(
+	  		'amount' => $cost,
+	  		'currency' => 'THB',
+	  		'card' => $_POST["omise_token"]
+	  	));
+
+	  	if ($charge['status'] == 'successful') {
+	  		$idupdate                 = $_POST[data];
+	  		$data['item_name']			  = $_POST[creditname];
+	  		$data['item_number'] 		  = $_POST[data];
+	  		$data['payment_status']   = 'Completed';
+	  		$data['payment_amount'] 	= $_POST[amount];
+	  		$data['payment_currency']	= 'THB';
+	  		$data['txn_id']				    = $charge['id'];
+	  		$this->db->select('invoice,total_price,email');
+	  		$this->db->from('ap_order');
+	  		$this->db->where('invoice', $_POST[data]);
+	  		$query = $this->db->get();
+	  		if ($query->num_rows() > 0 )
+	  		{
+	  			foreach($query->result() as $row)
+	  			{
+	  				$ddd = $row->email;
+	  				$data['receiver_email'] 	= $ddd;
+	  				$data['payer_email'] 		= $ddd;
+	  				$find_fee = ( $_POST[amount] * 4 ) / 100  ;
+	  				$find_fee = $find_fee + $row->total_price ;
+	  				$balane = $_POST[amount] - $find_fee;
+	  				$debit = $balane ;
+	  				$detail = "Total Topup ".$_POST[amount]." THB <br /> Fee Rate 4%  ".$debit." <br /> Total Balance ".$balane." THB";
+	  				$body = "
+
+	  				Date : ".date('Y-m-d')." <br/>
+	  				Amount : ".$debit." THB. <br/><br/>
+
+	  				<p>Payment With PayPal</p> <br/>
+
+	  				-----------------------------------------------------------------------------------<br />
+	  				".$detail."
+	  				";
+	  				$mail->SetFrom("systeminfo-transfer@t-booking.com", ''.$sendby.'');
+	  				$mail->AddReplyTo("systeminfo-transfer@t-booking.com",''.$sendby.'');
+	  				$mail->Subject    = "TEST V4 !!!!!! ( Thailand ) You have new cash from Amount $debit  THB. Please Check Now.";
 						$mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 						$mail->MsgHTML($body);
 						$address = $row->total_price;
-						$address2 = "ozaclever@gmail.com"; 					
-						$mail->AddAddress($address2, "Golden Beach Tour"); 
+						$address2 = "ozaclever@gmail.com";
+						$mail->AddAddress($address2, "Golden Beach Tour");
 						$data['status_pay'] = 1;
 						$data2['status_pay'] = 1;
 						//print_r($data) ;
 						$this->db->insert('ap_credit_paypal', $data );
 						$this->db->where('invoice', $idupdate);
 						$this->db->update('ap_order', $data2);
-							if(!$mail->Send()) {
-								
-								  echo "Mailer Error: " . $mail->ErrorInfo;
-								
-								} else {
-								
-								echo "1";
-								 
-								
-								}
-				   }
+						if(!$mail->Send()) {
+							echo "Mailer Error: " . $mail->ErrorInfo;
+						} else {
+							// echo "1";
+							// $xde = json_decode($x);
+							$curl_post_data = '{"id":"'.$idupdate.'"}';
+							$headers = array();
+
+							$url = "http://www.welovetaxi.com:3000/updateStatuspay";
+							//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+							$curl = curl_init();
+							curl_setopt($curl, CURLOPT_HTTPHEADER,
+							    array(
+							        'Content-Type: application/json'
+							        // 'API-KEY: '.$api_key.''
+							    )
+							);
+							curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+							curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+							curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+							curl_setopt($curl, CURLOPT_REFERER, $url);
+							curl_setopt($curl, CURLOPT_URL, $url);
+
+							curl_setopt($curl, CURLOPT_POST, true);
+							curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+							$curl_response = curl_exec($curl);
+							//echo $curl_response;
+							curl_close($curl);
+						}
+					}
 				}
-			
-			//$data = $this->Pay_model->updatepay($idupdate);
-		
-	} else {
-	  echo 'Fail';
-	}	
-	// print('<pre>');
-	// print_r($charge);
-	// print('</pre>');	
-}
-public function checkout() {
-	define('OMISE_API_VERSION', '2015-11-17');
-	require_once('omise-php/lib/Omise.php');
-	define('OMISE_PUBLIC_KEY', 'pkey_test_59iaxcc7zsr77n4nbkb');
-	define('OMISE_SECRET_KEY', 'skey_test_59iaxcc8idh2bqub4ia');
-	//$curl_post_data = '{"offsite":"internet_banking_scb","currency":"thb","amount":"100000","return_uri":"https://www.welovetaxi.com/app/booking2/dashboard/payment?data=7000624"}';
-	//	"api":"pkey_test_59iaxcc7zsr77n4nbkb",	
-	$postdata = array(
-		'offsite' => 'internet_banking_scb',
-		'amount' => "100000",
-		'currency' => 'thb',	
-		'return_uri' => "https://www.welovetaxi.com/app/booking2/dashboard/payment?data=7000624"
-		
-		
-	)
-;			
-//$curl_response = '';
+			} else {
+				echo 'Fail';
+			}
+		}
+		public function checkout() {
+			define('OMISE_API_VERSION', '2015-11-17');
+			require_once('omise-php/lib/Omise.php');
+			define('OMISE_PUBLIC_KEY', 'pkey_test_59iaxcc7zsr77n4nbkb');
+			define('OMISE_SECRET_KEY', 'skey_test_59iaxcc8idh2bqub4ia');
+			//$curl_post_data = '{"offsite":"internet_banking_scb","currency":"thb","amount":"100000","return_uri":"https://www.welovetaxi.com/app/booking2/dashboard/payment?data=7000624"}';
+			//	"api":"pkey_test_59iaxcc7zsr77n4nbkb",
+			$postdata = array(
+				'offsite' => 'internet_banking_scb',
+				'amount' => "100000",
+				'currency' => 'thb',
+				'return_uri' => "https://www.welovetaxi.com/app/booking2/dashboard/payment?data=7000624"
 
 
-$headers = array();
-$url = "https://api.omise.co/charges";		
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
-curl_setopt($curl, CURLOPT_HTTPHEADER , array(
-'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
-));
-curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			)
+			;
+			$headers = array();
+			$url = "https://api.omise.co/charges";
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+			curl_setopt($curl, CURLOPT_HTTPHEADER , array(
+				'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
+			));
+			curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-curl_setopt($curl, CURLOPT_REFERER, $url);
-curl_setopt($curl, CURLOPT_URL, $url);  
+			curl_setopt($curl, CURLOPT_REFERER, $url);
+			curl_setopt($curl, CURLOPT_URL, $url);
 
-curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_POST, 1);
 curl_setopt($curl, CURLOPT_USERPWD, "pkey_test_59iaxcc7zsr77n4nbkb:");//-u
 curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
 $curl_response = curl_exec($curl);
@@ -512,7 +466,7 @@ echo json_encode($aaaa);
 	// 							//$this->url->link('payment/omise/checkoutcallback&order_id='.$order_id, '', 'SSL'),
 	// 							"offsite"     => 'internet_banking_scb'
 	// 						));
-						
+
 }
 // public function checkout() {
 // 	if (!empty($this->request->post['offsite_provider'])) {
@@ -575,14 +529,14 @@ echo json_encode($aaaa);
 // 	}
 // }
 public function historylist(){
-		  $data = $this->Userview_model_dash->historylist();		
-		  echo json_encode($data);
+	$data = $this->Userview_model_dash->historylist();		
+	echo json_encode($data);
 	
 }
 public function voucher(){
 		// $type = $this->input->post('type');
-  		$id = $this->input->get('order_id');
-  		$lng = $this->input->get('lng');
+	$id = $this->input->get('order_id');
+	$lng = $this->input->get('lng');
   		/*$cookie = array(
         'name'   => 'lng',
         'value'  => ''.$lng.'',
@@ -590,28 +544,28 @@ public function voucher(){
         'domain' => '.localhost',
         'path'   => '/',
         'prefix' => 'arjun_',
-        );*/
- 
-  		if($lng!=""){
-			$data['lng'] = $lng;
-		}
-  		$check = $this->input->post('check');
-  		
-		if($check != ""){
-				$data['check'] = $check;
-			}else{
-				$data['check'] = "";
-			}
-			
-		if($id=="" or $id==null){
-			echo '<h1>Please check your value set</h1><br/>';
-			echo '<h2>Ex. URL : dashboard/voucher?order_id=voucher_number</h2>';
-			
-		}else{
-			$data['results'] = $this->Userview_model_dash->order_detail($id);
-			$this->load->view('voucher',$data);
-		}
-	
+    );*/
+
+    if($lng!=""){
+    	$data['lng'] = $lng;
+    }
+    $check = $this->input->post('check');
+
+    if($check != ""){
+    	$data['check'] = $check;
+    }else{
+    	$data['check'] = "";
+    }
+
+    if($id=="" or $id==null){
+    	echo '<h1>Please check your value set</h1><br/>';
+    	echo '<h2>Ex. URL : dashboard/voucher?order_id=voucher_number</h2>';
+
+    }else{
+    	$data['results'] = $this->Userview_model_dash->order_detail($id);
+    	$this->load->view('voucher',$data);
+    }
+
 }
 
 public function pay()
@@ -628,6 +582,6 @@ public function paydriver()
 }
 
 
-	
-	}
+
+}
 ?>

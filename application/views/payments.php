@@ -21,9 +21,9 @@ $date = date('Y-m-d');
 $emailurl = "http://www.t-booking.com/";
 // PayPal settings
 $paypal_email = $_POST["payer_email"];
-$return_url = 'https://dotdotdottrip.com/dashboard/payment?data='.$_POST["item_number"].'&payment=success';
-$cancel_url = 'https://dotdotdottrip.com/dashboard/payment?data='.$_POST["item_number"].'&payment=cancelled';
-$notify_url = 'https://dotdotdottrip.com/dashboard/payment?data='.$_POST["item_number"];
+$return_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST["item_number"].'&payment=success';
+$cancel_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST["item_number"].'&payment=cancelled';
+$notify_url = 'https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$_POST["item_number"];
 	
 
 $item_name = $_POST["item_name"];
