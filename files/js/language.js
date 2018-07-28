@@ -42,8 +42,9 @@ $(document).ready(function() {
     $('.box-login-non').click(function() {
         $('#loading').css('display', 'block');    
     });
-    // console.log($.cookie("lng"));
+     console.log($.cookie("lng")+'********************************************************************************');
     if ($.cookie("lng") == 'cn') {
+        console.log($.cookie("lng")+'cn');
         $('.lng-private').html('专车');
         $('.lng-join').html('拼车');
         //menu
@@ -246,6 +247,8 @@ $(document).ready(function() {
 
 
     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        console.log($.cookie("lng")+'en');
+
         $('.lng-private').html('Private');
         $('.lng-join').html('Join');
         //menu
@@ -446,7 +449,9 @@ $(document).ready(function() {
         $('.lng-other').html('Other');
         $('.lng-paynow').html('Pay Now');
 
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+        console.log($.cookie("lng")+'th');
+
         $('.lng-private').html('รถส่วนตัว');
         $('.lng-join').html('รถร่วมบริการ');
         //menu

@@ -54,6 +54,7 @@ var typeFrom = '';
 var typeTo = '';
 var lng_price;
 var addr;
+var please_login_txt;
 if ($.cookie("lng") == 'cn') {
     please_login_txt = "请登录";
     click_save_place_txt = "没有记录 (按保存)";
@@ -1625,9 +1626,20 @@ function addPlaceOfften(type_place,type_call) {
     console.log('sssss');
     if ($.cookie("login") == undefined) {
         $('#loading').css('display', 'block');
-        setTimeout(function() {
-            window.location.href = base_url + "register";
+        // setTimeout(function() {
+
+        //     window.location.href = base_url + "register";
+        // }, 500);
+        
+        $('#popup-login').show(500);
+setTimeout(function() {
+
+            $('#loading').hide();
         }, 500);
+        // $('#loading').css('display', 'block');
+        // setTimeout(function() {
+        //     window.location.href = base_url + "register";
+        // }, 500);
         $('#often_edit_home').hide()
         $('#often_edit_office').hide()
         $('#often_edit_regular').hide()
