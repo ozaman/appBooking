@@ -185,20 +185,20 @@ $(document).ready(function() {
                         $('#phonecode').append('<span id="codetext">' + '+' + data[0].phonecode + '</span>');
                         $('#inputphonecode').val(data[0].phonecode)
                         if ($.cookie("lng") == 'cn') {
-                        $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
+                            $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
 
-                    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-                        $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode+ ')' + ' ' + data[0].name_en + '</span></span>');
+                        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                            $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode+ ')' + ' ' + data[0].name_en + '</span></span>');
 
-                    } else if ($.cookie("lng") == 'th') {
-                        $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode + ')' + ' ' + data[0].name_th + '</span></span>');
+                        } else if ($.cookie("lng") == 'th') {
+                            $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode + ')' + ' ' + data[0].name_th + '</span></span>');
 
+                        }
                     }
-                }
-            });
+                });
                 phonecode = datauser[0].s_phone_code;
                 $('#codecountry').hide();
-                 
+
                  // $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
                     // $('#numbercountry').append('<span id="select"><img id="imgcountry" src="' + urlimg + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
                     s_code =  datauser[0].s_code;
@@ -651,7 +651,7 @@ function selecetBook(){
             }  
         }
         else{
-    $('#loading').hide()
+            $('#loading').hide()
 
             $('#input_data_pop').hide()
         }                        
@@ -760,7 +760,11 @@ $.ajax({
                         'product_type': protype,
                         'i_realtime': irealtime,
                         'ondate': ondate,
-                        'ontime': ontime
+                        'ontime': ontime,
+                        'lat_f': b_lat_f,
+                        'lng_f': b_lng_f,
+                        'lat_t': b_lat_t,
+                        'lng_t': b_lng_t
                     };
                 }
             }
@@ -798,7 +802,11 @@ $.ajax({
                         'product_type': protype,
                         'i_realtime': irealtime,
                         'ondate': ondate,
-                        'ontime': ontime
+                        'ontime': ontime,
+                        'lat_f': b_lat_f,
+                        'lng_f': b_lng_f,
+                        'lat_t': b_lat_t,
+                        'lng_t': b_lng_t,
                     };
                 }
             }
@@ -836,7 +844,11 @@ $.ajax({
                         'product_type': protype,
                         'i_realtime': irealtime,
                         'ondate': ondate,
-                        'ontime': ontime
+                        'ontime': ontime,
+                        'lat_f': b_lat_f,
+                        'lng_f': b_lng_f,
+                        'lat_t': b_lat_t,
+                        'lng_t': b_lng_t,
                     };
                 }
             }
@@ -875,7 +887,11 @@ $.ajax({
                         'product_type': protype,
                         'i_realtime': irealtime,
                         'ondate': ondate,
-                        'ontime': ontime
+                        'ontime': ontime,
+                        'lat_f': b_lat_f,
+                        'lng_f': b_lng_f,
+                        'lat_t': b_lat_t,
+                        'lng_t': b_lng_t
                     };
                 }
             }
@@ -909,7 +925,11 @@ $.ajax({
                     'product_type': protype,
                     'i_realtime': irealtime,
                     'ondate': ondate,
-                    'ontime': ontime
+                    'ontime': ontime,
+                    'lat_f': b_lat_f,
+                    'lng_f': b_lng_f,
+                    'lat_t': b_lat_t,
+                    'lng_t': b_lng_t
                 };
             }
             if (type == 'Private' && area == 'Service') {
@@ -945,7 +965,11 @@ $.ajax({
                     'product_type': protype,
                     'i_realtime': irealtime,
                     'ondate': ondate,
-                    'ontime': ontime
+                    'ontime': ontime,
+                    'lat_f': b_lat_f,
+                    'lng_f': b_lng_f,
+                    'lat_t': b_lat_t,
+                    'lng_t': b_lng_t
                 };
             }
             if (type == 'Private' && area == 'Point') {
@@ -981,7 +1005,11 @@ $.ajax({
                     'product_type': protype,
                     'i_realtime': irealtime,
                     'ondate': ondate,
-                    'ontime': ontime
+                    'ontime': ontime,
+                    'lat_f': b_lat_f,
+                    'lng_f': b_lng_f,
+                    'lat_t': b_lat_t,
+                    'lng_t': b_lng_t
                 };
             }
             console.log(param)
@@ -1004,17 +1032,17 @@ $.ajax({
                            success: function(data) {
                             console.log(data);
                                 //console.log(s_email);
-
-                            }
-                        });
-                        //$('#loading').hide()
-                        if($.cookie("login") != undefined){
+                                if($.cookie("login") != undefined){
                             window.location.href = base_url+"dashboard/view_user";
 
                         }
                         else{
                             window.location.href = base_url+'dashboard/voucher?order_id='+data.invoice;
                         }
+                            }
+                        });
+                        //$('#loading').hide()
+                        
 
                     } else {
                         $('#loading').hide()
@@ -1038,8 +1066,8 @@ function phonecodesend(x) {
 
 
 function sendCountry(x) {
-   $('#codetext').remove();
-   $('#inputphonecode').val(x)
+ $('#codetext').remove();
+ $('#inputphonecode').val(x)
     // alert(x)
     var url = 'https://welovetaxi.com/app/booking2/';
     console.log(x)

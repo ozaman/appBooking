@@ -51,7 +51,7 @@ class Savebook_model extends CI_Model {
       
       if ($getid) {
        
-                          $date3 = date('dmy');
+                          $date3 = date('ymd');
                           $agent_ref = $date3.$getid;
 
                           $data2['agent_ref'] =$agent_ref;
@@ -70,9 +70,15 @@ class Savebook_model extends CI_Model {
         }
 
   }
-   public function saveapi($x) { 
-        $xde = json_decode($x);
-                $headers = array();
+   public function saveapi($x,$y) { 
+        $tarr = array();
+        $xde = $x;
+       
+        $pp = array();
+        $pp["arr_post"] = $y;
+        $pp["tbooking"] =  $xde;
+        $ppjson = json_encode($pp);
+              $headers = array();
 
 $url = "http://www.welovetaxi.com:3000/bookrealtime";
 //$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
@@ -91,7 +97,7 @@ curl_setopt($curl, CURLOPT_REFERER, $url);
 curl_setopt($curl, CURLOPT_URL, $url);  
 
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $x);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $ppjson);
 $curl_response = curl_exec($curl);
 //echo $curl_response;
 curl_close($curl);
