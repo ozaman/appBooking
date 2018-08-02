@@ -42,6 +42,7 @@ $(document).ready(function() {
     $('.box-login-non').click(function() {
         $('#loading').css('display', 'block');    
     });
+
      console.log($.cookie("lng")+'********************************************************************************');
     if ($.cookie("lng") == 'cn') {
         console.log($.cookie("lng")+'cn');
@@ -449,8 +450,8 @@ $(document).ready(function() {
         $('.lng-other').html('Other');
         $('.lng-paynow').html('Pay Now');
 
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
-        console.log($.cookie("lng")+'th');
+    } else if ($.cookie("lng") === 'th' ) {
+      console.log($.cookie("lng"));
 
         $('.lng-private').html('รถส่วนตัว');
         $('.lng-join').html('รถร่วมบริการ');

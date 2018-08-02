@@ -548,6 +548,7 @@ function selecetBook(){
     if ((area == 'In' || area == 'Out') && flight == undefined ) {
         $('#flight').focus();
         $('#flight').css('border','1px solid #f44336')
+         $('#loading').hide()
         return false;
     } else {
         $('#flight').css('border','1px solid #dfdfdf')

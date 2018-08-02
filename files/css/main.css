@@ -1120,7 +1120,11 @@ input:after {
     height: 80vh;
     -webkit-overflow-scrolling: touch;
 }
-
+.typeservice{
+       padding: 8px 22px;
+    list-style: none;
+    font-size: 16px;
+}
 
 @media screen and (max-width: 767px) {
     #product_service{
@@ -1128,6 +1132,9 @@ input:after {
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
         width: 100%;
+            padding: 8px 25px;
+    list-style: none;
+
 
     }
     .box-menu-select {
@@ -1250,6 +1257,8 @@ input:after {
         overflow-y: scroll;
         width: 100%;
         -webkit-overflow-scrolling: touch;
+            padding: 8px 25px;
+    list-style: none;
 
     }
     #paxrel{
@@ -1319,12 +1328,13 @@ input:after {
         /* height: 54vh !important;   */
     }
     .lng_find_again{
-        width: 100% !important;
+        /*width: 100% !important;*/
         margin-right: 0px !important;
         margin-bottom: 15px !important;
     }
     .lng-yes2{
-        width: 100% !important;
+    margin-left: 0 !important;
+        /*width: 100% !important;*/
         /* margin-right: 0px !important;
         margin-bottom: 15px !important; */
     }

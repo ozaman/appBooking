@@ -16,10 +16,20 @@ var lngbook ,parampro, pro_service_from, pro_service_to;
 var language = window.navigator.userLanguage || window.navigator.language;
 if ($.cookie("lng") ==undefined) {
     //alert(language);
- $.cookie("lng", language, { path: '/' });
+    if (language == 'th-TH') {
+        var slng = $.cookie("lng").split('-')
+        var flng = slng[0];
+        $.cookie("lng", flng, { path: '/' });
+    }
+ //$.cookie("lng", language, { path: '/' });
     // 
 
 }
+if ($.cookie("lng") == 'th-TH') {
+        var slng = $.cookie("lng").split('-')
+        var flng = slng[0];
+        $.cookie("lng", flng, { path: '/' });
+    }
 $(document).ready(function() {
     // var base_url = "https://www.welovetaxi.com/app/booking2/";
    
@@ -354,6 +364,10 @@ $.ajax({
     });
     $('#service_type').click( function() {
          $('#foget-password').show();
+         $('#type_service').show();
+         $('#product_service').hide();
+
+
          $(this).hide();
     });
     $('.box-list').click( function() {
@@ -1154,13 +1168,16 @@ function sendproto(x,proto){
                 $.each(cartype, function(i, val) {
                     datasort.push(cartype[i])
                 });                
-                datasort.sort(function(a, b){return a.person-b.person});
+                datasort.sort(function(a, b){
+                    return a.person-b.person
+                });
                 console.log(datasort)
                 var datalength = data[0].car_topic;
                 console.log(datalength.Length)
                 console.log(cartype)                
                 console.log(data1)
                 $.each(datasort, function(i, val) {
+                    $('#type_service').show()
                     var index2 = parseInt(i) + 1;
                     var type,typeshow,pax;
                     type = datasort[i].pax_id;
@@ -1187,7 +1204,7 @@ function sendproto(x,proto){
                 }
                 console.log(type)
                 console.log(datasort.length)
-                    $('#typecarservice').append('<li class="typeservice" id="typeservice'+datasort[i].transfer_id+'"  onclick="sendpax(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
+                    $('#type_service').append('<li class="typeservice" id="typeservice'+datasort[i].transfer_id+'"  onclick="sendpax(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
                    
                 }); 
             }
@@ -1566,6 +1583,8 @@ function sendpax(x) {
     console.log(x)
     $('#foget-password').hide();
     $('#service_type').show();
+    $('#product_service').show();
+    $('#type_service').hide();
 
    $('#loading').css('display', 'block');
    $('.a-link-item').remove();

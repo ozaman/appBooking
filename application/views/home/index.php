@@ -713,7 +713,7 @@ table{
             }
             .get_html_pop_ln{
                 padding: 15px;
-                height: 100vh;
+                height: 92vh;
     overflow: scroll;
     padding-bottom: 51px;
     webkit-overflow-scrolling: touch;
@@ -1584,7 +1584,9 @@ table{
         <!-- END -->
                         
                         <div id="box-pro-service" style="  ">
+ <div id="type_service" style=""></div>
                             <div id="product_service" style="">
+                                
                             <div class="not-found lng-not-found" style="display:none"></div>
                             </div>
                         </div>
@@ -2311,9 +2313,9 @@ textarea:-ms-input-placeholder {
                                     </table>
                                 </td>
                             </tr>
-                        </table>             
+                        </table>
                     </div>
-                    <div style="text-align: center;
+                    <div style=";
                     margin-top: 25px;">
                     <div class="lng-no" style="background-color: #f44336;
                     width: 120px;
@@ -2323,7 +2325,7 @@ textarea:-ms-input-placeholder {
                     text-align: center;
                     display: inline-block;
                     border-radius: 25px;
-                    margin-right: 15px;
+                    float: right;
                    " onclick="cancelhistory()"></div>
                     <div class="lng-save" style="    width: 120px;
                     padding: 10px 0px;
@@ -2333,19 +2335,14 @@ textarea:-ms-input-placeholder {
                     text-align: center;
                     display: inline-block;
                     border-radius: 25px;
-                   
                     bottom: 14px;
                     right: 125px;" onclick="confirmhistory()"></div>
                     </div>
-                    
-
-                </div>        
-            
+                </div>
             </div></div>
-           
 
             <div id="get_history_pop" style="display: none;">
-            <div class="get_history_pop_in">               
+            <div class="get_history_pop_in">
                 <div class="get_history_pop_ln">
                 <i class="material-icons" id="close_get_history" style="position: absolute;top: 10px; right: 15px;">close</i>
                     <div class="lng_favorites" style="text-align: center; font-size: 18px;font-weight: 400;    margin-bottom: 20px;"></div>

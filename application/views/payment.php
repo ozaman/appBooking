@@ -133,6 +133,11 @@ height: 57vh;
     <div class="box-in-foget2" >
         <div style="border-bottom: 1px solid #ddd; text-align: center; padding: 20px 10px; font-size: 18px; color: #fff; background: #3b5998;font-weight: 500" class="lng-omise-gateway">
         </div>  
+        <div style="    padding: 15px;
+    padding-bottom: 50px;
+    overflow-y: scroll;
+    height: 79vh;
+    -webkit-overflow-scrolling: touch;">
         <div style="text-align: center; padding: 15px;">
             <img src="https://assets.omise.co/assets/omise-logo-a86debcb438f41aa395a868ff43fe67090e277d44dea080cd2d51baec405ea71.svg" alt="" width="100">
         </div>
@@ -150,22 +155,22 @@ height: 57vh;
              <div class="control-group" >	
               <div class="control-label label_cardnumber">Card Number</div>		            	
 
-              <input type="text" data-omise="number1" class="cardnumber" id="cardnumber"  autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="" required>		                
-              <input type="text" data-omise="number2" class="cardnumber" id="cardnumber2" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>		                
-              <input type="text" data-omise="number3" class="cardnumber" id="cardnumber3" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>		                
-              <input type="text" data-omise="number4" class="cardnumber" id="cardnumber4" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>	                        
+              <input type="number" data-omise="number1" class="cardnumber" id="cardnumber"  autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="" required>		                
+              <input type="number" data-omise="number2" class="cardnumber" id="cardnumber2" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>		                
+              <input type="number" data-omise="number3" class="cardnumber" id="cardnumber3" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>		                
+              <input type="number" data-omise="number4" class="cardnumber" id="cardnumber4" autocomplete="off" maxlength="4" pattern="\d{4}" placeholder="xxxx" title="4 Digit" style="margin-left: 1%;" required>	                        
           </div>
           <div class="control-group">
               <div class="control-label label_date">Expiration Date</div>	
-              <input type="text" data-omise="expiration_month" class="numdate" id="numdate" autocomplete="off" maxlength="2" placeholder="mm" pattern="\d{2}" title="4 Digit" required>
+              <input type="number" data-omise="expiration_month" class="numdate" id="numdate" autocomplete="off" maxlength="2" placeholder="mm" pattern="\d{2}" title="4 Digit" required>
               <div class="control-label label_slad">/</div>		                
-              <input type="text" data-omise="expiration_year" class="numyear" id="numyear" autocomplete="off" maxlength="4" placeholder="yyyy" pattern="\d{4}" title="4 Digit" required>
+              <input type="number" data-omise="expiration_year" class="numyear" id="numyear" autocomplete="off" maxlength="4" placeholder="yyyy" pattern="\d{4}" title="4 Digit" required>
 
           </div>
           <div class="control-group">
               <div class="control-label label_cardcvv">CVV</div>              
               <input type="password" data-omise="security_code" class="ccv" id="cvv"autocomplete="off" maxlength="3" placeholder="***" pattern="\d{3}" title="Three digits at back of your card" required>
-              <img src="<? echo base_url(); ?>/files/images/cvv2.png" style="width: 68px; margin-left: 200px;  margin-top: -42px; position: absolute; " />	
+              <img src="<? echo base_url(); ?>/files/images/cvv2.png" style="width: 68px; margin-left: 200px;  margin-top: -54px;  " />	
               <p class="maxtext">Must be 4 digits!</p>
               <p class="maxtext2">Must be 2 digits!</p>
               <p class="maxtext3">Must be 3 digits!</p>
@@ -174,6 +179,7 @@ height: 57vh;
           <div id="token_errors"></div>
           <input type="submit" id="create_token" class="btn-submit"  value="Submit" >
       </form>
+  </div>
   </div>
 </div>
 </div>
@@ -604,7 +610,7 @@ boby{
 }
 .cardnumber{
 
-    width: 23.4%;
+    width: 23%;
     text-align: center;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -743,7 +749,7 @@ boby{
                     border-radius: 25px;
                 }
                 .numyear{
-                    width: 68%;
+                    width: 57%;
                     margin-left: 5px;
                     display: inline-block;
                     font-size: 16px;
