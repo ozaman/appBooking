@@ -12,9 +12,10 @@ var base_url = 'https://www.welovetaxi.com/app/booking2/';
 var  reltimeclick;
 var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
-      var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
-var language = window.navigator.userLanguage || window.navigator.language;
+var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
+var language;
 if ($.cookie("lng") ==undefined) {
+   language = window.navigator.userLanguage || window.navigator.language;
     //alert(language);
     if (language == 'th-TH') {
         var slng = $.cookie("lng").split('-')
@@ -26,14 +27,14 @@ if ($.cookie("lng") ==undefined) {
 
 }
 if ($.cookie("lng") == 'th-TH') {
-        var slng = $.cookie("lng").split('-')
-        var flng = slng[0];
-        $.cookie("lng", flng, { path: '/' });
-    }
+    var slng = $.cookie("lng").split('-')
+    var flng = slng[0];
+    $.cookie("lng", flng, { path: '/' });
+}
 $(document).ready(function() {
     // var base_url = "https://www.welovetaxi.com/app/booking2/";
-   
-$.ajax({
+    
+    $.ajax({
         type: 'POST',
         url: base_url+'getuserlog_control/process',
        // data: {'from': getParameterByName('from'),'to': getParameterByName('to')},
@@ -42,8 +43,8 @@ $.ajax({
         success: function(data) { 
             // console.log('*****************************')
            // console.log(data)
-        }
-    });
+       }
+   });
     $('#username').on('change', function() {
         username = this.value ;
         console.log(username)
@@ -53,7 +54,7 @@ $.ajax({
         console.log(password)
     })
     $('.btn-foget-pass').on('click', function() {
-       
+     
         $('#foget-password').show(500)
         $('#popup-login').hide(500)
     });
@@ -63,32 +64,32 @@ $.ajax({
     
     $('.btn-send').on('click', function() {
         // alert('aaaaaa')
-       forget = $('#email-forget').val();
+        forget = $('#email-forget').val();
         console.log(forget)
         
         if(forget != ''){
             $('#loading').show();
             $.ajax({
-            type: 'POST',
-            url: base_url+'fogetpassword.php',
-            data: { 'mail': forget },
+                type: 'POST',
+                url: base_url+'fogetpassword.php',
+                data: { 'mail': forget },
             //contentType: "application/json",
             //dataType: 'json',
             success: function(data) {
-            console.log(data);
+                console.log(data);
             //console.log(s_email);
             $('#forget').hide();
             $('#loading').hide();
             $('.btn-login-forget').show();
             $('#check-email').show();
-            }
-        });
+        }
+    });
         }
     });
     $('.btn-login-forget').on('click', function() {
        // $('#foget-password').fadeOut(500)
-        window.location.reload();
-    });     
+       window.location.reload();
+   });     
     $('#login').on('click', function() {
         var type_login = $('#by').val();
         var param_data = $('#data').val();
@@ -100,51 +101,51 @@ $.ajax({
         var lng_t = $('#lng_t').val();
         var book = $('#book').val();
 //      alert(type_login);
-       console.log(password+username);
+console.log(password+username);
 //    alert('<?php echo base_url(); ?>login_control/process');
-        $.ajax({
-        type: 'POST',
-        url: base_url+'login_control/process',
-        data: {'username': username,'password':password},
+$.ajax({
+    type: 'POST',
+    url: base_url+'login_control/process',
+    data: {'username': username,'password':password},
         //contentType: "application/json",
         dataType: 'json',
         success: function(res) { 
           console.log(res)
           if(res.status == 0)
-              {
-                 console.log('login status 0');
-                 $.cookie("login",res.username);
-                 loginsucess()
+          {
+           console.log('login status 0');
+           $.cookie("login",res.username);
+           loginsucess()
                  //console.log('<?php echo base_url(); ?>');
 //                  if(type_login=='dasboard'){
 //                     window.location.href = base_url+"dashboard/view_user";
 //                  }else if(type_login=='book'){
 // //                     
 //                     window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to+"&lat_f="+lat_f+"&lng_f="+lng_f+"&lat_t="+lat_t+"&lng_t="+lng_t+"&book="+book;
-                    
+
 //                  }else{
 //                     window.location.href = "<?php echo base_url(); ?>";
 //                  }
-              }
-              else if(res.status==1)
-              {
-                console.log('status==1')
-               $('#message').html('Username is Invalid').css('color', 'red');
-              }
-              else if(res.status==2)
-              {
-                  console.log('status==2')
-                $('#message').html('Password is Invalid').css('color', 'red');
-              }
-        }
-    });
+}
+else if(res.status==1)
+{
+    console.log('status==1')
+    $('#message').html('Username is Invalid').css('color', 'red');
+}
+else if(res.status==2)
+{
+  console.log('status==2')
+  $('#message').html('Password is Invalid').css('color', 'red');
+}
+}
+});
 
     //alert( this.value );
-    })
+})
     $('.close_login').click(function() {
         $('#popup-login').hide();
     });
-   
+    
     $('#username-signup').on('change', function() {
         username_signup = this.value ;
         console.log(username_signup) 
@@ -156,9 +157,9 @@ $.ajax({
     $('#checkmail').on('click', function() {
         console.log('in case')
         $.ajax({
-        type: 'POST',
-        url: base_url+'login_control/checkmail',
-        data: {'username': username_signup,'password':password_signup},
+            type: 'POST',
+            url: base_url+'login_control/checkmail',
+            data: {'username': username_signup,'password':password_signup},
         //contentType: "application/json",
         dataType: 'json',
         success: function(res) { 
@@ -166,27 +167,27 @@ $.ajax({
           if(res.status == 0)
               { //have mail
                 text_check = 0; 
-               $('#messagecheck').html('Have this mail in system').css('color', 'red');
-              }
-              else if(res.status==1)
-              {
+                $('#messagecheck').html('Have this mail in system').css('color', 'red');
+            }
+            else if(res.status==1)
+            {
                 text_check = 1; 
                 $('#messagecheck').html('This mail is available.').css('color', '#2c9930');
                 console.log('status==1')
-              }
+            }
         }
-        });
-    
+    });
+        
     });
     
-     $('#registered').on('click', function() {
+    $('#registered').on('click', function() {
         console.log('in case signup')
         console.log(text_check)
         //if (text_check == 1) {
             $.ajax({
-            type: 'POST',
-            url: base_url+'login_control/signup',
-            data: {'username': username_signup,'password':password_signup},
+                type: 'POST',
+                url: base_url+'login_control/signup',
+                data: {'username': username_signup,'password':password_signup},
             //contentType: "application/json",
             dataType: 'json',
             success: function(res) { 
@@ -203,13 +204,13 @@ $.ajax({
                 }                
             }
         });
-    
-    });
+            
+        });
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
+        results = regex.exec(url);
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
@@ -351,90 +352,90 @@ $.ajax({
         $('.caret').css('display', 'none')
     }    
     $('.box-polic').click( function() {        
-         $('html').removeClass('nav-open');
-         setTimeout(function() {
-             $toggle.removeClass('toggled');
-             $('#bodyClick').remove();
-             $('.navbar-toggle').css('display', 'block');
-         }, 250);
-         $('#police_pop').show(500);        
-    });
+       $('html').removeClass('nav-open');
+       setTimeout(function() {
+           $toggle.removeClass('toggled');
+           $('#bodyClick').remove();
+           $('.navbar-toggle').css('display', 'block');
+       }, 250);
+       $('#police_pop').show(500);        
+   });
     $('.lng_canceled').click( function() {
-         $('#police_pop').hide();
-    });
+       $('#police_pop').hide();
+   });
     $('#service_type').click( function() {
-         $('#foget-password').show();
-         $('#type_service').show();
-         $('#product_service').hide();
+       $('#foget-password').show();
+       $('#type_service').show();
+       $('#product_service').hide();
 
 
-         $(this).hide();
-    });
+       $(this).hide();
+   });
     $('.box-list').click( function() {
-         $('html').removeClass('nav-open');
-         setTimeout(function() {
-             $toggle.removeClass('toggled');
-             $('#bodyClick').remove();
-             $('.navbar-toggle').css('display', 'block');
-         }, 250); 
-         $('#get_historylist_pop').show(500);
-         $('.li_list_history').remove()
-         
-         console.log(getdatahis)
-         if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {            
-            lang_to_map = 'en';             
-         } else if ($.cookie("lng") == 'th') {
-            lang_to_map = 'th';                
-         } else if ($.cookie("lng") == 'cn') {            
-            lang_to_map = 'zh-CN';                 
-         }
-         $.each(getdatahis, function(i, val) {
-            url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + getdatahis[i].lat_from + ',' + getdatahis[i].lng_from + '&sensor=true&language=' + lang_to_map;
-            
-                        $.post(url2, function(data) {
-                            console.log(data);
-                            var pl_his_from = data.results[0].formatted_address                            
+       $('html').removeClass('nav-open');
+       setTimeout(function() {
+           $toggle.removeClass('toggled');
+           $('#bodyClick').remove();
+           $('.navbar-toggle').css('display', 'block');
+       }, 250); 
+       $('#get_historylist_pop').show(500);
+       $('.li_list_history').remove()
+       
+       console.log(getdatahis)
+       if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {            
+        lang_to_map = 'en';             
+    } else if ($.cookie("lng") == 'th') {
+        lang_to_map = 'th';                
+    } else if ($.cookie("lng") == 'cn') {            
+        lang_to_map = 'zh-CN';                 
+    }
+    $.each(getdatahis, function(i, val) {
+        url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + getdatahis[i].lat_from + ',' + getdatahis[i].lng_from + '&sensor=true&language=' + lang_to_map;
+        
+        $.post(url2, function(data) {
+            console.log(data);
+            var pl_his_from = data.results[0].formatted_address                            
             url3 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + getdatahis[i].lat_to + ',' + getdatahis[i].lng_to + '&sensor=true&language=' + lang_to_map;
             
-                        $.post(url3, function(data2) {
-                            console.log(data2);
-                            var pl_his_to = data2.results[0].formatted_address
-                            $('#list_historylist').append('<li class="li_list_history" style="font-size: 16px; padding: 5px; border-radius: 15px; border: 1px solid #3b5998;" onclick="getProduct('+getdatahis[i].lat_from+','+getdatahis[i].lng_from+','+dist+','+ getdatahis[i].lat_to+','+getdatahis[i].lng_to+');sendplace(\''+ pl_his_from+'\',\'' + pl_his_to + '\','+ getdatahis[i].lat_from+','+getdatahis[i].lng_from+','+ getdatahis[i].lat_to+','+getdatahis[i].lng_to+',\''+getdatahis[i].fashion+'\')">'+
-                            '<table width="100%">'+                           
-                                '<tr>'+
-                                    '<td width="10"></td>'+
-                                    '<td>'+
-                                        '<table width="100%">'+
-                                            '<tr>'+
-                                                '<td width="10">'+
-                                                    '<div style="width: 10px;  height: 10px;  border-radius: 1px; background: #555;"></div>'+
-                                                '</td>'+
-                                                '<td align="left" style="padding-left: 15px;">'+
-                                                    '<span  style="text-align: center;">' + pl_his_from + '</span>'+
-                                                '</td>'+
-                                            '</tr>'+
-                                            '<tr>'+
-                                                '<td colspan="2"><br></td>'+
-                                            '</tr>'+
-                                            '<tr>'+
-                                                '<td width="10">'+
-                                                    '<div style="width: 10px;  height: 10px; border-radius: 1px; background: #3b5998;"></div>'+
-                                                '</td>'+
-                                                '<td align="left" style="padding-left: 15px;">'+
-                                                    '<span  style="text-align: center;">' + pl_his_to + '</span>'+
-                                                '</td>'+
-                                            '</tr>'+
-                                        '</table>'+
-                                    '</td>'+
-                                '</tr>'+
-                            '</table>'+             
+            $.post(url3, function(data2) {
+                console.log(data2);
+                var pl_his_to = data2.results[0].formatted_address
+                $('#list_historylist').append('<li class="li_list_history" style="font-size: 16px; padding: 5px; border-radius: 15px; border: 1px solid #3b5998;" onclick="getProduct('+getdatahis[i].lat_from+','+getdatahis[i].lng_from+','+dist+','+ getdatahis[i].lat_to+','+getdatahis[i].lng_to+');sendplace(\''+ pl_his_from+'\',\'' + pl_his_to + '\','+ getdatahis[i].lat_from+','+getdatahis[i].lng_from+','+ getdatahis[i].lat_to+','+getdatahis[i].lng_to+',\''+getdatahis[i].fashion+'\')">'+
+                    '<table width="100%">'+                           
+                    '<tr>'+
+                    '<td width="10"></td>'+
+                    '<td>'+
+                    '<table width="100%">'+
+                    '<tr>'+
+                    '<td width="10">'+
+                    '<div style="width: 10px;  height: 10px;  border-radius: 1px; background: #555;"></div>'+
+                    '</td>'+
+                    '<td align="left" style="padding-left: 15px;">'+
+                    '<span  style="text-align: center;">' + pl_his_from + '</span>'+
+                    '</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                    '<td colspan="2"><br></td>'+
+                    '</tr>'+
+                    '<tr>'+
+                    '<td width="10">'+
+                    '<div style="width: 10px;  height: 10px; border-radius: 1px; background: #3b5998;"></div>'+
+                    '</td>'+
+                    '<td align="left" style="padding-left: 15px;">'+
+                    '<span  style="text-align: center;">' + pl_his_to + '</span>'+
+                    '</td>'+
+                    '</tr>'+
+                    '</table>'+
+                    '</td>'+
+                    '</tr>'+
+                    '</table>'+             
                     '</li>'
                     );
-            
-                });
-            }); 
-        });
+                
+            });
+        }); 
     });
+});
     $('.box-history').click( function() {       
         $('html').removeClass('nav-open');
         setTimeout(function() {
@@ -454,43 +455,43 @@ $.ajax({
                 console.log(data)
                 $.each(data, function(i, val) {                  
                     $('#list_history').append('<li class="li_list_history" style="font-size: 16px; padding: 5px; border-radius: 15px; border: 1px solid #3b5998;" onclick="getProduct('+ data[i].lat_f+',' + data[i].lng_f + ',' + dist + ','+data[i].lat_t+','+data[i].lng_t+');sendplace(\''+ data[i].topic_from+'\',\'' + data[i].topic_to + '\','+ data[i].lat_f+','+data[i].lng_f+','+ data[i].lat_t+','+data[i].lng_t+',\''+data[i].fashion+'\')">'+
-                    '<table width="100%">'+                           
+                        '<table width="100%">'+                           
                         '<tr>'+
-                            '<td width="10"></td>'+
-                            '<td>'+
-                                '<table width="100%">'+
-                                    '<tr>'+
-                                        '<td width="10">'+
-                                            '<div style="width: 10px;  height: 10px;  border-radius: 1px; background: #555;"></div>'+
-                                        '</td>'+
-                                        '<td align="left" style="padding-left: 15px;">'+
-                                            '<span  style="text-align: center;">' + data[i].topic_from + '</span>'+
-                                        '</td>'+
-                                    '</tr>'+
-                                    '<tr>'+
-                                        '<td colspan="2"><br></td>'+
-                                    '</tr>'+
-                                    '<tr>'+
-                                        '<td width="10">'+
-                                            '<div style="width: 10px;  height: 10px; border-radius: 1px; background: #3b5998;"></div>'+
-                                        '</td>'+
-                                        '<td align="left" style="padding-left: 15px;">'+
-                                            '<span  style="text-align: center;">' + data[i].topic_to + '</span>'+
-                                        '</td>'+
-                                    '</tr>'+
-                                '</table>'+
-                            '</td>'+
+                        '<td width="10"></td>'+
+                        '<td>'+
+                        '<table width="100%">'+
+                        '<tr>'+
+                        '<td width="10">'+
+                        '<div style="width: 10px;  height: 10px;  border-radius: 1px; background: #555;"></div>'+
+                        '</td>'+
+                        '<td align="left" style="padding-left: 15px;">'+
+                        '<span  style="text-align: center;">' + data[i].topic_from + '</span>'+
+                        '</td>'+
                         '</tr>'+
-                    '</table>'+             
-            '</li>'
-            );
+                        '<tr>'+
+                        '<td colspan="2"><br></td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td width="10">'+
+                        '<div style="width: 10px;  height: 10px; border-radius: 1px; background: #3b5998;"></div>'+
+                        '</td>'+
+                        '<td align="left" style="padding-left: 15px;">'+
+                        '<span  style="text-align: center;">' + data[i].topic_to + '</span>'+
+                        '</td>'+
+                        '</tr>'+
+                        '</table>'+
+                        '</td>'+
+                        '</tr>'+
+                        '</table>'+             
+                        '</li>'
+                        );
+                    
+                });
                 
+                
+            }
         });
-                
-                                           
-    }
-});
-});
+    });
     $('#close_get_history').click( function() {
         $('#get_history_pop').hide();
     });
@@ -526,7 +527,7 @@ $.ajax({
         $('#join').removeClass('active');
         $(this).css({ "background-color": "#3b5998", "color": " #fff " }
 
-        );
+            );
         $("#join-btn").css({ "background-color": "#fff ", "color": "#3b5998" });
 
     });
@@ -536,7 +537,7 @@ $.ajax({
         $('#private').removeClass('active');
         $('#join').addClass('active');
         $(this).css({ "background-color": "#3b5998", "color": "#fff" }
-        );
+            );
         $("#private-btn").css(
             { "background-color": " #fff", "color": "#3b5998 " 
         });
@@ -564,7 +565,7 @@ $.ajax({
             "data-date",
             moment(this.value, "YYYY-MM-DD")
             .format(this.getAttribute("data-date-format"))
-        )
+            )
     }).trigger("change")
     $('#loading').css('display', 'block');
     $('#content').css('display', 'none');
@@ -693,115 +694,115 @@ $.ajax({
         }
     });
 
-    $('.btn-realtime').click(function() {
-        $('#clear-all').click();
-        reltimeclick = 1;
-        booking = 'Realtime';
-        checkshow = true;
-        placeRecord();
-        $('#box-pax-rel').hide(500);
-        $('#get_html_book').hide(500);
-        $('#service_type').hide();
-        $('#show-hide-pro').hide(500)
-        $('#loading').css('display', 'block');
-        if(checkreal_or_res == 'Res' || checkreal_or_res == ''){
+$('.btn-realtime').click(function() {
+    $('#clear-all').click();
+    reltimeclick = 1;
+    booking = 'Realtime';
+    checkshow = true;
+    placeRecord();
+    $('#box-pax-rel').hide(500);
+    $('#get_html_book').hide(500);
+    $('#service_type').hide();
+    $('#show-hide-pro').hide(500)
+    $('#loading').css('display', 'block');
+    if(checkreal_or_res == 'Res' || checkreal_or_res == ''){
+        setTimeout(function() {
+            $('#boxRealtime').show(500);
+            $('#boxForAutoCom').show(500); 
+            $('#boxRealtimeto').show(500);
+            $('#box-car-service').hide();
+            $('#map').show(500);
+            $('.box_option').show(500)
+            $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });
+            $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
+            $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
+            $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
+            $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+            $("#pro-search").hide();
+            $("#search-raeltime").fadeIn(1000);    
+            $("#list_place").fadeIn(1000);
+            $("#show-hide-pro2").hide();
+            $('#loading').css('display', 'none');
+            $('#search-show').css('display', 'none')
+            $('#pac-input').css('display', '');
+            $('#current').val(addr)
+            $('#pac-input').focus();
+            $('#pac-input').addClass('search_focus'); 
+
+        }, 500);
+        checkshowhome = true;
+        checkreal_or_res = 'Real'
+    }
+    else{
+        if(checkshowhome == false){
             setTimeout(function() {
                 $('#boxRealtime').show(500);
-                $('#boxForAutoCom').show(500); 
+                $('#boxForAutoCom').show(500);
                 $('#boxRealtimeto').show(500);
                 $('#box-car-service').hide();
                 $('#map').show(500);
-                $('.box_option').show(500)
-                $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });
+                $('.box_option').show(500)                    
+                $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });       
                 $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
                 $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
                 $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
                 $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
                 $("#pro-search").hide();
-                $("#search-raeltime").fadeIn(1000);    
+                $("#search-raeltime").fadeIn(1000);        
                 $("#list_place").fadeIn(1000);
                 $("#show-hide-pro2").hide();
                 $('#loading').css('display', 'none');
                 $('#search-show').css('display', 'none')
                 $('#pac-input').css('display', '');
-                $('#current').val(addr)
-                 $('#pac-input').focus();
-                    $('#pac-input').addClass('search_focus'); 
-
+                $('#pac-input').focus();
+                $('#pac-input').addClass('search_focus'); 
             }, 500);
             checkshowhome = true;
-            checkreal_or_res = 'Real'
         }
         else{
-            if(checkshowhome == false){
-                setTimeout(function() {
-                    $('#boxRealtime').show(500);
-                    $('#boxForAutoCom').show(500);
-                    $('#boxRealtimeto').show(500);
-                    $('#box-car-service').hide();
-                    $('#map').show(500);
-                    $('.box_option').show(500)                    
-                    $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });       
-                    $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
-                    $("#pro-search").hide();
-                    $("#search-raeltime").fadeIn(1000);        
-                    $("#list_place").fadeIn(1000);
-                    $("#show-hide-pro2").hide();
-                    $('#loading').css('display', 'none');
-                    $('#search-show').css('display', 'none')
-                    $('#pac-input').css('display', '');
-                    $('#pac-input').focus();
-                    $('#pac-input').addClass('search_focus'); 
-                }, 500);
-                checkshowhome = true;
-            }
-            else{
-                setTimeout(function() {
-                    $('#boxRealtime').hide(500);
-                    $('#boxForAutoCom').hide(500); 
-                    $('#boxRealtimeto').hide(500);
-                    $('#box-car-service').hide();
-                    $('#map').show(500);
-                    $('.box_option').hide(500)
-                    $('.btn-realtime').css({ 'background': '#fff', 'color': '#333' });
-                    $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
-                    $("#pro-search").hide();
-                    $("#search-raeltime").hide(1000);        
-                    $("#list_place").hide(1000);
-                    $("#show-hide-pro2").hide();
-                    $('#loading').css('display', 'none');
-                    $('#search-show').css('display', 'none')
-                    $('#pac-input').css('display', '');
-                }, 500);      
-                checkshowhome = false;
-            }
+            setTimeout(function() {
+                $('#boxRealtime').hide(500);
+                $('#boxForAutoCom').hide(500); 
+                $('#boxRealtimeto').hide(500);
+                $('#box-car-service').hide();
+                $('#map').show(500);
+                $('.box_option').hide(500)
+                $('.btn-realtime').css({ 'background': '#fff', 'color': '#333' });
+                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
+                $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
+                $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
+                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+                $("#pro-search").hide();
+                $("#search-raeltime").hide(1000);        
+                $("#list_place").hide(1000);
+                $("#show-hide-pro2").hide();
+                $('#loading').css('display', 'none');
+                $('#search-show').css('display', 'none')
+                $('#pac-input').css('display', '');
+            }, 500);      
+            checkshowhome = false;
         }
-    });
-   
+    }
+});
 
-    /**********************************************************/
-    /************ GET PROVINCE FROM, FROM SERVICE *************/
-    /**********************************************************/
-    $('#selectproto').click(function(){
-        $('#box-provinceto').show(500);
-        var lng;
-        if ($.cookie("lng") == undefined) {
-            lng = 'en';
-        } else {
-            lng = $.cookie("lng");    
-        }
-        $('.stayto').remove()
-        console.log(proFrom)
-        $.ajax({
-            type: 'POST',
-            url: base_url+'service/getstayto.php',
-            data: { 'from': proFrom, 'lng': lng },
+
+/**********************************************************/
+/************ GET PROVINCE FROM, FROM SERVICE *************/
+/**********************************************************/
+$('#selectproto').click(function(){
+    $('#box-provinceto').show(500);
+    var lng;
+    if ($.cookie("lng") == undefined) {
+        lng = 'en';
+    } else {
+        lng = $.cookie("lng");    
+    }
+    $('.stayto').remove()
+    console.log(proFrom)
+    $.ajax({
+        type: 'POST',
+        url: base_url+'service/getstayto.php',
+        data: { 'from': proFrom, 'lng': lng },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {    
@@ -823,46 +824,46 @@ $.ajax({
                 } 
             }
         })
-    })
-    $('.closepoptype').click(function() {
-        $('#pac-input').val('');
-        $('#current').val('');
-        console.log(placeStart);
-        $('.a-link-item').remove();
-        $('.not-found').remove();
-        $('.typerel').remove();
-        $('#boxRealtimeto').show(500)
-        $('#boxRealtime').show(500)
-        curentFromTo ='';        
-        resetMap();
-        $('#pro-search').hide(500) 
-    });
-    $('.closepop').click(function() {
-        $('#foget-password').hide(500)
-        $('#box-province').hide(500)
-        $('#box-provinceto').hide(500)
-        $('#box-pax-use').hide(500)
-        $('#box-pax-rel').hide(500)
-        $('#img-car').hide(500)
-    });
+})
+$('.closepoptype').click(function() {
+    $('#pac-input').val('');
+    $('#current').val('');
+    console.log(placeStart);
+    $('.a-link-item').remove();
+    $('.not-found').remove();
+    $('.typerel').remove();
+    $('#boxRealtimeto').show(500)
+    $('#boxRealtime').show(500)
+    curentFromTo ='';        
+    resetMap();
+    $('#pro-search').hide(500) 
+});
+$('.closepop').click(function() {
+    $('#foget-password').hide(500)
+    $('#box-province').hide(500)
+    $('#box-provinceto').hide(500)
+    $('#box-pax-use').hide(500)
+    $('#box-pax-rel').hide(500)
+    $('#img-car').hide(500)
+});
 
-    /**********************************************************/
-    /************* GET PROVINCE TO, FROM SERVICE **************/
-    /**********************************************************/
-    $('#selectpro').click(function() {
-        $('#box-province').show(500);
-        var lng;
-        $('.stayfrom').remove();
-        if ($.cookie("lng") == undefined) {
-            lng = 'en';
-        } else {
-            lng = $.cookie("lng");
-        }
-        console.log(lng)
-        $.ajax({
-            type: 'POST',
-            url: base_url+'service/getstay.php',
-            data: { 'lng': lng },
+/**********************************************************/
+/************* GET PROVINCE TO, FROM SERVICE **************/
+/**********************************************************/
+$('#selectpro').click(function() {
+    $('#box-province').show(500);
+    var lng;
+    $('.stayfrom').remove();
+    if ($.cookie("lng") == undefined) {
+        lng = 'en';
+    } else {
+        lng = $.cookie("lng");
+    }
+    console.log(lng)
+    $.ajax({
+        type: 'POST',
+        url: base_url+'service/getstay.php',
+        data: { 'lng': lng },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
@@ -885,55 +886,55 @@ $.ajax({
                 } 
             }
         });
-    });
-    $('.btn-car-service').click(function() {        
-        booking = 'Service';
-        $('#clear-all').click();
-        $('#btn_CurrentLocation').hide();
-        $('#clear-all').hide();
-        $('#box-pax-rel').hide(500);
-        $('#get_html_book').hide(500);
-        $('#show-hide-pro').hide(500);
-        $('#loading').css('display', 'block');
-        $('#opennut').click();
-        setTimeout(function() {
-            $('#boxForAutoCom').hide(500)
-            $('.box_option').hide(500)
-            $('#box-car-service').show(500);
-            if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) { 
-                $('#selectpro').html('From Province')
-                $('#selectproto').html('To Province')                
-            } else if ($.cookie("lng") == 'th') {               
-                $('#selectpro').html('จากจังหวัด')
-                $('#selectproto').html('ไปยังจังหวัด') 
-            } else if ($.cookie("lng") == 'cn') {
-                $('#selectpro').html('從省')
-                $('#selectproto').html('到省')
-            } 
-            $('#map').hide();
-            $('.btn-car-service').css({ 'background': '#3b5998', 'color': '#ffffff' });
-            $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-            $("#show-hide-pro").hide();
-            $("#show-hide-pro2").hide();
-            $("#pro-search").hide();
-            $("#search-raeltime").hide()
-            $("#list_place").hide();
-            $('#loading').css('display', 'none');
-            $('#search-show').css('display', 'none')
-            $('#pac-input').css('display', '');
-        }, 500);
-    });
-    $('#cartype').on('change', changeType);
-    $('#cartype').on('change', function() {
-        $('.a-link-item').remove();
-        
-    });
-    var quotations = [];    
-    $('#btn-logout-user').on('click', function() {
-        if ($.cookie("lng") == "en" || $.cookie("lng") == undefined) {
+});
+$('.btn-car-service').click(function() {        
+    booking = 'Service';
+    $('#clear-all').click();
+    $('#btn_CurrentLocation').hide();
+    $('#clear-all').hide();
+    $('#box-pax-rel').hide(500);
+    $('#get_html_book').hide(500);
+    $('#show-hide-pro').hide(500);
+    $('#loading').css('display', 'block');
+    $('#opennut').click();
+    setTimeout(function() {
+        $('#boxForAutoCom').hide(500)
+        $('.box_option').hide(500)
+        $('#box-car-service').show(500);
+        if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) { 
+            $('#selectpro').html('From Province')
+            $('#selectproto').html('To Province')                
+        } else if ($.cookie("lng") == 'th') {               
+            $('#selectpro').html('จากจังหวัด')
+            $('#selectproto').html('ไปยังจังหวัด') 
+        } else if ($.cookie("lng") == 'cn') {
+            $('#selectpro').html('從省')
+            $('#selectproto').html('到省')
+        } 
+        $('#map').hide();
+        $('.btn-car-service').css({ 'background': '#3b5998', 'color': '#ffffff' });
+        $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
+        $("#show-hide-pro").hide();
+        $("#show-hide-pro2").hide();
+        $("#pro-search").hide();
+        $("#search-raeltime").hide()
+        $("#list_place").hide();
+        $('#loading').css('display', 'none');
+        $('#search-show').css('display', 'none')
+        $('#pac-input').css('display', '');
+    }, 500);
+});
+$('#cartype').on('change', changeType);
+$('#cartype').on('change', function() {
+    $('.a-link-item').remove();
+    
+});
+var quotations = [];    
+$('#btn-logout-user').on('click', function() {
+    if ($.cookie("lng") == "en" || $.cookie("lng") == undefined) {
         var title_logout = "Logout ?";
         var text_logout = "Do you want to logout?";
         var yes = "Yes";
@@ -949,27 +950,27 @@ $.ajax({
         var yes = "ใช่";
         var cancel = "ยกเลิก";
     } 
-        swal({
-                title: '' + title_logout + '',
-                text: '' + text_logout + '',
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: yes,
-                cancelButtonText: cancel,
-                closeOnConfirm: false
-            },
-            function() {
-                console.log('logout');
-                $.removeCookie("login");
+    swal({
+        title: '' + title_logout + '',
+        text: '' + text_logout + '',
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: yes,
+        cancelButtonText: cancel,
+        closeOnConfirm: false
+    },
+    function() {
+        console.log('logout');
+        $.removeCookie("login");
 
-                window.location.reload();
+        window.location.reload();
 
-            });
-    })
-    $('#selectype').click(function(){
-        $('#foget-password').show(500);
     });
+})
+$('#selectype').click(function(){
+    $('#foget-password').show(500);
+});
     // $('#select_pax_use').click(function(){
     //     $('#show-hide-pro').hide()
     //     if(reltimeclick == 1){
@@ -978,7 +979,7 @@ $.ajax({
     //     else{
     //         $('#box-pax-use').show(500);
     //     }
-        
+    
     // });
     $('.btn-show-select').click(function() {
         console.log('hide-show');
@@ -1000,12 +1001,12 @@ $.ajax({
         // }, 500);
         
         $('#popup-login').show(500);
-setTimeout(function() {
+        setTimeout(function() {
 
             $('#loading').hide();
         }, 500);
     });
-   
+    
 
     var dataplace;
     $('#search-from').keyup(function() {
@@ -1042,7 +1043,7 @@ setTimeout(function() {
             $('.box-plancefrom').css('display', 'none');
         }
     });
-     
+    
     $('#search-to').keyup(function() {        
         input = document.getElementById("search-to");
         console.log(input.value)
@@ -1057,20 +1058,20 @@ setTimeout(function() {
                 success: function(data) {
                     console.log(data)
                         //$('#box-plancefrom').text('');
-                    dataplace = data
-                    var setvalueboxto = '';
-                    if (data.length > 0) {
+                        dataplace = data
+                        var setvalueboxto = '';
+                        if (data.length > 0) {
 
-                        $('.box-planceto').css('display', 'block')
-                        $.each(dataplace, function(i, val) {
-                            setvalueboxto += '<li class="send-value" id="transferplaceto' + data[i].id + '" dataname ="' + data[i].topic + '" datapro="' + data[i].pro + '" dataaum="' + data[i].pro + '" lat_t="' + data[i].latitude + '" lng_t="' + data[i].longitude + '"onclick="sendValueto(\'' + data[i].id + '\');"><i class="material-icons " style="float: left; margin-right: 15px; font-size: 30px; color: #16b3b1;">add_location</i><div style="margin-left: 40px;"><span class="name">' + data[i].topic + '</span><br><span style="text-align: left;font-size:13px;">' + data[i].address + '</div></li>';
-                        });
-                        $('#box-planceto').html(setvalueboxto)
-                    } else if (data.length <= 0 || input.value == '') {
-                        $('.box-planceto').css('display', 'none');
+                            $('.box-planceto').css('display', 'block')
+                            $.each(dataplace, function(i, val) {
+                                setvalueboxto += '<li class="send-value" id="transferplaceto' + data[i].id + '" dataname ="' + data[i].topic + '" datapro="' + data[i].pro + '" dataaum="' + data[i].pro + '" lat_t="' + data[i].latitude + '" lng_t="' + data[i].longitude + '"onclick="sendValueto(\'' + data[i].id + '\');"><i class="material-icons " style="float: left; margin-right: 15px; font-size: 30px; color: #16b3b1;">add_location</i><div style="margin-left: 40px;"><span class="name">' + data[i].topic + '</span><br><span style="text-align: left;font-size:13px;">' + data[i].address + '</div></li>';
+                            });
+                            $('#box-planceto').html(setvalueboxto)
+                        } else if (data.length <= 0 || input.value == '') {
+                            $('.box-planceto').css('display', 'none');
+                        }
                     }
-                }
-            });
+                });
         } else {
             $('#box-planceto').html('');
             $('.box-planceto').css('display', 'none');
@@ -1186,26 +1187,26 @@ function sendproto(x,proto){
                         typeshow = datasort[i].car_topic_cn;
                         pax = datasort[i].pax_cn;
 
-                } else if ($.cookie("lng") == 'en') {
-                    $('#selectype').html( 'All Type')
+                    } else if ($.cookie("lng") == 'en') {
+                        $('#selectype').html( 'All Type')
 
-                   
-                    typeshow = datasort[i].car_topic_en;
-                    pax = datasort[i].pax_en;
-                } else if ($.cookie("lng") == 'th') {
-                    $('#selectype').html( 'ทุกประเภท')
-                    typeshow = datasort[i].car_topic_th;
-                    pax = datasort[i].pax_th;
-                } else if ($.cookie("lng") == undefined) {
-                    $('#selectype').html( 'All Type')
-                    typeshow = datasort[i].car_topic_en;
-                    pax = datasort[i].pax_en;
+                        
+                        typeshow = datasort[i].car_topic_en;
+                        pax = datasort[i].pax_en;
+                    } else if ($.cookie("lng") == 'th') {
+                        $('#selectype').html( 'ทุกประเภท')
+                        typeshow = datasort[i].car_topic_th;
+                        pax = datasort[i].pax_th;
+                    } else if ($.cookie("lng") == undefined) {
+                        $('#selectype').html( 'All Type')
+                        typeshow = datasort[i].car_topic_en;
+                        pax = datasort[i].pax_en;
 
-                }
-                console.log(type)
-                console.log(datasort.length)
+                    }
+                    console.log(type)
+                    console.log(datasort.length)
                     $('#type_service').append('<li class="typeservice" id="typeservice'+datasort[i].transfer_id+'"  onclick="sendpax(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
-                   
+                    
                 }); 
             }
         }
@@ -1265,57 +1266,57 @@ function sendpaxuse(x) {
     console.log(getdataservice)
     console.log(dataUse)
     $.each(getdataservice, function(i, val) {  
-       if ($.cookie("lng") == 'cn') {
-           if (getdataservice[i].pax_id == ctype) {
-               
-               $('#select_pax_use').html( getdataservice[i].car_topic_cn+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_cn+'</span>')
-           } else if (ctype == '0') {
-               $('#select_pax_use').html( '所有類型')        
-           }
-       } else if ($.cookie("lng") == 'en') {
-           if (getdataservice[i].pax_id == ctype) {
-               $('#select_pax_use').html( getdataservice[i].car_topic_en+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_en+'</span>')
-           } else if (ctype == '0') {
-               $('#select_pax_use').html( 'All Type')
-           }
+     if ($.cookie("lng") == 'cn') {
+         if (getdataservice[i].pax_id == ctype) {
+             
+             $('#select_pax_use').html( getdataservice[i].car_topic_cn+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_cn+'</span>')
+         } else if (ctype == '0') {
+             $('#select_pax_use').html( '所有類型')        
+         }
+     } else if ($.cookie("lng") == 'en') {
+         if (getdataservice[i].pax_id == ctype) {
+             $('#select_pax_use').html( getdataservice[i].car_topic_en+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_en+'</span>')
+         } else if (ctype == '0') {
+             $('#select_pax_use').html( 'All Type')
+         }
 
-       } else if ($.cookie("lng") == 'th') {
-           if (getdataservice[i].pax_id == ctype) {
-               $('#select_pax_use').html(getdataservice[i].car_topic_th+' '+'<span style="color: #f44336;">'+getdataservice[i].pax_th+'</span>')
-           } else if (ctype == '0') {
-               $('#select_pax_use').html( 'ทุกประเภท')              
-           }
+     } else if ($.cookie("lng") == 'th') {
+         if (getdataservice[i].pax_id == ctype) {
+             $('#select_pax_use').html(getdataservice[i].car_topic_th+' '+'<span style="color: #f44336;">'+getdataservice[i].pax_th+'</span>')
+         } else if (ctype == '0') {
+             $('#select_pax_use').html( 'ทุกประเภท')              
+         }
 
-       } else if ($.cookie("lng") == undefined) {
-           if (getdataservice[i].pax_id == ctype) {
-               $('#select_pax_use').html( getdataservice[i].car_topic_en+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_en+'</span>')
-           } else if (ctype == '0') {
-               $('#select_pax_use').html( 'All Type')
-               
-           }
-       }
-    })
+     } else if ($.cookie("lng") == undefined) {
+         if (getdataservice[i].pax_id == ctype) {
+             $('#select_pax_use').html( getdataservice[i].car_topic_en+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_en+'</span>')
+         } else if (ctype == '0') {
+             $('#select_pax_use').html( 'All Type')
+             
+         }
+     }
+ })
     $.each(dataUse.data1, function(i, val) {
         if ($.cookie("lng") == 'cn') {
             if (dataUse.data1[i].pax_id == ctype) {
                 comparedata.push(dataUse.data1[i])
             } else if (ctype == 0) {
-                 comparedata.push(dataUse.data1[i])
-            }
-        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-            if (dataUse.data1[i].pax_id == x) {
-                comparedata.push(dataUse.data1[i])
-            } else if (ctype == 0) {
-                 comparedata.push(dataUse[0].data1[i])
-            }
-        } else if ($.cookie("lng") == 'th') {
-            if (dataUse.data1[i].pax_id == ctype) {
-                 comparedata.push(dataUse.data1[i])
-            } else if (ctype == 0) {
-                 comparedata.push(dataUse.data1[i])
-            }
-        } 
-    })
+               comparedata.push(dataUse.data1[i])
+           }
+       } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        if (dataUse.data1[i].pax_id == x) {
+            comparedata.push(dataUse.data1[i])
+        } else if (ctype == 0) {
+           comparedata.push(dataUse[0].data1[i])
+       }
+   } else if ($.cookie("lng") == 'th') {
+    if (dataUse.data1[i].pax_id == ctype) {
+       comparedata.push(dataUse.data1[i])
+   } else if (ctype == 0) {
+       comparedata.push(dataUse.data1[i])
+   }
+} 
+})
     console.log(comparedata)
     $.each(comparedata, function(i, val) {
         if (comparedata[i].type == 'Private') {
@@ -1329,34 +1330,34 @@ function sendpaxuse(x) {
     var car_topic, cartype, pax;
     var urlicon = base_url + 'files/images/carmodelicon/';
     //if (data[0].data1.length != 0) {
-    $.each(compae1private, function(i, val) {
-        var indexs = parseInt(i) + 1;
-        if ($.cookie("lng") == 'cn') {
-            car_topic = compae1private[i].topic_cn;
-            cartype = compae1private[i].car_topic_cn;
-            pax = compae1private[i].pax_cn;
-            lngbook = '預訂';
-            lngcapacityinfo = '車容量';
-            lngdetails = '细节';
-            lngfacilities = '设施';
-        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-            car_topic = compae1private[i].topic_en;
-            cartype = compae1private[i].car_topic_en;
-            pax = compae1private[i].pax_en;
-            lngbook = 'Book';
-            lngcapacityinfo = 'Capacity';
-            lngdetails = 'details';            
-            lngfacilities = 'Facilities';
-        } else if ($.cookie("lng") == 'th') {
-            car_topic = compae1private[i].topic_th;
-            cartype = compae1private[i].car_topic_th;
-            pax = compae1private[i].pax_th;
-            lngbook = 'จอง';
-            lngcapacityinfo = 'ความจุรถ ';
-            lngdetails = 'รายละเอียด';            
-            lngfacilities = 'สิ่งอำนวยความสะดวก';  
-        } 
-        $('#product_a').append('<div class="a-link-item col-lg-12" >' +
+        $.each(compae1private, function(i, val) {
+            var indexs = parseInt(i) + 1;
+            if ($.cookie("lng") == 'cn') {
+                car_topic = compae1private[i].topic_cn;
+                cartype = compae1private[i].car_topic_cn;
+                pax = compae1private[i].pax_cn;
+                lngbook = '預訂';
+                lngcapacityinfo = '車容量';
+                lngdetails = '细节';
+                lngfacilities = '设施';
+            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                car_topic = compae1private[i].topic_en;
+                cartype = compae1private[i].car_topic_en;
+                pax = compae1private[i].pax_en;
+                lngbook = 'Book';
+                lngcapacityinfo = 'Capacity';
+                lngdetails = 'details';            
+                lngfacilities = 'Facilities';
+            } else if ($.cookie("lng") == 'th') {
+                car_topic = compae1private[i].topic_th;
+                cartype = compae1private[i].car_topic_th;
+                pax = compae1private[i].pax_th;
+                lngbook = 'จอง';
+                lngcapacityinfo = 'ความจุรถ ';
+                lngdetails = 'รายละเอียด';            
+                lngfacilities = 'สิ่งอำนวยความสะดวก';  
+            } 
+            $('#product_a').append('<div class="a-link-item col-lg-12" >' +
             // '<div class="item-thumbnail2" onclick="getimage(\'' + compae1private[i].car_model + '\') ">' +
             // '<img src="' + urlicon + compae1private[i].transfer_icon + '.jpg">' +
             // '</div>' +
@@ -1394,36 +1395,36 @@ function sendpaxuse(x) {
             // '</div>'
 
 
-             '<table width="100%">' +
+            '<table width="100%">' +
             '<tr>' +
             '<td  colspan="2" style="width: 100%">' +
-           '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
+            '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
             '</td>' +
             '</tr>' +
             '<tr>'+
             '<td align="center">'+
-          
+            
             '<span class="hotel_num">' + indexs + '</span>' +
             
             '<div class="item-thumbnail2" onclick="getimage(\'' + compae1private[i].car_model + '\') ">' +
-              '<img src="' + urlicon + compae1private[i].transfer_icon + '.jpg">' +
+            '<img src="' + urlicon + compae1private[i].transfer_icon + '.jpg">' +
             '</div>' +
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="i-list"   onclick="getcondition(\'' + compae1private[i].car_model + '\')">' +
             '<p id="capacity"><div>' + lngcapacityinfo + '</div><div>' + lngdetails + '</div></p>' +
-           '<i class="material-icons">search</i>' +
-           '</div>' +    
+            '<i class="material-icons">search</i>' +
+            '</div>' +    
             '</td >'+
-                           
+            
             '</tr>'+
             '<tr>'+
             '<td >'+
-          
-           
+            
+            
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="">' +
             '<div class="product_r">' +
@@ -1439,37 +1440,37 @@ function sendpaxuse(x) {
             '</table>' +
             '</div>'
 
-        );
+            );
     }); //end private
 
-    $.each(compae1join, function(i, val) {
-        var indexs = parseInt(i) + 1;
-        if ($.cookie("lng") == 'cn') {
-            car_topic = compae1join[i].topic_cn;
-            cartype = compae1join[i].car_topic_cn;
-            pax = compae1join[i].pax_cn;
-            lngbook = '預訂';
-            lngcapacityinfo = '車容量';
-            lngdetails = '细节';
-            lngfacilities = '设施';
-        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-            car_topic = compae1join[i].topic_en;
-            cartype = compae1join[i].car_topic_en;
-            pax = compae1join[i].pax_en;
-            lngbook = 'Book';
-            lngcapacityinfo = 'Capacity';
-            lngdetails = 'details';            
-            lngfacilities = 'Facilities';
-        } else if ($.cookie("lng") == 'th') {
-            car_topic = compae1join[i].topic_th;
-            cartype = compae1join[i].car_topic_th;
-            pax = compae1join[i].pax_th;
-            lngbook = 'จอง';
-            lngcapacityinfo = 'ความจุรถ ';
-            lngdetails = 'รายละเอียด';            
-            lngfacilities = 'สิ่งอำนวยความสะดวก';
-        } 
-        $('#product_c').append('<div class="a-link-item col-lg-12" >' +
+$.each(compae1join, function(i, val) {
+    var indexs = parseInt(i) + 1;
+    if ($.cookie("lng") == 'cn') {
+        car_topic = compae1join[i].topic_cn;
+        cartype = compae1join[i].car_topic_cn;
+        pax = compae1join[i].pax_cn;
+        lngbook = '預訂';
+        lngcapacityinfo = '車容量';
+        lngdetails = '细节';
+        lngfacilities = '设施';
+    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        car_topic = compae1join[i].topic_en;
+        cartype = compae1join[i].car_topic_en;
+        pax = compae1join[i].pax_en;
+        lngbook = 'Book';
+        lngcapacityinfo = 'Capacity';
+        lngdetails = 'details';            
+        lngfacilities = 'Facilities';
+    } else if ($.cookie("lng") == 'th') {
+        car_topic = compae1join[i].topic_th;
+        cartype = compae1join[i].car_topic_th;
+        pax = compae1join[i].pax_th;
+        lngbook = 'จอง';
+        lngcapacityinfo = 'ความจุรถ ';
+        lngdetails = 'รายละเอียด';            
+        lngfacilities = 'สิ่งอำนวยความสะดวก';
+    } 
+    $('#product_c').append('<div class="a-link-item col-lg-12" >' +
             // '<div class="item-thumbnail2" onclick="getimage(\'' + compae1join[i].car_model + '\')">' +
             // '<img src="' + urlicon + compae1join[i].transfer_icon + '.jpg">' +
             // '</div>' +
@@ -1510,33 +1511,33 @@ function sendpaxuse(x) {
             '<table width="100%">' +
             '<tr>' +
             '<td  colspan="2" style="width: 100%">' +
-           '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
+            '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
             '</td>' +
             '</tr>' +
             '<tr>'+
             '<td align="center">'+
-          
+            
             '<span class="hotel_num">' + indexs + '</span>' +
             
             '<div class="item-thumbnail2" onclick="getimage(\'' + compae1join[i].car_model + '\') ">' +
-              '<img src="' + urlicon + compae1join[i].transfer_icon + '.jpg">' +
+            '<img src="' + urlicon + compae1join[i].transfer_icon + '.jpg">' +
             '</div>' +
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="i-list"   onclick="getcondition(\'' + compae1join[i].car_model + '\')">' +
             '<p id="capacity"><div>' + lngcapacityinfo + '</div><div>' + lngdetails + '</div></p>' +
-           '<i class="material-icons">search</i>' +
-           '</div>' +    
+            '<i class="material-icons">search</i>' +
+            '</div>' +    
             '</td >'+
-                           
+            
             '</tr>'+
             '<tr>'+
             '<td >'+
-          
-           
+            
+            
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="">' +
             '<div class="product_r">' +
@@ -1552,30 +1553,30 @@ function sendpaxuse(x) {
             '</table>' +
             '</div>'
 
+            );
+});
+if(x== 2 || x== 17){
+    $('#join-btn').css({ "background-color": "#3b5998", "color": "#fff" }        
         );
-    });
-    if(x== 2 || x== 17){
-        $('#join-btn').css({ "background-color": "#3b5998", "color": "#fff" }        
-        );
-        $("#private-btn").css({ "background-color": " #fff", "color": "#3b5998 " }        
+    $("#private-btn").css({ "background-color": " #fff", "color": "#3b5998 " }        
         ); 
-        $('#private-btn').removeClass('active');
-        $('#join-btn').addClass('active');
-        $('#join').show();
-        $('#private').hide(); 
-    }
-    else{
-        $('#join-btn').css({ "background-color": "#fff", "color": "#3b5998" }        
+    $('#private-btn').removeClass('active');
+    $('#join-btn').addClass('active');
+    $('#join').show();
+    $('#private').hide(); 
+}
+else{
+    $('#join-btn').css({ "background-color": "#fff", "color": "#3b5998" }        
         );
-        $("#private-btn").css({ "background-color": " #3b5998", "color": "#fff " }        
+    $("#private-btn").css({ "background-color": " #3b5998", "color": "#fff " }        
         ); 
-        $('#private-btn').addClass('active');
-        $('#join-btn').removeClass('active');
-        $('#join').hide();
-        $('#private').show();        
-    }
-    console.log(getdataservice)
-    console.log(dataRel)
+    $('#private-btn').addClass('active');
+    $('#join-btn').removeClass('active');
+    $('#join').hide();
+    $('#private').show();        
+}
+console.log(getdataservice)
+console.log(dataRel)
 }
 
 function sendpax(x) {
@@ -1586,78 +1587,78 @@ function sendpax(x) {
     $('#product_service').show();
     $('#type_service').hide();
 
-   $('#loading').css('display', 'block');
-   $('.a-link-item').remove();
-   $('#product_service').animate({ scrollTop: 0 }, '500');
-   setTimeout(function() {
-       $('#loading').css('display', 'none');
-   }, 500);
-   dataService = [];
-   ctypeservice = x;
-   console.log(ctypeservice)
-   console.log(datacaedervice)
-   $.each(datacaedervice.data1, function(i, val) {  
-       if ($.cookie("lng") == 'cn') {
-           if (datacaedervice.data1[i].pax_id == ctypeservice) {
-               dataService.push(datacaedervice.data1[i])
-               $('#selectype').html( datacaedervice.data1[i].car_topic_cn+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_cn+'</span>')
-           } else if (ctypeservice == '0') {
-               dataService.push(datacaedervice.data1[i])
-               $('#selectype').html( '所有類型') 
-           }
-       } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-           if (datacaedervice.data1[i].pax_id == ctypeservice) {
-               dataService.push(datacaedervice.data1[i])
-               $('#selectype').html( datacaedervice.data1[i].car_topic_en+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_en+'</span>')
-           } else if (ctypeservice == '0') {
-               dataService.push(datacaedervice.data1[i])
-               $('#selectype').html( 'All Type')
-               
-           }
-       } else if ($.cookie("lng") == 'th') {
-           if (datacaedervice.data1[i].pax_id == ctypeservice) {
-               dataService.push(datacaedervice.data1[i])
-               $('#selectype').html(datacaedervice.data1[i].car_topic_th+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_th+'</span>')
-           } else if (ctypeservice == '0') {
-               dataService.push(datacaedervice.data1[i])
-               $('#selectype').html( 'ทุกประเภท')               
-           }
-       } 
-   })
+    $('#loading').css('display', 'block');
+    $('.a-link-item').remove();
+    $('#product_service').animate({ scrollTop: 0 }, '500');
+    setTimeout(function() {
+     $('#loading').css('display', 'none');
+ }, 500);
+    dataService = [];
+    ctypeservice = x;
+    console.log(ctypeservice)
+    console.log(datacaedervice)
+    $.each(datacaedervice.data1, function(i, val) {  
+     if ($.cookie("lng") == 'cn') {
+         if (datacaedervice.data1[i].pax_id == ctypeservice) {
+             dataService.push(datacaedervice.data1[i])
+             $('#selectype').html( datacaedervice.data1[i].car_topic_cn+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_cn+'</span>')
+         } else if (ctypeservice == '0') {
+             dataService.push(datacaedervice.data1[i])
+             $('#selectype').html( '所有類型') 
+         }
+     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+         if (datacaedervice.data1[i].pax_id == ctypeservice) {
+             dataService.push(datacaedervice.data1[i])
+             $('#selectype').html( datacaedervice.data1[i].car_topic_en+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_en+'</span>')
+         } else if (ctypeservice == '0') {
+             dataService.push(datacaedervice.data1[i])
+             $('#selectype').html( 'All Type')
+             
+         }
+     } else if ($.cookie("lng") == 'th') {
+         if (datacaedervice.data1[i].pax_id == ctypeservice) {
+             dataService.push(datacaedervice.data1[i])
+             $('#selectype').html(datacaedervice.data1[i].car_topic_th+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_th+'</span>')
+         } else if (ctypeservice == '0') {
+             dataService.push(datacaedervice.data1[i])
+             $('#selectype').html( 'ทุกประเภท')               
+         }
+     } 
+ })
 
-   console.log(dataService)
-   var car_topic, cartype, pax;
-   var urlicon = base_url + 'files/images/carmodelicon/';
-   $.each(dataService, function(i, val) {
-       var indexs = parseInt(i) + 1;
-       if ($.cookie("lng") == 'cn') {
-           car_topic = dataService[i].topic_cn;
-           cartype = dataService[i].car_topic_cn;
-           pax = dataService[i].pax_cn;
-           lngbook = '預訂';
-           lngcapacityinfo = '車容量';
-           lngdetails = '细节';
-           lngfacilities = '设施';
-       } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-           car_topic = dataService[i].topic_en;
-           cartype = dataService[i].car_topic_en;
-           pax = dataService[i].pax_en;
-           lngbook = 'Book';
-           lngcapacityinfo = 'Capacity';
-           lngdetails = 'details';           
-           lngfacilities = 'Facilities';
+    console.log(dataService)
+    var car_topic, cartype, pax;
+    var urlicon = base_url + 'files/images/carmodelicon/';
+    $.each(dataService, function(i, val) {
+     var indexs = parseInt(i) + 1;
+     if ($.cookie("lng") == 'cn') {
+         car_topic = dataService[i].topic_cn;
+         cartype = dataService[i].car_topic_cn;
+         pax = dataService[i].pax_cn;
+         lngbook = '預訂';
+         lngcapacityinfo = '車容量';
+         lngdetails = '细节';
+         lngfacilities = '设施';
+     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+         car_topic = dataService[i].topic_en;
+         cartype = dataService[i].car_topic_en;
+         pax = dataService[i].pax_en;
+         lngbook = 'Book';
+         lngcapacityinfo = 'Capacity';
+         lngdetails = 'details';           
+         lngfacilities = 'Facilities';
 
-       } else if ($.cookie("lng") == 'th') {
-           car_topic = dataService[i].topic_th;
-           cartype = dataService[i].car_topic_th;
-           pax = dataService[i].pax_th;
-           lngbook = 'จอง';
-           lngcapacityinfo = 'ความจุรถ ';
-           lngdetails = 'รายละเอียด';           
-           lngfacilities = 'สิ่งอำนวยความสะดวก';
-       } 
+     } else if ($.cookie("lng") == 'th') {
+         car_topic = dataService[i].topic_th;
+         cartype = dataService[i].car_topic_th;
+         pax = dataService[i].pax_th;
+         lngbook = 'จอง';
+         lngcapacityinfo = 'ความจุรถ ';
+         lngdetails = 'รายละเอียด';           
+         lngfacilities = 'สิ่งอำนวยความสะดวก';
+     } 
 
-       $('#product_service').append('<div class="a-link-item col-lg-12" >' +
+     $('#product_service').append('<div class="a-link-item col-lg-12" >' +
            // '<div class="item-thumbnail2" onclick="getimage(\'' + dataService[i].car_model + '\') ">' +
            // '<img src="' + urlicon + dataService[i].transfer_icon + '.jpg">' +
            // '</div>' +
@@ -1698,51 +1699,51 @@ function sendpax(x) {
 
 
            '<table width="100%">' +
-            '<tr>' +
-            '<td  colspan="2" style="width: 100%">' +
+           '<tr>' +
+           '<td  colspan="2" style="width: 100%">' +
            '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
-            '</td>' +
-            '</tr>' +
-            '<tr>'+
-            '<td align="center">'+
-          
-            '<span class="hotel_num">' + indexs + '</span>' +
-            
-            '<div class="item-thumbnail2" onclick="getimage(\'' + dataService[i].car_model + '\') ">' +
-              '<img src="' + urlicon + dataService[i].transfer_icon + '.jpg">' +
-            '</div>' +
-            '</td >'+ 
+           '</td>' +
+           '</tr>' +
+           '<tr>'+
+           '<td align="center">'+
            
-            '<td  align="center" valign="top">'+
-            '<div id="i-list"  onclick="getcondition(\'' + dataService[i].car_model + '\')">' +
-            '<p id="capacity"><div>' + lngcapacityinfo + '</div><div>' + lngdetails + '</div></p>' +
+           '<span class="hotel_num">' + indexs + '</span>' +
+           
+           '<div class="item-thumbnail2" onclick="getimage(\'' + dataService[i].car_model + '\') ">' +
+           '<img src="' + urlicon + dataService[i].transfer_icon + '.jpg">' +
+           '</div>' +
+           '</td >'+ 
+           
+           '<td  align="center" valign="top">'+
+           '<div id="i-list"  onclick="getcondition(\'' + dataService[i].car_model + '\')">' +
+           '<p id="capacity"><div>' + lngcapacityinfo + '</div><div>' + lngdetails + '</div></p>' +
            '<i class="material-icons">search</i>' +
            '</div>' +    
-            '</td >'+
-                           
-            '</tr>'+
-            '<tr>'+
-            '<td >'+
-          
+           '</td >'+
            
-            '</td >'+ 
+           '</tr>'+
+           '<tr>'+
+           '<td >'+
            
-            '<td  align="center" valign="top">'+
-            '<div id="">' +
-            '<div class="product_r">' +
-            '<span class="base_price"></span>' +
-            '<span class="sala">' + dataService[i].cost_a.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '฿' + '</span>' +
-            '</div>' +
-             '<div class="views-item" onclick="bookingdetailservice(' + dataService[i].transfer_id +','+proFrom+','+proTo+ ',\'' +pro_service_from + '\',\'' + pro_service_to + '\','+lat_f+','+lng_f+','+lat_t+','+lng_t+',\'Service\')">' +
-            '<a > <span >' + lngbook + '</span></a>' +
-            '</div>' +
-            '</div>' +  
-            '</td >'+
-            '</tr>'+
-            '</table>' +
-            '</div>'
+           
+           '</td >'+ 
+           
+           '<td  align="center" valign="top">'+
+           '<div id="">' +
+           '<div class="product_r">' +
+           '<span class="base_price"></span>' +
+           '<span class="sala">' + dataService[i].cost_a.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '฿' + '</span>' +
+           '</div>' +
+           '<div class="views-item" onclick="bookingdetailservice(' + dataService[i].transfer_id +','+proFrom+','+proTo+ ',\'' +pro_service_from + '\',\'' + pro_service_to + '\','+lat_f+','+lng_f+','+lat_t+','+lng_t+',\'Service\')">' +
+           '<a > <span >' + lngbook + '</span></a>' +
+           '</div>' +
+           '</div>' +  
+           '</td >'+
+           '</tr>'+
+           '</table>' +
+           '</div>'
 
-       );
+           );
 
     //    foget-password
    }); //end private
@@ -1821,33 +1822,33 @@ function getcondition(i) {
 
             $.each(data, function(i, val) {
                 //if (i == 1) {
-                $('#getcapa2').append(
-                    '<table class="table getcapa2" id="table' + data[i].plan + '" width="100%" style="margin: 0;">' +
-                    '<tr id="dd' + data[i].plan + '">' +
-                    '<td align="center" width="20%">' +
-                    '<span>' + data[i].plan + '</span>' +
-                    '</td>' +
-                    '<td width="20%">' +
-                    '<div id="adult' + data[i].plan + '">' +
+                    $('#getcapa2').append(
+                        '<table class="table getcapa2" id="table' + data[i].plan + '" width="100%" style="margin: 0;">' +
+                        '<tr id="dd' + data[i].plan + '">' +
+                        '<td align="center" width="20%">' +
+                        '<span>' + data[i].plan + '</span>' +
+                        '</td>' +
+                        '<td width="20%">' +
+                        '<div id="adult' + data[i].plan + '">' +
 
-                    '</div>' +
-                    '</td >' +
-                    '<td width="20%">' +
-                    '<div id="child' + data[i].plan + '">' +
-                    '</div>' +
-                    '</td>' +
-                    '<td width="20%">' +
-                    '<div id="bag_big' + data[i].plan + '">' +
-                    '</div>' +
-                    '</td>' +
-                    '<td width="20%">' +
-                    '<div id="bag_small' + data[i].plan + '">' +
-                    '</div>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</table>'
+                        '</div>' +
+                        '</td >' +
+                        '<td width="20%">' +
+                        '<div id="child' + data[i].plan + '">' +
+                        '</div>' +
+                        '</td>' +
+                        '<td width="20%">' +
+                        '<div id="bag_big' + data[i].plan + '">' +
+                        '</div>' +
+                        '</td>' +
+                        '<td width="20%">' +
+                        '<div id="bag_small' + data[i].plan + '">' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>' +
+                        '</table>'
 
-                );
+                        );
                 //}
 
 
@@ -1902,41 +1903,41 @@ function getcondition(i) {
         }
 
     });
-    if ($.cookie("lng") == 'cn') {
-        $('.terms-of-use').html('<span>' +
-            '<B>一. </B> 请注意，黄色或者绿色车牌为合法运营车辆。如看到其他颜色牌照可拒绝上车，并请联系我们热线。<br /><br />' +
-            '<B>二. </B> 上⻋车请系好安全带，不然如遇警察检查需自己付罚款，如有意外保险⽆无法赔偿。<br /><br />' +
-            '<B>三. </B> 上下车请保管好自己的物品。如有遗失，概不负责。<br /><br />' +
-            '<B>四. </B> 如发生司机由于不可抗力因素未接到，在约定时间后5-15分钟内，请客人及时联系我们的24小时中文热线，如等待超过30分钟，请客人需及时自行打车离开！<br /><br />' +
-            '我们会退还订单费用，如客人有打车凭证提供，我们将补偿打车费用，但是其他费用一律不负责赔偿，请知晓！</span>');
+if ($.cookie("lng") == 'cn') {
+    $('.terms-of-use').html('<span>' +
+        '<B>一. </B> 请注意，黄色或者绿色车牌为合法运营车辆。如看到其他颜色牌照可拒绝上车，并请联系我们热线。<br /><br />' +
+        '<B>二. </B> 上⻋车请系好安全带，不然如遇警察检查需自己付罚款，如有意外保险⽆无法赔偿。<br /><br />' +
+        '<B>三. </B> 上下车请保管好自己的物品。如有遗失，概不负责。<br /><br />' +
+        '<B>四. </B> 如发生司机由于不可抗力因素未接到，在约定时间后5-15分钟内，请客人及时联系我们的24小时中文热线，如等待超过30分钟，请客人需及时自行打车离开！<br /><br />' +
+        '我们会退还订单费用，如客人有打车凭证提供，我们将补偿打车费用，但是其他费用一律不负责赔偿，请知晓！</span>');
 
-    } else if ($.cookie("lng") == 'en') {
-        $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
+} else if ($.cookie("lng") == 'en') {
+    $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
 
-            '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
+        '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
 
-            '<B>3.</B> Please check your belongings before leaving. We are not responsible for any loss.<br /><br>' +
+        '<B>3.</B> Please check your belongings before leaving. We are not responsible for any loss.<br /><br>' +
 
-            '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
+        '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
 
-    } else if ($.cookie("lng") == 'th') {
-        $('.terms-of-use').html('<span >' +
-            '<B>1.</B> โปรดทราบว่ามีเพียงแผ่นป้ายทะเบียนรถสีเขียวหรือสีเหลืองเท่านั้นที่ใช้เป็นยานพาหนะขนส่งสาธารณะที่ถูกต้องตามกฎหมาย หากคุณเห็นป้ายทะเบียนรถเป็นสีอื่น คุณสามารถปฏิเสธการโดยสารได้ และโปรดติดต่อสายด่วนของเรา<br /><br />' +
-            '<B >2.</B> กรุณาคาดเข็มขัดนิรภัย มิฉะนั้นในกรณีที่มีการเรียกตรวจสอบจากตำรวจ คุณต้องต้องจ่ายค่าปรับเอง และในกรณีที่เกิดอุบัติเหตุ คุณจะไม่สามารถได้รับค่าชดเชยจากบริษัทประกันภัย<br /><br />' +
-            '<B>3.</B> โปรดตรวจสอบทรัพย์สินของคุณก่อนที่รถจะออกเดินทางหรือรถถึงที่หมาย เราจะไม่รับผิดชอบต่อความสูญเสียในกรณีใดๆ ทั้งสิ้น<br /><br />' +
-            '<B>4.</B> ในกรณีที่มีเหตุสุดวิสัยคนขับไม่ได้รับรอเกิน 5-15 นาทีจากเวลาที่ตกลงกัน โปรดติดต่อศูนย์บริการตลอด 24 ชั่วโมงสายด่วนทันที ถ้ารอคอยมากกว่า 30 นาที กรุณาเรียกรถเอง! เราจะคืนเงินให้ท่าน100%ในการจอง และจะคืนเงินที่ท่านเรียกรถ (แต่ต้องมีหลักฐานใบเสร็จหรือรูปยืนยัน) แต่จะไม่รับผิดชอบค่าเสียหายอื่น  โปรดทราบ!</span> ');
+} else if ($.cookie("lng") == 'th') {
+    $('.terms-of-use').html('<span >' +
+        '<B>1.</B> โปรดทราบว่ามีเพียงแผ่นป้ายทะเบียนรถสีเขียวหรือสีเหลืองเท่านั้นที่ใช้เป็นยานพาหนะขนส่งสาธารณะที่ถูกต้องตามกฎหมาย หากคุณเห็นป้ายทะเบียนรถเป็นสีอื่น คุณสามารถปฏิเสธการโดยสารได้ และโปรดติดต่อสายด่วนของเรา<br /><br />' +
+        '<B >2.</B> กรุณาคาดเข็มขัดนิรภัย มิฉะนั้นในกรณีที่มีการเรียกตรวจสอบจากตำรวจ คุณต้องต้องจ่ายค่าปรับเอง และในกรณีที่เกิดอุบัติเหตุ คุณจะไม่สามารถได้รับค่าชดเชยจากบริษัทประกันภัย<br /><br />' +
+        '<B>3.</B> โปรดตรวจสอบทรัพย์สินของคุณก่อนที่รถจะออกเดินทางหรือรถถึงที่หมาย เราจะไม่รับผิดชอบต่อความสูญเสียในกรณีใดๆ ทั้งสิ้น<br /><br />' +
+        '<B>4.</B> ในกรณีที่มีเหตุสุดวิสัยคนขับไม่ได้รับรอเกิน 5-15 นาทีจากเวลาที่ตกลงกัน โปรดติดต่อศูนย์บริการตลอด 24 ชั่วโมงสายด่วนทันที ถ้ารอคอยมากกว่า 30 นาที กรุณาเรียกรถเอง! เราจะคืนเงินให้ท่าน100%ในการจอง และจะคืนเงินที่ท่านเรียกรถ (แต่ต้องมีหลักฐานใบเสร็จหรือรูปยืนยัน) แต่จะไม่รับผิดชอบค่าเสียหายอื่น  โปรดทราบ!</span> ');
 
 
-    } else if ($.cookie("lng") == undefined) {
-        $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
+} else if ($.cookie("lng") == undefined) {
+    $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
 
-            '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
+        '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
 
-            '<B>3.</B> Please check your belongings before leaving. We are not responsible for any loss.<br /><br>' +
+        '<B>3.</B> Please check your belongings before leaving. We are not responsible for any loss.<br /><br>' +
 
-            '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
+        '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
 
-    }
+}
 }
 
 function updatelatlng(id) {
@@ -2087,11 +2088,11 @@ function getimage(i) {
 }
 function regis(){
     console.log('inregis')
-     $('#loading').css('display', 'block');
-        setTimeout(function() {
+    $('#loading').css('display', 'block');
+    setTimeout(function() {
 
-            window.location.href = base_url + "register";
-        }, 500);
+        window.location.href = base_url + "register";
+    }, 500);
 }
 
 function jssor_1_slider_init() {
@@ -2162,9 +2163,9 @@ function getAddress(address) {
     console.log(placeIdcurent)
     console.log(dataplacerel)
     $.ajax({
-            type: 'POST',
-            url: base_url+'service/curentPlace.php',
-            data: { 'lat_c': latitude, 'lng_c': longitude },
+        type: 'POST',
+        url: base_url+'service/curentPlace.php',
+        data: { 'lat_c': latitude, 'lng_c': longitude },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
@@ -2196,7 +2197,7 @@ function getAddress(address) {
     $('#current-addr').hide()
     $('.box_to').show(500)
 
-     
+    
 }
 
 $('#show_pd').click(function() {
@@ -2223,8 +2224,8 @@ function toggleFullScreen() {
 /**
 * Login with Google Account *
 */
-  var googleUser = {};
-  var startApp = function() {
+var googleUser = {};
+var startApp = function() {
     gapi.load('auth2', function(){
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       auth2 = gapi.auth2.init({
@@ -2232,18 +2233,18 @@ function toggleFullScreen() {
         cookiepolicy: 'single_host_origin',
         // Request scopes in addition to 'profile' and 'email'
         //scope: 'additional_scope'
-      });
-      attachSignin(document.getElementById('customBtn'));
     });
-  };
+      attachSignin(document.getElementById('customBtn'));
+  });
+};
 
-  function attachSignin(element) {
+function attachSignin(element) {
     // console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
         /*  document.getElementById('name').innerText = "Signed in: " +
-              googleUser.getBasicProfile().getName();*/
-               var profile = googleUser.getBasicProfile();
+        googleUser.getBasicProfile().getName();*/
+        var profile = googleUser.getBasicProfile();
                  /* console.log('ID: ' + profile.getId());
                   console.log('Name: ' + profile.getName());
                   console.log('Image URL: ' + profile.getImageUrl());
@@ -2251,44 +2252,44 @@ function toggleFullScreen() {
                   console.log(profile); 
                   var url = base_url+'login_control/processsocial';
 //                alert(url);
-                  var type_login = $('#by').val();
-                var param_data = $('#data').val();
-                var param_from = $('#from').val();
-                var param_to = $('#to').val();
-                var lat_f = $('#lat_f').val();
-                var lng_f = $('#lng_f').val();
-                var lat_t = $('#lat_t').val();
-                var lng_t = $('#lng_t').val();
-                var book = $('#book').val();
-                  $.post( url, {'username': profile.getEmail(),'name':profile.getName(),'password':profile.getId(),'type':'google','img':profile.getImageUrl() } ,function( data ) {
+var type_login = $('#by').val();
+var param_data = $('#data').val();
+var param_from = $('#from').val();
+var param_to = $('#to').val();
+var lat_f = $('#lat_f').val();
+var lng_f = $('#lng_f').val();
+var lat_t = $('#lat_t').val();
+var lng_t = $('#lng_t').val();
+var book = $('#book').val();
+$.post( url, {'username': profile.getEmail(),'name':profile.getName(),'password':profile.getId(),'type':'google','img':profile.getImageUrl() } ,function( data ) {
 //                      console.log(data);
-                        var obj_c = JSON.parse(data);
-                        console.log(obj_c.status);
-                        console.log(obj_c);
-                         if(obj_c.status == 0)
-                              {
-                                 $.cookie("login",obj_c.username);
+var obj_c = JSON.parse(data);
+console.log(obj_c.status);
+console.log(obj_c);
+if(obj_c.status == 0)
+{
+   $.cookie("login",obj_c.username);
 //                               $.cookie("logby",'google');
 //                                 window.location.href = "<?php echo base_url(); ?>home";    
 if(type_login=='dasboard'){
-                    window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
-                 }else if(type_login=='book'){
+    window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
+}else if(type_login=='book'){
 //                      alert(param_data+" "+param_from+" "+param_to);
-                    window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
-                    
-                 }else{
-                    window.location.href = base_url;
-                 }     
-                              }
-                              else 
-                              {    
-                               $('#message').html('Login not complete').css('color', 'red');
-                               
-                              }
-                    });      
-        }, function(error) {
-                   // console.log(JSON.stringify(error, undefined, 2));
-        });
-  }
+window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
+
+}else{
+    window.location.href = base_url;
+}     
+}
+else 
+{    
+ $('#message').html('Login not complete').css('color', 'red');
  
+}
+});      
+}, function(error) {
+                   // console.log(JSON.stringify(error, undefined, 2));
+               });
+}
+
 startApp()

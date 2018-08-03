@@ -1351,8 +1351,10 @@ table{
             </div>            
         </div>
         <div id="box-car-service" style="width: 100%;height: 100vh;display:none;background: #e6eaed;    position: absolute; overflow: hidden;z-index: 100; ">
+
            <div style="text-align:center; background: #3b5998; padding: 5px; color: #fff; font-weight: 600; text-align: center;">
                <h4 class="lng-a-place"></h4>
+     <i class="material-icons btn-close" onclick="btn_close('boxcarservice')" style="    top: 15px;">close</i>
                <div style="width: 40px; height: 40px; border-radius: 100%; box-shadow: rgb(59, 89, 152) 0px 1px 4px; z-index: 262; margin-top: -45px; cursor: pointer; position: absolute; padding: 8px; background: rgb(255, 255, 255); color: rgb(59, 89, 152); font-size: 30px; margin-bottom: 15px;display: none" id="service_type">
                                 <i class="material-icons" style="">reply_all</i>
                         </div>

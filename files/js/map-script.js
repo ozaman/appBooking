@@ -65,7 +65,7 @@ if ($.cookie("lng") == 'cn') {
     choose = '选择';
     lng_price = '价格';
 
-   
+    
 
     success = '成功';
     error = '错误';
@@ -154,7 +154,7 @@ $('#pac-input').focus(function() {
     $('#listPleacItem_2').appendTo('#appendBox');
 });
 
-   
+
 $('#current').focus(function() {
     curentFromTo = 'From';
     console.log(curentFromTo)
@@ -201,14 +201,14 @@ $('#often-input2').keyup(function() {
     console.log(inputcheck2.value)
 });
 $('#often-input2').focus(function() {
-        $(this).val('');        
-        $(".pac-container").each(function(index) {
-            console.log(index)
-            $(this).attr("id", "listPleacItem_" + index);
-        });    
-        $('#listPleacItem_0').appendTo('#appendBoxoften');
-        $('#listPleacItem_1').appendTo('#appendBoxoften');
-    }); 
+    $(this).val('');        
+    $(".pac-container").each(function(index) {
+        console.log(index)
+        $(this).attr("id", "listPleacItem_" + index);
+    });    
+    $('#listPleacItem_0').appendTo('#appendBoxoften');
+    $('#listPleacItem_1').appendTo('#appendBoxoften');
+}); 
 $('#often-input2').keyup(function() {    
     inputcheck2 = document.getElementById("often-input2");
     console.log(inputcheck2.value)
@@ -251,7 +251,7 @@ $("#currentPosId").click(function() {
         $('#locationfrom').html(addr)
         start = pos;
         console.log(pos)
-    selectMyPlace('current', addr, start.lat, start.lng)    
+        selectMyPlace('current', addr, start.lat, start.lng)    
     }
     else{
         end = pos;
@@ -261,7 +261,7 @@ $("#currentPosId").click(function() {
         checkshow = false;
         console.log(lat_f)
         console.log(lng_f)
-    selectMyPlace('current', addr, end.lat, end.lng)
+        selectMyPlace('current', addr, end.lat, end.lng)
     }
 });
 
@@ -278,49 +278,49 @@ function initialize() {
         streetViewControl: false,
         fullscreenControl: false,
         styles: [{
-                "featureType": "administrative",
-                "stylers": [{
-                    "weight": 2
-                }]
+            "featureType": "administrative",
+            "stylers": [{
+                "weight": 2
+            }]
+        },
+        {
+            "featureType": "landscape",
+            "stylers": [{
+                "color": "#efefef"
+            }]
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#d3d3d3"
+            }]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "labels.text",
+            "stylers": [{
+                "color": "#595959"
             },
             {
-                "featureType": "landscape",
-                "stylers": [{
-                    "color": "#efefef"
-                }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#d3d3d3"
-                }]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "labels.text",
-                "stylers": [{
-                        "color": "#595959"
-                    },
-                    {
-                        "weight": 3.5
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#ffffff"
-                }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "color": "#c0c0c0"
-                }]
+                "weight": 3.5
             }
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#ffffff"
+            }]
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#c0c0c0"
+            }]
+        }
         ]
 
     });   
@@ -359,7 +359,7 @@ function a(map) {
             var latlng = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
             geocoderRun(latlng);
             var id = 0,
-                target;
+            target;
         });
     }
 
@@ -380,12 +380,12 @@ function a(map) {
         var m = dist * 1000;
         console.log(m);
         //		if( JSON.stringify(current) != JSON.stringify(start) ){
-        if (m > 50) {
-            console.log(current);
-            console.log(start);
-            pos = current;
-            start = pos;
-            var curPosition = new google.maps.LatLng(pos);
+            if (m > 50) {
+                console.log(current);
+                console.log(start);
+                pos = current;
+                start = pos;
+                var curPosition = new google.maps.LatLng(pos);
             //            markerTest.setPosition(curPosition);
             markerCircle.setPosition(curPosition);
             // 			map.panTo(pos);
@@ -412,26 +412,26 @@ function a(map) {
     /***********************AUTO COMMPLETE SEARCH LOCATION******************* */
     /************************************************************************ */
     var inputsearch = document.getElementById('often-input2');
-        
-            var autocompletesearch = new google.maps.places.Autocomplete(inputsearch);
-            autocompletesearch.bindTo('bounds', map);
-            /*******AUTO SEARCH******** */
-        autocompletesearch.addListener('place_changed', function(ev) {       
-           placesearch = [];           
-            placesearch = autocompletesearch.getPlace();
-            map.panTo(placesearch.geometry.location);           
-            var current = {
-                lat: parseFloat(placesearch.geometry.location.lat()),
-                lng: parseFloat(placesearch.geometry.location.lng())
-            };           
-            startMarker.setVisible(true);
-            startMarker.setPosition(start);
-            var latlng = new google.maps.LatLng(placesearch.geometry.location.lat(), placesearch.geometry.location.lng());
-          
-                        map.panTo(latlng);
-                        markerCircle.setPosition(latlng);
-                            smoothZoom(map, 15, map.getZoom());
-        });
+    
+    var autocompletesearch = new google.maps.places.Autocomplete(inputsearch);
+    autocompletesearch.bindTo('bounds', map);
+    /*******AUTO SEARCH******** */
+    autocompletesearch.addListener('place_changed', function(ev) {       
+       placesearch = [];           
+       placesearch = autocompletesearch.getPlace();
+       map.panTo(placesearch.geometry.location);           
+       var current = {
+        lat: parseFloat(placesearch.geometry.location.lat()),
+        lng: parseFloat(placesearch.geometry.location.lng())
+    };           
+    startMarker.setVisible(true);
+    startMarker.setPosition(start);
+    var latlng = new google.maps.LatLng(placesearch.geometry.location.lat(), placesearch.geometry.location.lng());
+    
+    map.panTo(latlng);
+    markerCircle.setPosition(latlng);
+    smoothZoom(map, 15, map.getZoom());
+});
     var autocompleteStart = new google.maps.places.Autocomplete(inputStart);
     autocompleteStart.bindTo('bounds', map);
 
@@ -526,7 +526,7 @@ function a(map) {
                 console.log(lat_t);
                 console.log(lng_t);
                 typeTo = $('#pac-input').val();
-            $('#locationto').html($('#pac-input').val()) 
+                $('#locationto').html($('#pac-input').val()) 
                 console.log('********************************************************')
                 var radlat1 = Math.PI * lat_f / 180
                 var radlat2 = Math.PI * lat_t / 180
@@ -567,9 +567,9 @@ function btn_yes_position(){
     console.log(dist)
     console.log(lat_t)
     console.log(lng_t)
-   
+    
     console.log(lat_f+"===="+lng_f+"===="+dist+"===="+lat_t+"===="+lng_t)
-     getProduct(lat_f, lng_f, dist, lat_t, lng_t);
+    getProduct(lat_f, lng_f, dist, lat_t, lng_t);
 }
 function geocoderRun(latlng) {
     geocoder.geocode({ 'location': latlng }, function(results, status) {
@@ -580,13 +580,13 @@ function geocoderRun(latlng) {
                 addr = placeStart[1].formatted_address;
                 $('#current').val(addr)
             // alert(addr)
-            }
-        } else {
-            if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-                setTimeout(function() { console.log(status) }, 9000);
-            }
         }
-    });
+    } else {
+        if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            setTimeout(function() { console.log(status) }, 9000);
+        }
+    }
+});
     nearbyPlace(map, latlng, "");
     filterPlace(map, latlng);
 }
@@ -706,112 +706,112 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                     console.log(data2.length)
                     console.log(data2.status)
                     console.log(data2.size)
-            $('.a-link-item').remove();
-            $('.not-found').remove();
-            $('.typerel').remove();
-            $('.typeservice').remove();
-            if (data2.status == '200. bad request' || data2.size == 0) {
-                $('#ul-header2').css('display', 'block');
-                $('#container-product').css('display', 'block');
-                $('#loading').css('display', 'block');
-                setTimeout(function() {
-                    $('#loading').css('display', 'none');
+                    $('.a-link-item').remove();
+                    $('.not-found').remove();
+                    $('.typerel').remove();
+                    $('.typeservice').remove();
+                    if (data2.status == '200. bad request' || data2.size == 0) {
+                        $('#ul-header2').css('display', 'block');
+                        $('#container-product').css('display', 'block');
+                        $('#loading').css('display', 'block');
+                        setTimeout(function() {
+                            $('#loading').css('display', 'none');
 
-                    
-                    $("#pro-search").slideDown('4000');
-                    $('#box-pax-rel').show(500)
-                    $('#firstrel').hide()                      
-                    $('#paxrel').append('<div class="not-found">' + notfound + '</div>');
-                    $('#search-from').val('');
-                    $('#search-to').val('');
-                    $('#typeFrom').html(typeFrom)                
-                    $('#typeTo').html(typeTo) 
-                }, 2000);
-            } else {
-                $('#firstrel').show() 
-                $('#ul-header2').css('display', 'block');
-                $('#container-product').css('display', 'block');
-                $('#loading').css('display', 'block');
-                setTimeout(function() {
+                            
+                            $("#pro-search").slideDown('4000');
+                            $('#box-pax-rel').show(500)
+                            $('#firstrel').hide()                      
+                            $('#paxrel').append('<div class="not-found">' + notfound + '</div>');
+                            $('#search-from').val('');
+                            $('#search-to').val('');
+                            $('#typeFrom').html(typeFrom)                
+                            $('#typeTo').html(typeTo) 
+                        }, 2000);
+                    } else {
+                        $('#firstrel').show() 
+                        $('#ul-header2').css('display', 'block');
+                        $('#container-product').css('display', 'block');
+                        $('#loading').css('display', 'block');
+                        setTimeout(function() {
 
-                    $('#loading').css('display', 'none');
-                    
-                    $("#pro-search").slideDown('4000');
-                    $("#pro-search").animate({ 'margin-top': '0vh' });
-                }, 2000);
-                var cartype;
-                data1 = data2.data1;
-                cartype = data2.car_topic;
-                console.log(data1)
-                console.log(cartype)
-                var datasort = new Array()
-                $.each(cartype, function(i, val) {
-                    datasort.push(cartype[i])
-                });                
-                datasort.sort(function(a, b){return a.person-b.person});
-                console.log(datasort)
-                $('#get_history_pop').hide()
-                $('#get_historylist_pop').hide()                
-                $('#box-pax-rel').show(500)
-                if(check_his == true){                   
-                    console.log(his_place_from)
-                    console.log(his_place_to)
-                    $('#typeFrom').html(his_place_from);
-                    $('#typeTo').html(his_place_to); 
-                    check_his = false; 
-                }
-                else{                   
-                    $('#typeFrom').html(typeFrom)                
-                    $('#typeTo').html(typeTo)    
-                    
-                }
-                $.each(datasort, function(i, val) {
-                    var index2 = parseInt(i) + 1;
-                    var type,typeshow,pax;
-                    type = datasort[i].pax_id;
-                    if ($.cookie("lng") == 'cn') {
-                        $('#select_pax_use').html( '所有類型')
-                        typeshow = datasort[i].car_topic_cn;
-                        pax = datasort[i].pax_cn;
-                    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-                        $('#select_pax_use').html( 'All Type')                   
-                        typeshow = datasort[i].car_topic_en;
-                        pax = datasort[i].pax_en;
-                    } else if ($.cookie("lng") == 'th') {
-                    $('#select_pax_use').html( 'ทุกประเภท')
-                        typeshow = datasort[i].car_topic_th;
-                        pax = datasort[i].pax_th;
-                    }
-                    console.log(type)
-                    console.log(datasort)
-                $('#paxrel').append('<li class="typerel" id="typeservice'+datasort[i].pax_id+'"  onclick="sendpaxrel(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
-                
-                });
-                $.each(data1, function(i, val) {
-                    if (data1[i].type == 'Private') {
-                        compae1private.push(data1[i])
-                    }
-                    if (data1[i].type == 'Join') {
-                        compae1join.push(data1[i])
-                    }
-                })
-                console.log(compae2private.length)
-                if (compae1join.length == 0 && compae1private.length != 0) {
-                    $('#join-btn').hide();
-                    $('#private-btn').css('width', '100%');
+                            $('#loading').css('display', 'none');
+                            
+                            $("#pro-search").slideDown('4000');
+                            $("#pro-search").animate({ 'margin-top': '0vh' });
+                        }, 2000);
+                        var cartype;
+                        data1 = data2.data1;
+                        cartype = data2.car_topic;
+                        console.log(data1)
+                        console.log(cartype)
+                        var datasort = new Array()
+                        $.each(cartype, function(i, val) {
+                            datasort.push(cartype[i])
+                        });                
+                        datasort.sort(function(a, b){return a.person-b.person});
+                        console.log(datasort)
+                        $('#get_history_pop').hide()
+                        $('#get_historylist_pop').hide()                
+                        $('#box-pax-rel').show(500)
+                        if(check_his == true){                   
+                            console.log(his_place_from)
+                            console.log(his_place_to)
+                            $('#typeFrom').html(his_place_from);
+                            $('#typeTo').html(his_place_to); 
+                            check_his = false; 
+                        }
+                        else{                   
+                            $('#typeFrom').html(typeFrom)                
+                            $('#typeTo').html(typeTo)    
+                            
+                        }
+                        $.each(datasort, function(i, val) {
+                            var index2 = parseInt(i) + 1;
+                            var type,typeshow,pax;
+                            type = datasort[i].pax_id;
+                            if ($.cookie("lng") == 'cn') {
+                                $('#select_pax_use').html( '所有類型')
+                                typeshow = datasort[i].car_topic_cn;
+                                pax = datasort[i].pax_cn;
+                            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                                $('#select_pax_use').html( 'All Type')                   
+                                typeshow = datasort[i].car_topic_en;
+                                pax = datasort[i].pax_en;
+                            } else if ($.cookie("lng") == 'th') {
+                                $('#select_pax_use').html( 'ทุกประเภท')
+                                typeshow = datasort[i].car_topic_th;
+                                pax = datasort[i].pax_th;
+                            }
+                            console.log(type)
+                            console.log(datasort)
+                            $('#paxrel').append('<li class="typerel" id="typeservice'+datasort[i].pax_id+'"  onclick="sendpaxrel(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
+                            
+                        });
+                        $.each(data1, function(i, val) {
+                            if (data1[i].type == 'Private') {
+                                compae1private.push(data1[i])
+                            }
+                            if (data1[i].type == 'Join') {
+                                compae1join.push(data1[i])
+                            }
+                        })
+                        console.log(compae2private.length)
+                        if (compae1join.length == 0 && compae1private.length != 0) {
+                            $('#join-btn').hide();
+                            $('#private-btn').css('width', '100%');
 
-                }
-                if (compae1private.length == 0 && compae1join.length != 0) {
-                    $('#private-btn').hide();
-                    $('#join-btn').css('width', '100%');
-                    $('#private').hide();
-                    $('#join').show();
-                    $('#join-btn').css({ "background-color": "#3b5998", "color": "#fff" }
-                    );
-                }
-                if(compae1private.length != 0 && compae1join.length != 0 ){
-                    $('#private-btn').show();
-                    $('#join-btn').show();
+                        }
+                        if (compae1private.length == 0 && compae1join.length != 0) {
+                            $('#private-btn').hide();
+                            $('#join-btn').css('width', '100%');
+                            $('#private').hide();
+                            $('#join').show();
+                            $('#join-btn').css({ "background-color": "#3b5998", "color": "#fff" }
+                                );
+                        }
+                        if(compae1private.length != 0 && compae1join.length != 0 ){
+                            $('#private-btn').show();
+                            $('#join-btn').show();
                     // $('#join-btn').css({ "background-color": "#16b3b1", "color": "#fff" }
                 }
                 if(compae1join.length == 0 && compae1private.length == 0){
@@ -839,7 +839,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                 //         lngbook = 'Book';
                 //         lngcapacityinfo = 'Capacity';
                 //         lngdetails = 'details';
-                        
+                
                 //         lngfacilities = 'Facilities';
                 //         // $('.lng-book').html('Facilities')
                 //         // $('.lng-capacity-info').html('Capacity info')
@@ -864,7 +864,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                 //         lngbook = 'Book';
                 //         lngcapacityinfo = 'Capacity';
                 //         lngdetails = 'details';
-                        
+                
                 //         lngfacilities = 'Facilities';
                 //         // $('.lng-book').html('Book')
                 //         // $('.lng-capacity-info').html('Capacity info')
@@ -1004,18 +1004,18 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
 
 var his_place_from = '',his_place_to = '',check_his = false,check_type_book = '';
 function sendplace(from,to,u,v,x,y,type) {    
-     check_type_book = 'his';
-    his_place_from = from;
-    his_place_to = to;
-    check_his = true;
-    console.log(from+'-'+to)
-    lat_f = u;
-    lng_f = v;
-    lat_t = x;
-    lng_t = y;
-    booking = type;
-    place_from =  from;
-    place_to = to;
+ check_type_book = 'his';
+ his_place_from = from;
+ his_place_to = to;
+ check_his = true;
+ console.log(from+'-'+to)
+ lat_f = u;
+ lng_f = v;
+ lat_t = x;
+ lng_t = y;
+ booking = type;
+ place_from =  from;
+ place_to = to;
 }
 function sendpaxrel(x) {
     console.log(lat_t+'-'+lng_t)
@@ -1040,9 +1040,9 @@ function sendpaxrel(x) {
     console.log(ctype)
     if(x== 2 || x== 17){
         $('#join-btn').css({ "background-color": "#3b5998", "color": "#fff" }        
-        );
+            );
         $("#private-btn").css({ "background-color": " #fff", "color": "#3b5998 " }        
-        ); 
+            ); 
         $('#private-btn').removeClass('active');
         $('#join-btn').addClass('active');
         $('#join').show();
@@ -1050,9 +1050,9 @@ function sendpaxrel(x) {
     }
     else{
         $('#join-btn').css({ "background-color": "#fff", "color": "#3b5998" }        
-        );
+            );
         $("#private-btn").css({ "background-color": " #3b5998", "color": "#fff " }        
-        ); 
+            ); 
         $('#private-btn').addClass('active');
         $('#join-btn').removeClass('active');
         $('#join').hide();
@@ -1090,22 +1090,22 @@ function sendpaxrel(x) {
             if (dataRel.data1[i].pax_id == ctype) {
                 comparedata.push(dataRel.data1[i])
             } else if (ctype == 0) {
-                 comparedata.push(dataRel.data1[i])
-            }
-        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-            if (dataRel.data1[i].pax_id == x) {
-                comparedata.push(dataRel.data1[i])
-            } else if (ctype == 0) {
-                 comparedata.push(dataRel.data1[i])
-            }
-        } else if ($.cookie("lng") == 'th') {
-            if (dataRel.data1[i].pax_id == ctype) {
-                 comparedata.push(dataRel.data1[i])
-            } else if (ctype == 0) {
-                 comparedata.push(dataRel.data1[i])
-            }
-        } 
-    })
+             comparedata.push(dataRel.data1[i])
+         }
+     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        if (dataRel.data1[i].pax_id == x) {
+            comparedata.push(dataRel.data1[i])
+        } else if (ctype == 0) {
+         comparedata.push(dataRel.data1[i])
+     }
+ } else if ($.cookie("lng") == 'th') {
+    if (dataRel.data1[i].pax_id == ctype) {
+     comparedata.push(dataRel.data1[i])
+ } else if (ctype == 0) {
+     comparedata.push(dataRel.data1[i])
+ }
+} 
+})
     console.log(comparedata)
     $.each(comparedata, function(i, val) {
         if (comparedata[i].type == 'Private') {
@@ -1193,33 +1193,33 @@ function sendpaxrel(x) {
             '<table width="100%">' +
             '<tr>' +
             '<td  colspan="2" style="width: 100%">' +
-           '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
+            '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
             '</td>' +
             '</tr>' +
             '<tr>'+
             '<td align="center">'+
-          
+            
             '<span class="hotel_num">' + indexs + '</span>' +
             
             '<div class="item-thumbnail2" onclick="getimage(\'' + compae1private[i].car_model + '\') ">' +
-              '<img src="' + urlicon + compae1private[i].transfer_icon + '.jpg">' +
+            '<img src="' + urlicon + compae1private[i].transfer_icon + '.jpg">' +
             '</div>' +
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="i-list"   onclick="getcondition(\'' + compae1private[i].car_model + '\')">' +
             '<p id="capacity"><div>' + lngcapacityinfo + '</div><div>' + lngdetails + '</div></p>' +
-           '<i class="material-icons">search</i>' +
-           '</div>' +    
+            '<i class="material-icons">search</i>' +
+            '</div>' +    
             '</td >'+
-                           
+            
             '</tr>'+
             '<tr>'+
             '<td >'+
-          
-           
+            
+            
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="">' +
             '<div class="product_r">' +
@@ -1234,41 +1234,41 @@ function sendpaxrel(x) {
             '</tr>'+
             '</table>' +
             '</div>'
-        );
+            );
 
 
     }); 
     //end private
 
     if (compae1join.length != 0) {
-    $.each(compae1join, function(i, val) {
-        var indexs = parseInt(i) + 1;
-        if ($.cookie("lng") == 'cn') {
-            car_topic = compae1join[i].topic_cn;
-            cartype = compae1join[i].car_topic_cn;
-            pax = compae1join[i].pax_cn;
-            lngbook = '預訂';
-            lngcapacityinfo = '車容量';
-            lngdetails = '细节';
-            lngfacilities = '设施';
-        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-            car_topic = compae1join[i].topic_en;
-            cartype = compae1join[i].car_topic_en;
-            pax = compae1join[i].pax_en;
-            lngbook = 'Book';
-            lngcapacityinfo = 'Capacity';
-            lngdetails = 'details';            
-            lngfacilities = 'Facilities';
-        } else if ($.cookie("lng") == 'th') {
-            car_topic = compae1join[i].topic_th;
-            cartype = compae1join[i].car_topic_th;
-            pax = compae1join[i].pax_th;
-            lngbook = 'จอง';
-            lngcapacityinfo = 'ความจุรถ ';
-            lngdetails = 'รายละเอียด';
-            lngfacilities = 'สิ่งอำนวยความสะดวก';
-        }
-        $('#product_c').append('<div class="a-link-item col-lg-12" >' +
+        $.each(compae1join, function(i, val) {
+            var indexs = parseInt(i) + 1;
+            if ($.cookie("lng") == 'cn') {
+                car_topic = compae1join[i].topic_cn;
+                cartype = compae1join[i].car_topic_cn;
+                pax = compae1join[i].pax_cn;
+                lngbook = '預訂';
+                lngcapacityinfo = '車容量';
+                lngdetails = '细节';
+                lngfacilities = '设施';
+            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                car_topic = compae1join[i].topic_en;
+                cartype = compae1join[i].car_topic_en;
+                pax = compae1join[i].pax_en;
+                lngbook = 'Book';
+                lngcapacityinfo = 'Capacity';
+                lngdetails = 'details';            
+                lngfacilities = 'Facilities';
+            } else if ($.cookie("lng") == 'th') {
+                car_topic = compae1join[i].topic_th;
+                cartype = compae1join[i].car_topic_th;
+                pax = compae1join[i].pax_th;
+                lngbook = 'จอง';
+                lngcapacityinfo = 'ความจุรถ ';
+                lngdetails = 'รายละเอียด';
+                lngfacilities = 'สิ่งอำนวยความสะดวก';
+            }
+            $('#product_c').append('<div class="a-link-item col-lg-12" >' +
             // '<div class="item-thumbnail2" onclick="getimage(\'' + compae1join[i].car_model + '\')">' +
             // '<img src="' + urlicon + compae1join[i].transfer_icon + '.jpg">' +
             // '</div>' +
@@ -1309,33 +1309,33 @@ function sendpaxrel(x) {
             '<table width="100%">' +
             '<tr>' +
             '<td  colspan="2" style="width: 100%">' +
-           '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
+            '<h2 class="searchresult_name"title="product name"><span>' + car_topic + '</span></h2>' +
             '</td>' +
             '</tr>' +
             '<tr>'+
             '<td align="center">'+
-          
+            
             '<span class="hotel_num">' + indexs + '</span>' +
             
             '<div class="item-thumbnail2" onclick="getimage(\'' + compae1join[i].car_model + '\') ">' +
-              '<img src="' + urlicon + compae1join[i].transfer_icon + '.jpg">' +
+            '<img src="' + urlicon + compae1join[i].transfer_icon + '.jpg">' +
             '</div>' +
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="i-list"   onclick="getcondition(\'' + compae1join[i].car_model + '\')">' +
             '<p id="capacity"><div>' + lngcapacityinfo + '</div><div>' + lngdetails + '</div></p>' +
-           '<i class="material-icons">search</i>' +
-           '</div>' +    
+            '<i class="material-icons">search</i>' +
+            '</div>' +    
             '</td >'+
-                           
+            
             '</tr>'+
             '<tr>'+
             '<td >'+
-          
-           
+            
+            
             '</td >'+ 
-           
+            
             '<td  align="center" valign="top">'+
             '<div id="">' +
             '<div class="product_r">' +
@@ -1350,8 +1350,8 @@ function sendpaxrel(x) {
             '</tr>'+
             '</table>' +
             '</div>'
-        );
-    });
+            );
+        });
 }
 }
 
@@ -1417,10 +1417,10 @@ function confirmhistory(){
             getDetailbook(his_from,his_to,his_lat_f,his_lng_f,his_lat_t,his_lng_t,his_fashion,his_transfer_id)
     //window.location.href = base_url + 'book?data=' + his_transfer_id + '&from=' + his_from + '&to=' + his_to + '&lat_f='+his_lat_t+'&lng_f='+his_lng_f+'&lat_t='+his_lat_t+'&lng_t='+his_lng_t+'&book='+his_fashion;
     
-            
-                                       
-        }
-    });
+    
+    
+}
+});
 }
 function cancelhistory(){
     $('#history_pop').hide() 
@@ -1484,19 +1484,19 @@ function placeRecord() {
         } else {
             if (results) {
                 var obj = JSON.parse(results);
-                               console.log(obj);
+                console.log(obj);
                 $.each(obj, function(i, val) {
-                            if (obj[i].s_type == '1') {
-                            dataHome.push(obj)  
-                            }
-                            if (obj[i].s_type == '2') {
-                            dataOffice.push(obj)
-                            
-                            }
-                            if (obj[i].s_type == '3') {
-                            dataRegular.push(obj) 
-                            }
-                        });
+                    if (obj[i].s_type == '1') {
+                        dataHome.push(obj)  
+                    }
+                    if (obj[i].s_type == '2') {
+                        dataOffice.push(obj)
+                        
+                    }
+                    if (obj[i].s_type == '3') {
+                        dataRegular.push(obj) 
+                    }
+                });
                 $.each(obj, function(i, data) {
                     var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + data.i_lat + ',' + data.i_lng + '&sensor=true&language=' + lang_to_map;
                     $.post(url, function(data_place) {
@@ -1504,105 +1504,105 @@ function placeRecord() {
                         if(dataHome.length == 1){
                             $('.lng-save_home_place').attr('onclick', 'selectMyPlace(1,"' + data_place.results[0].formatted_address + '",' + data.i_lat + ',' + data.i_lng + ')');
                             $('#often_edit_home').show() 
-                         }
-                         else if(dataHome.length == 0){
+                        }
+                        else if(dataHome.length == 0){
                             $('.lng-save_home_place').attr('onclick', 'addPlaceOfften(2,"edit")');
                             $('.lng-save_home_place').html(click_save_place_txt);
                             $('#often_edit_home').hide()
-                         }
-                         else{
-                             $('.lng-save_home_place').attr('onclick', 'selectSavePlaceOfften(1)');
-                             $('#often_edit_home').show()                             
-                         }
-                         if(dataOffice.length == 1){
-                            $('.lng-save_Office_place').attr('onclick', 'selectMyPlace(2,"' + data_place.results[0].formatted_address + '",' + data.i_lat + ',' + data.i_lng + ')');
-                            $('#often_edit_office').show()                                              
-                         }
-                         else if(dataOffice.length == 0){
-                            $('.lng-save_Office_place').attr('onclick', 'addPlaceOfften(2,"edit")');                           
-                            $('.lng-save_Office_place').html( click_save_place_txt);
-                            $('#often_edit_office').hide()                             
-                         }
-                         else{
-                            $('.lng-save_Office_place').attr('onclick', 'selectSavePlaceOfften(2)');
-                            $('#often_edit_office').show() 
-                         }
-                         if(dataRegular.length == 1){
-                            $('.lng-save_regularly_place').attr('onclick', 'selectMyPlace(3,"' + data_place.results[0].formatted_address + '",' + data.i_lat + ',' + data.i_lng + ')');
-                            $('#often_edit_home').show()
-                            
-                                                
-                             
-                         }
-                         else if(dataRegular.length == 0){
-                            $('.lng-save_regularly_place').attr('onclick', 'addPlaceOfften(3,"edit")');                           
-                            $('.lng-save_regularly_place').html( click_save_place_txt);
-                            $('#often_edit_home').hide()                             
-                         }
-                         else{
-                             $('.lng-save_regularly_place').attr('onclick', 'selectSavePlaceOfften(3)');
-                            $('#often_edit_home').show()
-                         }
-                        if (data.s_type == '1') {                           
-                            homecheck = true;
-                            if(data.topic == ''){
-                                $('.lng-save_home_place').html(data_place.results[0].formatted_address)
-                            }
-                            else{
-                                $('.lng-save_home_place').html(data.topic)                                
-                            }
-                            $('#edit-home_select').show();
-                            $('#often_edit_home').show();                            
                         }
-                        if (data.s_type == '2') {
-                            if(data.topic == ''){
-                                $('.lng-save_Office_place').html(data_place.results[0].formatted_address)
-                            }
-                            else{
-                                $('.lng-save_Office_place').html(data.topic)
-                            }
-                            officecheck = true;
-                            $('#edit-office_select').show();
-                            $('#often_edit_office').show();
-                        }
-                        if (data.s_type == '3') {                            
-                            regularcheck = true;
-                            if(data.topic == ''){
-                                $('.lng-save_Office_place').html(data_place.results[0].formatted_address)
-                            }
-                            else{
-                                $('.lng-save_regularly_place').html(data.topic)                                
-                            }
-                            $('#often_edit_regular').show();
-                            $('#edit_regularly_select').show();
-                        }
-                    });
-                });
-                console.log(dataHome)
-                console.log(dataOffice)
-                console.log(dataRegular)
-                console.log(dataHome.length)
-                console.log(dataOffice.length)
-                console.log(dataRegular.length)
-                $('.numhome').html( '(' + dataHome.length + ')' );
-                $('.numoffice').html( '(' + dataOffice.length + ')' );
-                $('.numregular').html( '(' + dataRegular.length + ')' );  
-            }
-        }
+                        else{
+                         $('.lng-save_home_place').attr('onclick', 'selectSavePlaceOfften(1)');
+                         $('#often_edit_home').show()                             
+                     }
+                     if(dataOffice.length == 1){
+                        $('.lng-save_Office_place').attr('onclick', 'selectMyPlace(2,"' + data_place.results[0].formatted_address + '",' + data.i_lat + ',' + data.i_lng + ')');
+                        $('#often_edit_office').show()                                              
+                    }
+                    else if(dataOffice.length == 0){
+                        $('.lng-save_Office_place').attr('onclick', 'addPlaceOfften(2,"edit")');                           
+                        $('.lng-save_Office_place').html( click_save_place_txt);
+                        $('#often_edit_office').hide()                             
+                    }
+                    else{
+                        $('.lng-save_Office_place').attr('onclick', 'selectSavePlaceOfften(2)');
+                        $('#often_edit_office').show() 
+                    }
+                    if(dataRegular.length == 1){
+                        $('.lng-save_regularly_place').attr('onclick', 'selectMyPlace(3,"' + data_place.results[0].formatted_address + '",' + data.i_lat + ',' + data.i_lng + ')');
+                        $('#often_edit_home').show()
+                        
+                        
+                        
+                    }
+                    else if(dataRegular.length == 0){
+                        $('.lng-save_regularly_place').attr('onclick', 'addPlaceOfften(3,"edit")');                           
+                        $('.lng-save_regularly_place').html( click_save_place_txt);
+                        $('#often_edit_home').hide()                             
+                    }
+                    else{
+                     $('.lng-save_regularly_place').attr('onclick', 'selectSavePlaceOfften(3)');
+                     $('#often_edit_home').show()
+                 }
+                 if (data.s_type == '1') {                           
+                    homecheck = true;
+                    if(data.topic == ''){
+                        $('.lng-save_home_place').html(data_place.results[0].formatted_address)
+                    }
+                    else{
+                        $('.lng-save_home_place').html(data.topic)                                
+                    }
+                    $('#edit-home_select').show();
+                    $('#often_edit_home').show();                            
+                }
+                if (data.s_type == '2') {
+                    if(data.topic == ''){
+                        $('.lng-save_Office_place').html(data_place.results[0].formatted_address)
+                    }
+                    else{
+                        $('.lng-save_Office_place').html(data.topic)
+                    }
+                    officecheck = true;
+                    $('#edit-office_select').show();
+                    $('#often_edit_office').show();
+                }
+                if (data.s_type == '3') {                            
+                    regularcheck = true;
+                    if(data.topic == ''){
+                        $('.lng-save_Office_place').html(data_place.results[0].formatted_address)
+                    }
+                    else{
+                        $('.lng-save_regularly_place').html(data.topic)                                
+                    }
+                    $('#often_edit_regular').show();
+                    $('#edit_regularly_select').show();
+                }
+            });
+});
+console.log(dataHome)
+console.log(dataOffice)
+console.log(dataRegular)
+console.log(dataHome.length)
+console.log(dataOffice.length)
+console.log(dataRegular.length)
+$('.numhome').html( '(' + dataHome.length + ')' );
+$('.numoffice').html( '(' + dataOffice.length + ')' );
+$('.numregular').html( '(' + dataRegular.length + ')' );  
+}
+}
 
-    });
+});
 }
 
 /************************** */
 //change set name
 /****************************/ 
 $(document).ready(function() {
-$('#changesetname').on('input', function(){
-    alert(document.getElementById('changesetname').value);
-});
-$('#changesetname1').on('input', function(){
-    alert(document.getElementById('changesetname1').value);
-});
+    $('#changesetname').on('input', function(){
+        alert(document.getElementById('changesetname').value);
+    });
+    $('#changesetname1').on('input', function(){
+        alert(document.getElementById('changesetname1').value);
+    });
 });
 
 function changesetname(changesetname) {
@@ -1632,7 +1632,7 @@ function addPlaceOfften(type_place,type_call) {
         // }, 500);
         
         $('#popup-login').show(500);
-setTimeout(function() {
+        setTimeout(function() {
 
             $('#loading').hide();
         }, 500);
@@ -1647,22 +1647,22 @@ setTimeout(function() {
         markerPlaceOfften.setMap(map);
         markerPlaceOfften.setVisible(true);
         var newPos2 = {
-                        lat: lat_f,
-                        lng: lng_f
-                    };            
-                    markerPlaceOfften.setPosition(newPos2);
+            lat: lat_f,
+            lng: lng_f
+        };            
+        markerPlaceOfften.setPosition(newPos2);
         url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat_f + ',' + lng_f + '&sensor=true&language=' + lang_to_map;
         
-                    $.post(url, function(data) {
-                        console.log(data);
-                        infowindow.close();
-                        infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm pull-right btn-part" style="display: inline-block;border-radius: 25px; background: #3b5998;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
-                        infowindow.open(map, markerPlaceOfften);
-                        $('#often-input2').show(500);
-                        $('#search-often').show(500);
+        $.post(url, function(data) {
+            console.log(data);
+            infowindow.close();
+            infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm pull-right btn-part" style="display: inline-block;border-radius: 25px; background: #3b5998;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
+            infowindow.open(map, markerPlaceOfften);
+            $('#often-input2').show(500);
+            $('#search-often').show(500);
         //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
         
-                    });
+    });
         if (type_call == "save") {
             type_call = 1;
             var btn_color = "btn-success";
@@ -1725,7 +1725,7 @@ setTimeout(function() {
                 $('#often-input2').show(500);
 //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
 
-            });
+});
 
         });
     }
@@ -1746,27 +1746,27 @@ function selectSavePlaceOfften(type_place) {
         } else {
             if (results) {
                 var obj = JSON.parse(results);
-                               console.log(obj);
-                $.each(obj, function(i, data) {                 
+                console.log(obj);
+                $.each(obj, function(i, data) {
                         if (data.s_type == type_place) { //1
                             console.log(data.s_type)
                             console.log(data.topic)
                             var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + data.i_lat + ',' + data.i_lng + '&sensor=true&language=' + lang_to_map;
                             if(data.topic != ''){
                                 $('#box-placeoften').append('<li class="placeoften" id="placeoften' + data.id + '"onclick="selectMyPlace('+type_place+',\'' + data.topic + '\',' + data.i_lat + ',' + data.i_lng + ');"><i class="material-icons " style=" margin-right: 15px;    font-size: 30px; color: #16b3b1;    position: absolute;">add_location</i><div style="margin-left: 40px;"><span class="name">' + data.topic + '</span></div></li>');
-                             
+                                
                             }
                             else{
                                 $.post(url, function(data_place) {
                                     console.log(data_place);
-                                 $('#box-placeoften').append('<li class="placeoften" id="placeoften' + data.id + '"onclick="selectMyPlace('+type_place+',\'' + data_place.results[0].formatted_address + '\',' + data.i_lat + ',' + data.i_lng + ');"><i class="material-icons " style=" margin-right: 15px;    font-size: 30px; color: #16b3b1;    position: absolute;">add_location</i><div style="margin-left: 40px;"><span class="name">' + data_place.results[0].formatted_address + '</span></div></li>');
-                                console.log(placeoften)
+                                    $('#box-placeoften').append('<li class="placeoften" id="placeoften' + data.id + '"onclick="selectMyPlace('+type_place+',\'' + data_place.results[0].formatted_address + '\',' + data.i_lat + ',' + data.i_lng + ');"><i class="material-icons " style=" margin-right: 15px;    font-size: 30px; color: #16b3b1;    position: absolute;">add_location</i><div style="margin-left: 40px;"><span class="name">' + data_place.results[0].formatted_address + '</span></div></li>');
+                                    console.log(placeoften)
                                 });
                             }                            
-                         }                        
-                        });
-                        console.log(placeoften)
-                        $('#box-placeoften').html(placeoften)
+                        }                        
+                    });
+                console.log(placeoften)
+                $('#box-placeoften').html(placeoften)
             }
         }
 
@@ -1797,15 +1797,15 @@ function btn_save(){
         if (results === 'false') {
 
         } else { 
-                $.post("my_place_often/place_often", { "id": iduser }, function(results) {                    
-                            if (results === 'false') {                    
-                            } else {
-                                if (results) {
-                                    $('#loading').hide();
-                                    var obj = JSON.parse(results);
-                                                   console.log(obj);
-                                    $.each(obj, function(i, data) {
-                                     
+            $.post("my_place_often/place_often", { "id": iduser }, function(results) {                    
+                if (results === 'false') {                    
+                } else {
+                    if (results) {
+                        $('#loading').hide();
+                        var obj = JSON.parse(results);
+                        console.log(obj);
+                        $.each(obj, function(i, data) {
+                         
                                             if (data.s_type == chTypeplace) { //1
                                                 console.log(data.s_type)
                                                 console.log(data.topic)
@@ -1818,28 +1818,32 @@ function btn_save(){
                                                 }
                                                 var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + data.i_lat + ',' + data.i_lng + '&sensor=true&language=' + lang_to_map;
                                                 if(data.topic != ''){
-                    
+                                                    
                                                     $('#box_editplaceoften').append('<li class="placeeditften" id="placeeditften' + data.id + '"><div><table width="100%"><tr><td width="70%"><div class="name">' + data.topic + textphone + '</div></td><td width="15%" align="center"><i class="material-icons " style="color: #ff9800; font-weight: 700;" onclick="editMyPlace('+data.id+',\'' + data.topic + '\','+data.i_lat+','+data.i_lng+',\''+data.phone+'\');">edit</i></td><td width="10%" align="center"><i class="material-icons" style="color: #f44336; font-weight: 700;" onclick="deleteMyPlace(' + data.id + ','+chTypeplace+');">delete</i></td></tr></table></div></li>');
                                                  //<i class="material-icons " style=" margin-right: 15px;    font-size: 30px; color: #16b3b1;    position: absolute;">add_location</i>
-                                                }
-                                                else{
-                                                    $.post(url, function(data_place) {
-                                                        console.log(data_place);
+                                             }
+                                             else{
+                                                $.post(url, function(data_place) {
+                                                    console.log(data_place);
                                                     $('#box_editplaceoften').append('<li class="placeeditften" id="placeeditften' + data.id + '"><div><table width="100%"><tr><td width="70%"><div class="name">'  + data_place.results[0].formatted_address + textphone +'</div></td><td width="15%" align="center"><i class="material-icons " style="color: #ff9800; font-weight: 700;" onclick="editMyPlace('+data.id+',\'' + data.topic + '\','+data.i_lat+','+data.i_lng+',\''+data.phone+'\');">edit</i></td><td width="10%" align="center"><i class="material-icons" style="color: #f44336; font-weight: 700;" onclick="deleteMyPlace(' + data.id + ','+chTypeplace+');">delete</i></td></tr></table></div></li>');
-                                                   
-                                                    });
-                                                }                                                
-                                             } 
-                                            });
-                                            $('#edit_often_pop').hide(500)
-                                }
-                            }                    
-                        });
+                                                    
+                                                });
+                                            }                                                
+                                        } 
+                                    });
+                        $('#edit_often_pop').hide(500)
+                    }
+                }                    
+            });
         }
     });
 }
-function btn_close(){
-    $('#edit_often_pop').hide(500)
+function btn_close(x){
+    // console.log(a)
+    
+    $('#edit_often_pop').hide(500) 
+    
+    
 }
 function editMyPlace(x,text,lat,lng,phone){
     console.log(text+'-'+phone)
@@ -1848,9 +1852,9 @@ function editMyPlace(x,text,lat,lng,phone){
     if(text == ''){
         var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true&language=' + lang_to_map;
         $.post(url, function(data_place) {
-                console.log(data_place);
-             $('#newname').val(data_place.results[0].formatted_address)             
-            });        
+            console.log(data_place);
+            $('#newname').val(data_place.results[0].formatted_address)             
+        });        
     }
     else{
         $('#newname').val(text)
@@ -1874,12 +1878,12 @@ function selectEditPlaceOfften(type_place) {
         // }, 500);
         
         $('#popup-login').show(500);
-setTimeout(function() {
+        setTimeout(function() {
 
             $('#loading').hide();
         }, 500);
-    return false;
-}
+        return false;
+    }
     $('#edit_often').show(500)
     $('#otherBox').hide()
     $('#outedit_often').show(500)
@@ -1894,7 +1898,7 @@ setTimeout(function() {
         } else {
             if (results) {
                 var obj = JSON.parse(results);
-                               console.log(obj);
+                console.log(obj);
                 $.each(obj, function(i, data) {                 
                         if (data.s_type == type_place) { //1
                             console.log(data.s_type)
@@ -1914,33 +1918,33 @@ setTimeout(function() {
                             else{
                                 $.post(url, function(data_place) {
                                     console.log(data_place);
-                                $('#box_editplaceoften').append('<li class="placeeditften" id="placeeditften' + data.id + '"><div><table width="100%"><tr><td onclick="selectMyPlace('+type_place+',\'' + data_place.results[0].formatted_address + '\',' + data.i_lat + ',' + data.i_lng + ');" width="70%"><div class="name">'  + data_place.results[0].formatted_address + textphone+'</div></td><td width="15%" align="center"><i class="material-icons " style="color: #ff9800; font-weight: 700;" onclick="editMyPlace('+data.id+',\'' + data.topic + '\','+data.i_lat+','+data.i_lng+',\''+data.phone+'\');">edit</i></td><td width="10%" align="center"><i class="material-icons" style="color: #f44336; font-weight: 700;" onclick="deleteMyPlace(' + data.id + ',' + chTypeplace + ');">delete</i></td></tr></table></div></li>');
-                                console.log(placeoften)
+                                    $('#box_editplaceoften').append('<li class="placeeditften" id="placeeditften' + data.id + '"><div><table width="100%"><tr><td onclick="selectMyPlace('+type_place+',\'' + data_place.results[0].formatted_address + '\',' + data.i_lat + ',' + data.i_lng + ');" width="70%"><div class="name">'  + data_place.results[0].formatted_address + textphone+'</div></td><td width="15%" align="center"><i class="material-icons " style="color: #ff9800; font-weight: 700;" onclick="editMyPlace('+data.id+',\'' + data.topic + '\','+data.i_lat+','+data.i_lng+',\''+data.phone+'\');">edit</i></td><td width="10%" align="center"><i class="material-icons" style="color: #f44336; font-weight: 700;" onclick="deleteMyPlace(' + data.id + ',' + chTypeplace + ');">delete</i></td></tr></table></div></li>');
+                                    console.log(placeoften)
                                 });
                             }                            
-                         }   
-                        });
+                        }   
+                    });
             }
         }
     });
 }
 function deleteMyPlace(id,type_place) {
    $('#loading').show();
-    DataType = [];
-    $('.placeeditften').remove()    
-    var iduser = $.cookie("login");
-    $.post("my_place_often/delete", { "id": id }, function(results) {
-        console.log(results)
-        if (results === 'false') {
-        } else { 
-            $.post("my_place_often/place_often", { "id": iduser }, function(results) {
-                if (results === 'false') {                    
-                } else {
-                    if (results) {
-                        $('#loading').hide();
-                        var obj = JSON.parse(results);
-                        console.log(obj);
-                        $.each(obj, function(i, data) {
+   DataType = [];
+   $('.placeeditften').remove()    
+   var iduser = $.cookie("login");
+   $.post("my_place_often/delete", { "id": id }, function(results) {
+    console.log(results)
+    if (results === 'false') {
+    } else { 
+        $.post("my_place_often/place_often", { "id": iduser }, function(results) {
+            if (results === 'false') {                    
+            } else {
+                if (results) {
+                    $('#loading').hide();
+                    var obj = JSON.parse(results);
+                    console.log(obj);
+                    $.each(obj, function(i, data) {
                             if (data.s_type == type_place) { //1
                                 console.log(data.s_type)
                                 console.log(data.topic)
@@ -1957,12 +1961,12 @@ function deleteMyPlace(id,type_place) {
                                 }                                                
                             }                   
                         });
-                    }
                 }
-                    
-            });
-        }
-    });
+            }
+            
+        });
+    }
+});
 }
 function createAllMarker() {
     pin = {
@@ -2016,31 +2020,31 @@ function createAllMarker() {
 
 function savePlaceOften(type_call, lat, lng, place_id, type_place) {
     var getname;
-        console.log(changename)
-        console.log(changephone)
+    console.log(changename)
+    console.log(changephone)
+    
+    var datasend = {
+        "lat": lat,
+        "lng": lng,
+        "place_id": place_id,
+        "type_place": type_place,
+        "login": $.cookie("login"),
+        "topic": changename,
+        "phone": changephone
         
-        var datasend = {
-            "lat": lat,
-            "lng": lng,
-            "place_id": place_id,
-            "type_place": type_place,
-            "login": $.cookie("login"),
-            "topic": changename,
-            "phone": changephone
-            
-        };
-        console.log(datasend)
-        $.ajax({
-            type: 'POST',
-            url: 'https://welovetaxi.com/app/booking/my_place_often/save',
-            data: datasend,
+    };
+    console.log(datasend)
+    $.ajax({
+        type: 'POST',
+        url: 'https://welovetaxi.com/app/booking/my_place_often/save',
+        data: datasend,
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
                 console.log(data)
                 $('#changesetname').val('');
                 $('#changesetname1').val('');
-            if (data.status == true) {
+                if (data.status == true) {
                 //placeRecord();
                 $('#search-often').hide()
                 $('#search-often').hide();
@@ -2051,7 +2055,7 @@ function savePlaceOften(type_call, lat, lng, place_id, type_place) {
                 swal('' + error + '', "", "success");
             }
         }
-        });
+    });
 }
 
 function selectMyPlace(type_place,txtAdd, latti, lngti) {
@@ -2064,9 +2068,9 @@ function selectMyPlace(type_place,txtAdd, latti, lngti) {
     $('#edit_often').hide()    
     $('#otherBox').show(500)
     if( type_place == 5){
-    infowindow.close();
-    google.maps.event.clearListeners(map, 'center_changed');  
-    
+        infowindow.close();
+        google.maps.event.clearListeners(map, 'center_changed');  
+        
     }   
     var getplace;
     var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latti + ',' +lngti + '&sensor=true&language=' + lang_to_map;
@@ -2108,7 +2112,7 @@ function selectMyPlace(type_place,txtAdd, latti, lngti) {
             setTimeout(function() {                
                 $('#pac-input').focus();
                 curentFromTo == 'To';
-         }, 2000);
+            }, 2000);
         }
     }
     else{
@@ -2197,7 +2201,7 @@ function setPinLocation() {
     var newPos2 = {
         lat: lat_f,
         lng: lng_f
-        };        
+    };        
     markerPlaceOfften.setPosition(newPos2);
     url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat_f + ',' + lng_f + '&sensor=true&language=' + lang_to_map;
     

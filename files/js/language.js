@@ -43,7 +43,7 @@ $(document).ready(function() {
         $('#loading').css('display', 'block');    
     });
 
-     console.log($.cookie("lng")+'********************************************************************************');
+    console.log($.cookie("lng")+'********************************************************************************');
     if ($.cookie("lng") == 'cn') {
         console.log($.cookie("lng")+'cn');
         $('.lng-private').html('专车');
@@ -387,7 +387,7 @@ $(document).ready(function() {
         $('.lng_credit_card').html("Credit Card (omise)")
         $('.lng-paypal').html("Paypal")
         $('.lng_tours').html("Tours")
-         $('.lng_transport').html("Shuttle service")
+        $('.lng_transport').html("Shuttle service")
         $('.lng_select_province').html("Please Select Province")
         $('.lng_day_tour').html("Day tour")
         $('.lng_spa').html("Spa")
@@ -453,8 +453,8 @@ $(document).ready(function() {
     } else if ($.cookie("lng") === 'th' ) {
       console.log($.cookie("lng"));
 
-        $('.lng-private').html('รถส่วนตัว');
-        $('.lng-join').html('รถร่วมบริการ');
+      $('.lng-private').html('รถส่วนตัว');
+      $('.lng-join').html('รถร่วมบริการ');
         //menu
         $('.lng-register').html('ลงทะเบียน');
         $('.lng-login').html('  เข้าสู่ระบบ');
@@ -618,8 +618,8 @@ $(document).ready(function() {
 
 
 
-             
-              
+
+
 
 
 
@@ -662,7 +662,7 @@ $(document).ready(function() {
 
 
     }
-   
+
 });
 
 function language(lng) {
@@ -673,51 +673,51 @@ function language(lng) {
 }
 
 function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '1865903040340223',
       cookie     : true,
       xfbml      : true,
       version    : 'v2.9'
-    });
+  });
     FB.AppEvents.logPageView();   
-  };
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-    function login(){        
-   FB.login(function (response) { statusChangeCallback(response); }, { scope: 'email,public_profile', return_scopes: true });
-  function statusChangeCallback(response) {
+};
+(function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+function login(){        
+ FB.login(function (response) { statusChangeCallback(response); }, { scope: 'email,public_profile', return_scopes: true });
+ function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       checkLoginState();
-    } else {
-    }
+  } else {
   }
-  function checkLoginState() {
+}
+function checkLoginState() {
     var type_login = $('#by').val();
-        var param_data = $('#data').val();
-        var param_from = $('#from').val();
-        var param_to = $('#to').val();
-        var lat_f = $('#lat_f').val();
-        var lng_f = $('#lng_f').val();
-        var lat_t = $('#lat_t').val();
-        var lng_t = $('#lng_t').val();
-        var book = $('#book').val();
+    var param_data = $('#data').val();
+    var param_from = $('#from').val();
+    var param_to = $('#to').val();
+    var lat_f = $('#lat_f').val();
+    var lng_f = $('#lng_f').val();
+    var lat_t = $('#lat_t').val();
+    var lng_t = $('#lng_t').val();
+    var book = $('#book').val();
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me',{fields:'name,email,picture'}, function(response) {
         console.log(response)
@@ -725,47 +725,46 @@ window.fbAsyncInit = function() {
         //console.log(response.getImageUrl())
         // $.cookie("idface", response.id);
         $.ajax({
-        type: 'POST',
-        url: base_url+'login_control/processsocial',
-        data: {'username': response.email,'name':response.name,'password':response.id,'type':'facebook','img':response.picture.data.url},
+            type: 'POST',
+            url: base_url+'login_control/processsocial',
+            data: {'username': response.email,'name':response.name,'password':response.id,'type':'facebook','img':response.picture.data.url},
         //contentType: "application/json; application/x-www-form-urlencoded; charset=UTF-8",
         dataType: 'json',
         success: function(res) { 
           console.log(res)
           console.log(res.status)
           if(res.status == 0)
-              {
-                 $.cookie("login",res.username);
-                   loginsucess()
+          {
+           $.cookie("login",res.username);
+           loginsucess()
 //                    if(type_login=='dasboard'){
 //                     window.location.href = "<?php echo base_url(); ?>dashboard/view_user";
 //                  }else if(type_login=='book'){
 // //                     
 //                     window.location.href = "<?php echo base_url(); ?>book?data="+param_data+"&from="+param_from+"&to="+param_to + "&lat_f=" + getParameterByName('lat_f')+ "&lng_f=" + getParameterByName('lng_f')+ "&lat_t=" + getParameterByName('lat_t')+ "&lng_t=" + getParameterByName('lng_t') + "&book=" + getParameterByName('book');
-                    
+
 //                  }else{
 //                     window.location.href = "<?php echo base_url(); ?>";
 //                  }   
-              }
-              else 
-              {
-              $('#acceptancecheck').hide();     
-               $('#message').html('Login not complete').css('color', 'red');
-              }
-        }
+}
+else 
+{
+  $('#acceptancecheck').hide();     
+  $('#message').html('Login not complete').css('color', 'red');
+}
+}
+});
     });
-    });
-  }
-    }
-    function loginsucess(){
-        // if ($.cookie("login")) {
+}
+}
+function loginsucess(){
             $('#btn_ck_login').hide()
             $('#acceptancecheck').show(); 
             $('#popup-login').hide();
-        $.ajax({
-            type: 'POST',
-            url: base_url + 'getuser_control/mainpage',
-            data: { 'id': $.cookie("login") },
+            $.ajax({
+                type: 'POST',
+                url: base_url + 'getuser_control/mainpage',
+                data: { 'id': $.cookie("login") },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
@@ -800,47 +799,39 @@ window.fbAsyncInit = function() {
                 $('.caret').css('display', 'inline-block')
             }
         });
+}
 
-    // } else {
-    //     $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
-    //     $('.box-login').hide();
-    //     $('.box-desboard').hide();
-    //     $('.box-login-non').show();
-    //     $('.placeeditften').remove()
-    //     $('#btnlogin').css('display', 'block')
-    //     $('#btnlogin2').css('display', 'block')
-    //     $('#btnuser').css('display', 'none')
-    //     $('.caret').css('display', 'none')
-    // }
-    }
-  
-    
+
 
 function sign_up(){
-       
-       $('.box-signup').css('display','block');
-       $('.box-regispro').css('display','block');
 
-       $('.box-signin').css('display','none');
-       $('.loginReg__or').css('display','none');
+ $('.box-signup').css('display','block');
+ $('.box-regispro').css('display','block');
+
+ $('.box-signin').css('display','none');
+ $('.loginReg__or').css('display','none');
 }
-    
-    function sign_in(){
-       $('.box-signup').css('display','none');
-       $('.box-regispro').css('display','none');
-       $('.loginReg__or').css('display','block');
 
-       $('.box-signin').css('display','block');
-    }
-    function btn_close(cas){
-        console.log(cas)
-        if (cas == 'forgetpass') {
-            $('#forget').show(500)
-            $('#check-email').hide(500)
+function sign_in(){
+ $('.box-signup').css('display','none');
+ $('.box-regispro').css('display','none');
+ $('.loginReg__or').css('display','block');
 
-             $('#foget-password').hide(500)
+ $('.box-signin').css('display','block');
+}
+function btn_close(cas){
+    console.log(cas)
+    if (cas == 'forgetpass') {
+        $('#forget').show(500)
+        $('#check-email').hide(500)
+
+        $('#foget-password').hide(500)
         $('#popup-login').show(500)
         $('#popup-login').show(500)
-        
-        }
     }
+    if ( cas =='boxcarservice') {
+       $('#map').show(500);
+       $('#box-car-service').hide(500)
+
+   }
+}
