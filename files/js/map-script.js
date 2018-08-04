@@ -69,7 +69,7 @@ if ($.cookie("lng") == 'cn') {
 
     success = '成功';
     error = '错误';
-} else if ($.cookie("lng") == 'th') {
+} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
     please_login_txt = "กรุณาเข้าสู่ระบบ";
     click_save_place_txt = "ไม่มีบันทึก (กดเพื่อบันทึก)";
     lang_to_map = 'th';
@@ -652,7 +652,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
 
         notfound = 'Product not Found';
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
         notfound = 'ไม่พบผลิตภัณฑ์';
 
     }
@@ -777,7 +777,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                                 $('#select_pax_use').html( 'All Type')                   
                                 typeshow = datasort[i].car_topic_en;
                                 pax = datasort[i].pax_en;
-                            } else if ($.cookie("lng") == 'th') {
+                            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                                 $('#select_pax_use').html( 'ทุกประเภท')
                                 typeshow = datasort[i].car_topic_th;
                                 pax = datasort[i].pax_th;
@@ -1076,7 +1076,7 @@ function sendpaxrel(x) {
                $('#select_pax_use').html( 'All Type')
                
            }
-       } else if ($.cookie("lng") == 'th') {
+       } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
            if (getdataservice[i].pax_id == ctype) {
                $('#select_pax_use').html(getdataservice[i].car_topic_th+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_th+'</span>')
            } else if (ctype == '0') {
@@ -1098,7 +1098,7 @@ function sendpaxrel(x) {
         } else if (ctype == 0) {
          comparedata.push(dataRel.data1[i])
      }
- } else if ($.cookie("lng") == 'th') {
+ } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
     if (dataRel.data1[i].pax_id == ctype) {
      comparedata.push(dataRel.data1[i])
  } else if (ctype == 0) {
@@ -1141,7 +1141,7 @@ function sendpaxrel(x) {
             lngcapacityinfo = 'Capacity';
             lngdetails = 'details';            
             lngfacilities = 'Facilities';
-        } else if ($.cookie("lng") == 'th') {
+        } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
             car_topic = compae1private[i].topic_th;
             cartype = compae1private[i].car_topic_th;
             pax = compae1private[i].pax_th;
@@ -1259,7 +1259,7 @@ function sendpaxrel(x) {
                 lngcapacityinfo = 'Capacity';
                 lngdetails = 'details';            
                 lngfacilities = 'Facilities';
-            } else if ($.cookie("lng") == 'th') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                 car_topic = compae1join[i].topic_th;
                 cartype = compae1join[i].car_topic_th;
                 pax = compae1join[i].pax_th;
@@ -1668,7 +1668,7 @@ function addPlaceOfften(type_place,type_call) {
             var btn_color = "btn-success";
             if ($.cookie("lng") == 'cn') {
                 txt_save = "记录";
-            } else if ($.cookie("lng") == 'th') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                 txt_save = "บันทึก";
             } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
                 txt_save = "Record";
@@ -1681,7 +1681,7 @@ function addPlaceOfften(type_place,type_call) {
                 set_name = '集名称';
                 phoneplace = '电话';
                 
-            } else if ($.cookie("lng") == 'th') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                 txt_save = "บันทึก";
                 set_name = 'ตั้งชื่อ';
                 phoneplace = 'โทรศัพท์';

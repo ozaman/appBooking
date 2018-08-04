@@ -504,6 +504,7 @@ function selecetBook(){
     console.log(b_fashion)  
     phone = $('#phone').val();
     email = $('#email').val();
+     name = $('#name_lastname').val();
     $('.loader-wrapper').css('display', 'block')
     var data;
     if (ckgetuser == true) {
@@ -522,7 +523,7 @@ function selecetBook(){
     }
     if(b_fashion == 'Realtime'){
         ondate = newDate;
-        name = $('#name_lastname').val();
+       
         console.log(newDate)
         var newHours;
         var newMinutes;
@@ -549,31 +550,48 @@ function selecetBook(){
         $('#flight').focus();
         $('#flight').css('border','1px solid #f44336')
          $('#loading').hide()
+        swal("กรุณาป้อนข้อมูล","ตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+        
+
         return false;
     } else {
         $('#flight').css('border','1px solid #dfdfdf')
     }
 
-
-    if(name == undefined && ckgetuser == false){
+//ckgetuser == false
+    if($('#name_lastname').val() == '' ){
         $('#name_lastname').focus()
         $('#name_lastname').css('border','1px solid #f44336')
+        $('#loading').hide()
+        swal("กรุณาป้อนข้อมูล","ตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+        
+
         return false;
     }
     else{
         $('#name_lastname').css('border','1px solid #dfdfdf')
     }
-    if($('#phone').val() == undefined ){
+    if($('#phone').val() == '' ){
+        $('.select-country').click();
         $('#phone').focus()
         $('#phone').css('border','1px solid #f44336')
+        $('#loading').hide()
+        swal("กรุณาป้อนข้อมูล","ตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
         return false;
     }
     else{
         $('#phone').css('border','1px solid #dfdfdf')
     }
-
+    if(phonecode == '' || phonecode == undefined){
+        $('.select-country').click();
+       $('#loading').hide()
+        return false;
+    }
     if(Checkacceptance == false){
-        $('#acceptance_pin_pop').show(500) 
+        // $('#acceptance_pin_pop').show(500) 
+        $('#loading').hide()
+        swal("กรุณายอมรับ","ข้อตกลง","error");
+
         return false;           
     }        
     console.log(ckgetuser+'*********************************')
@@ -1013,6 +1031,8 @@ $.ajax({
                     'lng_t': b_lng_t
                 };
             }
+            // var lng_please_accept= 'Please accept the agreement.';
+            // $('.lng_please_accept').html('请接受协议。')
             console.log(param)
             $.ajax({
                 type: 'POST',
@@ -1024,31 +1044,38 @@ $.ajax({
                     console.log(data);
                     console.log(email);
                     if (data.arr_order_api.status == 202) {
+                        if ($('#email').val() != '') {
                         $.ajax({
                             type: 'POST',
                             url: base_url+'sendemail.php',
-                            data: { 'mail': email, 'voucher': data.arr_order.invoice },
+                            data: { 'mail': email, 'voucher': data.arr_order.invoice},
                             //contentType: "application/json",
                            // dataType: 'json',
-                           success: function(data) {
-                            console.log(data);
+                            success: function(data2) {
+                            console.log(data2);
                                 //console.log(s_email);
                                 if($.cookie("login") != undefined){
-                            window.location.href = base_url+"dashboard/view_user";
+                                    window.location.href = base_url+"dashboard/view_user";
 
-                        }
-                        else{
-                            window.location.href = base_url+'dashboard/voucher?order_id='+data.invoice;
-                        }
+                                }
+                                else{
+                                    // $('#input_data_pop').show(500)
+                                   // $('#loading').hide()
+                                    window.location.href = base_url+'dashboard/voucher?order_id='+data.arr_order_api.invoice;
+                                }
                             }
                         });
+                    }
+                    else{
+                       //$('#loading').hide()
+                                    window.location.href = base_url+'dashboard/voucher?order_id='+data.arr_order_api.invoice; 
+                    }
                         //$('#loading').hide()
-                        
 
                     } else {
                         $('#loading').hide()
-
-                        $('#input_data_pop').show(500)
+                         swal("ทำรายการไม่สำเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+                        // $('#input_data_pop').show(500)
 
                     }
 
@@ -1078,7 +1105,8 @@ function sendCountry(x) {
     } else {
         $.cookie("phonecode", x);
     }
-    phonecode = $('#inputphonecode').val(x);
+    $('#inputphonecode').val(x);
+    phonecode = x;
     $('#codecountry').hide();
     var name = $('#ct' + x).attr('dataname');
     var img = $('#ct' + x).attr('img');
@@ -1303,7 +1331,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                 $('#cars_type').html(data[0].car_topic_en + data[0].pax_en)
                 $('#costsummary').html(data[0].cost_a + ' ' + '฿')
                 $('#numsumprice').html(data[0].cost_a + ' ' + '฿')
-            } else if ($.cookie("lng") == 'th') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                 if(data[0].area == 'Service_day' || data[0].area == 'Service'){
                     $('#province').html(data[0].province_name_th);
                     $('#province_to').html(data[0].province_name_to_th);
@@ -1348,7 +1376,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#texttime').html('Arrival time:')
                     $('#date-final').html('Arrival date:')
                     $('#time-final').html('Arrival time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันที่มาถึง:')
                     $('#texttime').html('เวลาถึง:')
                     $('#date-final').html('วันที่มาถึง:')
@@ -1370,7 +1398,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#visa-show').css('display', 'none')
                     $('#date-final').html('Arrival date:')
                     $('#time-final').html('Arrival time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันที่มาถึง:')
                     $('#texttime').html(' เวลาถึง:')
                     $('#visa-show').css('display', 'none')
@@ -1395,7 +1423,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#box-terminal').css('display', 'block')
                     $('#date-final').html('Departure date:')
                     $('#time-final').html('Departure time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันเดินทาง:')
                     $('#texttime').html('เวลาออกเดินทาง:')
                     $('#visa-show').css('display', 'none')
@@ -1418,7 +1446,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#visa-show').css('display', 'none')
                     $('#date-final').html('Use date:')
                     $('#time-final').html('Use time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันที่ใช้บริการ:')
                     $('#texttime').html('เวลาใช้บริการ:')
                     $('#visa-show').css('display', 'none')
@@ -1439,7 +1467,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#visa-show').css('display', 'none')
                     $('#date-final').html('Use date:')
                     $('#time-final').html('Use time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันที่ใช้บริการ:')
                     $('#texttime').html('เวลาใช้บริการ:')
                     $('#visa-show').css('display', 'none')
@@ -1462,7 +1490,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#car-show').css('display', 'none')
                     $('#date-final').html('Departure date:')
                     $('#time-final').html('Departure time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันเดินทาง:')
                     $('#texttime').html('เวลาออกเดินทาง:')
                     $('#visa-show').css('display', 'none')
@@ -1488,7 +1516,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                     $('#date-final').html('Departure date:')
                     $('#time-final').html('Departure time:')
                     $('#box-terminal').css('display', 'block')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันเดินทาง:')
                     $('#texttime').html('เวลาออกเดินทาง:')
                     $('#visa-show').css('display', 'none')
@@ -1544,7 +1572,7 @@ function getDetailbookservice(a,b,c,d,e,f,g,h,x,y){
     b_data = h;
     if ($.cookie("lng") == 'cn') {
         lang_to_map = 'zh-CN';
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
         lang_to_map = 'th';
     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {       
         lang_to_map = 'en';       
@@ -1638,7 +1666,7 @@ function getDetailbookservice(a,b,c,d,e,f,g,h,x,y){
                 $('#cars_type').html(data[0].car_topic_en + data[0].pax_en)
                 $('#costsummary').html(data[0].cost_a + ' ' + '฿')
                 $('#numsumprice').html(data[0].cost_a + ' ' + '฿')
-            } else if ($.cookie("lng") == 'th') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                 if(data[0].area == 'Service_day' || data[0].area == 'Service'){
                     $('#province').html(data[0].province_name_th);
                     $('#province_to').html(data[0].province_name_to_th);
@@ -1684,7 +1712,7 @@ function getDetailbookservice(a,b,c,d,e,f,g,h,x,y){
                     $('#visa-show').css('display', 'none')
                     $('#date-final').html('Use date:')
                     $('#time-final').html('Use time:')
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $('#datetext').html('วันที่ใช้บริการ:')
                     $('#texttime').html('เวลาใช้บริการ:')
                     $('#visa-show').css('display', 'none')

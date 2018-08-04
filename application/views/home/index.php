@@ -698,18 +698,18 @@ table{
                 /* display: none; */
             }
             .get_html_pop_in{
-                /* height: 220px; */
-                max-height: 100vh;
-                /* border-radius: 4px; */
-                background: #ddd;
-                min-width: 100vw;
-                /* height: auto; */
-                left: 50vw;
-                top: 50vh;
-                transform: translate(-50%,-50%);
-                position: fixed;
-                z-index: 10;
-                /* border-radius: 15px; */
+                   /* height: 220px; */
+    max-height: 100vh;
+    /* border-radius: 4px; */
+    background: #ddd;
+    min-width: 100vw;
+    /* height: auto; */
+    /* left: 50vw; */
+    top: 0;
+    /* transform: translate(-50%,-50%); */
+    position: fixed;
+    z-index: 10;
+    /* border-radius: 15px; */
             }
             .get_html_pop_ln{
                 padding: 15px;

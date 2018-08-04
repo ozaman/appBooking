@@ -533,7 +533,7 @@ $( document ).ready(function() {
 			payowe = '未结余额';
 			paynow = '现在付款';
 		}
-		else if ($.cookie("lng")=="th"){
+		else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
       if (data.type == 'Transfer') {
         product_name = data.product_detail[0].topic_th;
         cartype = data.product_detail[0].car_topic_th+" "+data.product_detail[0].pax_th;
@@ -578,7 +578,7 @@ $( document ).ready(function() {
         $('.lng-typet_transfer_time').text('到达时间');
 
 
-      }else if ($.cookie("lng")=="th"){
+      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
         $('.lng-typet_transfer').text('วันที่มาถึง');
         $('.lng-typet_transfer_time').text('เวลาที่มาถึง');
 
@@ -597,7 +597,7 @@ $( document ).ready(function() {
         $('.lng-typet_transfer').text('出发日期');
         $('.lng-typet_transfer_time').text('出發時間');
 
-      }else if ($.cookie("lng")=="th"){
+      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
         $('.lng-typet_transfer').text('วันเดินทาง');
         $('.lng-typet_transfer_time').text('เวลาเดินทาง');
 
@@ -619,7 +619,7 @@ $( document ).ready(function() {
         $('.lng-typet_transfer').text('使用日期');
         $('.lng-typet_transfer_time').text('使用時間');
       
-      }else if ($.cookie("lng")=="th"){
+      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
         $('.lng-typet_transfer').text('วันที่ใช้บริการ');
         $('.lng-typet_transfer_time').text('เวลาที่ใช้บริการ');
         

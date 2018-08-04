@@ -14,23 +14,23 @@ var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
 var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
 var language;
-if ($.cookie("lng") ==undefined) {
+if ($.cookie("lng") == undefined || $.cookie("lng") == '') {
    language = window.navigator.userLanguage || window.navigator.language;
     //alert(language);
     if (language == 'th-TH') {
-        var slng = $.cookie("lng").split('-')
-        var flng = slng[0];
-        $.cookie("lng", flng, { path: '/' });
+        // var slng = $.cookie("lng").split('-')
+        // var flng = slng[0];
+        $.cookie("lng", language, { path: '/' });
     }
  //$.cookie("lng", language, { path: '/' });
     // 
 
 }
-if ($.cookie("lng") == 'th-TH') {
-    var slng = $.cookie("lng").split('-')
-    var flng = slng[0];
-    $.cookie("lng", flng, { path: '/' });
-}
+// if ($.cookie("lng") == 'th-TH') {
+//     var slng = $.cookie("lng").split('-')
+//     var flng = slng[0];
+//     $.cookie("lng", flng, { path: '/' });
+// }
 $(document).ready(function() {
     // var base_url = "https://www.welovetaxi.com/app/booking2/";
     
@@ -384,7 +384,7 @@ else if(res.status==2)
        console.log(getdatahis)
        if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {            
         lang_to_map = 'en';             
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
         lang_to_map = 'th';                
     } else if ($.cookie("lng") == 'cn') {            
         lang_to_map = 'zh-CN';                 
@@ -813,7 +813,7 @@ $('#selectproto').click(function(){
                     $.each(datastay, function(i, val) {
                         $('#provinceto').append('<li class="stayto" id="proTo'+datastay[i].stay_to+'" proTo="'+datastay[i].name+'"   onclick="sendproto(\''+datastay[i].stay_to+'\',\''+datastay[i].name+'\');"><span>' + datastay[i].name + '</span></li>');
                     });
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $.each(datastay, function(i, val) {
                         $('#provinceto').append('<li class="stayto" id="proTo'+datastay[i].stay_to+'" proTo="'+datastay[i].name_th+'"  onclick="sendproto(\''+datastay[i].stay_to+'\',\''+datastay[i].name_th+'\');"><span>' + datastay[i].name_th + '</span></li>');
                     });
@@ -875,7 +875,7 @@ $('#selectpro').click(function() {
                     $.each(datastayfrom, function(i, val) {
                         $('#province_service').append('<li class="stayfrom" id="proFrom'+datastayfrom[i].stay+'" proFrom="'+datastayfrom[i].name+'"  onclick="sendpro(\''+datastayfrom[i].stay+'\',\''+datastayfrom[i].name+'\');"><span>' + datastayfrom[i].name + '</span></li>');
                     });
-                } else if ($.cookie("lng") == 'th') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                     $.each(datastayfrom, function(i, val) {
                         $('#province_service').append('<li class="stayfrom" id="proFrom'+datastayfrom[i].stay+'" proFrom="'+datastayfrom[i].name_th+'"  onclick="sendpro(\''+datastayfrom[i].stay+'\',\''+datastayfrom[i].name_th+'\');"><span>' + datastayfrom[i].name_th + '</span></li>');
                     });
@@ -944,7 +944,7 @@ $('#btn-logout-user').on('click', function() {
         var text_logout = "您需要注销 ?";
         var yes = "是";
         var cancel = "取消";
-    } else if ($.cookie("lng") == "th") {
+    } else if ($.cookie("lng") == "th" || $.cookie("lng") == 'th-TH') {
         var title_logout = "ออกจากระบบ ?";
         var text_logout = "คุณต้องการออกจากระบบหรือไม่?";
         var yes = "ใช่";
@@ -1193,7 +1193,7 @@ function sendproto(x,proto){
                         
                         typeshow = datasort[i].car_topic_en;
                         pax = datasort[i].pax_en;
-                    } else if ($.cookie("lng") == 'th') {
+                    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                         $('#selectype').html( 'ทุกประเภท')
                         typeshow = datasort[i].car_topic_th;
                         pax = datasort[i].pax_th;
@@ -1280,7 +1280,7 @@ function sendpaxuse(x) {
              $('#select_pax_use').html( 'All Type')
          }
 
-     } else if ($.cookie("lng") == 'th') {
+     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
          if (getdataservice[i].pax_id == ctype) {
              $('#select_pax_use').html(getdataservice[i].car_topic_th+' '+'<span style="color: #f44336;">'+getdataservice[i].pax_th+'</span>')
          } else if (ctype == '0') {
@@ -1309,7 +1309,7 @@ function sendpaxuse(x) {
         } else if (ctype == 0) {
            comparedata.push(dataUse[0].data1[i])
        }
-   } else if ($.cookie("lng") == 'th') {
+   } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
     if (dataUse.data1[i].pax_id == ctype) {
        comparedata.push(dataUse.data1[i])
    } else if (ctype == 0) {
@@ -1348,7 +1348,7 @@ function sendpaxuse(x) {
                 lngcapacityinfo = 'Capacity';
                 lngdetails = 'details';            
                 lngfacilities = 'Facilities';
-            } else if ($.cookie("lng") == 'th') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
                 car_topic = compae1private[i].topic_th;
                 cartype = compae1private[i].car_topic_th;
                 pax = compae1private[i].pax_th;
@@ -1461,7 +1461,7 @@ $.each(compae1join, function(i, val) {
         lngcapacityinfo = 'Capacity';
         lngdetails = 'details';            
         lngfacilities = 'Facilities';
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
         car_topic = compae1join[i].topic_th;
         cartype = compae1join[i].car_topic_th;
         pax = compae1join[i].pax_th;
@@ -1615,7 +1615,7 @@ function sendpax(x) {
              $('#selectype').html( 'All Type')
              
          }
-     } else if ($.cookie("lng") == 'th') {
+     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
          if (datacaedervice.data1[i].pax_id == ctypeservice) {
              dataService.push(datacaedervice.data1[i])
              $('#selectype').html(datacaedervice.data1[i].car_topic_th+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_th+'</span>')
@@ -1648,7 +1648,7 @@ function sendpax(x) {
          lngdetails = 'details';           
          lngfacilities = 'Facilities';
 
-     } else if ($.cookie("lng") == 'th') {
+     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
          car_topic = dataService[i].topic_th;
          cartype = dataService[i].car_topic_th;
          pax = dataService[i].pax_th;
@@ -1773,7 +1773,7 @@ function getcondition(i) {
         lngbagsmall = 'Small luggage';
         lngbagbig = 'Big baggage';
 
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
         lngplan = 'แผน';
         lngadult = 'ผู้ใหญ่';
         lngchild = 'เด็ก';
@@ -1911,7 +1911,7 @@ if ($.cookie("lng") == 'cn') {
         '<B>四. </B> 如发生司机由于不可抗力因素未接到，在约定时间后5-15分钟内，请客人及时联系我们的24小时中文热线，如等待超过30分钟，请客人需及时自行打车离开！<br /><br />' +
         '我们会退还订单费用，如客人有打车凭证提供，我们将补偿打车费用，但是其他费用一律不负责赔偿，请知晓！</span>');
 
-} else if ($.cookie("lng") == 'en') {
+} else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
     $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
 
         '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
@@ -1920,7 +1920,7 @@ if ($.cookie("lng") == 'cn') {
 
         '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
 
-} else if ($.cookie("lng") == 'th') {
+} else if ($.cookie("lng") == 'th' || $.cookie("lng") === 'th-TH') {
     $('.terms-of-use').html('<span >' +
         '<B>1.</B> โปรดทราบว่ามีเพียงแผ่นป้ายทะเบียนรถสีเขียวหรือสีเหลืองเท่านั้นที่ใช้เป็นยานพาหนะขนส่งสาธารณะที่ถูกต้องตามกฎหมาย หากคุณเห็นป้ายทะเบียนรถเป็นสีอื่น คุณสามารถปฏิเสธการโดยสารได้ และโปรดติดต่อสายด่วนของเรา<br /><br />' +
         '<B >2.</B> กรุณาคาดเข็มขัดนิรภัย มิฉะนั้นในกรณีที่มีการเรียกตรวจสอบจากตำรวจ คุณต้องต้องจ่ายค่าปรับเอง และในกรณีที่เกิดอุบัติเหตุ คุณจะไม่สามารถได้รับค่าชดเชยจากบริษัทประกันภัย<br /><br />' +
@@ -1928,16 +1928,7 @@ if ($.cookie("lng") == 'cn') {
         '<B>4.</B> ในกรณีที่มีเหตุสุดวิสัยคนขับไม่ได้รับรอเกิน 5-15 นาทีจากเวลาที่ตกลงกัน โปรดติดต่อศูนย์บริการตลอด 24 ชั่วโมงสายด่วนทันที ถ้ารอคอยมากกว่า 30 นาที กรุณาเรียกรถเอง! เราจะคืนเงินให้ท่าน100%ในการจอง และจะคืนเงินที่ท่านเรียกรถ (แต่ต้องมีหลักฐานใบเสร็จหรือรูปยืนยัน) แต่จะไม่รับผิดชอบค่าเสียหายอื่น  โปรดทราบ!</span> ');
 
 
-} else if ($.cookie("lng") == undefined) {
-    $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
-
-        '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
-
-        '<B>3.</B> Please check your belongings before leaving. We are not responsible for any loss.<br /><br>' +
-
-        '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
-
-}
+} 
 }
 
 function updatelatlng(id) {
