@@ -587,6 +587,14 @@ function selecetBook(){
        $('#loading').hide()
         return false;
     }
+    if ($.cookie("login") == undefined) {
+        if($('#email').val() == ''){
+            $('#loading').hide()
+           swal("คุณไม่ได้จองในสถานะสมาชิก","จำเป็นต้องป้อนอีเมล ระบบจะส่งข้อมูลการจองเข้าอีเมลของคุณ","error");
+           
+            return false;
+        }
+}
     if(Checkacceptance == false){
         // $('#acceptance_pin_pop').show(500) 
         $('#loading').hide()
@@ -1044,7 +1052,7 @@ $.ajax({
                     console.log(data);
                     console.log(email);
                     if (data.arr_order_api.status == 202) {
-                        if ($('#email').val() != '') {
+                        // if ($('#email').val() != '') {
                         $.ajax({
                             type: 'POST',
                             url: base_url+'sendemail.php',
@@ -1065,11 +1073,11 @@ $.ajax({
                                 }
                             }
                         });
-                    }
-                    else{
-                       //$('#loading').hide()
-                                    window.location.href = base_url+'dashboard/voucher?order_id='+data.arr_order_api.invoice; 
-                    }
+                    // }
+                    // else{
+                    //    //$('#loading').hide()
+                    //                 window.location.href = base_url+'dashboard/voucher?order_id='+data.arr_order_api.invoice; 
+                    // }
                         //$('#loading').hide()
 
                     } else {
@@ -1178,32 +1186,38 @@ function getDetailbook(a,b,c,d,e,f,g,h){
         lang_to_map = 'en';
 
     }
+    console.log($('#current').val()+'*************************************')
+    console.log($('#pac-input').val()+'******************************')
+    $('#placefrom').html($('#current').val())
+     $('#placeto').html($('#pac-input').val())
+     // $('#placefrom').html(data.results[0].formatted_address)
+     // $('#placeto').html(data.results[0].formatted_address)
     
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + b_lat_f + ',' + b_lng_f + '&sensor=true&language=' + lang_to_map;
+    // url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + b_lat_f + ',' + b_lng_f + '&sensor=true&language=' + lang_to_map;
     
-    $.post(url, function(data) {
-        console.log(data);
-        $('#placefrom').html(data.results[0].formatted_address)
-        place_from = data.results[0].formatted_address;
-                    // infowindow.close();
-                    // infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm ' + btn_color + ' pull-right btn-part" border-radius: 25px;style="display: inline-block;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
-                    // infowindow.open(map, markerPlaceOfften);
-                    //$('#often-input2').show(500);
-    //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
-    url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + b_lat_t + ',' + b_lng_t + '&sensor=true&language=' + lang_to_map;
+//     $.post(url, function(data) {
+//         console.log(data);
+//         $('#placefrom').html(data.results[0].formatted_address)
+//         place_from = data.results[0].formatted_address;
+//                     // infowindow.close();
+//                     // infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm ' + btn_color + ' pull-right btn-part" border-radius: 25px;style="display: inline-block;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
+//                     // infowindow.open(map, markerPlaceOfften);
+//                     //$('#often-input2').show(500);
+//     //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
+//     url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + b_lat_t + ',' + b_lng_t + '&sensor=true&language=' + lang_to_map;
     
-    $.post(url2, function(data) {
-        console.log(data);
-        $('#placeto').html(data.results[0].formatted_address)
-        place_to = data.results[0].formatted_address;
-                    // infowindow.close();
-                    // infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm ' + btn_color + ' pull-right btn-part" border-radius: 25px;style="display: inline-block;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
-                    // infowindow.open(map, markerPlaceOfften);
-                    //$('#often-input2').show(500);
-    //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
+// //     $.post(url2, function(data) {
+// //         console.log(data);
+// //         $('#placeto').html(data.results[0].formatted_address)
+// //         place_to = data.results[0].formatted_address;
+// //                     // infowindow.close();
+// //                     // infowindow.setContent('<div id="setmap">' + data.results[0].formatted_address + '</div> <input id="changesetname1" name="changesetname1" onchange="changesetname2(changesetname1)" placeholder="'+set_name+'" type="text" style=""  ><input id="changesetphone2" name="changesetphone2" onchange="changesetphone2(changesetphone2)" placeholder="'+phoneplace+'" type="text" style=""  ><div class="btn btn-sm ' + btn_color + ' pull-right btn-part" border-radius: 25px;style="display: inline-block;" onclick="savePlaceOften(' + type_call + ',' + lat_f + ',' + lng_f + ',\'' + data.results[0].place_id + '\',\'' + type_place + '\')">' + txt_save + '</div>');
+// //                     // infowindow.open(map, markerPlaceOfften);
+// //                     //$('#often-input2').show(500);
+// //     //<div class="btn btn-sm Klsetname" onclick="Klsetname();" style="display: inline-block;background: rgb(22, 179, 177);">' + set_name + '</div>
     
-});
-});
+// // });
+// });
 
     if(b_fashion == 'Realtime'){
         $('#car-show').hide();

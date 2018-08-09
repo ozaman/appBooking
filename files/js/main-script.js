@@ -292,7 +292,7 @@ else if(res.status==2)
         }
     }*/
     var getdatahis;
-
+    console.log($.cookie("login")+'-----------------------------------------------------------------')
     if ($.cookie("login")) {
         $('#btn_ck_login').hide();
         $('#acceptancecheck').show();

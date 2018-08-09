@@ -646,6 +646,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
     console.log('in case')
     compae1private = [];
     compae1join = [];
+    $('#get_history_pop').hide()
     console.log(lat_f+'-'+lng_f+'-'+dist+'-'+lat_t+'-'+lng_t)
     if ($.cookie("lng") == 'cn') {
         notfound = '产品没有找到';
