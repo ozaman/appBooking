@@ -1318,7 +1318,7 @@
     } else if ($.cookie("lng") == 'en') {
         tclose = 'Close';
 
-    } else if ($.cookie("lng") == 'th') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
         tclose = 'ปิด';
 
     } else if ($.cookie("lng") == undefined) {

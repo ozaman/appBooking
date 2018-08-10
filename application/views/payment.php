@@ -856,7 +856,7 @@ boby{
                         $('#create_token').attr('value', '确认')
 
 
-                    }else if ($.cookie("lng")=="th"){
+                    }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
 
                         $('#paypal').attr('value', 'เพย์พาล')
                         $('#create_token').attr('value', 'ยืนยัน')
@@ -1132,7 +1132,7 @@ boby{
             $('.currency').text('铢');
             $('#paypal').attr('value', '貝寶')
             
-        }else if ($.cookie("lng")=="th"){
+        }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
 			//product_name = data.product_detail[0].topic_th;
 			//cartype = data.product_detail[0].car_topic_th+" "+data.product_detail[0].pax_th;
 			$('.lng-flight').text('เที่ยวบิน');
@@ -1219,7 +1219,7 @@ boby{
 
 
 
-          }else if ($.cookie("lng")=="th"){
+          }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
             if(data[0].status_pay == 0){
                 if(data[0].status_pay_driver == 1){
                     $('.status-pay').text('(Pay driver)');
