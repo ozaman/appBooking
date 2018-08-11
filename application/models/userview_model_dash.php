@@ -63,7 +63,8 @@ class Userview_model_dash extends CI_Model {
 	$this->db->where('s_code !=',"");
 	$this->db->or_where('s_code_ref',$code_ref);
 	$this->db->where('s_code_ref !=',"");*/
-	$query = $this->db->query("SELECT * FROM ap_order WHERE (s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' ) ORDER BY arrival_date DESC");
+	$date = date("Y-m-d");
+	$query = $this->db->query("SELECT * FROM ap_order WHERE (s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' ) and arrival_date = '".$date."' ORDER BY arrival_date DESC");
 //	$query = $this->db->get('ap_order');
 //	$query = $this->db->from('ap_order')->get();
 	if($query->num_rows > 0) {
