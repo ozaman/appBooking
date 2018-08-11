@@ -138,7 +138,7 @@ function saveapi(){
       "lat_t": "'.$_POST[lat_t].'" ,
       "lng_t": "'.$_POST[lng_t].'" ,
       "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'" 
+      "address_to" : "'.$_POST[address_to].'" 
 
     }';
   }
@@ -175,7 +175,7 @@ if ($_POST[type] == 'Join') {
     "lat_t": "'.$_POST[lat_t].'" ,
     "lng_t": "'.$_POST[lng_t].'",
     "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'"  
+      "address_to" : "'.$_POST[address_to].'"  
 
   }';
 }
@@ -210,7 +210,7 @@ if ($_POST[type] == 'Private') {
     "lat_t": "'.$_POST[lat_t].'" ,
     "lng_t": "'.$_POST[lng_t].'" ,
     "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'" 
+      "address_to" : "'.$_POST[address_to].'" 
 
   }';
 }
@@ -247,7 +247,7 @@ if ($_POST[type] == 'Private') {
     "lat_t": "'.$_POST[lat_t].'" ,
     "lng_t": "'.$_POST[lng_t].'" ,
     "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'" 
+      "address_to" : "'.$_POST[address_to].'" 
 
   }';
 }
@@ -282,7 +282,7 @@ if ($_POST[type] == 'Point To Point') {
     "lat_t": "'.$_POST[lat_t].'" ,
     "lng_t": "'.$_POST[lng_t].'" ,
     "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'" 
+      "address_to" : "'.$_POST[address_to].'" 
   }';
 
 }
@@ -317,7 +317,7 @@ if ($_POST[type] == 'Private' && $_POST[area] == 'Service') {
  "lat_t": "'.$_POST[lat_t].'" ,
  "lng_t": "'.$_POST[lng_t].'" ,
  "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'" 
+      "address_to" : "'.$_POST[address_to].'" 
 }';
 
 }
@@ -352,7 +352,7 @@ if ($_POST[type] == 'Private' && $_POST[area] == 'Point') {
  "lat_t": "'.$_POST[lat_t].'" ,
  "lng_t": "'.$_POST[lng_t].'" ,
  "address_from" : "'.$_POST[address_from].'" ,
-      "address_to" : "'.$_POST[address_from].'" 
+      "address_to" : "'.$_POST[address_to].'" 
 
 }';
 }
