@@ -791,7 +791,9 @@ $.ajax({
                         'lat_f': b_lat_f,
                         'lng_f': b_lng_f,
                         'lat_t': b_lat_t,
-                        'lng_t': b_lng_t
+                        'lng_t': b_lng_t,
+                        'address_from' : $('#current').val(),
+                        'address_to' : $('#pac-input').val()
                     };
                 }
             }
@@ -834,6 +836,8 @@ $.ajax({
                         'lng_f': b_lng_f,
                         'lat_t': b_lat_t,
                         'lng_t': b_lng_t,
+                        'address_from' : $('#current').val(),
+                        'address_to' : $('#pac-input').val()
                     };
                 }
             }
@@ -876,6 +880,8 @@ $.ajax({
                         'lng_f': b_lng_f,
                         'lat_t': b_lat_t,
                         'lng_t': b_lng_t,
+                        'address_from' : $('#current').val(),
+                        'address_to' : $('#pac-input').val()
                     };
                 }
             }
@@ -918,7 +924,9 @@ $.ajax({
                         'lat_f': b_lat_f,
                         'lng_f': b_lng_f,
                         'lat_t': b_lat_t,
-                        'lng_t': b_lng_t
+                        'lng_t': b_lng_t,
+                        'address_from' : $('#current').val(),
+                        'address_to' : $('#pac-input').val()
                     };
                 }
             }
@@ -956,7 +964,9 @@ $.ajax({
                     'lat_f': b_lat_f,
                     'lng_f': b_lng_f,
                     'lat_t': b_lat_t,
-                    'lng_t': b_lng_t
+                    'lng_t': b_lng_t,
+                    'address_from' : $('#current').val(),
+                    'address_to' : $('#pac-input').val()
                 };
             }
             if (type == 'Private' && area == 'Service') {
@@ -996,7 +1006,9 @@ $.ajax({
                     'lat_f': b_lat_f,
                     'lng_f': b_lng_f,
                     'lat_t': b_lat_t,
-                    'lng_t': b_lng_t
+                    'lng_t': b_lng_t,
+                    'address_from' : $('#current').val(),
+                        'address_to' : $('#pac-input').val()
                 };
             }
             if (type == 'Private' && area == 'Point') {
@@ -1036,7 +1048,9 @@ $.ajax({
                     'lat_f': b_lat_f,
                     'lng_f': b_lng_f,
                     'lat_t': b_lat_t,
-                    'lng_t': b_lng_t
+                    'lng_t': b_lng_t,
+                    'address_from' : $('#current').val(),
+                        'address_to' : $('#pac-input').val()
                 };
             }
             // var lng_please_accept= 'Please accept the agreement.';
