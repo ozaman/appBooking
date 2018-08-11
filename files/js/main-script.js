@@ -14,18 +14,18 @@ var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
 var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
 var language;
-if ($.cookie("lng") == undefined || $.cookie("lng") == '') {
-   language = window.navigator.userLanguage || window.navigator.language;
-    //alert(language);
-    if (language == 'th-TH') {
-        // var slng = $.cookie("lng").split('-')
-        // var flng = slng[0];
-        $.cookie("lng", language, { path: '/' });
-    }
- //$.cookie("lng", language, { path: '/' });
-    // 
+// if ($.cookie("lng") == undefined) {
+//    language = window.navigator.userLanguage || window.navigator.language;
+//     //alert(language);
+//     if (language == 'th-TH') {
+//         var slng = $.cookie("lng").split('-')
+//         var flng = slng[0];
+//         $.cookie("lng", flng, { path: '/' });
+//     }
+//  //$.cookie("lng", language, { path: '/' });
+//     // 
 
-}
+// }
 // if ($.cookie("lng") == 'th-TH') {
 //     var slng = $.cookie("lng").split('-')
 //     var flng = slng[0];
