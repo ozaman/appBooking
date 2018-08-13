@@ -369,10 +369,16 @@ class Userview_model_dash extends CI_Model {
   	
   	$d1 = $_POST[d1];
   	$d2 = $_POST[d2];
+	$category = $_POST[category];
+	if($category==0){
+		$sql_cat = "and (s_code = '".$code."' and s_code !='')";
+	}else{
+		$sql_cat = "and (s_code_ref = '".$code."' and s_code_ref !='' )";
+	}
 
-//  	$sql = "select * from ap_order where ((s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' )) and (arrival_date between '".$d1."' and '".$d2."') order by arrival_date desc ";
-  	$sql = "select * from ap_order where (arrival_date between '".$d1."' and '".$d2."') and ((s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' )) order by arrival_date desc";
-//  	$sql = "select * from ap_order order by arrival_date desc ";
+//  	$sql = "select * from ap_order where (arrival_date between '".$d1."' and '".$d2."') and ((s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' )) order by arrival_date desc";
+  	$sql = "select * from ap_order where (arrival_date between '".$d1."' and '".$d2."') ".$sql_cat." order by invoice desc";
+
   	$query = $this->db->query($sql);
 	if($query->num_rows > 0) {
 		 foreach($query->result() as $key=>$row){

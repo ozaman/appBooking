@@ -1,19 +1,132 @@
-<?php header('Content-type: text/html; charset=utf-8'); ?>
-
-<?php echo link_tag('files/css/classic.css'); ?>
-<?php echo link_tag('files/css/classic.date.css'); ?>
+<?php header('Content-type: text/html; charset=utf-8'); 
+ echo link_tag('files/css/classic.css'); 
+ echo link_tag('files/css/classic.date.css');
+ $json = json_encode($results);
+ $adate = date('Y-m-d');
+ $date = date("Y-m-d",strtotime("-1 month",strtotime($adate)));
+ $latedate = date("Y-m-t",strtotime($adate));
+    if(!$_COOKIE['lng']){
+       // echo  $_COOKIE['lng'].'unde';
+        $lng_search_order = 'Search by order (e.x. 7033496)';
+        $paysuccess = 'Already paid';
+        $pend = 'Pending';
+        $norecord = 'No Record';
+        $owe = '';
+        $paydriver = 'Pay Driver';
+        $paynow = 'Pay Now';
+        $myod = 'My Order';
+        $friendod = 'Reference Order';
+    }
+    else if($_COOKIE['lng'] == 'en'){
+        //echo 'en';
+        $lng_search_order = 'Search by order (e.x. 7033496)';
+        $paysuccess = 'Already paid';
+        $pend = 'Pending';
+        $norecord = 'No Record';
+        $owe = '';
+        $paydriver = 'Pay Driver';
+        $paynow = 'Pay Now';
+        $myod = 'My Order';
+        $friendod = 'Reference Order';
+    }
+    else if($_COOKIE['lng'] == 'th'){
+        //echo 'th';
+        $lng_search_order = 'ค้นหาตามใบสั่งซื้อ (e.x. 7033496)';
+        $paysuccess = 'ชำระแล้ว';
+        $pend = 'รอดำเนินการ';
+        $norecord = 'ไม่มีการบันทึก';
+        $owe = '';
+        $paydriver = 'จ่ายกับคนขับ';
+        $paynow = 'จ่ายตอนนี้';
+        $myod = 'ออร์เดอร์ของฉัน';
+        $friendod = 'ออร์เดอร์แนะนำ';
+    }
+    else if($_COOKIE['lng'] == 'cn'){
+       // echo 'cn';
+       $lng_search_order = '按订单搜索（e.x. 7033496）';
+       $paysuccess = '等待付款';
+       $pend = '有待';
+       $norecord = '没有记录';
+       $owe = '';
+       $paydriver = '薪酬司机';
+       $paynow = '現在付款';
+       $myod = '我的訂單';
+       $friendod = '參考訂單';
+    }
+?>
 <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.js?v=<?=time()?>">
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>files/js/picker.date.js?v=<?=time()?>">
 </script>
-<!-- <script type="text/javascript" src="<?php echo base_url(); ?>files/js/legacy.js?v=<?=time()?>"></script>  -->
-<?
-//    echo json_encode(count($results));
-    $json = json_encode($results);
-//    echo print_r($results);
-     ?>
 
     <style>
+
+/* The container */
+.container-cb {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-cb input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.container-cb:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-cb input:checked ~ .checkmark {
+    background-color: #3b5998;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container-cb input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-cb .checkmark:after {
+    left: 8px;
+    top: 2px;
+    width: 10px;
+    height: 16px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
     	
 /* Progress Bar */
 .progress {
@@ -203,86 +316,24 @@
     <script>
         $(document).ready(function() {
             $("#user_view").addClass("active");
-
             var base_url = '<?php echo base_url(); ?>';
-
-            //    console.log(<?=$json;?>);
 
             $(window).scroll(function() {
                 var scrollTop = $(this).scrollTop();
 
                 var check = $(document).height() / 3;
-                //	console.log(check);
                 if ($(window).scrollTop() + $(window).height() >= $(document).height() - 400) {
-                    //       alert("bottom!");
                     $('#top-end_btn').show(700);
                 }
                 if (scrollTop <= 200) {
                     $('#top-end_btn').hide(700);
                 }
-                //   console.log($(window).scrollTop()+" : "+$(window).height()+" : "+$(document).height());
             });
 
         });
     </script>
-    <?php 
-   
-    if(!$_COOKIE['lng']){
-       // echo  $_COOKIE['lng'].'unde';
-        $lng_search_order = 'Search by order (e.x. 7033496)';
-        $paysuccess = 'Already paid';
-        $pend = 'Pending';
-        $norecord = 'No Record';
-        $owe = '';
-        $paydriver = 'Pay Driver';
-        $paynow = 'Pay Now';
-    }
-    else if($_COOKIE['lng'] == 'en'){
-        //echo 'en';
-        $lng_search_order = 'Search by order (e.x. 7033496)';
-        $paysuccess = 'Already paid';
-        $pend = 'Pending';
-        $norecord = 'No Record';
-        $owe = '';
-        $paydriver = 'Pay Driver';
-        $paynow = 'Pay Now';
-    }
-    else if($_COOKIE['lng'] == 'th'){
-        //echo 'th';
-        $lng_search_order = 'ค้นหาตามใบสั่งซื้อ (e.x. 7033496)';
-        $paysuccess = 'ชำระแล้ว';
-        $pend = 'รอดำเนินการ';
-        $norecord = 'ไม่มีการบันทึก';
-        $owe = '';
-        $paydriver = 'จ่ายกับคนขับ';
-        $paynow = 'จ่ายตอนนี้';
-    }
-    else if($_COOKIE['lng'] == 'cn'){
-       // echo 'cn';
-       $lng_search_order = '按订单搜索（e.x. 7033496）';
-       $paysuccess = '等待付款';
-       $pend = '有待';
-       $norecord = '没有记录';
-       $owe = '';
-       $paydriver = '薪酬司机';
-       $paynow = '現在付款';
-    }
-?>
-    <?php
-/* $num_rec = $this->input->get('num'); 
-	  $page_get = $this->input->get('page',TRUE);
-	  $start_get =  $this->input->get('start',TRUE);
-	  if($num_rec==""){
-	  	$num_rec = 1;
-	  }
-	  if($page_get==""){
-	  	$page_get = 1;
-	  }
-	   $page = $total_user/$num_rec;
-								$user_level = $this->session->userdata('i_rating');
-      							$user_id = $this->session->userdata('i_id');*/
-      							
-	  ?>
+
+
     <style>
         .end-page {
             position: fixed;
@@ -323,11 +374,9 @@
     </style>
     <section>
 
-        <div class="container" style="padding: 0 10px;margin-top: 35px;margin-bottom: 100px;">
+        <div class="container" style="padding: 0 10px;margin-top: 40px;margin-bottom: 100px;">
             <h4 class="lng-booking-infomation" style="text-align: center; margin-bottom: 15px;"></h4>
-            <div style="display: none;" id="top-end_btn">
-                <!--<button class="top-page btn btn-info"  onclick="scrollWin('top');" style="cursor: pointer;"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
-							<button class="end-page btn btn-info"  onclick="scrollWin('end');"  style="cursor: pointer;"><i class="fa fa-angle-down" aria-hidden="true"></i></button>-->
+            <div style="display: none;" id="top-end_btn"> 
                 <div class="top-page " style="" onclick="scrollWin('top');" style="cursor: pointer; display: none;"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
             </div>
 
@@ -335,12 +384,6 @@
     padding: 8px;
     margin-bottom: 10px;">
                 <div class="input-group" style="display: block;">
-                    <? 
-																$adate = date('Y-m-d');
-																$date = date("Y-m-d",strtotime("-1 month",strtotime($adate)));
-																$latedate = date("Y-m-t",strtotime($adate));
-														?>
-
                         <table width="100%">
                             <tr>
                                 <td width="49%">
@@ -370,7 +413,27 @@
                 </div>
             </div>
             <div class="">
-            	
+            	 
+            	 <div style="padding: 5px 20px;">
+            	 	<table width="100%">
+	            	 	<tr>
+	            	 		<td>
+	            	 			<label class="container-cb"><?=$myod;?>
+								  <input type="checkbox" checked="checked" onclick="selectOrderCat(this,0);" >
+								  <span class="checkmark"></span>
+								</label>
+	            	 		</td>
+	            	 		<td>
+	            	 			<label class="container-cb"><?=$friendod;?>
+								  <input type="checkbox" onclick="selectOrderCat(this,1);">
+								  <span class="checkmark"></span>
+								</label>
+	            	 		</td>
+	            	 	</tr>
+	            	 	<input type="hidden" value="0" id="category" />
+	            	 </table>
+            	 </div>
+            	 
                 <div style="padding: 8px;
     border-radius: 12px;
     border: 1px solid #3b5998;">
@@ -470,8 +533,6 @@
                             color: #333;
                         }
                     </style>
-
-
                     <?php 
                     		if($levelme==1){ ?>
                     <div class="table-responsive">
@@ -535,18 +596,13 @@
 							else if($levelme==2){ ?>
                     <div class="table-responsive">
                         <table id="bootstrap-table" class="table table-hover">
-                            <thead style="    background: #ddd;">
-                                <!-- <th data-field="state" data-checkbox="true" style="display: none;"></th>-->
+                            <thead style="background: #ddd;">
                                 <th class="text-center "><span class="lng-date"></span></th>
                                 <center></center>
                                 <th class="text-center"><span class="lng-order"></span></th>
-                                <!--<th data-sortable="true" class="text-center"><span class="lng-from"></span></th>
-                                	<th data-sortable="true" class="text-center"><span class="lng-to"></span></th>-->
                                 <th class="text-center"><span class="lng-payment"></span></th>
-                                <!--<th data-sortable="true" class="text-center">Price</th>-->
-
                             </thead>
-                            <tbody style="display: none;" class="data-row">
+                            <!--<tbody style="display: none;" class="data-row">
                                 <?php foreach($results as $show){ 
 									$mystring = $show['date_time'];
 									if($show['invoice']!=" " and $show['invoice']!=null and $show['invoice']!=""){
@@ -569,9 +625,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 										$status_pay = $paysuccess;
 									}
                                 ?>
-
                                 <tr class="tr-hover">
-                                    <!--<td style="display: none;"></td>-->
                                     <td>
                                         <? echo $show['date_time'];?>
                                     </td>
@@ -583,27 +637,16 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                                     <td>
                                         <?=$status_pay;?>
                                     </td>
-                                    <!--<td ><?=$show['from'];?></td>
-                                    	<td ><?=$show['to'];?></td>-->
-                                    <!--<td ><?=$show['total_price'];?></td>-->
-
                                 </tr>
                                 <?php } ?>
-
-                            </tbody>
+                            </tbody>-->
 							<tbody style="display: nones;" class="data-row" id="tb_data_lv2">
 							</tbody>
                         </table>
                     </div>
                     <?php } 
-							/*if(!$results){
-								$display = '';
-							}else{
-								$display = 'none';
-							}
-							echo '<h3 style="text-align: center;color: red;display:'.$display.';"  class="no-record"><strong  >'.$norecord.'</strong></h3>';*/
 							?>
-                    
+                    <h3 style="text-align: center;color: red;display: none;" class="no-record"><strong  ><?=$norecord;?></strong></h3>
                 </div><!--  end card  -->
             </div> <!-- end col-md-12 -->
         </div>
@@ -650,52 +693,13 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                     <!--End Modal -->
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-fullscreen" id="open_modal" style="display: none;">Open Modal</button>
 
-                    <script>
-                        var date = $('#date1').val();
-                        $('#date1').pickadate({
-                            format: 'yyyy-mm-dd',
-                            formatSubmit: 'yyyy/mm/dd',
-                            closeOnSelect: true,
-                            closeOnClear: false,
-                            "showButtonPanel": false,
-                            onStart: function() {
-                                this.set('select', date);
-                                //            findRowDate();// Set to current date on load
-                                //            setTimeout(function(){  findRowDate(); }, 1000);
-                            },
-                            onSet: function(context) {
-                                //		 		findRowDate();
-                                //setTimeout(function(){  findRowDate(); }, 1000);
-                                findBookingBetweenDate()
-                            }
-                        });
-                    </script>
+                    
 
                     <script>
-                        var date = $('#date2').val();
-                        $('#date2').pickadate({
-                            format: 'yyyy-mm-dd',
-                            formatSubmit: 'yyyy/mm/dd',
-                            closeOnSelect: true,
-                            closeOnClear: false,
-                            "showButtonPanel": false,
-                            onStart: function() {
-                                this.set('select', date);
-                                //            findRowDate();// Set to current date on load
-                                //setTimeout(function(){  findRowDate(); }, 1000);
-                            },
-                            onSet: function(context) {
-                                //		 		findRowDate();
-                                //setTimeout(function(){  findRowDate(); }, 1000);
-                                findBookingBetweenDate()
-
-                            }
-                        });
-                    </script>
-
-                    <script>
+                    	var first_run = false;
                     	var process_bar = '<tr><td colspan="3"><div class="progress"><div class="indeterminate"></div></div></td></tr>';
-                    	
+
+                    	$('#tb_data_lv2').html(process_bar);
                         function search() {
                             var input, filter, table, tr, td, i;
                             input = document.getElementById("search_order");
@@ -862,16 +866,18 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                         
                         function findBookingBetweenDate(){
                         	
-							$('#tb_data_lv2').html(process_bar);
-
+                    		$('#tb_data_lv2').html(process_bar);
 							var d1 = $('#date1').val();
 							var d2 = $('#date2').val();
+							var category = $('#category').val();
+							
 							console.log(d1+" : "+d2);
 							
 							var url = base_url+"dashboard/find_booking";
 							var param = {
 								d1 : d1,
-								d2 : d2
+								d2 : d2,
+								category : category
 							};
 							console.log(param);
 							$.ajax({
@@ -888,7 +894,13 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 					                console.log(obj)
 					                var res = obj.results; 
 					                $('#tb_data_lv2').html('');
-//					                $('#tb_data_lv2').show();
+
+									if(res.length<=0){
+										$('.no-record').show();
+										return;
+									}else{
+										$('.no-record').hide();
+									}
 					                $.each(res, function( index, value ) {
 									 console.log(value);
 									if(value.invoice!="" && value.invoice!=null && value.invoice!=""){
@@ -929,6 +941,7 @@ txt_status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" hre
 									  	$('#tb_data_lv2').append(html);
 									  	
 									});
+									first_run = true;
 						     },
 						     error: function (data) {
 						     	console.log(data);
@@ -936,4 +949,69 @@ txt_status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" hre
 						   });
 							
 						}
+
+						function selectOrderCat(el,category){
+							$('#category').val(category);
+							$("input[type='checkbox']").prop( "checked", false );
+//							console.log(el);
+							$(el).prop( "checked", true );
+							findBookingBetweenDate();
+						}
+</script>
+
+<script>
+	
+                        var date = $('#date1').val();
+                        $('#date1').pickadate({
+                            format: 'yyyy-mm-dd',
+                            formatSubmit: 'yyyy/mm/dd',
+                            closeOnSelect: true,
+                            closeOnClear: false,
+                            "showButtonPanel": false,
+                            onStart: function() {
+                                this.set('select', date);
+                                //            findRowDate();// Set to current date on load
+                                //            setTimeout(function(){  findRowDate(); }, 1000);
+                            },
+                            onSet: function(context) {
+                                //		 		findRowDate();
+                                if(first_run==true){
+									setTimeout(function(){  
+                                
+	                                findBookingBetweenDate(); 
+	                                
+	                                }, 1000);
+								}
+                                
+                                
+                            }
+                        });
+                    </script>
+
+<script>
+                        var date = $('#date2').val();
+                        $('#date2').pickadate({
+                            format: 'yyyy-mm-dd',
+                            formatSubmit: 'yyyy/mm/dd',
+                            closeOnSelect: true,
+                            closeOnClear: false,
+                            "showButtonPanel": false,
+                            onStart: function() {
+                                this.set('select', date);
+                                //            findRowDate();// Set to current date on load
+                                //setTimeout(function(){  findRowDate(); }, 1000);
+                            },
+                            onSet: function(context) {
+                                //		 		findRowDate();
+                               	 if(first_run==true){
+									setTimeout(function(){  
+                                
+	                                findBookingBetweenDate(); 
+	                                
+	                                }, 1000);
+								}
+                               
+
+                            }
+                        });
                     </script>
