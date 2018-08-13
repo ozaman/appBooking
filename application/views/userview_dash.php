@@ -151,6 +151,7 @@
         $norecord = 'No Record';
         $owe = '';
         $paydriver = 'Pay Driver';
+        $paynow = 'Pay Now';
     }
     else if($_COOKIE['lng'] == 'en'){
         //echo 'en';
@@ -160,6 +161,7 @@
         $norecord = 'No Record';
         $owe = '';
         $paydriver = 'Pay Driver';
+        $paynow = 'Pay Now';
     }
     else if($_COOKIE['lng'] == 'th'){
         //echo 'th';
@@ -169,6 +171,7 @@
         $norecord = 'ไม่มีการบันทึก';
         $owe = '';
         $paydriver = 'จ่ายกับคนขับ';
+        $paynow = 'จ่ายตอนนี้';
     }
     else if($_COOKIE['lng'] == 'cn'){
        // echo 'cn';
@@ -178,7 +181,7 @@
        $norecord = '没有记录';
        $owe = '';
        $paydriver = '薪酬司机';
-       
+       $paynow = '現在付款';
     }
 ?>
     <?php
@@ -236,7 +239,7 @@
     </style>
     <section>
 
-        <div class="container" style="padding: 0 10px;margin-top: 35px;">
+        <div class="container" style="padding: 0 10px;margin-top: 35px;margin-bottom: 100px;">
             <h4 class="lng-booking-infomation" style="text-align: center; margin-bottom: 15px;"></h4>
             <div style="display: none;" id="top-end_btn">
                 <!--<button class="top-page btn btn-info"  onclick="scrollWin('top');" style="cursor: pointer;"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
@@ -459,7 +462,7 @@
                                 <!--<th data-sortable="true" class="text-center">Price</th>-->
 
                             </thead>
-                            <tbody style="display: nones;" class="data-row" id="tb_data_lv2">
+                            <tbody style="display: none;" class="data-row">
                                 <?php foreach($results as $show){ 
 									$mystring = $show['date_time'];
 									if($show['invoice']!=" " and $show['invoice']!=null and $show['invoice']!=""){
@@ -504,15 +507,17 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                                 <?php } ?>
 
                             </tbody>
+							<tbody style="display: nones;" class="data-row" id="tb_data_lv2">
+							</tbody>
                         </table>
                     </div>
                     <?php } 
-							if(!$results){
+							/*if(!$results){
 								$display = '';
 							}else{
 								$display = 'none';
 							}
-							echo '<h3 style="text-align: center;color: red;display:'.$display.';"  class="no-record"><strong  >'.$norecord.'</strong></h3>';
+							echo '<h3 style="text-align: center;color: red;display:'.$display.';"  class="no-record"><strong  >'.$norecord.'</strong></h3>';*/
 							?>
                     
                 </div><!--  end card  -->
@@ -659,6 +664,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 //                            console.log(<?=$json;?>);
                             // findRowDate();
                             findBookingBetweenDate();
+//                            alert();
                         });
 
                         function findRowDate() {
@@ -772,7 +778,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 //                        	alert(123);
 							var d1 = $('#date1').val();
 							var d2 = $('#date2').val();
-//							console.log(d1+" : "+d2);
+							console.log(d1+" : "+d2);
 							
 							var url = base_url+"dashboard/find_booking";
 							var param = {
@@ -791,30 +797,31 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 						      beforeSend: function () {
 						      },
 						      success: function (obj) {
-					                console.log(obj);
-					                var res obj.data; 
+					                console.log(obj)
+					                var res = obj.results; 
 					                $('#tb_data_lv2').html('');
 //					                $('#tb_data_lv2').show();
 					                $.each(res, function( index, value ) {
-
-									if(value.invoice!=" " && value.invoice!=null && value.invoice!=""){
+									 console.log(value);
+									if(value.invoice!="" && value.invoice!=null && value.invoice!=""){
 										var class_btn = "btn-voucher";
 									}else{
 										var class_btn = "";
 									}
 									
-									var status_pay = '';
+									var txt_status_pay = '';
 									if(value.status_pay==0){
 										if(value.status_pay_driver==1)	{
-											status_pay = "<?=$paydriver;?>";
+											txt_status_pay = "<?=$paydriver;?>";
 										}else{	
-status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="https://www.welovetaxi.com/app/booking2/dashboard/payment?data='+value.invoice+'&type='+value.type+'"><span class="lng-paynow">Pay Now</span></a>';
+txt_status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="https://www.welovetaxi.com/app/booking2/dashboard/payment?data='+value.invoice+'&type='+value.type+'"><span class="lng-paynow"><?=$paynow;?></span></a>';
 										}
-									}else if(value.status_pay==1){
-										status_pay = "<?=$paysuccess;?>";
+									}
+									else if(value.status_pay==1){
+										txt_status_pay = "<?=$paysuccess;?>";
 									}
 									else if(value.status_pay==2){
-										status_pay = "<?=$paysuccess;?>";
+										txt_status_pay = "<?=$paysuccess;?>";
 									}
 									  	var html = 
 										   '<tr class="tr-hover">'
@@ -822,12 +829,13 @@ status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="h
 										         +'<span class="date_time">'+value.date_time+'</span>'
 										      +'</td>'
 										      +'<td>'
-										         +'<div class="'+class_btn+'" onclick="view_order_level2('+value.invoice+','+value.type+');">'
-										            +'<span class="invoice"></span>'
+										         +'<div class="'+class_btn+'" onclick="view_order_level2('+value.invoice+',\'' + value.type + '\');">'
+										            +'<span class="invoice">'+value.invoice+'</span>'
 										         +'</div>'
 										      +'</td>'
 										      +'<td>'
-										         +'<span class="status_pay">'+status_pay+'</span>'
+//										         +value.status_pay+" : "+value.status_pay_driver
+										         +txt_status_pay
 										      +'</td>'
 										   +'</tr>';
 									  	$('#tb_data_lv2').append(html);
