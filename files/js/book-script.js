@@ -14,7 +14,7 @@ sum_adult_child = num_adult + num_child,
 checksumperson = 0,
 place_name, toplace_name, adress, adress_to, terminal, car_model,
 service, code, visa = 0, guestcountry,
-code_r, s_email,
+code_r, s_email,s_code,
 flight, cost_a_nett, lng_getcountry = '', adresss,newDate = '',getcosereltime = 0;
 var data, from, to;
 var Checkacceptance = false;
@@ -621,7 +621,7 @@ function selecetBook(){
     console.log(place)
     console.log(to_place)
     console.log(costdotcars)
-    console.log(code_r + 'code')
+    console.log(s_code + 'code')
     console.log(code_ref + 'code_ref');
     console.log(area)
     console.log(cost_a_nett)
@@ -632,7 +632,7 @@ function selecetBook(){
     console.log(flight)
     var o = ondate.split('-');
     var m,d ;
-
+// return false;
     if($('#current').val() != '' && $('#pac-input').val() != ''){
         place_from = $('#current').val();
         place_to = $('#pac-input').val();
@@ -702,6 +702,7 @@ function selecetBook(){
 
 }
 function addbooking(){
+    console.log(s_code + 'code')
     var irealtime = 0;
     if ($('#email').val() == '') {
       email = '';
