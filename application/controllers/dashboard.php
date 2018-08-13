@@ -60,7 +60,16 @@ class Dashboard extends CI_Controller {
 		}
 
 	}
-
+	
+	public function find_booking(){
+		
+		$data = $this->Userview_model_dash->booking_bt_date();
+//		$data = $_POST;
+//		$data = $this->input->post('d1');;
+		echo json_encode($data);
+		
+	}
+	
 	public function get_user(){
 		$id = $_COOKIE['login'];
 		$user_level = $this->Getuser_model->getuser_pass_id($id);

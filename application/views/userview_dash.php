@@ -283,6 +283,7 @@
                 </div>
             </div>
             <div class="">
+            	
                 <div style="padding: 8px;
     border-radius: 12px;
     border: 1px solid #3b5998;">
@@ -384,7 +385,8 @@
                     </style>
 
 
-                    <?php if($levelme==1){ ?>
+                    <?php 
+                    		if($levelme==1){ ?>
                     <div class="table-responsive">
                         <table id="bootstrap-table1" class="table table-hover">
                             <thead>
@@ -457,7 +459,7 @@
                                 <!--<th data-sortable="true" class="text-center">Price</th>-->
 
                             </thead>
-                            <tbody style="display: none;" class="data-row">
+                            <tbody style="display: nones;" class="data-row" id="tb_data_lv2">
                                 <?php foreach($results as $show){ 
 									$mystring = $show['date_time'];
 									if($show['invoice']!=" " and $show['invoice']!=null and $show['invoice']!=""){
@@ -512,84 +514,12 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 							}
 							echo '<h3 style="text-align: center;color: red;display:'.$display.';"  class="no-record"><strong  >'.$norecord.'</strong></h3>';
 							?>
-                    <div style="display: none;">
-                        <div class="fixed-table-pagination" style="display: none;">
-                            <div class="pull-left pagination-detail" style="margin: 10px;display: none;">
-                                <span class="pagination-info"></span>
-                                <span class="page-list">
-                                    <span class="btn-group dropup">
-                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width: 70px;">
-                                            <span class="page-size">
-                                                <?php if($num_rec){echo $num_rec; }else{ echo "5";} ?></span>
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li class='<? if($num_rec==5){echo "active";} ?>'><a href="<?php echo base_url(); ?>dashboard/view_user?num=5&start=0&page=1">5</a></li>
-                                            <li class='<? if($num_rec==10){echo "active";} ?>'><a href="<?php echo base_url(); ?>dashboard/view_user?num=10&start=0&page=1">10</a></li>
-                                            <li class='<? if($num_rec==15){echo "active";} ?>'><a href="<?php echo base_url(); ?>dashboard/view_user?num=15&start=0&page=1">15</a></li>
-                                            <li class='<? if($num_rec==20){echo "active";} ?>'><a href="<?php echo base_url(); ?>dashboard/view_user?num=20&start=0&page=1">20</a></li>
-                                        </ul>
-                                    </span>
-                                    <!-- rows visible-->
-                                </span>
-                            </div>
-                            <?// echo $total_user." : ".$num_rec; 
-				   	$frist_page = $page-$page+1;
-				   	if($frist_page==$page_get){
-						$disabled_frist = "disabled";
-						?>
-                                <script>
-                                    $(document).ready(function() {
-                                        $('.page-first a').attr('href', '#');
-                                        $('.page-pre a').attr('href', '#');
-                                    });
-                                </script>
-                                <?
-					}
-				   ?>
-                                    <div class="pull-right pagination" style="margin: 0px 0 !important;">
-                                        <ul class="pagination pagination-info">
-                                            <!--<li class="page-first <?=$disabled_frist;?>"><a href="<?php echo base_url(); ?>dashboard/view_user?num=<?=$num_rec;?>&start=0&page=<?=$frist_page;?>">«</a></li>-->
-                                            <li class="page-pre <?=$disabled_frist;?>"><a href="javascript:void(0)">‹</a></li>
-
-                                            <?php 
-				        
-				         for($i=0;$i<$page;$i++){
-				         	$cur = $i+1;
-				         		if($cur==$page_get){
-									$active = "active";
-								}else{
-									$active = "";
-								}
-						 	?> <li class="page-number <?=$active;?>"><a href="<?php echo base_url(); ?>dashboard/view_user?num=<?=$num_rec;?>&start=<?=$i*$num_rec;?>&page=<?=$cur;?>">
-                                                    <?=$cur;?>
-                                                </a></li>
-                                            <?
-						 }?>
-                                                <? if($page==$page_get){
-				         	$disabled_last = "disabled";
-				        ?>
-                                                    <script>
-                                                        $(document).ready(function() {
-                                                            $('.page-next a').attr('href', '#');
-                                                            $('.page-last a').attr('href', '#');
-                                                        });
-                                                    </script>
-                                                    <?   } ?>
-                                                        <li class="page-next <?=$disabled_last;?>"><a id="next_page" href="<?php echo base_url(); ?>dashboard/view_user?num=<?=$num_rec;?>&start=<?=$start_get*$page_get;?>&page=<?=$page_get+1;?>">›</a></li>
-                                                        <!-- <li class="page-last <?=$disabled_last;?>"><a href="<?php echo base_url(); ?>dashboard/view_user?num=<?=$num_rec;?>&start=<?=$start_get;?>&page=<?=$page;?>">»</a></li>-->
-                                        </ul>
-                                    </div>
-                        </div>
-                    </div>
-
+                    
                 </div><!--  end card  -->
             </div> <!-- end col-md-12 -->
         </div>
     </section>
-    <br/>
-        <br/>
-            <br/>
-                <br/>
+
 
                     <style>
                         .dialog {
@@ -647,6 +577,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                             onSet: function(context) {
                                 //		 		findRowDate();
                                 //setTimeout(function(){  findRowDate(); }, 1000);
+                                findBookingBetweenDate()
                             }
                         });
                     </script>
@@ -667,6 +598,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                             onSet: function(context) {
                                 //		 		findRowDate();
                                 //setTimeout(function(){  findRowDate(); }, 1000);
+                                findBookingBetweenDate()
 
                             }
                         });
@@ -690,9 +622,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                                 }
                             }
                         }
-                    </script>
 
-                    <script>
                         function view_order_level2(order_id, type) {
                             console.log(type)
                             //			$( "#show_order" ).html( '<div align="center" ><img src="'+base_url+'dasboard/ring.gif" /></div>' );
@@ -724,13 +654,11 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                         $(".modal-fullscreen").on('hidden.bs.modal', function() {
                             $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
                         });
-                    </script>
 
-
-                    <script>
                         $(document).ready(function() {
-                            console.log(<?=$json;?>);
+//                            console.log(<?=$json;?>);
                             // findRowDate();
+                            findBookingBetweenDate();
                         });
 
                         function findRowDate() {
@@ -812,9 +740,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 
                             return day + '/' + month + '/' + year;
                         }
-                    </script>
 
-                    <script>
                         function scrollWin(type) {
                             if (type == "top") {
                                 $('#top-end_btn').hide(700);
@@ -828,9 +754,7 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                             }
 
                         }
-                    </script>
 
-                    <script>
                         $('.picker__frame').append('<div style="position: fixed; padding: 0 12px; width: 100%;bottom: 12px;" class="close_pickerdate"><div class="btn-close lng-close">Close</div></div>');
 
                         $('.close_pickerdate').click(function() {
@@ -843,4 +767,77 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
                             var picker2 = $input2.pickadate('picker');
                             picker2.close();
                         });
+                        
+                        function findBookingBetweenDate(){
+//                        	alert(123);
+							var d1 = $('#date1').val();
+							var d2 = $('#date2').val();
+//							console.log(d1+" : "+d2);
+							
+							var url = base_url+"dashboard/find_booking";
+							var param = {
+								d1 : d1,
+								d2 : d2
+							};
+							console.log(param);
+							$.ajax({
+					      	  type: 'POST',
+						      url: url,
+						      data: param,
+						      cache: false,
+//					          contentType: false,
+//					          processData: false,
+						      dataType: 'json',
+						      beforeSend: function () {
+						      },
+						      success: function (obj) {
+					                console.log(obj);
+					                var res obj.data; 
+					                $('#tb_data_lv2').html('');
+//					                $('#tb_data_lv2').show();
+					                $.each(res, function( index, value ) {
+
+									if(value.invoice!=" " && value.invoice!=null && value.invoice!=""){
+										var class_btn = "btn-voucher";
+									}else{
+										var class_btn = "";
+									}
+									
+									var status_pay = '';
+									if(value.status_pay==0){
+										if(value.status_pay_driver==1)	{
+											status_pay = "<?=$paydriver;?>";
+										}else{	
+status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="https://www.welovetaxi.com/app/booking2/dashboard/payment?data='+value.invoice+'&type='+value.type+'"><span class="lng-paynow">Pay Now</span></a>';
+										}
+									}else if(value.status_pay==1){
+										status_pay = "<?=$paysuccess;?>";
+									}
+									else if(value.status_pay==2){
+										status_pay = "<?=$paysuccess;?>";
+									}
+									  	var html = 
+										   '<tr class="tr-hover">'
+										      +'<td>'
+										         +'<span class="date_time">'+value.date_time+'</span>'
+										      +'</td>'
+										      +'<td>'
+										         +'<div class="'+class_btn+'" onclick="view_order_level2('+value.invoice+','+value.type+');">'
+										            +'<span class="invoice"></span>'
+										         +'</div>'
+										      +'</td>'
+										      +'<td>'
+										         +'<span class="status_pay">'+status_pay+'</span>'
+										      +'</td>'
+										   +'</tr>';
+									  	$('#tb_data_lv2').append(html);
+									  	
+									});
+						     },
+						     error: function (data) {
+						     	console.log(data);
+						     }
+						   });
+							
+						}
                     </script>

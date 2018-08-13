@@ -349,6 +349,7 @@ class Userview_model_dash extends CI_Model {
     }
     
   }
+
   public function historylist(){
 	$s_code = $this->input->post('s_code');
 	$this->db->select('id,place,to_place,lat_from,lng_from,lat_to,lng_to,s_code,fashion');
@@ -363,6 +364,28 @@ class Userview_model_dash extends CI_Model {
 	  }
 	  return FALSE;
   }
+
+  public function booking_bt_date(){
+  	
+  	$d1 = $_POST[d1];
+  	$d2 = $_POST[d2];
+  	
+//  	$sql = "SELECT * FROM ap_order WHERE id>0";
+  	$sql = "select * from ap_order where (s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' ) and arrival_date between '".$d1."' and '".$d2."' order by arrival_date desc ";
+  	$query = $this->db->query($sql);
+	 if($query->num_rows > 0) {
+		 foreach($query->result() as $key=>$row){
+		 	$data[] = $row;
+		 }
+	 }else{
+	 	$data = "";
+	 }
+	 	$return[data] = $data;
+	 	$return[sql] = $sql;
+	 	$return[param] = $_POST;
+  		return $return;
+  }
+  
 }
 
 ?>
