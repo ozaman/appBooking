@@ -349,6 +349,7 @@ class Userview_model_dash extends CI_Model {
     }
     
   }
+
   public function historylist(){
 	$s_code = $this->input->post('s_code');
 	$this->db->select('id,place,to_place,lat_from,lng_from,lat_to,lng_to,s_code,fashion');
@@ -363,6 +364,73 @@ class Userview_model_dash extends CI_Model {
 	  }
 	  return FALSE;
   }
+
+  public function booking_bt_date($code){
+  	
+  	$d1 = $_POST[d1];
+  	$d2 = $_POST[d2];
+
+//  	$sql = "select * from ap_order where ((s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' )) and (arrival_date between '".$d1."' and '".$d2."') order by arrival_date desc ";
+  	$sql = "select * from ap_order where (arrival_date between '".$d1."' and '".$d2."') and ((s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' )) order by arrival_date desc";
+//  	$sql = "select * from ap_order order by arrival_date desc ";
+  	$query = $this->db->query($sql);
+	if($query->num_rows > 0) {
+		 foreach($query->result() as $key=>$row){
+		 	
+		    $curl_post_data = '{"place_from" : "'.$row->place.'","place_to" : "'.$row->to_place.'"}';
+			$curl_response = '';
+			$headers = array();
+//			$url = "http://services.t-booking.com/Product_dashboard/normal";                               
+			$url = "http://services.t-booking.com/Service/getplace";                               
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+			curl_setopt($curl, CURLOPT_HTTPHEADER , array(
+			     'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
+			));
+			curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_REFERER, $url);
+			curl_setopt($curl, CURLOPT_URL, $url);  
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+			$curl_response = curl_exec($curl);
+			curl_close($curl);
+			$aaaa = json_decode($curl_response);
+					
+			$data_row[$key]['id_order'] = $row->id;
+			$data_row[$key]['guest'] = $row->guest_english;
+			$data_row[$key]['total_price'] = $row->total_price;
+			//$data_row[$key]['topic'] = $aaaa->topic;
+			$data_row[$key]['from'] = $aaaa[0]->topic;
+			$data_row[$key]['to'] = $aaaa[1]->topic;
+			$data_row[$key]['invoice'] = $row->invoice;
+			$data_row[$key]['date_time'] = $row->arrival_date;
+			$data_row[$key]['status_pay'] = $row->status_pay;
+			$data_row[$key]['status_pay_driver'] = $row->status_pay_driver;
+			$data_row[$key]['status_confirm'] = $row->status_confirm;
+			$data_row[$key]['type'] = $row->type;
+				
+		 	//$data[] = $row;
+		 }
+		$this->db->select('i_id');
+        $query_num = $this->db->from('ap_users')->get();
+        $num_user = $query_num->num_rows ;
+      
+	}
+	else{
+	 	$data_row = "";
+	 }
+	 	$data['results'] = $data_row;
+        $data['total_user'] = $num_user;
+        $data['levelme'] = $level;
+        $data['sql'] = $sql;
+        
+	 	/*$return[data] = $data;
+	 	$return[sql] = $sql;
+	 	$return[param] = $_POST;*/
+  		return $data;
+  }
+  
 }
 
 ?>
