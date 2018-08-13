@@ -28,7 +28,7 @@ class Savebook_model extends CI_Model {
       $data['other'] = $this->input->post('other');
       $data['arrival_flight'] = $this->input->post('arrival_flight');
       $data['guest_other'] = $this->input->post('guest_other');
-      $data['s_code'] = $this->input->post('code');
+      $data['s_code'] = $this->input->post('s_code');
       $data['s_code_ref'] = $this->input->post('code_ref');
       $data['cost_a_nett'] = $this->input->post('cost_a_nett');
       $data['lat_from'] = $this->input->post('lat_f');
