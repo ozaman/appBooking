@@ -227,14 +227,14 @@ $( document ).ready(function() {
                         </li>
                         
                             </ul> -->
-                                <li id="btn-logout-user">
+                               <!--  <li id="btn-logout-user">
                                     <a>
                                         <i class="material-icons">power_settings_new</i><span class="lng-logout"></span>
                     
                                     </a>
                                 </li>
                         
-                            </ul>
+                            </ul> -->
                         </li>
                         <li class="dropdown" id="btnlogin">
                             <div class="user">

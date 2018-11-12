@@ -122,16 +122,11 @@
                                 <div id="usernamess"></div>                             
                                 <b class="caret"></b>
                             </a>
-                            <ul class="dropdown-menu dropdown-with-icons">
-                                <!-- <li>
-                                    <a href="" >
-                                    <i class="material-icons">contacts</i><span class="lng-settings-account"></span>
-                    
-                                    </a>
-                                </li> -->
+                            <!-- <ul class="dropdown-menu dropdown-with-icons">
+                               
                                 <li class="box-setting">
                             <a href="https://www.welovetaxi.com/app/booking2/dashboard/account_settings" class="feed">
-                              <!--  <i class="material-icons">dashboard</i><span style="text-transform: initial;" class="lng-dashboard textmenu"></span>  -->
+                              
                                 <i class="material-icons">settings</i><span style="text-transform: initial;" class="lng-sa_d textmenu">ตั้งค่าบัญชี</span>                  
                             </a>
                         </li>
@@ -143,7 +138,7 @@
                                 </li>
                                 
                         
-                            </ul>
+                            </ul> -->
                         </li>
                         <li class="dropdown" id="btnlogin">
                             <div class="user">
