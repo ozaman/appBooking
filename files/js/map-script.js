@@ -69,7 +69,7 @@ if ($.cookie("lng") == 'cn') {
 
     success = '成功';
     error = '错误';
-} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
     please_login_txt = "กรุณาเข้าสู่ระบบ";
     click_save_place_txt = "ไม่มีบันทึก (กดเพื่อบันทึก)";
     lang_to_map = 'th';
@@ -80,7 +80,7 @@ if ($.cookie("lng") == 'cn') {
     lng_price = 'Price';
     success = 'สำเร็จ';
     error = 'ผิดพลาด';
-} else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+} else if ($.cookie("lng") == 'en' ) {
     please_login_txt = "Please login";
     click_save_place_txt = "No record (Click to save)";
     lang_to_map = 'en';
@@ -93,7 +93,7 @@ if ($.cookie("lng") == 'cn') {
     search_position = 'Find a location';  
 } 
 
-if ($.cookie("login") == undefined) {
+if ($.cookie("detect_user") == undefined) {
     $('.lng-save_home_place').html(please_login_txt);
     $('.lng-save_Office_place').html(please_login_txt);
     $('.lng-save_regularly_place').html(please_login_txt);
@@ -650,10 +650,10 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
     console.log(lat_f+'-'+lng_f+'-'+dist+'-'+lat_t+'-'+lng_t)
     if ($.cookie("lng") == 'cn') {
         notfound = '产品没有找到';
-    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+    } else if ($.cookie("lng") == 'en' ) {
 
         notfound = 'Product not Found';
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
         notfound = 'ไม่พบผลิตภัณฑ์';
 
     }
@@ -774,11 +774,11 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                                 $('#select_pax_use').html( '所有類型')
                                 typeshow = datasort[i].car_topic_cn;
                                 pax = datasort[i].pax_cn;
-                            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                            } else if ($.cookie("lng") == 'en' ) {
                                 $('#select_pax_use').html( 'All Type')                   
                                 typeshow = datasort[i].car_topic_en;
                                 pax = datasort[i].pax_en;
-                            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+                            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                                 $('#select_pax_use').html( 'ทุกประเภท')
                                 typeshow = datasort[i].car_topic_th;
                                 pax = datasort[i].pax_th;
@@ -1070,14 +1070,14 @@ function sendpaxrel(x) {
            } else if (ctype == '0') {
                $('#select_pax_use').html( '所有類型')
            }
-       } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+       } else if ($.cookie("lng") == 'en' ) {
            if (getdataservice[i].pax_id == ctype) {
                $('#select_pax_use').html( getdataservice[i].car_topic_en+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_en+'</span>')
            } else if (ctype == '0') {
                $('#select_pax_use').html( 'All Type')
                
            }
-       } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+       } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
            if (getdataservice[i].pax_id == ctype) {
                $('#select_pax_use').html(getdataservice[i].car_topic_th+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_th+'</span>')
            } else if (ctype == '0') {
@@ -1134,7 +1134,7 @@ function sendpaxrel(x) {
             lngcapacityinfo = '車容量';
             lngdetails = '细节';
             lngfacilities = '设施';
-        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        } else if ($.cookie("lng") == 'en' ) {
             car_topic = compae1private[i].topic_en;
             cartype = compae1private[i].car_topic_en;
             pax = compae1private[i].pax_en;
@@ -1142,7 +1142,7 @@ function sendpaxrel(x) {
             lngcapacityinfo = 'Capacity';
             lngdetails = 'details';            
             lngfacilities = 'Facilities';
-        } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+        } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
             car_topic = compae1private[i].topic_th;
             cartype = compae1private[i].car_topic_th;
             pax = compae1private[i].pax_th;
@@ -1252,7 +1252,7 @@ function sendpaxrel(x) {
                 lngcapacityinfo = '車容量';
                 lngdetails = '细节';
                 lngfacilities = '设施';
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 car_topic = compae1join[i].topic_en;
                 cartype = compae1join[i].car_topic_en;
                 pax = compae1join[i].pax_en;
@@ -1260,7 +1260,7 @@ function sendpaxrel(x) {
                 lngcapacityinfo = 'Capacity';
                 lngdetails = 'details';            
                 lngfacilities = 'Facilities';
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                 car_topic = compae1join[i].topic_th;
                 cartype = compae1join[i].car_topic_th;
                 pax = compae1join[i].pax_th;
@@ -1405,7 +1405,7 @@ function confirmhistory(){
     console.log($('#current').val())
     console.log($('#pac-input').val())
     console.log(his_transfer_id+'-'+his_from+'-'+his_to+'-'+his_lat_f+'-'+his_lng_f+'-'+his_lat_t+'-'+his_lng_t+'-'+his_fashion)
-    datalocation = { "user": $.cookie("login"), "topic_from":$('#current').val(), "topic_to":$('#pac-input').val(),"from": dataPlacefrom,"to": dataPlaceto,"lat_f": lat_f,"lng_f": lng_f,"lat_t": lat_t,"lng_t": lng_t,"fashion":booking};
+    datalocation = { "user": $.cookie("detect_user"), "topic_from":$('#current').val(), "topic_to":$('#pac-input').val(),"from": dataPlacefrom,"to": dataPlaceto,"lat_f": lat_f,"lng_f": lng_f,"lat_t": lat_t,"lng_t": lng_t,"fashion":booking};
     
     $.ajax({
         type: 'POST',
@@ -1479,7 +1479,7 @@ function placeRecord() {
     dataHome = [];
     dataOffice = [];
     dataRegular = [];
-    var id = $.cookie("login");
+    var id = $.cookie("detect_user");
     $.post("my_place_often/place_often", { "id": id }, function(results) {
         if (results === 'false') {
         } else {
@@ -1625,7 +1625,7 @@ function changesetphone2(changesetname) {
 function addPlaceOfften(type_place,type_call) {
     $('#appendBoxoften').show();    
     console.log('sssss');
-    if ($.cookie("login") == undefined) {
+    if ($.cookie("detect_user") == undefined) {
         $('#loading').css('display', 'block');
         // setTimeout(function() {
 
@@ -1669,9 +1669,9 @@ function addPlaceOfften(type_place,type_call) {
             var btn_color = "btn-success";
             if ($.cookie("lng") == 'cn') {
                 txt_save = "记录";
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                 txt_save = "บันทึก";
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 txt_save = "Record";
             } 
         } else if (type_call == "edit") {
@@ -1682,12 +1682,12 @@ function addPlaceOfften(type_place,type_call) {
                 set_name = '集名称';
                 phoneplace = '电话';
                 
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                 txt_save = "บันทึก";
                 set_name = 'ตั้งชื่อ';
                 phoneplace = 'โทรศัพท์';
                 
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 txt_save = "Record";
                 set_name = 'Set name';
                 phoneplace = 'Phone';                
@@ -1740,7 +1740,7 @@ function selectSavePlaceOfften(type_place) {
     $('#outselect_often').show(500)
     $('.placeoften').remove();
     DataType = [];    
-    var id = $.cookie("login");
+    var id = $.cookie("detect_user");
     var placeoften;
     $.post("my_place_often/place_often", { "id": id }, function(results) {
         if (results === 'false') {
@@ -1792,7 +1792,7 @@ function btn_save(){
     if(phonesend == '' || phonesend == undefined){
         phonesend = getnewphonenull;
     }    
-    var iduser = $.cookie("login");
+    var iduser = $.cookie("detect_user");
     $.post("my_place_often/edit", { "id": id_edit_often,"topic": namesend,"phone":phonesend }, function(results) {
         console.log(results)
         if (results === 'false') {
@@ -1871,7 +1871,7 @@ function editMyPlace(x,text,lat,lng,phone){
 }
 function selectEditPlaceOfften(type_place) {
     chTypeplace = type_place;
-    if ($.cookie("login") == undefined) {
+    if ($.cookie("detect_user") == undefined) {
         $('#loading').css('display', 'block');
         // setTimeout(function() {
 
@@ -1892,7 +1892,7 @@ function selectEditPlaceOfften(type_place) {
     $('.placeeditften').remove();    
     $('#select_often').hide()
     DataType = [];    
-    var id = $.cookie("login");
+    var id = $.cookie("detect_user");
     var placeoften;
     $.post("my_place_often/place_often", { "id": id }, function(results) {
         if (results === 'false') {
@@ -1933,7 +1933,7 @@ function deleteMyPlace(id,type_place) {
    $('#loading').show();
    DataType = [];
    $('.placeeditften').remove()    
-   var iduser = $.cookie("login");
+   var iduser = $.cookie("detect_user");
    $.post("my_place_often/delete", { "id": id }, function(results) {
     console.log(results)
     if (results === 'false') {
@@ -2029,7 +2029,7 @@ function savePlaceOften(type_call, lat, lng, place_id, type_place) {
         "lng": lng,
         "place_id": place_id,
         "type_place": type_place,
-        "login": $.cookie("login"),
+        "login": $.cookie("detect_user"),
         "topic": changename,
         "phone": changephone
         

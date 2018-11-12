@@ -226,6 +226,21 @@
             <table width="100%">
                 <tr>
                     <td width="20%" style="">
+                        <div class="btn-Tshare" >
+                            <table width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <a href="https://www.welovetaxi.com/app/T-share/">
+                                        <img src="https://www.welovetaxi.com/app/T-share/assets/images/logo2.png" style="width: 35px; height: 35px;">
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                           
+                        </div>
+                    </td>
+                    <td width="20%" style="">
                         <div class="btn-realtime" >
                             <table width="100%">
                                 <tr>
@@ -235,7 +250,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <span class="lng-now-use" style="font-size: 13px;"></span>
+                                        <span class="lng-now-use" style="font-size: 10px;"></span>
                                     </td>
                                 </tr>
                             </table>
@@ -252,7 +267,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <span class="lng-advance-use" style="font-size: 13px;"></span>
+                                        <span class="lng-advance-use" style="font-size: 10px;"></span>
                                     </td>
                                 </tr>
                             </table> 
@@ -268,7 +283,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                    <span class="lng-car-service" style="font-size: 13px;">Car service</span>
+                                    <span class="lng-car-service" style="font-size: 10px;">Car service</span>
                                     </td>
                                 </tr>
                             </table>
@@ -286,7 +301,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <span class="lng-management" style="font-size: 13px;">Management</span>
+                                        <span class="lng-management" style="font-size: 10px;">Management</span>
                                     </td>
                                 </tr>
                             </table>

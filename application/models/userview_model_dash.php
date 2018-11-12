@@ -52,7 +52,8 @@ class Userview_model_dash extends CI_Model {
 		
   }
 
-  public function customerRef_list_cus($level,$id_head,$code,$code_ref){
+  // public function customerRef_list_cus($level,$id_head,$code,$code_ref){
+  public function customerRef_list_cus($code){
   	
 /*  	$id_head = $user_level = $this->session->userdata('i_id');  
   	$code = $user_level = $this->session->userdata('s_code');  
@@ -64,7 +65,7 @@ class Userview_model_dash extends CI_Model {
 	$this->db->or_where('s_code_ref',$code_ref);
 	$this->db->where('s_code_ref !=',"");*/
 	$date = date("Y-m-d");
-	$query = $this->db->query("SELECT * FROM ap_order WHERE (s_code = '".$code."' and s_code !='') or (s_code_ref = '".$code."' and s_code_ref !='' ) and arrival_date = '".$date."' ORDER BY arrival_date DESC");
+	$query = $this->db->query("SELECT * FROM ap_order WHERE s_code = '".$code."' and arrival_date = '".$date."' ORDER BY arrival_date DESC");
 //	$query = $this->db->get('ap_order');
 //	$query = $this->db->from('ap_order')->get();
 	if($query->num_rows > 0) {
@@ -105,13 +106,14 @@ class Userview_model_dash extends CI_Model {
 				
 		 	//$data[] = $row;
 		 }
-		$this->db->select('i_id');
-        $query_num = $this->db->from('ap_users')->get();
+		$this->db->select('id');
+        $query_num = $this->db->from('web_driver')->get();
         $num_user = $query_num->num_rows ;
         
         $data['results'] = $data_row;
         $data['total_user'] = $num_user;
         $data['levelme'] = $level;
+        $data[sql2] = "SELECT * FROM ap_order WHERE s_code = '".$code."' and arrival_date = '".$date."' ORDER BY arrival_date DESC";
         
 		return $data;
 	}
@@ -351,7 +353,7 @@ class Userview_model_dash extends CI_Model {
   }
 
   public function historylist(){
-	$s_code = $this->input->post('s_code');
+	$s_code = $this->input->post('id');
 	$this->db->select('id,place,to_place,lat_from,lng_from,lat_to,lng_to,s_code,fashion');
 	  $this->db->where('s_code',$s_code);
 	  $this->db->order_by('id', 'DESC');    

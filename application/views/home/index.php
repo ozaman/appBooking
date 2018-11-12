@@ -778,44 +778,8 @@ table{
 <!-- book -->
 <?php 
    
-    if(!$_COOKIE['lng']){
-
-       // echo  $_COOKIE['lng'].'unde';
-        $lng_all_type = 'All Type';
-        $lag_search_from = 'From: Type airport,hotel name, or location.';
-        $lag_search_to = 'To: Type airport,hotel name, or location.';
-        $lag_go_txt = 'Where are you going? ';
-        $lag_from_txt = 'Departure Location...';
-        $lng_from = 'From';
-        $lng_to = 'To';
-        $lng_from_pro = 'From Province';
-        $lng_to_pro = 'To Province';
-        $click_save_place_txt = "No record (Click to save)";
-        
-        $select_type = "Select Types";
-        $hospital = "Hospital";
-        $store = "Store";
-        $airport = "Airport";
-        $cafe = "Cafe";
-        $spa = "Spa";
-        $bank = "Bank";
-        $depart_store = "Department Store";
-        $h_r = "Hotel,Resort";
-        $newname = 'New name';
-        $phoneplace = 'Phone';
-        $search_position = 'Find a location';
-
-        /************book********* */
-        $lng_your_country = 'Your country';
-        $lng_fiast_name = 'First Name';
-        $lng_last_name = 'Last Name';
-        $lng_phone = 'Phone';
-        $lng_email = 'Email';
-        $lng_other = 'Other';
-       $lng_flight = 'Flight';  
-        
-    }
-    else if($_COOKIE['lng'] == 'en'){
+    
+    if($_COOKIE['lng'] == 'en'){
         //echo 'en';
         $lng_all_type = 'All Type';
         $lag_search_from = 'From: Type airport,hotel name, or location.';
@@ -853,7 +817,7 @@ table{
         
         
     }
-    else if($_COOKIE['lng'] == 'th'){
+    else if($_COOKIE['lng'] == 'th' || !$_COOKIE['lng']){
         //echo 'th';
         $lng_all_type = 'ทุกประเภท';
         $lag_search_from = 'จาก: สนามบินประเภทชื่อโรงแรมหรือสถานที่ตั้ง';
@@ -1155,7 +1119,21 @@ table{
     <table width="100%">
         <tr>
             <td width="20%" style="">
-                <div class="btn-realtime" >
+                        <div class="btn-Tshare" >
+                            <table width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <a href="https://www.welovetaxi.com/app/T-share/">
+                                        <img src="https://www.welovetaxi.com/app/T-share/assets/images/logo2.png" style="width: 35px;height: 35px;"></a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                           
+                        </div>
+                    </td>
+            <td width="20%" style="">
+                <div class="main_icon btn-realtime" >
                     <table width="100%">
                         <tr>
                             <td align="center">
@@ -1164,7 +1142,7 @@ table{
                         </tr>
                         <tr>
                             <td align="center">
-                                <span class="lng-now-use" style="font-size: 13px;"></span>
+                                <span class="lng-now-use" style="font-size: 10px;"></span>
                             </td>
                         </tr>
                     </table>
@@ -1172,7 +1150,7 @@ table{
                 </div>
             </td>
             <td width="20%" style="">
-                <div class="btn-reservation" >
+                <div class="main_icon btn-reservation" >
                 <table width="100%">
                         <tr>
                             <td align="center">
@@ -1181,7 +1159,7 @@ table{
                         </tr>
                         <tr>
                             <td align="center">
-                                <span class="lng-advance-use" style="font-size: 13px;"></span>
+                                <span class="lng-advance-use" style="font-size: 10px;"></span>
                             </td>
                         </tr>
                     </table>
@@ -1190,7 +1168,7 @@ table{
                 </div>
             </td>
             <td width="20%" style="">
-                <div class="btn-car-service" >
+                <div class="main_icon btn-car-service" >
                 <table width="100%">
                         <tr>
                             <td align="center">
@@ -1200,7 +1178,7 @@ table{
                         </tr>
                         <tr>
                             <td align="center">
-                            <span class="lng-car-service" style="font-size: 13px;"></span>
+                            <span class="lng-car-service" style="font-size: 10px;"></span>
                             </td>
                         </tr>
                     </table>
@@ -1209,7 +1187,7 @@ table{
                 </div>
             </td>
             <td width="20%" >
-                <div class="btn-management" >
+                <div class="main_icon btn-management" >
                     <table width="100%">
                         <tr>
                             <td align="center">
@@ -1220,7 +1198,7 @@ table{
                         </tr>
                         <tr>
                             <td align="center">
-                                <span class="lng-management" style="font-size: 13px;"></span>
+                                <span class="lng-management" style="font-size: 10px;"></span>
                             </td>
                         </tr>
                     </table>
@@ -1633,7 +1611,7 @@ table{
 			}
 			#marginBox{
                 overflow: scroll;
-                min-height: 50vh;
+                min-height: 40vh;
                 border-radius: 15px;
                 /* margin-bottom: 15px; */
                 /* margin-top: 90px; */
@@ -1745,7 +1723,8 @@ table{
                 <table  width="100%">
                     <tr  id="currentPosId">
                         <td width="30">
-                            <span class="material-icons" aria-hidden="true" style="font-size: 2.1em;color: #4285F4;">my_location</span>
+                            <span class="material-icons" aria-hidden="true" style="    font-size: 25px;
+;color: #4285F4;">my_location</span>
                         </td>
                         <td width="8px"></td>
                         <td class="pac-item-query">
@@ -1760,7 +1739,8 @@ table{
                 <table width="100%">
                     <tr  id="home-place-id">
                         <td width="30">
-                        <span class="fa fa-home fa-lg" aria-hidden="true" style="font-size: 2.1em;"></span>
+                        <span class="fa fa-home fa-lg" aria-hidden="true" style="    font-size: 25px;
+;"></span>
                         </td>
                         <td width="8px"></td>
                         <td  onclick="selectEditPlaceOfften(1)" class="pac-item-query">
@@ -1799,7 +1779,8 @@ table{
                 <table width="100%">
                     <tr  id="office-place-id" >
                         <td width="30">
-                        <span class="fa fa-building fa-lg" aria-hidden="true" style="font-size: 2.1em;"></span>
+                        <span class="fa fa-building fa-lg" aria-hidden="true" style="    font-size: 25px;
+;"></span>
                         </td>
                         <td width="8px"></td>
                         <td  onclick="selectEditPlaceOfften(2)" class="pac-item-query">
@@ -1836,7 +1817,8 @@ table{
                 <table width="100%">
                     <tr  id="regularly-place-id" >
                         <td width="30">
-                        <i class="material-icons" style="font-size: 2.1em;width:30px">star_rate</i>
+                        <i class="material-icons" style="    font-size: 25px;
+;width:30px">star_rate</i>
                         
                         </td>
                         <td width="8px"></td>
@@ -1874,8 +1856,10 @@ table{
                 <table width="100%">
                     <tr  id="regularly-place-id" >
                         <td width="30">
-                        <i class="material-icons" style="font-size: 2.1em;width:30px">av_timer</i>
-                        <!-- <i class="material-icons" style="font-size: 2.1em;width:30px">star_rate</i> -->
+                        <i class="material-icons" style="    font-size: 25px;
+;width:30px">av_timer</i>
+                        <!-- <i class="material-icons" style="    font-size: 25px;
+;width:30px">star_rate</i> -->
                         
                         </td>
                         <td width="8px"></td>
@@ -1914,7 +1898,8 @@ table{
                 <table  width="100%">
                     <tr  id="setpinId" onclick="setPinLocation();">
                         <td width="30">
-                        <span class="fa fa-map-pin fa-lg" aria-hidden="true" style="font-size: 2.1em;  "></span>
+                        <span class="fa fa-map-pin fa-lg" aria-hidden="true" style="    font-size: 25px;
+;  "></span>
                         </td>
                         <td width="8px"></td>
                         <td class="pac-item-query">
@@ -1928,7 +1913,8 @@ table{
                 <table  width="100%">
                     <tr id="nearbyId" >
                         <td width="30">
-                        <span class="fa fa-arrow-right fa-lg" aria-hidden="true" style="font-size: 2.1em;"></span>
+                        <span class="fa fa-arrow-right fa-lg" aria-hidden="true" style="    font-size: 25px;
+;"></span>
                         </td>
                         <td width="8px"></td>
                         <td class="pac-item-query">

@@ -8,7 +8,7 @@ lat_from, lng_from,proFrom,proTo,dataUse,lngdetails,addtopic = "",isConfirm = fa
 var start_st, end_st;
 var booking = '';
 var checkshowhome = false;
-var base_url = 'https://www.welovetaxi.com/app/booking2/';
+// var base_url = 'https://www.welovetaxi.com/app/booking2/';
 var  reltimeclick;
 var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
@@ -227,10 +227,10 @@ else if(res.status==2)
             //$('#marginBox').hide(1000)
             $('.box_option').show(1000)  
             $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });
-            $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+            $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+            $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+            $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+            $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
             $("#pro-search").hide();
             $("#search-raeltime").fadeIn(1000);
             $("#list_place").fadeIn(1000);
@@ -292,29 +292,30 @@ else if(res.status==2)
         }
     }*/
     var getdatahis;
-    console.log($.cookie("login")+'-----------------------------------------------------------------')
-    if ($.cookie("login")) {
+    console.log($.cookie("detect_user")+'-----------------------------------------------------------------')
+    if ($.cookie("detect_user")) {
         $('#btn_ck_login').hide();
         $('#acceptancecheck').show();
         $.ajax({
             type: 'POST',
             url: base_url + 'getuser_control/mainpage',
-            data: { 'id': $.cookie("login") },
+            data: { 'id': $.cookie("detect_user") },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
                 console.log(data)
                 datauser = data;
-                s_code =  data[0].s_code;
-                code_ref = data[0].s_code_ref;
-                console.log(s_code)
+                s_code =  data[0].id;
+                // code_ref = data[0].s_code_ref;
+                 console.log(s_code)
                 $.ajax({
                     type: 'POST',
                     url: base_url + 'dashboard/historylist',
-                    data: { 's_code': data[0].s_code },
+                    data: { 'id': s_code },
                     //contentType: "application/json",
                     dataType: 'json',
                     success: function(datahis) {
+                        console.log('8888888888888')
                         console.log(datahis)
                         getdatahis = datahis;
                     }
@@ -322,15 +323,15 @@ else if(res.status==2)
                 $('.box-login').show();
                 $('.box-login-non').hide();
                 $('.box-desboard').show();
-                if (data[0].s_image == '') {
-                    $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
-                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
-                } else {
-                    $('#photo_profile').html('<img   src="' + base_url + 'pic/' + data[0].s_image + '">');
-                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].s_image + '">');
-                }
-                $('#usernamess').html(data[0].s_username);
-                $('#getname').html(data[0].s_name);
+                // if (data[0].s_image == '') {
+                //     $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
+                //     $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
+                // } else {
+                    $('#photo_profile').html('<img   src="../data/pic/driver/small/'+data[0].username+'.jpg">');
+                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].username + '">');
+                // }
+                $('#usernamess').html(data[0].username);
+                $('#getname').html(data[0].name);
                 $('#btnlogin').css('display', 'none')
                 $('#btnlogin2').css('display', 'none')
                 $('#btnuser').css('display', 'block')
@@ -380,18 +381,18 @@ else if(res.status==2)
        }, 250); 
        $('#get_historylist_pop').show(500);
        $('.li_list_history').remove()
-       
+
        console.log(getdatahis)
-       if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {            
-        lang_to_map = 'en';             
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
-        lang_to_map = 'th';                
-    } else if ($.cookie("lng") == 'cn') {            
-        lang_to_map = 'zh-CN';                 
+       if ($.cookie("lng") == 'en' ) {
+        lang_to_map = 'en';
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
+        lang_to_map = 'th';
+    } else if ($.cookie("lng") == 'cn') {
+        lang_to_map = 'zh-CN';
     }
     $.each(getdatahis, function(i, val) {
         url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + getdatahis[i].lat_from + ',' + getdatahis[i].lng_from + '&sensor=true&language=' + lang_to_map;
-        
+
         $.post(url2, function(data) {
             console.log(data);
             var pl_his_from = data.results[0].formatted_address                            
@@ -448,7 +449,7 @@ else if(res.status==2)
         $.ajax({
             type: 'POST',
             url: base_url+'my_place_often/gethistory',
-            data: { 'id': $.cookie("login") },
+            data: { 'id': $.cookie("detect_user") },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
@@ -584,11 +585,11 @@ else if(res.status==2)
         $('#loading').css('display', 'block');
         setTimeout(function() {
             $('.box_option').hide(500)            
-            $('.btn-management').css({ 'background': '#3b5998' }, { 'color': '#ffffff' });
-            $('.btn-car-service').css({ 'background': '#ffffff' }, { 'color': '#333' });
-            $('.btn-home').css({ 'background': '#ffffff' }, { 'color': '#333' });
-            $('.btn-reservation').css({ 'background': '#ffffff' }, { 'color': '#333' });
-            $('.btn-realtime').css({ 'background': '#ffffff' }, { 'color': '#333' });
+            $('.btn-management').css({ 'color': '#3b5998' });
+            $('.btn-car-service').css({ 'background': '#ffffff' }, { 'color': '#999' });
+            $('.btn-home').css({ 'background': '#ffffff' }, { 'color': '#999' });
+            $('.btn-reservation').css({ 'background': '#ffffff' }, { 'color': '#999' });
+            $('.btn-realtime').css({ 'background': '#ffffff' }, { 'color': '#999' });
             $('#loading').css('display', 'none');
             window.location.href = base_url + "dashboard/view_user";
             $("#show-hide-pro2").hide();
@@ -599,10 +600,10 @@ else if(res.status==2)
         setTimeout(function() {
             $('.box_option').hide(500)            
             $('.btn-home').css('color', '#3b5998');
-            $('.btn-car-service').css('color', '#333');
-            $('.btn-reservation').css('color', '#333');
-            $('.btn-management').css('color', '#333');
-            $('.btn-realtime').css('color', '#333');
+            $('.btn-car-service').css('color', '#999');
+            $('.btn-reservation').css('color', '#999');
+            $('.btn-management').css('color', '#999');
+            $('.btn-realtime').css('color', '#999');
             $('#loading').css('display', 'none');
         }, 500);
     });
@@ -624,11 +625,11 @@ else if(res.status==2)
                 $('#box-car-service').hide();
                 $('#map').show(500);
                 $('.box_option').show(500)
-                $('.btn-reservation').css({ 'background': '#3b5998', 'color': '#ffffff' });
-                $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+                $('.btn-reservation').css({  'color': '#3b5998' });
+                $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
                 $("#pro-search").hide();
                 $("#search-raeltime").fadeIn(1000);    
                 $("#list_place").fadeIn(1000);
@@ -652,10 +653,10 @@ else if(res.status==2)
                     $('#map').show(500);
                     $('.box_option').show(500)                    
                     $('.btn-reservation').css({ 'background': '#3b5998', 'color': '#ffffff' });
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
+                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
                     $("#pro-search").hide();
                     $("#search-raeltime").fadeIn(1000);        
                     $("#list_place").fadeIn(1000);
@@ -676,11 +677,11 @@ else if(res.status==2)
                     $('#box-car-service').hide();
                     $('#map').show(500);
                     $('.box_option').hide(500)
-                    $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });  
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+                    $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });  
+                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
+                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
                     $("#pro-search").hide();
                     $("#search-raeltime").hide(1000);
                     $("#list_place").hide(1000);
@@ -713,11 +714,11 @@ $('.btn-realtime').click(function() {
             $('#box-car-service').hide();
             $('#map').show(500);
             $('.box_option').show(500)
-            $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });
-            $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-            $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+             $('.btn-realtime').css({  'color': '#3b5998' });
+            $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+            $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+            $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+            $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
             $("#pro-search").hide();
             $("#search-raeltime").fadeIn(1000);    
             $("#list_place").fadeIn(1000);
@@ -742,11 +743,11 @@ $('.btn-realtime').click(function() {
                 $('#box-car-service').hide();
                 $('#map').show(500);
                 $('.box_option').show(500)                    
-                $('.btn-realtime').css({ 'background': '#3b5998', 'color': '#ffffff' });       
-                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+                $('.btn-realtime').css({  'color': '#3b5998' });       
+                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
                 $("#pro-search").hide();
                 $("#search-raeltime").fadeIn(1000);        
                 $("#list_place").fadeIn(1000);
@@ -767,11 +768,11 @@ $('.btn-realtime').click(function() {
                 $('#box-car-service').hide();
                 $('#map').show(500);
                 $('.box_option').hide(500)
-                $('.btn-realtime').css({ 'background': '#fff', 'color': '#333' });
-                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
-                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#333' });
+                $('.btn-realtime').css({ 'background': '#fff', 'color': '#999' });
+                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
                 $("#pro-search").hide();
                 $("#search-raeltime").hide(1000);        
                 $("#list_place").hide(1000);
@@ -793,7 +794,7 @@ $('#selectproto').click(function(){
     $('#box-provinceto').show(500);
     var lng;
     if ($.cookie("lng") == undefined) {
-        lng = 'en';
+        lng = 'th';
     } else {
         lng = $.cookie("lng");    
     }
@@ -809,11 +810,11 @@ $('#selectproto').click(function(){
                 console.log(data)
                 var datastay = data[0].data1;
                 console.log(datastay)
-                if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                if ($.cookie("lng") == 'en' ) {
                     $.each(datastay, function(i, val) {
                         $('#provinceto').append('<li class="stayto" id="proTo'+datastay[i].stay_to+'" proTo="'+datastay[i].name+'"   onclick="sendproto(\''+datastay[i].stay_to+'\',\''+datastay[i].name+'\');"><span>' + datastay[i].name + '</span></li>');
                     });
-                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                     $.each(datastay, function(i, val) {
                         $('#provinceto').append('<li class="stayto" id="proTo'+datastay[i].stay_to+'" proTo="'+datastay[i].name_th+'"  onclick="sendproto(\''+datastay[i].stay_to+'\',\''+datastay[i].name_th+'\');"><span>' + datastay[i].name_th + '</span></li>');
                     });
@@ -871,11 +872,11 @@ $('#selectpro').click(function() {
                 console.log('*********************************')
                 var datastayfrom = data[0].data1;
                 console.log(datastayfrom)
-                if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                if ($.cookie("lng") == 'en' ) {
                     $.each(datastayfrom, function(i, val) {
                         $('#province_service').append('<li class="stayfrom" id="proFrom'+datastayfrom[i].stay+'" proFrom="'+datastayfrom[i].name+'"  onclick="sendpro(\''+datastayfrom[i].stay+'\',\''+datastayfrom[i].name+'\');"><span>' + datastayfrom[i].name + '</span></li>');
                     });
-                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+                } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                     $.each(datastayfrom, function(i, val) {
                         $('#province_service').append('<li class="stayfrom" id="proFrom'+datastayfrom[i].stay+'" proFrom="'+datastayfrom[i].name_th+'"  onclick="sendpro(\''+datastayfrom[i].stay+'\',\''+datastayfrom[i].name_th+'\');"><span>' + datastayfrom[i].name_th + '</span></li>');
                     });
@@ -912,11 +913,11 @@ $('.btn-car-service').click(function() {
             $('#selectproto').html('到省')
         } 
         $('#map').hide();
-        $('.btn-car-service').css({ 'background': '#3b5998', 'color': '#ffffff' });
-        $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#333' });
-        $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#333' });
-        $('.btn-home').css({ 'background': '#ffffff', 'color': '#333' });
-        $('.btn-management').css({ 'background': '#ffffff', 'color': '#333' });
+        $('.btn-car-service').css({  'color': '#3b5998' });
+        $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
+        $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+        $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+        $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
         $("#show-hide-pro").hide();
         $("#show-hide-pro2").hide();
         $("#pro-search").hide();
@@ -934,7 +935,7 @@ $('#cartype').on('change', function() {
 });
 var quotations = [];    
 $('#btn-logout-user').on('click', function() {
-    if ($.cookie("lng") == "en" || $.cookie("lng") == undefined) {
+    if ($.cookie("lng") == "en" ) {
         var title_logout = "Logout ?";
         var text_logout = "Do you want to logout?";
         var yes = "Yes";
@@ -944,7 +945,7 @@ $('#btn-logout-user').on('click', function() {
         var text_logout = "您需要注销 ?";
         var yes = "是";
         var cancel = "取消";
-    } else if ($.cookie("lng") == "th" || $.cookie("lng") == 'th-TH') {
+    } else if ($.cookie("lng") == "th" || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
         var title_logout = "ออกจากระบบ ?";
         var text_logout = "คุณต้องการออกจากระบบหรือไม่?";
         var yes = "ใช่";
@@ -962,7 +963,7 @@ $('#btn-logout-user').on('click', function() {
     },
     function() {
         console.log('logout');
-        $.removeCookie("login");
+        $.removeCookie("detect_user");
 
         window.location.reload();
 
@@ -1193,16 +1194,11 @@ function sendproto(x,proto){
                         
                         typeshow = datasort[i].car_topic_en;
                         pax = datasort[i].pax_en;
-                    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+                    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                         $('#selectype').html( 'ทุกประเภท')
                         typeshow = datasort[i].car_topic_th;
                         pax = datasort[i].pax_th;
-                    } else if ($.cookie("lng") == undefined) {
-                        $('#selectype').html( 'All Type')
-                        typeshow = datasort[i].car_topic_en;
-                        pax = datasort[i].pax_en;
-
-                    }
+                    } 
                     console.log(type)
                     console.log(datasort.length)
                     $('#type_service').append('<li class="typeservice" id="typeservice'+datasort[i].transfer_id+'"  onclick="sendpax(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
@@ -1280,21 +1276,14 @@ function sendpaxuse(x) {
              $('#select_pax_use').html( 'All Type')
          }
 
-     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
          if (getdataservice[i].pax_id == ctype) {
              $('#select_pax_use').html(getdataservice[i].car_topic_th+' '+'<span style="color: #f44336;">'+getdataservice[i].pax_th+'</span>')
          } else if (ctype == '0') {
              $('#select_pax_use').html( 'ทุกประเภท')              
          }
 
-     } else if ($.cookie("lng") == undefined) {
-         if (getdataservice[i].pax_id == ctype) {
-             $('#select_pax_use').html( getdataservice[i].car_topic_en+' '+'<span style="    color: #f44336;">'+getdataservice[i].pax_en+'</span>')
-         } else if (ctype == '0') {
-             $('#select_pax_use').html( 'All Type')
-             
-         }
-     }
+     } 
  })
     $.each(dataUse.data1, function(i, val) {
         if ($.cookie("lng") == 'cn') {
@@ -1303,13 +1292,13 @@ function sendpaxuse(x) {
             } else if (ctype == 0) {
                comparedata.push(dataUse.data1[i])
            }
-       } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+       } else if ($.cookie("lng") == 'en' ) {
         if (dataUse.data1[i].pax_id == x) {
             comparedata.push(dataUse.data1[i])
         } else if (ctype == 0) {
            comparedata.push(dataUse[0].data1[i])
        }
-   } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+   } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
     if (dataUse.data1[i].pax_id == ctype) {
        comparedata.push(dataUse.data1[i])
    } else if (ctype == 0) {
@@ -1340,7 +1329,7 @@ function sendpaxuse(x) {
                 lngcapacityinfo = '車容量';
                 lngdetails = '细节';
                 lngfacilities = '设施';
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 car_topic = compae1private[i].topic_en;
                 cartype = compae1private[i].car_topic_en;
                 pax = compae1private[i].pax_en;
@@ -1348,7 +1337,7 @@ function sendpaxuse(x) {
                 lngcapacityinfo = 'Capacity';
                 lngdetails = 'details';            
                 lngfacilities = 'Facilities';
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                 car_topic = compae1private[i].topic_th;
                 cartype = compae1private[i].car_topic_th;
                 pax = compae1private[i].pax_th;
@@ -1453,7 +1442,7 @@ $.each(compae1join, function(i, val) {
         lngcapacityinfo = '車容量';
         lngdetails = '细节';
         lngfacilities = '设施';
-    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+    } else if ($.cookie("lng") == 'en' ) {
         car_topic = compae1join[i].topic_en;
         cartype = compae1join[i].car_topic_en;
         pax = compae1join[i].pax_en;
@@ -1461,7 +1450,7 @@ $.each(compae1join, function(i, val) {
         lngcapacityinfo = 'Capacity';
         lngdetails = 'details';            
         lngfacilities = 'Facilities';
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH'|| $.cookie("lng") == undefined) {
         car_topic = compae1join[i].topic_th;
         cartype = compae1join[i].car_topic_th;
         pax = compae1join[i].pax_th;
@@ -1606,7 +1595,7 @@ function sendpax(x) {
              dataService.push(datacaedervice.data1[i])
              $('#selectype').html( '所有類型') 
          }
-     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+     } else if ($.cookie("lng") == 'en' ) {
          if (datacaedervice.data1[i].pax_id == ctypeservice) {
              dataService.push(datacaedervice.data1[i])
              $('#selectype').html( datacaedervice.data1[i].car_topic_en+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_en+'</span>')
@@ -1615,7 +1604,7 @@ function sendpax(x) {
              $('#selectype').html( 'All Type')
              
          }
-     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
          if (datacaedervice.data1[i].pax_id == ctypeservice) {
              dataService.push(datacaedervice.data1[i])
              $('#selectype').html(datacaedervice.data1[i].car_topic_th+' '+'<span style="    color: #f44336;">'+datacaedervice.data1[i].pax_th+'</span>')
@@ -1639,7 +1628,7 @@ function sendpax(x) {
          lngcapacityinfo = '車容量';
          lngdetails = '细节';
          lngfacilities = '设施';
-     } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+     } else if ($.cookie("lng") == 'en' ) {
          car_topic = dataService[i].topic_en;
          cartype = dataService[i].car_topic_en;
          pax = dataService[i].pax_en;
@@ -1648,7 +1637,7 @@ function sendpax(x) {
          lngdetails = 'details';           
          lngfacilities = 'Facilities';
 
-     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+     } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
          car_topic = dataService[i].topic_th;
          cartype = dataService[i].car_topic_th;
          pax = dataService[i].pax_th;
@@ -1766,14 +1755,14 @@ function getcondition(i) {
         lngchild = '儿童';
         lngbagsmall = '小行李';
         lngbagbig = '大行李';
-    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+    } else if ($.cookie("lng") == 'en' ) {
         lngplan = 'Plan';
         lngadult = 'Adult';
         lngchild = 'Child';
         lngbagsmall = 'Small luggage';
         lngbagbig = 'Big baggage';
 
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
         lngplan = 'แผน';
         lngadult = 'ผู้ใหญ่';
         lngchild = 'เด็ก';
@@ -1911,7 +1900,7 @@ if ($.cookie("lng") == 'cn') {
         '<B>四. </B> 如发生司机由于不可抗力因素未接到，在约定时间后5-15分钟内，请客人及时联系我们的24小时中文热线，如等待超过30分钟，请客人需及时自行打车离开！<br /><br />' +
         '我们会退还订单费用，如客人有打车凭证提供，我们将补偿打车费用，但是其他费用一律不负责赔偿，请知晓！</span>');
 
-} else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+} else if ($.cookie("lng") == 'en' ) {
     $('.terms-of-use').html('<span  ><B >1.</B>  Please note that only green or yellow license plates vehicle legally are used as public vehicles. If you see other colors license plates vehicle, could refuse to get on and please contact our hotline.<br /><br>' +
 
         '<B>2.</B> Please remember to fasten your seat belt in the vehicle. Otherwise, in case of police check required to pay fines by you own and in case of any traffic accident, you would be unable to get any insurance compensation.<br /><br>' +
@@ -1920,7 +1909,7 @@ if ($.cookie("lng") == 'cn') {
 
         '<B>4.</B> If the driver did not arrive on time in 5-15 minutes, please contact our 24-hour hotline,Such as waiting for more than 30 minutes, please kindly get another taxi. We will refund the cost of the order, if the guest able to provide the taxi voucher that they took, we will refund the taxi costs. Please be noticed the other fees are not responsible for refund..</span>');
 
-} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
     $('.terms-of-use').html('<span >' +
         '<B>1.</B> โปรดทราบว่ามีเพียงแผ่นป้ายทะเบียนรถสีเขียวหรือสีเหลืองเท่านั้นที่ใช้เป็นยานพาหนะขนส่งสาธารณะที่ถูกต้องตามกฎหมาย หากคุณเห็นป้ายทะเบียนรถเป็นสีอื่น คุณสามารถปฏิเสธการโดยสารได้ และโปรดติดต่อสายด่วนของเรา<br /><br />' +
         '<B >2.</B> กรุณาคาดเข็มขัดนิรภัย มิฉะนั้นในกรณีที่มีการเรียกตรวจสอบจากตำรวจ คุณต้องต้องจ่ายค่าปรับเอง และในกรณีที่เกิดอุบัติเหตุ คุณจะไม่สามารถได้รับค่าชดเชยจากบริษัทประกันภัย<br /><br />' +

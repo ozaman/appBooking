@@ -11,8 +11,8 @@
     <!-- <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" name='viewport'>
 	<script>
-		// var base_url = '<?php echo base_url(); ?>';
-	</script>
+  var base_url = '<?=base_url();?>';
+</script>
 	<?php echo link_tag('files/css/bootstrap3.min.css'); ?>
 	<!-- <?php echo link_tag('files/css/material-dashboard'); ?> -->	
 	<?php echo link_tag('files/css/material-kit.min.css?v=1.1.1'); ?>	
@@ -77,13 +77,13 @@
                             </div>
                             <a class="dropdown-toggle" data-toggle="dropdown">
                                 <div id="usernamess"></div>                             
-                                <b class="caret"></b>
+                                <!-- <b class="caret"></b> -->
                             </a>
-                            <ul class="dropdown-menu dropdown-with-icons">
+                            <!-- <ul class="dropdown-menu dropdown-with-icons">
                                  <ul class="dropdown-menu dropdown-with-icons">                                
                                     <li class="box-setting">
                                         <a href="<? echo base_url(); ?>dashboard/account_settings" class="feed">
-                                        <!--  <i class="material-icons">dashboard</i><span style="text-transform: initial;" class="lng-dashboard textmenu"></span>  -->
+                                        
                                             <i class="material-icons">settings</i><span style="text-transform: initial;" class="lng-sa_d textmenu">Settings Account</span>                  
                                         </a>
                                     </li>                        
@@ -94,7 +94,7 @@
                     
                                     </a>
                                 </li>                        
-                            </ul>
+                            </ul> -->
                         </li>
                         <li class="dropdown" id="btnlogin">
                             <div class="user">
@@ -186,7 +186,7 @@
                         </li>
 
                         <li class="box-drive">
-                            <a  class="drive_link">
+                            <a href="https://www.welovetaxi.com/app/T-share/"  class="drive_link">
                             <i class="material-icons" style="font-size: 22px;">directions_car</i>
                             <span style="text-transform: initial;" class="lng_drive textmenu"></span>
                                 <!-- <i class="material-icons">dashboard</i>                     -->
@@ -208,9 +208,9 @@
                                 <!-- <i class="material-icons">dashboard</i>                     -->
                             </a>
                         </li>
-                        <li class="dropdown" id="btnusers">
+                        <!-- <li class="dropdown" id="btnusers">
                             <a  class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- <div style="width: 100%;text-align: center;"> -->
+                                
                                 <i class="material-icons" style="font-size: 22px;">language</i><span style="text-transform: initial;" class="lng-language textmenu"></span>                                
                                 <b class="caret"></b>
                             </a>
@@ -233,7 +233,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         	
                     </ul>
                     

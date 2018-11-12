@@ -33,17 +33,18 @@ class Dashboard extends CI_Controller {
 			header('Location: view_user?num='.$num.'&start=0&page=1');
 		}*/
 
-		if($_COOKIE['login']) {
-			$id = $_COOKIE['login'];
-			$user_level = $this->Getuser_model->getuser_pass_id($id);
+		if($_COOKIE['detect_user']) {
+			$id = $_COOKIE['detect_user'];
+			// $user_level = $this->Getuser_model->getuser_pass_id($id);
 
 			/*$this->session->set_userdata(array('i_id' => $user_level[0]->i_id,'i_rating'=> $user_level[0]->i_rating,'s_code'=>$user_level[0]->s_code,'s_code_ref'=>$user_level[0]->s_code_ref)); */
 
-			$level = $user_level[0]->i_rating; 
-			if($level==2){
-				$data = $this->Userview_model_dash->customerRef_list_cus($level,$user_level[0]->i_id,$user_level[0]->s_code,$user_level[0]->s_code_ref);
+			// $level = $user_level[0]->i_rating; 
+			// if($level==2){
+				// $data = $this->Userview_model_dash->customerRef_list_cus($level,$user_level[0]->i_id,$user_level[0]->s_code,$user_level[0]->s_code_ref);
+				$data = $this->Userview_model_dash->customerRef_list_cus($id);
 				
-			}
+			// }
 //			echo json_encode(count($data[results]));
 			$this->load->view('header_dash2');
 			$this->load->view('userview_dash',$data);
@@ -64,9 +65,9 @@ class Dashboard extends CI_Controller {
 	public function find_booking(){
 		
 		
-		$id = $_COOKIE['login'];
+		$id = $_COOKIE['detect_user'];
 		$user_level = $this->Getuser_model->getuser_pass_id($id);
-		$data = $this->Userview_model_dash->booking_bt_date($user_level[0]->s_code);
+		$data = $this->Userview_model_dash->booking_bt_date($user_level[0]->id);
 //		$data = $_POST;
 //		$data = $this->input->post('d1');;
 		echo json_encode($data);
@@ -74,14 +75,14 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function get_user(){
-		$id = $_COOKIE['login'];
+		$id = $_COOKIE['detect_user'];
 		$user_level = $this->Getuser_model->getuser_pass_id($id);
 		echo json_encode($user_level);
 	}
 
 	public function update_profile(){
 		/* $this->input->post('code_phone');*/
-		$id = $_COOKIE['login'];
+		$id = $_COOKIE['detect_user'];
 		$data = $this->Getuser_model->getuser_pass_id($id);
 		
 		$target_dir = "pic/";

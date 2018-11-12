@@ -247,7 +247,7 @@ $(document).ready(function() {
         $('.lng-paynow').html('现在付款');
 
 
-    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+    } else if ($.cookie("lng") == 'en') {
         console.log($.cookie("lng")+'en');
 
         $('.lng-private').html('Private');
@@ -450,7 +450,7 @@ $(document).ready(function() {
         $('.lng-other').html('Other');
         $('.lng-paynow').html('Pay Now');
 
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
       console.log($.cookie("lng"));
 
       $('.lng-private').html('รถส่วนตัว');
@@ -735,7 +735,7 @@ function checkLoginState() {
           console.log(res.status)
           if(res.status == 0)
           {
-           $.cookie("login",res.username);
+           $.cookie("detect_user",res.username);
            loginsucess()
 //                    if(type_login=='dasboard'){
 //                     window.location.href = "<?php echo base_url(); ?>dashboard/view_user";

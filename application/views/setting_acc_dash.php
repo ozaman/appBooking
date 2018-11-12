@@ -876,14 +876,14 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
                                                             <i class="material-icons">face</i>
                                                         </span>
                                                         <div class="form-group label-floating is-empty has-error" id="div-name">
-                                                            <label class="control-label"><span class="lng-first-name">First Name</span>
+                                                            <label class="control-label"><span class="lng-first-name">First Name</span> <span class="lng-last-name">Last Name</span>
                                                               
                                                             </label>
                                                             <input name="firstname" type="text" class="form-control error" aria-required="true" aria-invalid="true" id="firstname">
                                                         <span class="material-input"></span></div>
                                                     </div>
                                                                                                       
-                                                    <div class="input-group">
+                                                  <!--   <div class="input-group">
                                                         <span class="input-group-addon">
                                                             <i class="material-icons">record_voice_over</i>
                                                         </span>
@@ -893,7 +893,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
                                                             </label>
                                                             <input name="lastname" type="text" class="form-control error" aria-required="true" aria-invalid="true" id="lastname">
                                                         <span class="material-input"></span></div>
-                                                    </div>
+                                                    </div> -->
                                                   
                                                     <div class="input-group">
                                                         <span class="input-group-addon">
@@ -949,7 +949,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
                                                     <span class="material-input" ></span></div>
                                                
                                                     </div>
-                                                    <div style="margin-top: 30px;    padding: 0 12px;">
+                                             <!--        <div style="margin-top: 30px;    padding: 0 12px;">
                                                     <div class=" btn-change " id="change_password" style="display: block;
                                                     padding: 12px;
                                                     text-decoration: none;
@@ -962,8 +962,8 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
                                                     background-color: #333;" >
                                                         <span class="lng-change-password">Change password</span>
                                                     </div>
-                            </div>
-
+                            </div> -->
+<!-- 
 													 <div style="margin-top: 12px;    padding: 0 12px;">
                                                     <div class="btn-change " id="submit" style="display: block;
                                                     padding: 12px;
@@ -977,7 +977,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
                                                     background-color: #3b5998;" >
                                                         <span class="lng-save">Send</span>
                                                     </div>
-                            </div>
+                            </div> -->
                                                   </div>
   <style>
   	   #change-password{
@@ -1265,40 +1265,41 @@ $(document).ready(function(){
 
  $.post( "<?php echo base_url(); ?>dashboard/get_user", function( data ) {
  var obj = JSON.parse(data);
- 
+ console.log('****************')
  console.log(obj);
 		$.each(obj, function (index, value) {
-			$('#name').html(obj[index].s_name);
-	if(obj[index].s_first_name!="")	{
+      console.log(value)
+			$('#name').html(obj[index].name);
+	if(obj[index].s_name!="")	{
 		$("#div-name").removeClass("is-empty has-error");	
-    	$('#firstname').val(obj[index].s_first_name);
+    	$('#firstname').val(obj[index].name);
 	}	
-	if(obj[index].s_last_name!="")	{
-		$("#div-lastname").removeClass("is-empty has-error");	
-    	$('#lastname').val(obj[index].s_last_name);
-	}	
-    if(obj[index].s_email!="")	{
+	// if(obj[index].s_last_name!="")	{
+	// 	$("#div-lastname").removeClass("is-empty has-error");	
+ //    	$('#lastname').val(obj[index].s_last_name);
+	// }	
+    if(obj[index].email!="")	{
 		 $("#div-email").removeClass("is-empty has-error");	
-   		 $('#email').val(obj[index].s_email);
+   		 $('#email').val(obj[index].email);
 	}	
-	if(obj[index].s_phone!="")	{
+	if(obj[index].phone!="")	{
 		 $("#div-phone").removeClass("is-empty has-error");	
-    	 $('#phone').val(obj[index].s_phone);
+    	 $('#phone').val(obj[index].phone);
 	}
     if(obj[index].s_username!="")	{
 		$("#div-username").removeClass("is-empty has-error");	
-    	$('#username').val(obj[index].s_username);
+    	$('#username').val(obj[index].username);
 	}
 	if(obj[index].t_address!="")	{
 		$("#div-address").removeClass("is-empty has-error");	
-    	$('#txt_address').val(obj[index].t_address);
+    	$('#txt_address').val(obj[index].address);
 	}
     
     
-    $('#txt_avatar').val(obj[index].s_image);
-    if(obj[index].s_image!=""){
-		$('#wizardPicturePreview').attr('src','<?php echo base_url();?>pic/'+obj[index].s_image);
-	}
+    // $('#txt_avatar').val(obj[index].simage);
+    // if(obj[index].s_image!=""){
+		$('#wizardPicturePreview').attr('src','../data/pic/driver/small/'+obj[index].username+'.jpg');
+	// }
 	var country_id = obj[index].i_country;
     var selected = "";
     

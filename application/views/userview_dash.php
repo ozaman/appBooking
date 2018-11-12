@@ -593,7 +593,7 @@
                         </table>
                     </div>
                     <?php }
-							else if($levelme==2){ ?>
+							 ?>
                     <div class="table-responsive">
                         <table id="bootstrap-table" class="table table-hover">
                             <thead style="background: #ddd;">
@@ -602,52 +602,12 @@
                                 <th class="text-center"><span class="lng-order"></span></th>
                                 <th class="text-center"><span class="lng-payment"></span></th>
                             </thead>
-                            <!--<tbody style="display: none;" class="data-row">
-                                <?php foreach($results as $show){ 
-									$mystring = $show['date_time'];
-									if($show['invoice']!=" " and $show['invoice']!=null and $show['invoice']!=""){
-										$class = "btn-voucher";
-									}else{
-										$class = "";
-									}
-									
-									$status_pay = '';
-									if($show['status_pay']==0){
-										if($show['status_pay_driver']==1)	{
-									$status_pay = $paydriver;
-										}else{	
-$status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="https://www.welovetaxi.com/app/booking2/dashboard/payment?data='.$show['invoice'].'&type='.$show['type'].'"><span class="lng-paynow">Pay Now</span></a>';
-										}
-									}else if($show['status_pay']==1){
-										$status_pay = $paysuccess;
-									}
-									else if($show['status_pay']==2){
-										$status_pay = $paysuccess;
-									}
-                                ?>
-                                <tr class="tr-hover">
-                                    <td>
-                                        <? echo $show['date_time'];?>
-                                    </td>
-                                    <td>
-                                        <div class="<?=$class;?>" onclick="view_order_level2('<?=$show['invoice'];?>','<?=$show['type'];?>');">
-                                            <?=$show['invoice'];?>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <?=$status_pay;?>
-                                    </td>
-                                </tr>
-                                <?php } ?>
-                            </tbody>-->
+                           
 							<tbody style="display: nones;" class="data-row" id="tb_data_lv2">
 							</tbody>
                         </table>
                     </div>
-                    <?php } 
-							?>
-                    <h3 style="text-align: center;color: red;display: none;" class="no-record"><strong  ><?=$norecord;?></strong></h3>
-                </div><!--  end card  -->
+                    
             </div> <!-- end col-md-12 -->
         </div>
     </section>
@@ -893,6 +853,8 @@ $status_pay = '<a class=" btn-xs btn-custom-pay" style="font-size: 15px;" href="
 						      success: function (obj) {
 					                console.log(obj)
 					                var res = obj.results; 
+                                    console.log('----------------------')
+                                    console.log(res)
 					                $('#tb_data_lv2').html('');
 
 									if(res.length<=0){

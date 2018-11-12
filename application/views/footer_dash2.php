@@ -81,6 +81,20 @@
 <div class="box-menu-select">
     <table width="100%">
         <tr>
+             <td width="20%" style="">
+                        <div class="btn-Tshare" >
+                            <table width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <a href="https://www.welovetaxi.com/app/T-share/">
+                                        <img src="https://www.welovetaxi.com/app/T-share/assets/images/logo2.png" style="width: 35px;height: 35px;"></a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                           
+                        </div>
+                    </td>
             <td width="20%" style="/*border-right: 1px solid #555;*/">
                 <div class="btn-realtime" style="" >
                     <table width="100%">
@@ -91,7 +105,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <span class="lng-now-use" style="font-size: 13px;"></span>
+                                <span class="lng-now-use" style="font-size: 10px;"></span>
                             </td>
                         </tr>
                     </table>
@@ -108,7 +122,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <span class="lng-advance-use" style="font-size: 13px;"></span>
+                                <span class="lng-advance-use" style="font-size: 10px;"></span>
                             </td>
                         </tr>
                     </table>
@@ -127,7 +141,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                            <span class="lng-car-service" style="font-size: 13px;">Car service</span>
+                            <span class="lng-car-service" style="font-size: 10px;">Car service</span>
                             </td>
                         </tr>
                     </table>
@@ -147,7 +161,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <span class="lng-management" style="font-size: 13px;">My Booking</span>
+                                <span class="lng-management" style="font-size: 10px;">My Booking</span>
                             </td>
                         </tr>
                     </table>
@@ -196,7 +210,7 @@
     width: 100%;
     /* border-radius: 4px; */
     /* padding: 12px; */
-    color: #333;
+    color: #999;
     text-align: center;
     /* display: inline-block; */
     /* background-color: #2196f3; */
@@ -212,7 +226,7 @@
     width: 100%;
     /* border-radius: 4px; */
     /* padding: 12px; */
-    color: #333;
+    color: #999;
     text-align: center;
     /* display: inline-block; */
     /* background-color: #2196f3; */
@@ -243,10 +257,10 @@
     width: 100%;
     /* border-radius: 4px; */
     /* padding: 12px; */
-    color: #fff;
+    color: #3b5998;
     text-align: center;
     /* display: inline-block; */
-    background-color: #3b5998;
+    /*background-color: #;*/
     z-index: 1;
 }
 .btn-car-service{
@@ -258,7 +272,7 @@ line-height: 0.8;
     width: 100%;
     /* border-radius: 4px; */
     /* padding: 12px; */
-    color: #333;
+    color: #999;
     text-align: center;
     /* display: inline-block; */
     /* background-color: #2196f3; */
@@ -406,59 +420,65 @@ function(){
 	$('.lng_canceled').click( function() {
          $('#police_pop').hide();
     });
-	if ($.cookie("login")) {
-        console.log($.cookie("login"))
-            //        alert(base_url+'getuser_control/mainpage');
+	if ($.cookie("detect_user")) {
+        $('#btn_ck_login').hide();
+        $('#acceptancecheck').show();
         $.ajax({
             type: 'POST',
-            url: '../getuser_control/mainpage',
-            data: { 'id': $.cookie("login") },
+            url: base_url + 'getuser_control/mainpage',
+            data: { 'id': $.cookie("detect_user") },
             //contentType: "application/json",
             dataType: 'json',
             success: function(data) {
                 console.log(data)
-                console.log(data[0].s_image)
+                datauser = data;
+                s_code =  data[0].id;
+                // code_ref = data[0].s_code_ref;
+                 console.log(s_code)
+                $.ajax({
+                    type: 'POST',
+                    url: base_url + 'dashboard/historylist',
+                    data: { 'id': s_code },
+                    //contentType: "application/json",
+                    dataType: 'json',
+                    success: function(datahis) {
+                        console.log('8888888888888')
+                        console.log(datahis)
+                        getdatahis = datahis;
+                    }
+                });
                 $('.box-login').show();
                 $('.box-login-non').hide();
                 $('.box-desboard').show();
-
-
-                if (data[0].s_image == '') {
-                    $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
-                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
-
-
-                } else {
-                    $('#photo_profile').html('<img   src="' + base_url + 'pic/' + data[0].s_image + '">');
-                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].s_image + '">');
-
-                }
-                $('#usernamess').html(data[0].s_username);
-                $('#getname').html(data[0].s_name);
-
-                //$('#textlogout').html("Logout")
+                // if (data[0].s_image == '') {
+                //     $('#photo_profile').html('<img class="" src="' + base_url + 'pic/default-avatar.png">');
+                //     $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
+                // } else {
+                    $('#photo_profile').html('<img   src="../data/pic/driver/small/'+data[0].username+'.jpg">');
+                    $('.box-login').html('<img class="imgmemu" src="' + base_url + 'pic/' + data[0].username + '">');
+                // }
+                $('#usernamess').html(data[0].username);
+                $('#getname').html(data[0].name);
                 $('#btnlogin').css('display', 'none')
+                $('#btnlogin2').css('display', 'none')
                 $('#btnuser').css('display', 'block')
                 $('.caret').css('display', 'inline-block')
             }
         });
 
-    } 
-
-	else {
+    } else {
+        $('#acceptancecheck').hide();
+        $('#btn_ck_login').show();
         $('#photo_non-login').html('<img class="imgmemu" src="' + base_url + 'pic/default-avatar.png">');
         $('.box-login').hide();
         $('.box-desboard').hide();
-
         $('.box-login-non').show();
-        //$('#usernamess').html("Login")
-        // $('#textlogout').html("Login/Register")
+        $('.placeeditften').remove()
         $('#btnlogin').css('display', 'block')
+        $('#btnlogin2').css('display', 'block')
         $('#btnuser').css('display', 'none')
         $('.caret').css('display', 'none')
-	
-	
-}
+    } 
 
 	});
 

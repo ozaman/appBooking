@@ -208,25 +208,25 @@ $( document ).ready(function() {
                             </div>
                             <a  class="dropdown-toggle" data-toggle="dropdown">
                                 <div id="usernamess"></div>                             
-                                <b class="caret"></b>
+                                <!-- <b class="caret"></b> -->
                             </a>
-                            <ul class="dropdown-menu dropdown-with-icons">
-                                <!-- <li>
+                            <!-- <ul class="dropdown-menu dropdown-with-icons">
+                                <li>
                                     <a href="" >
                                     <i class="material-icons">contacts</i><span class="lng-settings-account"></span>
                     
                                     </a>
-                                </li> -->
+                                </li>
                                  <ul class="dropdown-menu dropdown-with-icons">
                                 
                                <li class="box-setting">
                             <a href="<? echo base_url(); ?>dashboard/account_settings" class="feed">
-                              <!--  <i class="material-icons">dashboard</i><span style="text-transform: initial;" class="lng-dashboard textmenu"></span>  -->
+                             
                                 <i class="material-icons">settings</i><span style="text-transform: initial;" class="lng-sa_d textmenu">Settings Account</span>                  
                             </a>
                         </li>
                         
-                            </ul>
+                            </ul> -->
                                 <li id="btn-logout-user">
                                     <a>
                                         <i class="material-icons">power_settings_new</i><span class="lng-logout"></span>
@@ -290,7 +290,8 @@ $( document ).ready(function() {
                             </a>
                         </li>
                         <li class="box-drive">
-                            <a  class="drive_link">
+
+                            <a href="https://www.welovetaxi.com/app/T-share/"  class="drive_link">
                             <i class="material-icons" style="font-size: 22px;">directions_car</i>
                             <span style="text-transform: initial;" class="lng_drive textmenu"></span>
                                 <!-- <i class="material-icons">dashboard</i>                     -->
@@ -320,9 +321,9 @@ $( document ).ready(function() {
                                 <!-- <i class="material-icons">dashboard</i>                     -->
                             </a>
                         </li>
-                        <li class="dropdown" id="btnusers">
+                        <!-- <li class="dropdown" id="btnusers">
                             <a  class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- <div style="width: 100%;text-align: center;"> -->
+                              
                                 <i class="material-icons">language</i><span style="text-transform: initial;" class="lng-language textmenu"></span>                                
                                 <b class="caret"></b>
                             </a>
@@ -345,7 +346,7 @@ $( document ).ready(function() {
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         	
                     </ul>
                     

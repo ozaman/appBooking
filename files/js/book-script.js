@@ -19,9 +19,9 @@ flight, cost_a_nett, lng_getcountry = '', adresss,newDate = '',getcosereltime = 
 var data, from, to;
 var Checkacceptance = false;
 var ckgetuser = false;
-var base_url = 'https://www.welovetaxi.com/app/booking2/';
-var url = 'https://www.welovetaxi.com/app/booking2/';
-var urlimg = 'https://www.welovetaxi.com/app/booking2/';
+// var base_url = 'https://www.welovetaxi.com/app/booking2/';
+// var url = 'https://www.welovetaxi.com/app/booking2/';
+// var urlimg = 'https://www.welovetaxi.com/app/booking2/';
 var getemail,getphone ,b_from,b_to,b_lat_f,b_lng_f,b_lat_t,b_lng_t,b_fashion,b_data,costdotcars  ;
 var costproduct, costdotcars, type, costdotcars, pro_id, place, to_place,lang_to_map,getnewdate,place_from,place_to;
 var protype = $.cookie("type")
@@ -164,7 +164,7 @@ $(document).ready(function() {
 
     var getemail, getphone;
     $('#acceptanceuser').change(function() {
-        if ($.cookie("login") != undefined) {
+        if ($.cookie("detect_user") != undefined) {
 
             $('#name_lastname').css('border','1px solid #dfdfdf')
             $('#phone').css('border','1px solid #dfdfdf')
@@ -181,10 +181,13 @@ $(document).ready(function() {
                     dataType: 'json',
                     success: function(data) {
                         console.log(data)
-                        $('#textcountry').text('');
+
+                        
                         $('#phonecode').append('<span id="codetext">' + '+' + data[0].phonecode + '</span>');
                         $('#inputphonecode').val(data[0].phonecode)
-                        if ($.cookie("lng") == 'cn') {
+                        if ( datauser[0].s_phone_code != '') {
+                            $('#textcountry').text('');
+                            if ($.cookie("lng") == 'cn') {
                             $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
 
                         } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
@@ -195,26 +198,29 @@ $(document).ready(function() {
 
                         }
                     }
+                        
+                    }
                 });
                 phonecode = datauser[0].s_phone_code;
                 $('#codecountry').hide();
 
                  // $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
                     // $('#numbercountry').append('<span id="select"><img id="imgcountry" src="' + urlimg + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
-                    s_code =  datauser[0].s_code;
-                    code_ref = datauser[0].s_code_ref;
-                    console.log($('#email').val(datauser[0].s_email))
-                    getemail = datauser[0].s_email;
-                    getphone = datauser[0].s_phone;
-                    $('#s_username').val(datauser[0].s_email);
-                    $('#email').val(datauser[0].s_username);
+                    s_code =  datauser[0].id;
+                    console.log(s_code)
+                    // code_ref = datauser[0].s_code_ref;
+                    console.log($('#email').val(datauser[0].email))
+                    getemail = datauser[0].email;
+                    getphone = datauser[0].phone;
+                    $('#s_username').val(datauser[0].email);
+                    $('#email').val(datauser[0].email);
                     $('.phonecode').text('+' + datauser[0].s_phone_code );
 
-                    $('#phone').val(' ' + datauser[0].s_phone);
-                    $('#name_lastname').val(datauser[0].s_first_name + ' ' + datauser[0].s_last_name);
+                    $('#phone').val(' ' + datauser[0].phone);
+                    $('#name_lastname').val(datauser[0].name);
                     $('.label-floating').addClass('is-focused');
-                    $('#summaryphone').html('+' + datauser[0].s_phone_code + datauser[0].s_phone);
-                    $('#summaryemail').html(datauser[0].s_email);
+                    $('#summaryphone').html('+' + datauser[0].s_phone_code + datauser[0].phone);
+                    $('#summaryemail').html(datauser[0].email);
 
                 } else {
                     ckgetuser = false;
@@ -587,7 +593,7 @@ function selecetBook(){
        $('#loading').hide()
         return false;
     }
-    if ($.cookie("login") == undefined) {
+    if ($.cookie("detect_user") == undefined) {
         if($('#email').val() == ''){
             $('#loading').hide()
            swal("คุณไม่ได้จองในสถานะสมาชิก","จำเป็นต้องป้อนอีเมล ระบบจะส่งข้อมูลการจองเข้าอีเมลของคุณ","error");
@@ -625,7 +631,7 @@ function selecetBook(){
     console.log(code_ref + 'code_ref');
     console.log(area)
     console.log(cost_a_nett)
-    var url2 = 'https://welovetaxi.com/app/booking/';    
+    // var url2 = 'https://welovetaxi.com/app/booking/';    
     console.log(flight)
     console.log(area)
     console.log(phonecode)
@@ -783,6 +789,7 @@ $.ajax({
                         "type": type,
                         "area": area,
                         'code': code_r,
+                         's_code': s_code,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
@@ -827,6 +834,7 @@ $.ajax({
                         "type": type,
                         "area": area,
                         'code': code_r,
+                         's_code': s_code,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
@@ -871,6 +879,7 @@ $.ajax({
                         "area": area,
                         'visa': visa,
                         'code': code_r,
+                         's_code': s_code,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
@@ -916,6 +925,7 @@ $.ajax({
                         "type": type,
                         "area": area,
                         'code': code_r,
+                         's_code': s_code,
                         'code_ref': code_ref,
                         'cost_a_nett': cost_a_nett,
                         'product_type': protype,
@@ -956,6 +966,7 @@ $.ajax({
                     "type": type,
                     "area": area,
                     'code': code_r,
+                     's_code': s_code,
                     'code_ref': code_ref,
                     'cost_a_nett': cost_a_nett,
                     'product_type': protype,
@@ -998,6 +1009,7 @@ $.ajax({
                     "type": type,
                     "area": area,
                     'code': code_r,
+                     's_code': s_code,
                     'code_ref': code_ref,
                     'cost_a_nett': cost_a_nett,
                     'product_type': protype,
@@ -1040,6 +1052,7 @@ $.ajax({
                     "type": type,
                     "area": area,
                     'code': code_r,
+                     's_code': s_code,
                     'code_ref': code_ref,
                     'cost_a_nett': cost_a_nett,
                     'product_type': protype,
@@ -1057,6 +1070,7 @@ $.ajax({
             // var lng_please_accept= 'Please accept the agreement.';
             // $('.lng_please_accept').html('请接受协议。')
             console.log(param)
+           
             $.ajax({
                 type: 'POST',
                 url: base_url+'savebook_control/saveapi',
@@ -1066,6 +1080,7 @@ $.ajax({
                 success: function(data) {
                     console.log(data);
                     console.log(email);
+                     // return false;
                     if (data.arr_order_api.status == 202) {
                         // if ($('#email').val() != '') {
                         $.ajax({
@@ -1076,8 +1091,8 @@ $.ajax({
                            // dataType: 'json',
                             success: function(data2) {
                             console.log(data2);
-                                //console.log(s_email);
-                                if($.cookie("login") != undefined){
+                                console.log(s_email);
+                                if($.cookie("detect_user") != undefined){
                                     window.location.href = base_url+"dashboard/view_user";
 
                                 }
@@ -1120,7 +1135,7 @@ function sendCountry(x) {
  $('#codetext').remove();
  $('#inputphonecode').val(x)
     // alert(x)
-    var url = 'https://welovetaxi.com/app/booking2/';
+    // var url = 'https://welovetaxi.com/app/booking2/';
     console.log(x)
     if (x == undefined) {
         $.cookie("phonecode", '');
@@ -1141,7 +1156,7 @@ function sendCountry(x) {
 
     $('#select').remove();
     $('#codetext').remove();
-    $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + url + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
+    $('.numbercountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + img + '.png' + '">' + '<span>(+' + x + ')' + ' ' + name + '</span></span>');
     $('#phonecode').append('<span id="codetext">' + '+' + x + '</span>');
     //$('#numbercountry').val('(+'+x+')'+' '+name);
 }
@@ -1167,7 +1182,7 @@ function bookingdetail(transfer_id,from,to,lat_f,lng_f,lat_t,lng_t,book){
     
     // $('#history_pop').show(500)
     // href="book?data=' + compae1private[i].transfer_id + '&from=' + dataPlacefrom + '&to=' + dataPlaceto + '&lat_f='+lat_f+'&lng_f='+lng_f+'&lat_t='+lat_t+'&lng_t='+lng_t+'&book='+booking+'" >
-    if ($.cookie("login") && check_type_book != 'his') {
+    if ($.cookie("detect_user") && check_type_book != 'his') {
         $('#history_pop').show(500)
         //getDetailbook(his_from,his_to,his_lat_f,his_lng_f,his_lat_t,his_lng_t,his_fashion,his_transfer_id)
 
@@ -1175,7 +1190,7 @@ function bookingdetail(transfer_id,from,to,lat_f,lng_f,lat_t,lng_t,book){
     }
     else{
         // console.log(base_url + 'book?data=' + transfer_id + '&from=' + dataPlacefrom + '&to=' + dataPlaceto + '&lat_f='+lat_f+'&lng_f='+lng_f+'&lat_t='+lat_t+'&lng_t='+lng_t+'&book='+booking)
-        console.log($.cookie("login"))
+        console.log($.cookie("detect_user"))
         $('#get_html_book').show(500)
         getDetailbook(his_from,his_to,his_lat_f,his_lng_f,his_lat_t,his_lng_t,his_fashion,his_transfer_id)        
         // window.location.href = base_url + 'book?data=' + transfer_id + '&from=' + dataPlacefrom + '&to=' + dataPlaceto + '&lat_f='+lat_f+'&lng_f='+lng_f+'&lat_t='+lat_t+'&lng_t='+lng_t+'&book='+booking;

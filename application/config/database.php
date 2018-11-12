@@ -47,11 +47,14 @@
 
 $active_group = 'default';
 $active_record = TRUE;
-
+// $db_server   = 'localhost';
+// $db_name     = 'admin_apptshare';
+// $db_username = 'admin_MANbooking';
+// $db_password = '252631MANbooking'; 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'da_admin';
-$db['default']['password'] = 'BrgNNrUNR3';
-$db['default']['database'] = 'admin_booking';
+$db['default']['username'] = 'admin_MANbooking';
+$db['default']['password'] = '252631MANbooking';
+$db['default']['database'] = 'admin_apptshare';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
