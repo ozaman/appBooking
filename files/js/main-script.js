@@ -14,6 +14,7 @@ var checkreal_or_res = '';
 var lngbook ,parampro, pro_service_from, pro_service_to;
 var username, password , username_signup ,password_signup,text_check,forget = '',datauser,s_code,code_ref;
 var language;
+var addr, latitude, longitude, addrcurent, placeIdcurent;
 // if ($.cookie("lng") == undefined) {
 //    language = window.navigator.userLanguage || window.navigator.language;
 //     //alert(language);
@@ -638,60 +639,64 @@ else if(res.status==2)
                 $('#search-show').css('display', 'none')
                 $('#pac-input').css('display', '');
                 $('#current').focus();
+                $('#current').val(addr)
                 $('#current').addClass('search_focus');
+                $('#loading').hide()
             }, 500);
             checkshowhome = true;
             checkreal_or_res = 'Res'
         }
         else{
-            if(checkshowhome == false){
-                setTimeout(function() {
-                    $('#boxRealtime').show(500);
-                    $('#boxForAutoCom').show(500);
-                    $('#boxRealtimeto').show(500);
-                    $('#box-car-service').hide();
-                    $('#map').show(500);
-                    $('.box_option').show(500)                    
-                    $('.btn-reservation').css({ 'background': '#3b5998', 'color': '#ffffff' });
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
-                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
-                    $("#pro-search").hide();
-                    $("#search-raeltime").fadeIn(1000);        
-                    $("#list_place").fadeIn(1000);
-                    $("#show-hide-pro2").hide();
-                    $('#loading').css('display', 'none');
-                    $('#search-show').css('display', 'none')
-                    $('#pac-input').css('display', '');
-                    $('#current').focus();
-                    $('#current').addClass('search_focus');
-                }, 500);
-                checkshowhome = true;
-            }
-            else{
-                setTimeout(function() {
-                    $('#boxRealtime').hide(500);
-                    $('#boxForAutoCom').hide(500); 
-                    $('#boxRealtimeto').hide(500);
-                    $('#box-car-service').hide();
-                    $('#map').show(500);
-                    $('.box_option').hide(500)
-                    $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });  
-                    $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
-                    $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
-                    $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
-                    $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
-                    $("#pro-search").hide();
-                    $("#search-raeltime").hide(1000);
-                    $("#list_place").hide(1000);
-                    $("#show-hide-pro2").hide();
-                    $('#loading').css('display', 'none');
-                    $('#search-show').css('display', 'none')
-                    $('#pac-input').css('display', '');
-                }, 500);      
-                checkshowhome = false;
-            }
+            $('#current').val(addr)
+            $('#loading').hide()
+            // if(checkshowhome == false){
+            //     setTimeout(function() {
+            //         $('#boxRealtime').show(500);
+            //         $('#boxForAutoCom').show(500);
+            //         $('#boxRealtimeto').show(500);
+            //         $('#box-car-service').hide();
+            //         $('#map').show(500);
+            //         $('.box_option').show(500)                    
+            //         $('.btn-reservation').css({ 'background': '#3b5998', 'color': '#ffffff' });
+            //         $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $("#pro-search").hide();
+            //         $("#search-raeltime").fadeIn(1000);        
+            //         $("#list_place").fadeIn(1000);
+            //         $("#show-hide-pro2").hide();
+            //         $('#loading').css('display', 'none');
+            //         $('#search-show').css('display', 'none')
+            //         $('#pac-input').css('display', '');
+            //         $('#current').focus();
+            //         $('#current').addClass('search_focus');
+            //     }, 500);
+            //     checkshowhome = true;
+            // }
+            // else{
+            //     setTimeout(function() {
+            //         $('#boxRealtime').hide(500);
+            //         $('#boxForAutoCom').hide(500); 
+            //         $('#boxRealtimeto').hide(500);
+            //         $('#box-car-service').hide();
+            //         $('#map').show(500);
+            //         $('.box_option').hide(500)
+            //         $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });  
+            //         $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $('.btn-realtime').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
+            //         $("#pro-search").hide();
+            //         $("#search-raeltime").hide(1000);
+            //         $("#list_place").hide(1000);
+            //         $("#show-hide-pro2").hide();
+            //         $('#loading').css('display', 'none');
+            //         $('#search-show').css('display', 'none')
+            //         $('#pac-input').css('display', '');
+            //     }, 500);      
+            //     checkshowhome = false;
+            // }
         }
     });
 
@@ -727,62 +732,68 @@ $('.btn-realtime').click(function() {
             $('#search-show').css('display', 'none')
             $('#pac-input').css('display', '');
             $('#current').val(addr)
+            console.log('current')
+            console.log(addr)
             $('#pac-input').focus();
             $('#pac-input').addClass('search_focus'); 
-
+$('#loading').hide()
         }, 500);
         checkshowhome = true;
         checkreal_or_res = 'Real'
+
     }
     else{
-        if(checkshowhome == false){
-            setTimeout(function() {
-                $('#boxRealtime').show(500);
-                $('#boxForAutoCom').show(500);
-                $('#boxRealtimeto').show(500);
-                $('#box-car-service').hide();
-                $('#map').show(500);
-                $('.box_option').show(500)                    
-                $('.btn-realtime').css({  'color': '#3b5998' });       
-                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
-                $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
-                $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
-                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
-                $("#pro-search").hide();
-                $("#search-raeltime").fadeIn(1000);        
-                $("#list_place").fadeIn(1000);
-                $("#show-hide-pro2").hide();
-                $('#loading').css('display', 'none');
-                $('#search-show').css('display', 'none')
-                $('#pac-input').css('display', '');
-                $('#pac-input').focus();
-                $('#pac-input').addClass('search_focus'); 
-            }, 500);
-            checkshowhome = true;
-        }
-        else{
-            setTimeout(function() {
-                $('#boxRealtime').hide(500);
-                $('#boxForAutoCom').hide(500); 
-                $('#boxRealtimeto').hide(500);
-                $('#box-car-service').hide();
-                $('#map').show(500);
-                $('.box_option').hide(500)
-                $('.btn-realtime').css({ 'background': '#fff', 'color': '#999' });
-                $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
-                $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
-                $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
-                $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
-                $("#pro-search").hide();
-                $("#search-raeltime").hide(1000);        
-                $("#list_place").hide(1000);
-                $("#show-hide-pro2").hide();
-                $('#loading').css('display', 'none');
-                $('#search-show').css('display', 'none')
-                $('#pac-input').css('display', '');
-            }, 500);      
-            checkshowhome = false;
-        }
+         $('#current').val(addr)
+$('#loading').hide()
+
+        // if(checkshowhome == false){
+        //     setTimeout(function() {
+        //         $('#boxRealtime').show(500);
+        //         $('#boxForAutoCom').show(500);
+        //         $('#boxRealtimeto').show(500);
+        //         $('#box-car-service').hide();
+        //         $('#map').show(500);
+        //         $('.box_option').show(500)                    
+        //         $('.btn-realtime').css({  'color': '#3b5998' });       
+        //         $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $("#pro-search").hide();
+        //         $("#search-raeltime").fadeIn(1000);        
+        //         $("#list_place").fadeIn(1000);
+        //         $("#show-hide-pro2").hide();
+        //         $('#loading').css('display', 'none');
+        //         $('#search-show').css('display', 'none')
+        //         $('#pac-input').css('display', '');
+        //         $('#pac-input').focus();
+        //         $('#pac-input').addClass('search_focus'); 
+        //     }, 500);
+        //     checkshowhome = true;
+        // }
+        // else{
+        //     setTimeout(function() {
+        //         $('#boxRealtime').hide(500);
+        //         $('#boxForAutoCom').hide(500); 
+        //         $('#boxRealtimeto').hide(500);
+        //         $('#box-car-service').hide();
+        //         $('#map').show(500);
+        //         $('.box_option').hide(500)
+        //         $('.btn-realtime').css({ 'background': '#fff', 'color': '#999' });
+        //         $('.btn-reservation').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $('.btn-home').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $('.btn-management').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $('.btn-car-service').css({ 'background': '#ffffff', 'color': '#999' });
+        //         $("#pro-search").hide();
+        //         $("#search-raeltime").hide(1000);        
+        //         $("#list_place").hide(1000);
+        //         $("#show-hide-pro2").hide();
+        //         $('#loading').css('display', 'none');
+        //         $('#search-show').css('display', 'none')
+        //         $('#pac-input').css('display', '');
+        //     }, 500);      
+        //     checkshowhome = false;
+        // }
     }
 });
 
@@ -2036,7 +2047,7 @@ function updatelatlng(id) {
 //         map: map
 //     });
 // }
-var addr, latitude, longitude, addrcurent, placeIdcurent
+
 $('#current-addr').on('click', getAddress)
 
 

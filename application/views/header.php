@@ -71,14 +71,15 @@
                                 <div class="photo" id="photo_profile" >
                                     
                                 </div> 
-                                <div style="padding: 30px;color: #fff;font-size: 16px;">
-                                    <span id="getname"> </span>
-                                </div>                   
-                            </div>
-                            <a class="dropdown-toggle" data-toggle="dropdown">
-                                <div id="usernamess"></div>                             
+                                <div style="padding-top: 30px;color: #fff;font-size: 16px;">
+                                    <span id="getname"> </span><br/>
+                                     <a class="dropdown-toggle" data-toggle="dropdown">
+                                <span style="color: #fff;">( </span><div id="usernamess" style="color: #fff; font-size: 13px;"></div><span style="color: #fff;"> )</span>                             
                                 <!-- <b class="caret"></b> -->
                             </a>
+                                </div>                   
+                            </div>
+                           
                             <!-- <ul class="dropdown-menu dropdown-with-icons">
                                  <ul class="dropdown-menu dropdown-with-icons">                                
                                     <li class="box-setting">

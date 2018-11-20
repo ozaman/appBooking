@@ -5,19 +5,7 @@
  $adate = date('Y-m-d');
  $date = date("Y-m-d",strtotime("-1 month",strtotime($adate)));
  $latedate = date("Y-m-t",strtotime($adate));
-    if(!$_COOKIE['lng']){
-       // echo  $_COOKIE['lng'].'unde';
-        $lng_search_order = 'Search by order (e.x. 7033496)';
-        $paysuccess = 'Already paid';
-        $pend = 'Pending';
-        $norecord = 'No Record';
-        $owe = '';
-        $paydriver = 'Pay Driver';
-        $paynow = 'Pay Now';
-        $myod = 'My Order';
-        $friendod = 'Reference Order';
-    }
-    else if($_COOKIE['lng'] == 'en'){
+    if($_COOKIE['lng'] == 'en'){
         //echo 'en';
         $lng_search_order = 'Search by order (e.x. 7033496)';
         $paysuccess = 'Already paid';
@@ -29,7 +17,7 @@
         $myod = 'My Order';
         $friendod = 'Reference Order';
     }
-    else if($_COOKIE['lng'] == 'th'){
+    else if($_COOKIE['lng'] == 'th' || !$_COOKIE['lng']){
         //echo 'th';
         $lng_search_order = 'ค้นหาตามใบสั่งซื้อ (e.x. 7033496)';
         $paysuccess = 'ชำระแล้ว';

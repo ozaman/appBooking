@@ -249,10 +249,11 @@ $mail->CharSet = "utf-8";
 						$result = $this->db->insert('ap_credit_paypal',$data );
 						$this->db->where('invoice', $idupdate);
 						$this->db->update('ap_order', $data2);
-						if(!$mail->Send()) {
-							echo "Mailer Error: " . $mail->ErrorInfo;
-						} else {
-							$curl_post_data = '{"id":"'.$_POST[item_number].'"}';
+
+
+
+						/* ***************** update pay *****************/
+						$curl_post_data = '{"id":"'.$_POST[item_number].'"}';
 							$headers = array();
 
 							$url = "http://www.welovetaxi.com:3000/updateStatuspay";
@@ -276,6 +277,37 @@ $mail->CharSet = "utf-8";
 							$curl_response = curl_exec($curl);
 							//echo $curl_response;
 							curl_close($curl);
+							/************ end **************/
+
+
+
+						if(!$mail->Send()) {
+							echo "Mailer Error: " . $mail->ErrorInfo;
+						} else {
+							// $curl_post_data = '{"id":"'.$_POST[item_number].'"}';
+							// $headers = array();
+
+							// $url = "http://www.welovetaxi.com:3000/updateStatuspay";
+							// //$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+							// $curl = curl_init();
+							// curl_setopt($curl, CURLOPT_HTTPHEADER,
+							//     array(
+							//         'Content-Type: application/json'
+							//         // 'API-KEY: '.$api_key.''
+							//     )
+							// );
+							// curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+							// curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+							// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+							// curl_setopt($curl, CURLOPT_REFERER, $url);
+							// curl_setopt($curl, CURLOPT_URL, $url);
+
+							// curl_setopt($curl, CURLOPT_POST, true);
+							// curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+							// $curl_response = curl_exec($curl);
+							// //echo $curl_response;
+							// curl_close($curl);
 						}
 
 					}
@@ -407,12 +439,11 @@ $mail->CharSet = "utf-8";
 						$this->db->insert('ap_credit_paypal', $data );
 						$this->db->where('invoice', $idupdate);
 						$this->db->update('ap_order', $data2);
-						if(!$mail->Send()) {
-							echo "Mailer Error: " . $mail->ErrorInfo;
-						} else {
-							// echo "1";
-							// $xde = json_decode($x);
-							$curl_post_data = '{"id":"'.$idupdate.'"}';
+
+
+
+						/*************** update status pay *********************/
+						$curl_post_data = '{"id":"'.$idupdate.'"}';
 							$headers = array();
 
 							$url = "http://www.welovetaxi.com:3000/updateStatuspay";
@@ -436,6 +467,39 @@ $mail->CharSet = "utf-8";
 							$curl_response = curl_exec($curl);
 							//echo $curl_response;
 							curl_close($curl);
+
+						/*********** end **********************/
+
+
+						if(!$mail->Send()) {
+							echo "Mailer Error: " . $mail->ErrorInfo;
+						} else {
+							// echo "1";
+							// $xde = json_decode($x);
+							// $curl_post_data = '{"id":"'.$idupdate.'"}';
+							// $headers = array();
+
+							// $url = "http://www.welovetaxi.com:3000/updateStatuspay";
+							// //$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+							// $curl = curl_init();
+							// curl_setopt($curl, CURLOPT_HTTPHEADER,
+							//     array(
+							//         'Content-Type: application/json'
+							//         // 'API-KEY: '.$api_key.''
+							//     )
+							// );
+							// curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+							// curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+							// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+							// curl_setopt($curl, CURLOPT_REFERER, $url);
+							// curl_setopt($curl, CURLOPT_URL, $url);
+
+							// curl_setopt($curl, CURLOPT_POST, true);
+							// curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+							// $curl_response = curl_exec($curl);
+							// //echo $curl_response;
+							// curl_close($curl);
 						}
 					}
 				}
