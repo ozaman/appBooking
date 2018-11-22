@@ -771,21 +771,26 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                             var type,typeshow,pax;
                             type = datasort[i].pax_id;
                             if ($.cookie("lng") == 'cn') {
+                                var lng_book = '預訂';
                                 $('#select_pax_use').html( '所有類型')
                                 typeshow = datasort[i].car_topic_cn;
                                 pax = datasort[i].pax_cn;
                             } else if ($.cookie("lng") == 'en' ) {
-                                $('#select_pax_use').html( 'All Type')                   
+                                $('#select_pax_use').html( 'All Type') 
+                                var lng_book = 'Book';
+
                                 typeshow = datasort[i].car_topic_en;
                                 pax = datasort[i].pax_en;
                             } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                                 $('#select_pax_use').html( 'ทุกประเภท')
                                 typeshow = datasort[i].car_topic_th;
                                 pax = datasort[i].pax_th;
+                                var lng_book = 'จอง';
+
                             }
                             console.log(type)
                             console.log(datasort)
-                            $('#paxrel').append('<li class="typerel" id="typeservice'+datasort[i].pax_id+'"  onclick="sendpaxrel(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><div style="float: right;display: inline-block;"><span style="padding-right: 5px;">'+lng_price+':'+'</span>'+datasort[i].cost_a+'</div></li>');
+                            $('#paxrel').append('<li class="typerel" id="typeservice'+datasort[i].pax_id+'"  onclick="sendpaxrel(\'' + datasort[i].pax_id + '\') "><span>' + typeshow + '</span>&nbsp;<span class="pax-person" >' + pax + '</span><span ><span style="padding-right: 5px;margin-left:5%;">'+lng_price+':'+'</span>'+datasort[i].cost_a+' </span><span style="color: #FFFFFF; background: #3b5998; text-align: center; border-radius: 25px; font-weight: 600;cursor: pointer;    margin-top: -5px; padding: 5px 10px;    float: right;">'+lng_book+'</span></li>');
                             
                         });
                         $.each(data1, function(i, val) {
