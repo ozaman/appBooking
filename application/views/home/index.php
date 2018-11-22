@@ -2075,7 +2075,7 @@ textarea:-ms-input-placeholder {
     font-size: 19px;
     margin-bottom: 10px;">
                     <span class="lng-car"></span>
-                    <i class="material-icons closepop" style="    right: 125px;">close</i>
+                    <i class="material-icons closepop" style="right: 145px;">close</i>
 
                 </div>
                 <div style="">
