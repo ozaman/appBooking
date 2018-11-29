@@ -417,6 +417,7 @@ class Userview_model_dash extends CI_Model {
 			$data_row[$key]['status_pay_driver'] = $row->status_pay_driver;
 			$data_row[$key]['status_confirm'] = $row->status_confirm;
 			$data_row[$key]['type'] = $row->type;
+			$data_row[$key]['i_status_complete'] = $row->i_status_complete;
 				
 		 	//$data[] = $row;
 		 }
