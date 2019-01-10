@@ -260,7 +260,7 @@
     -webkit-overflow-scrolling: touch;
 }
     </style>
-    <div id="foget-password">
+<!--     <div id="foget-password">
             <div class="box-in-foget" >
             <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px;   margin-bottom: 10px;">
                
@@ -295,7 +295,7 @@
                     
                 </div>
             </div>
-        </div>
+        </div> -->
     <div class="modal fade" id="capacityss" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -817,7 +817,7 @@ table{
         
         
     }
-    else if($_COOKIE['lng'] == 'th' || !$_COOKIE['lng']){
+    else if($_COOKIE['lng'] == 'th' || $_COOKIE['lng'] == '' ||  !$_COOKIE['lng']){
         //echo 'th';
         $lng_all_type = 'ทุกประเภท';
         $lag_search_from = 'จาก: สนามบินประเภทชื่อโรงแรมหรือสถานที่ตั้ง';
@@ -995,10 +995,10 @@ table{
     border-bottom: 1px solid #ddd;
 }
                    </style>
-        <div id="box-pax-use">
+       <!--  <div id="box-pax-use">
             <div class="box-pax-use-in" >               
                    <div  id="pax-box">                      
-                       <!-- <h4 style="    text-align: center;" class="lng-foget-pass">Please input your email</h4> -->
+                      
                         <div style="background: #3b5998, color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">
                             <span class="lng-please-select-type"></span>
                             <i class="material-icons closepop">close</i>
@@ -1009,14 +1009,10 @@ table{
                             <li value="All Type" onclick="sendpaxuse(0)" style="padding: 15px; border-bottom: 1px solid #ddd;"><?php echo  $lng_all_type;?>
                             </li>                                                                
                         </ul>
-                        <!-- <ul class="" name="typecarservice" id="paxrel" >
-                            <li value="All Type" onclick="sendpaxrel(0)" style="padding: 15px; border-bottom: 1px solid #ddd;"><?php echo  $lng_all_type;?>
-                            </li>                                                                
-                        </ul> -->
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div id="box-pax-rel">
             <div class="box-pax-rel-in" >               
                    <div  id="pax-box">                      

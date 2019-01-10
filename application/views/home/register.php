@@ -316,7 +316,7 @@
             </div>
         </div>
 
-    <div id="foget-password">
+   <!--  <div id="foget-password">
             <div class="box-in-foget" >
             <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px;   margin-bottom: 10px;">
                
@@ -351,7 +351,7 @@
                     
                 </div>
             </div>
-        </div>
+        </div> -->
 </section>
         <style>
            

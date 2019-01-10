@@ -366,7 +366,7 @@ else if(res.status==2)
        $('#police_pop').hide();
    });
     $('#service_type').click( function() {
-       $('#foget-password').show();
+       // $('#foget-password').show();
        $('#type_service').show();
        $('#product_service').hide();
 
@@ -913,10 +913,10 @@ $('.btn-car-service').click(function() {
         $('#boxForAutoCom').hide(500)
         $('.box_option').hide(500)
         $('#box-car-service').show(500);
-        if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) { 
+        if ($.cookie("lng") == 'en' ) { 
             $('#selectpro').html('From Province')
             $('#selectproto').html('To Province')                
-        } else if ($.cookie("lng") == 'th') {               
+        } else if ($.cookie("lng") == 'th' || $.cookie("lng") == undefined) {               
             $('#selectpro').html('จากจังหวัด')
             $('#selectproto').html('ไปยังจังหวัด') 
         } else if ($.cookie("lng") == 'cn') {
@@ -1175,7 +1175,7 @@ function sendproto(x,proto){
                 $('.not-found').show()
             } else {
                 $('.not-found').hide()
-                $('#foget-password').show(500)
+                // $('#foget-password').show(500)
                 cartype = data[0].car_topic;
                 var datasort = new Array()
                 $.each(cartype, function(i, val) {

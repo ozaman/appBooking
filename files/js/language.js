@@ -832,6 +832,8 @@ function btn_close(cas){
     if ( cas =='boxcarservice') {
        $('#map').show(500);
        $('#box-car-service').hide(500)
+       $('#type_service').html('');
+
 
    }
 }
