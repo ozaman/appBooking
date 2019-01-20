@@ -450,7 +450,7 @@ $(document).ready(function() {
         $('.lng-other').html('Other');
         $('.lng-paynow').html('Pay Now');
 
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined || $.cookie("lng") == '') {
       console.log($.cookie("lng"));
 
       $('.lng-private').html('รถส่วนตัว');

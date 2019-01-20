@@ -233,12 +233,19 @@ $( document ).ready(function() {
     </td> -->     
    <td align="right" > 
    <a class="btn btn-xs btn-custom-me"  href="" id="to_pay" style="    margin-right: 18px;">
-   	<span style="font-size: medium;/*font-weight: 700;*/" class="lng-paynow">Pay Now</span>
+   	<span style="font-size: medium;/*font-weight: 700;*/" class="lng-paynow"></span>
    </a></td> 
    </tr>
    </table>
    </div> 
-   <div class="card show_transfer" align="center" style="padding: 8px;
+   <?php
+   $Djson_data = json_decode($json_data);
+   $chk = $Djson_data[0];
+    // print_r($chk);
+    // $array = json_decode(json_encode($chk), True);
+    // print_r($array);
+   ?>
+   <div class="card show_transfer" align="center" id="show_transfer" style="padding: 8px;
     background-color: #fff;margin-top: 100px">
 				<table width="100%"><tbody><tr><td width="10"></td><td><table width="100%"><tbody><tr><td width="10"><div style="width: 10px;  height: 10px;  border-radius: 1px; background: #555;"></div></td><td align="left" style="padding-left: 15px;"><span id="from" style="text-align: center;"></span></td></tr><tr><td colspan="2"><br></td></tr><tr><td width="10"><div style="width: 10px;  height: 10px; border-radius: 1px; background: #3b5998;"></div></td><td align="left" style="padding-left: 15px;"><span id="to" style="text-align: center;"></span></td></tr></tbody></table></td></tr></tbody></table>
 				
@@ -246,8 +253,8 @@ $( document ).ready(function() {
 							<strong style="font-size: 17px;color: #333;"><span id="text" >-</span></strong>
 							<span class="textBox" style="font-size: 15px;"><b><span id="to"></span></b></span> -->
 						
-					</div>                                                                                       
-  <div class="card" style="padding: 8px;
+					</div>                                                                                        
+  <div class="card" id="card" style="padding: 8px;
     background-color: #fff;">         
   <table class="table ">
   		<tr>
@@ -440,6 +447,10 @@ $( document ).ready(function() {
     	console.log("--------------------");
     	console.log(obj);
     	console.log('-------------------');
+      if (data.fashion == 'Service') {
+        // 
+
+      }
       if (data.type != 'Transfer') {
         $('.show_transfer').hide()
         $('.show_tour').show()
@@ -481,12 +492,15 @@ $( document ).ready(function() {
 		}
 		if(data.fashion  ==  'Service'){
 			$('#row_filght').hide()  
-			$('.ck_arrival').hide()             
+			$('.ck_arrival').hide() 
+      $('#card').css('margin-top','50px')
+
+        $('#show_transfer').hide();            
 			           
 		}
     	if (data.type == 'Transfer') {
         $('.show_tour').hide()
-        $('.show_transfer').show()
+        // $('.show_transfer').show()
       }
     	else{
         $('.show_tour').show()
@@ -497,7 +511,7 @@ $( document ).ready(function() {
     	var cartype = "";
     	var paysuccess , payowe, paynow;
     	
-    	if($.cookie("lng")=="en" || $.cookie("lng")==undefined){
+    	if($.cookie("lng")=="en" ){
          if (data.type == 'Transfer') {
           product_name = data.product_detail[0].topic_en;
           cartype = data.product_detail[0].car_topic_en+" "+data.product_detail[0].pax_en;
@@ -533,7 +547,7 @@ $( document ).ready(function() {
 			payowe = '未结余额';
 			paynow = '现在付款';
 		}
-		else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
+		else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined){
       if (data.type == 'Transfer') {
         product_name = data.product_detail[0].topic_th;
         cartype = data.product_detail[0].car_topic_th+" "+data.product_detail[0].pax_th;
@@ -578,14 +592,10 @@ $( document ).ready(function() {
         $('.lng-typet_transfer_time').text('到达时间');
 
 
-      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
+      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH' || $.cookie("lng")==undefined){
         $('.lng-typet_transfer').text('วันที่มาถึง');
         $('.lng-typet_transfer_time').text('เวลาที่มาถึง');
 
-      }else if($.cookie("lng")==undefined){
-        $('.lng-typet_transfer').text('Arrival date');
-        $('.lng-typet_transfer_time').text('Arrival time');
-        
       }
     }
     else if(area=='Out'){
@@ -597,13 +607,9 @@ $( document ).ready(function() {
         $('.lng-typet_transfer').text('出发日期');
         $('.lng-typet_transfer_time').text('出發時間');
 
-      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
+      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH' || $.cookie("lng")==undefined){
         $('.lng-typet_transfer').text('วันเดินทาง');
         $('.lng-typet_transfer_time').text('เวลาเดินทาง');
-
-      }else if ($.cookie("lng")==undefined){
-        $('.lng-typet_transfer').text('Departure date');
-        $('.lng-typet_transfer_time').text('Departure time');
 
       }
 //      console.log($.cookie("lng"));
@@ -619,14 +625,10 @@ $( document ).ready(function() {
         $('.lng-typet_transfer').text('使用日期');
         $('.lng-typet_transfer_time').text('使用時間');
       
-      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH'){
+      }else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH' || $.cookie("lng")==undefined){
         $('.lng-typet_transfer').text('วันที่ใช้บริการ');
         $('.lng-typet_transfer_time').text('เวลาที่ใช้บริการ');
         
-      }else if($.cookie("lng")==undefined){
-        $('.lng-typet_transfer').text('Use date');
-        $('.lng-typet_transfer_time').text('Use time');
-  
       }
       
       

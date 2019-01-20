@@ -441,7 +441,7 @@ else if(res.status==2)
     $('.box-history').click( function() {       
         $('html').removeClass('nav-open');
         setTimeout(function() {
-            $toggle.removeClass('toggled');
+            // $toggle.removeClass('toggled');
             $('#bodyClick').remove();
             $('.navbar-toggle').css('display', 'block');
         }, 250);
