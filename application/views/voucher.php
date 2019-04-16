@@ -469,6 +469,7 @@ $( document ).ready(function() {
     	$('#arrival_time').text(data.arrival_time);
       $('#use_date').text(data.arrival_date);
       $('#round_time').text(data.arrival_time);
+
       $('#place').text(data.address_en_from);
       $('#to_place').text(data.address_en_to);
     	$('#from').text(data.address_en_from);
@@ -482,7 +483,14 @@ $( document ).ready(function() {
     	var res = data.booking_date.replace(" ", "/"); 
     	$('#transfer_date').text(res);
     	$('#book_by').text(data.guest_english);
-    	$('#price').text(data.total_price);
+       if (data.fashion != 'Realtime') {
+      $('#price').text(data.cost_a_nett);
+        
+      }
+      else{
+      $('#price').text(data.total_price);
+        
+      }
     	$('#other').text(data.other);
     	if(data.other=="" || data.other==undefined){
 			$('#other_row').hide();
@@ -528,6 +536,8 @@ $( document ).ready(function() {
 			paysuccess = 'Already paid';
 			payowe = 'Outstanding Balance';
 			paynow = 'Pay Now';
+      paydriver = 'Pay with driver';
+
 		}
 		else if ($.cookie("lng")=="cn"){
       if (data.type == 'Transfer') {
@@ -546,6 +556,7 @@ $( document ).ready(function() {
 			paysuccess = '等待付款';
 			payowe = '未结余额';
 			paynow = '现在付款';
+      paydriver = '与司机支付';
 		}
 		else if ($.cookie("lng")=="th" || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined){
       if (data.type == 'Transfer') {
@@ -564,9 +575,11 @@ $( document ).ready(function() {
 			paysuccess = 'ชำระแล้ว';
 			payowe = 'มียอดค้างชำระ';
 			paynow = 'ชำระตอนนี้';
+      paydriver = 'จ่ายกับคนขับ';
 		}
 		
 		var check_pay = data.status_pay;
+    if (data.status_pay_driver == 0) {
 		if(check_pay==0){
 			$('.lng-paynow').text(paynow);
 			
@@ -577,6 +590,12 @@ $( document ).ready(function() {
 			$('.lng-paynow').text(payowe);
 			$('#to_pay').css('background-color','#ffc500'); 
 		}
+  }
+  else{
+    $('#to_pay').attr('href','');
+$('.lng-paynow').text(paydriver);
+      // $('#to_pay').css('background-color','#ffc500'); 
+  }
 		$('#pdname').text(product_name);
 		$('#car_type').text(cartype);
     if (data.type == 'Transfer') {

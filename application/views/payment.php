@@ -76,7 +76,7 @@
                       </div>
 
                   </li>
-                            <!-- <li>
+                            <li>
                                 <div  style="color: #e91e63;
     text-align: center;
    
@@ -92,7 +92,7 @@
    "><span class="lng_pay_driver"></span></div>
           
                 </div>
-            </li> -->
+            </li>
         </ul>
     </div>
 </div>

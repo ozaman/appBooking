@@ -471,20 +471,27 @@
                        
                             <div style="padding: 10px 4px; font-weight: 600; font-size: 16px;">
                             <span class="lng-terms-of-use" style="    margin-top: 15px;"></span>
+                      
+                            
                             </div>
                             <div class="card"  style="border-radius: 15px">
                                 
                                 <div class="col-md-12">
-                                <div class="terms-of-use" style="    margin-top: 15px;"></div>
+
+                                <!-- <div class="terms-of-use" style="    margin-top: 15px;"></div> -->
                                 </div>
                                 <div class="col-md-12">
-                                
+                                <div onclick="terms_of_use()" class="lng-terms-of-use" style="text-decoration: underline;
+    font-size: 13px;
+    margin-bottom: 8px;
+    margin-top: 10px;"></div>
                                      <div class="checkbox" id="checkbox">
                                          <label>
                                              <input type="checkbox" name="optionsCheckboxes" value="check1" id="acceptance">
                                              <span class="lng-acceptance-of-terms"></span>
                                          </label>
                                      </div>
+
                                  </div>
                                  <div class="col-md-12">
                                     <input type="hidden" name="" id="inputphonecode">

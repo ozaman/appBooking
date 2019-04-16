@@ -1030,13 +1030,6 @@ table{
     <table  width="100%">
                                             <tr>
                                                 <td width="10">
-                                                <!-- <div style="">
-                
-    <div style="width: 2px;
-    height: 30px;
-    background: #ddd;margin-left: 4px;"></div>
-    
-                </div> -->
                                                 </td>
                                                 <td>
                                                  <table width="100%">
@@ -1085,7 +1078,8 @@ table{
                     </div>
                 </div>
             </div>
-        </div>               
+        </div>
+                      
         </div> 
              
         <div id="box-prosearch">
@@ -2620,7 +2614,36 @@ textarea:-ms-input-placeholder {
                 </div>        
             
             </div>
-        </div>          
+        </div> 
+        <style>
+            #box-terms-of-use{
+                 z-index: 300;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.59);
+                }   
+        </style> 
+        <div id="box-terms-of-use" style="display: none;">
+            <div class="box-pax-rel-in" >               
+                   <div  id="pax-box">                      
+                      
+                        <div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">
+                            <span class="lng-terms-of-use"></span>
+                            <i class="material-icons " onclick="close_popup('terms')" style="position: absolute;
+    right: 15px;">close</i>
+
+                        </div>
+                        <div class="col-md-12">
+                                <div class="terms-of-use" style="    margin-top: 15px;"></div>
+                           
+                        </div>
+                       
+                </div>
+            </div>
+        </div>         
         <div class="modal fade" id="login">
             <div class="modal-dialog col-md-8">
                 <div class="modal-content">
