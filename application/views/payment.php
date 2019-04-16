@@ -2,20 +2,50 @@
 <script>
     Omise.setPublicKey("pkey_test_59iaxcc7zsr77n4nbkb");
 </script>
-
+<style>
+    #back_mybooking {
+    text-align: center;
+    left: 9vw;
+    overflow: hidden;
+    transform: translate(-50%, -212%);
+    display: none;
+    top: 94px;
+    /* z-index: 200; */
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    box-shadow: #3b5998 0px 1px 4px;
+    z-index: 500;
+    cursor: pointer;
+    position: absolute;
+    padding: 8px;
+    background: rgb(255, 255, 255);
+    color: #3b5998;
+    font-size: 30px;
+}
 </style>
 <div id="loading" style="z-index: 9999;  position: fixed;  width: 100vw;   height: 100vh;   left: 0;    top: 0;   background: rgba(0, 0, 0, 0.59);    display: none;">
+    
     <div style="height: 115px;  border-radius: 4px;  background: #fff;  min-width: 15rem;   /* height: auto; */    left: 50vw;   top: 50vh;   transform: translate(-50%,-50%);   position: fixed;    z-index: 10000;">
         <div>
+
             <div style="font-weight: 500;  color: #000; padding: 35px; text-align: center;">
                 <div style="font-size: 15px" >Loading</div>
                 <i class="fa fa-circle-o-notch fa-spin fa-fw" style=" margin-top: 10px; color: #5c5151; font-size: 35px"></i>
             </div>            
         </div>
     </div>
+    
 </div>
 <section style="height: 93vh;background: #fff;-webkit-overflow-scrolling: touch;  margin-bottom: 35px;overflow-y: scroll ">
     <div class="container">
+        <a href="<?php echo base_url(); ?>/dashboard/view_user">
+        <div id="back_mybooking" style="display: block;">
+    <i class="material-icons" style="">reply_all</i>
+    <!-- <i class="fa fa-angle-double-left" style=""></i> -->
+        <!-- <i class="material-icons" style="color: rgb(22, 179, 177); font-size: 35px;">keyboard_arrow_down</i> -->
+    </div>
+    </a>
         <div style="margin-top: 52px">
             <div class="col-md-12">
                 <div class="col-md-12" style="text-align: center;  padding-bottom: 12px; font-size: 18px;  font-weight: 400;    margin-bottom: 5px;border-bottom: dashed 3px #3b5998;" >
@@ -921,6 +951,7 @@ boby{
                  });
                     $('.pay-omise').on('click', function() {
                         $('#loading').show();
+                        $('#back_mybooking').hide();
                         $('#foget-password').fadeIn(500);
         //alert('asasasa')
         $.ajax({
@@ -975,6 +1006,8 @@ boby{
     })
                     $('#close').on('click', function() {
                         $('#foget-password').fadeOut(500)
+                        $('#back_mybooking').show()
+
                     });
                     $('#close-credit-card').on('click', function() {
                         $('#foget-password2').fadeOut(500)

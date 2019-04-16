@@ -155,7 +155,7 @@
             /* margin-bottom: 8px; */
             font-size: 25px;
             display: inline-block;">
-                        <div class="box-login-non">
+                        <div class="box-login-non" style="display: none;">
                   
                        <i class="material-icons btn-login" style="    position: absolute;">account_circle  </i>
                         <span style="    margin-left: 30px;

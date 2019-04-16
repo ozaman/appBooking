@@ -203,10 +203,10 @@ $(document).ready(function() {
                             if ($.cookie("lng") == 'cn') {
                             $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' +data[0].phonecode + ')' + ' ' + data[0].name_cn + '</span></span>');
 
-                        } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+                        } else if ($.cookie("lng") == 'en' ) {
                             $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode+ ')' + ' ' + data[0].name_en + '</span></span>');
 
-                        } else if ($.cookie("lng") == 'th') {
+                        } else if ($.cookie("lng") == 'th' || $.cookie("lng") == undefined || $.cookie("lng") == '') {
                             $('#textcountry').append('<span id="select"><img id="imgcountry" src="' + base_url + 'files/img/flag/icon/' + data[0].country_code + '.png' + '">' + '<span>(+' + data[0].phonecode + ')' + ' ' + data[0].name_th + '</span></span>');
 
                         }

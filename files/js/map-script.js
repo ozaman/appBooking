@@ -658,6 +658,8 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
 
     }
     var id_placefrom, id_placeto;
+    console.log('check lat lng')
+console.log(lat_f+','+lng_f);
     $.ajax({
         type: 'POST',
         url: base_url+'service/getPlaceId.php',
@@ -669,7 +671,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
             id_placefrom = data.id;
         }
     });
-
+console.log(lat_t+','+lng_t);
     $.ajax({
         type: 'POST',
         url: base_url+'service/getPlaceId.php',
@@ -761,7 +763,10 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                             $('#typeTo').html(his_place_to); 
                             check_his = false; 
                         }
-                        else{                   
+                        else{
+                        if (typeFrom == '') {
+                            typeFrom = $('#current').val();
+                        }                   
                             $('#typeFrom').html(typeFrom)                
                             $('#typeTo').html(typeTo)    
                             
