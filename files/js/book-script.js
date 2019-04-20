@@ -26,6 +26,17 @@ var getemail,getphone ,b_from,b_to,b_lat_f,b_lng_f,b_lat_t,b_lng_t,b_fashion,b_d
 var costproduct, costdotcars, type, costdotcars, pro_id, place, to_place,lang_to_map,getnewdate,place_from,place_to;
 var protype = $.cookie("type")
 console.log($.cookie("type"))
+if ($.cookie("lng") == 'cn') {
+        lng_getcountry = '请选择国家';
+        
+    } else if ($.cookie("lng") == 'en' ) {
+        lng_getcountry = 'Please select country';
+       
+
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == undefined  || $.cookie("lng") == '') {
+        lng_getcountry = 'โปรดเลือกประเทศ';
+        
+    } 
 function close_popup(el) {
     if (el == 'terms') {
     $('#box-terms-of-use').hide()
@@ -1323,7 +1334,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
         }
     });
     $('.numbercountry').append('<span id="textcountry">' + lng_getcountry + '</span>');
-    $('#code').append('<span id="textcode">code country</span>');
+    $('#code').append('<span id="textcode">code country</span>');textcountry
 
 
     // GET DETAIL
@@ -1367,7 +1378,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                 $('#cars_type').html(data[0].car_topic_cn + data[0].pax_cn)
                 $('#costsummary').html(data[0].cost_a + ' ' + '฿')
                 $('#numsumprice').html(data[0].cost_a + ' ' + '฿')
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 if(data[0].area == 'Service_day' || data[0].area == 'Service'){
                     $('#province').html(data[0].province_name_en);
                     $('#province_to').html(data[0].province_name_to_en);
@@ -1388,7 +1399,7 @@ function getDetailbook(a,b,c,d,e,f,g,h){
                 $('#cars_type').html(data[0].car_topic_en + data[0].pax_en)
                 $('#costsummary').html(data[0].cost_a + ' ' + '฿')
                 $('#numsumprice').html(data[0].cost_a + ' ' + '฿')
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined || $.cookie("lng") == '') {
                 if(data[0].area == 'Service_day' || data[0].area == 'Service'){
                     $('#province').html(data[0].province_name_th);
                     $('#province_to').html(data[0].province_name_to_th);
